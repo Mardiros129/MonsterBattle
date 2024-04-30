@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhoneh2rpndj7"]
+
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_fsowb"]
+[ext_resource type="Texture2D" uid="uid://du145pnrues4v" path="res://Assets/water_turtle.png" id="2_0xevt"]
+[ext_resource type="PackedScene" uid="uid://lp8eeu2ig4s7" path="res://Attacks/poke.tscn" id="3_j0ycv"]
+[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="4_gvkrm"]
+
+[node name="WaterTurtle" node_paths=PackedStringArray("attack0", "attack1") instance=ExtResource("1_fsowb")]
+hp = 8
+my_name = "Water Turtle"
+attack0 = NodePath("Poke")
+attack1 = NodePath("Heal")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_0xevt")
+
+[node name="Poke" parent="." index="3" instance=ExtResource("3_j0ycv")]
+position = Vector2(141, -75)
+
+[node name="Heal" parent="." index="4" instance=ExtResource("4_gvkrm")]
+position = Vector2(141, -75)

@@ -1,50 +1,157 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3ccrpeska432"]
+[gd_scene load_steps=10 format=3 uid="uid://c3ccrpeska432"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_2bifh"]
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_wiqs0"]
+[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://attack.tscn" id="2_m8hxs"]
+[ext_resource type="Texture2D" uid="uid://cawikr2kgfvpd" path="res://icon.svg" id="3_pkqel"]
+[ext_resource type="PackedScene" uid="uid://dr5kut3hfi32a" path="res://Monsters/electric_rat.tscn" id="4_e7jiq"]
+[ext_resource type="PackedScene" uid="uid://cxeqipxbmdckw" path="res://Monsters/fire_lizard.tscn" id="5_554xt"]
+[ext_resource type="PackedScene" uid="uid://ybaywduw4xtu" path="res://Monsters/plant_frog.tscn" id="6_wtjbj"]
+[ext_resource type="Texture2D" uid="uid://bynh15bcblaye" path="res://Assets/money_cat.png" id="7_t6qlw"]
+[ext_resource type="PackedScene" uid="uid://bhoneh2rpndj7" path="res://Monsters/water_turtle.tscn" id="7_yxhvp"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("player_monster0", "player_monster1", "player_monster2", "player_monster3")]
 script = ExtResource("1_2bifh")
+catch_chance = 0.8
+player_monster0 = NodePath("PlayerMonLocation/ElectricRat")
+player_monster1 = NodePath("PlayerMonLocation/PlantFrog")
+player_monster2 = NodePath("PlayerMonLocation/FireLizard")
+player_monster3 = NodePath("PlayerMonLocation/WaterTurtle")
 
-[node name="PlayerMonster" parent="." instance=ExtResource("1_wiqs0")]
-position = Vector2(210, 462)
-hp = 10
-my_name = "Jeffrey"
+[node name="Attack" parent="." instance=ExtResource("2_m8hxs")]
 
-[node name="EnemyMonster" parent="." instance=ExtResource("1_wiqs0")]
-position = Vector2(834, 145)
-hp = 20
-my_name = "Bad Jeffrey"
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="AttackButton" type="Button" parent="."]
-offset_left = 374.0
-offset_top = 565.0
-offset_right = 469.0
-offset_bottom = 609.0
+[node name="AttackButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 577.0
+offset_right = 380.0
+offset_bottom = 621.0
 text = "Attack!"
 
-[node name="EnemyTurnTimer" type="Timer" parent="."]
-one_shot = true
+[node name="CatchButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 396.0
+offset_top = 577.0
+offset_right = 495.0
+offset_bottom = 621.0
+text = "Catch"
 
-[node name="MoveList" type="ItemList" parent="."]
-offset_left = 352.0
-offset_top = 466.0
-offset_right = 491.0
-offset_bottom = 556.0
-item_count = 3
-item_0/text = "Fire Punch"
-item_1/text = "Water Sprinkle"
-item_2/text = "Regrow"
+[node name="PlayerAttackList" type="ItemList" parent="UI"]
+layout_mode = 0
+offset_left = 267.0
+offset_top = 449.0
+offset_right = 406.0
+offset_bottom = 566.0
+item_count = 4
+item_0/text = "null"
+item_0/disabled = true
+item_1/text = "null"
+item_1/disabled = true
+item_2/text = "null"
+item_2/disabled = true
+item_3/text = "null"
+item_3/disabled = true
 
-[node name="ItemList" type="ItemList" parent="."]
-offset_left = 932.0
-offset_top = 95.0
-offset_right = 1049.0
-offset_bottom = 189.0
+[node name="EnemyAttackList" type="ItemList" parent="UI"]
+layout_mode = 0
+offset_left = 965.0
+offset_top = 114.0
+offset_right = 1082.0
+offset_bottom = 208.0
 item_count = 3
 item_0/text = "Poke"
 item_1/text = "???"
 item_2/text = "???"
 
-[connection signal="pressed" from="AttackButton" to="." method="_on_attack_button_pressed"]
+[node name="SwitchButton0" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 489.0
+offset_right = 723.0
+offset_bottom = 625.0
+text = "Switch 1"
+icon = ExtResource("3_pkqel")
+expand_icon = true
+
+[node name="SwitchButton1" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 723.0
+offset_top = 489.0
+offset_right = 928.0
+offset_bottom = 625.0
+text = "Switch 2"
+icon = ExtResource("3_pkqel")
+expand_icon = true
+
+[node name="SwitchButton2" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 489.0
+offset_right = 1133.0
+offset_bottom = 625.0
+text = "Switch 3"
+icon = ExtResource("3_pkqel")
+expand_icon = true
+
+[node name="CatchCount" type="RichTextLabel" parent="UI"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 290.0
+offset_right = 186.0
+offset_bottom = 317.0
+text = "Catch count: 999"
+
+[node name="CatchChance" type="RichTextLabel" parent="UI"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 317.0
+offset_right = 203.0
+offset_bottom = 353.0
+text = "Catch chance: 100%"
+
+[node name="Reset" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 14.0
+offset_right = 70.0
+offset_bottom = 45.0
+text = "Reset"
+
+[node name="PlayerMonLocation" type="Marker2D" parent="."]
+position = Vector2(136, 491)
+
+[node name="ElectricRat" parent="PlayerMonLocation" instance=ExtResource("4_e7jiq")]
+
+[node name="FireLizard" parent="PlayerMonLocation" instance=ExtResource("5_554xt")]
+visible = false
+
+[node name="PlantFrog" parent="PlayerMonLocation" instance=ExtResource("6_wtjbj")]
+visible = false
+
+[node name="WaterTurtle" parent="PlayerMonLocation" instance=ExtResource("7_yxhvp")]
+visible = false
+
+[node name="EnemyMonster" parent="." instance=ExtResource("1_wiqs0")]
+position = Vector2(834, 145)
+hp = 5
+my_name = "Money Cat"
+
+[node name="Sprite2D" parent="EnemyMonster" index="0"]
+texture = ExtResource("7_t6qlw")
+
+[node name="EnemyTurnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="pressed" from="UI/AttackButton" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="UI/CatchButton" to="." method="_on_catch_button_pressed"]
+[connection signal="pressed" from="UI/SwitchButton0" to="." method="_on_switch_button_0_pressed"]
+[connection signal="pressed" from="UI/SwitchButton1" to="." method="_on_switch_button_1_pressed"]
+[connection signal="pressed" from="UI/SwitchButton2" to="." method="_on_switch_button_2_pressed"]
+[connection signal="pressed" from="UI/Reset" to="." method="_on_reset_pressed"]
 [connection signal="timeout" from="EnemyTurnTimer" to="." method="_on_enemy_turn_timer_timeout"]
+
+[editable path="EnemyMonster"]
