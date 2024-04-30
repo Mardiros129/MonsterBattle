@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm8rdxaoty3ow"]
+
+[ext_resource type="Texture2D" uid="uid://cawikr2kgfvpd" path="res://icon.svg" id="1_m57o5"]
+[ext_resource type="Script" path="res://Monster.gd" id="2_qymm1"]
+
+[node name="Monster" type="Sprite2D"]
+texture = ExtResource("1_m57o5")
+script = ExtResource("2_qymm1")
+
+[node name="Name" type="RichTextLabel" parent="."]
+offset_left = -60.0
+offset_top = 66.0
+offset_right = 67.0
+offset_bottom = 97.0
+text = "name"
+
+[node name="HP" type="RichTextLabel" parent="."]
+offset_left = -59.0
+offset_top = 96.0
+offset_right = 62.0
+offset_bottom = 126.0
+text = "hp"

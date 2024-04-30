@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3ccrpeska432"]
+
+[ext_resource type="Script" path="res://Levels/main.gd" id="1_2bifh"]
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_wiqs0"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_2bifh")
+
+[node name="PlayerMonster" parent="." instance=ExtResource("1_wiqs0")]
+position = Vector2(210, 462)
+hp = 10
+my_name = "Jeffrey"
+
+[node name="EnemyMonster" parent="." instance=ExtResource("1_wiqs0")]
+position = Vector2(834, 145)
+hp = 20
+my_name = "Bad Jeffrey"
+
+[node name="AttackButton" type="Button" parent="."]
+offset_left = 374.0
+offset_top = 565.0
+offset_right = 469.0
+offset_bottom = 609.0
+text = "Attack!"
+
+[node name="EnemyTurnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="MoveList" type="ItemList" parent="."]
+offset_left = 352.0
+offset_top = 466.0
+offset_right = 491.0
+offset_bottom = 556.0
+item_count = 3
+item_0/text = "Fire Punch"
+item_1/text = "Water Sprinkle"
+item_2/text = "Regrow"
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_left = 932.0
+offset_top = 95.0
+offset_right = 1049.0
+offset_bottom = 189.0
+item_count = 3
+item_0/text = "Poke"
+item_1/text = "???"
+item_2/text = "???"
+
+[connection signal="pressed" from="AttackButton" to="." method="_on_attack_button_pressed"]
+[connection signal="timeout" from="EnemyTurnTimer" to="." method="_on_enemy_turn_timer_timeout"]
