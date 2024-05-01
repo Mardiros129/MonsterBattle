@@ -10,8 +10,10 @@ hp = 8
 my_name = "Water Turtle"
 attack0 = NodePath("Poke")
 attack1 = NodePath("Heal")
+type1 = 1
 
 [node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.592814, 0.592814)
 texture = ExtResource("2_0xevt")
 
 [node name="Poke" parent="." index="3" instance=ExtResource("3_j0ycv")]

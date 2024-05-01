@@ -8,6 +8,8 @@
 hp = 100
 my_name = "Fire Lizard"
 attack0 = NodePath("Fire Punch")
+type1 = 1
+type2 = 4
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(0.33, 0.33)

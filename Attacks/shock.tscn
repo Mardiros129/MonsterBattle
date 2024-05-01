@@ -4,4 +4,5 @@
 
 [node name="Shock" instance=ExtResource("1_3gemq")]
 attack_name = "Shock"
-damage = 2
+damage = 20
+type = 4

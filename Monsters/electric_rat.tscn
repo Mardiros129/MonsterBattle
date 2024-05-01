@@ -12,6 +12,8 @@ my_name = "Electric Rat"
 attack0 = NodePath("Shock")
 attack1 = NodePath("Heal")
 attack2 = NodePath("Poke")
+type1 = 4
+type2 = 1
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_ojelu")

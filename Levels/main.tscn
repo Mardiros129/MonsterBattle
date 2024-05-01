@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://attack.tscn" id="2_m8hxs"]
 [ext_resource type="Texture2D" uid="uid://cawikr2kgfvpd" path="res://icon.svg" id="3_pkqel"]
 [ext_resource type="PackedScene" uid="uid://dr5kut3hfi32a" path="res://Monsters/electric_rat.tscn" id="4_e7jiq"]
-[ext_resource type="PackedScene" uid="uid://cxeqipxbmdckw" path="res://Monsters/fire_lizard.tscn" id="5_554xt"]
 [ext_resource type="PackedScene" uid="uid://ybaywduw4xtu" path="res://Monsters/plant_frog.tscn" id="6_wtjbj"]
 [ext_resource type="Texture2D" uid="uid://bynh15bcblaye" path="res://Assets/money_cat.png" id="7_t6qlw"]
+[ext_resource type="PackedScene" uid="uid://dq47p4t6jot3n" path="res://Monsters/pilloco.tscn" id="7_uxd3f"]
 [ext_resource type="PackedScene" uid="uid://bhoneh2rpndj7" path="res://Monsters/water_turtle.tscn" id="7_yxhvp"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("player_monster0", "player_monster1", "player_monster2", "player_monster3")]
@@ -15,7 +15,7 @@ script = ExtResource("1_2bifh")
 catch_chance = 0.8
 player_monster0 = NodePath("PlayerMonLocation/ElectricRat")
 player_monster1 = NodePath("PlayerMonLocation/PlantFrog")
-player_monster2 = NodePath("PlayerMonLocation/FireLizard")
+player_monster2 = NodePath("PlayerMonLocation/Pilloco")
 player_monster3 = NodePath("PlayerMonLocation/WaterTurtle")
 
 [node name="Attack" parent="." instance=ExtResource("2_m8hxs")]
@@ -126,18 +126,18 @@ position = Vector2(136, 491)
 
 [node name="ElectricRat" parent="PlayerMonLocation" instance=ExtResource("4_e7jiq")]
 
-[node name="FireLizard" parent="PlayerMonLocation" instance=ExtResource("5_554xt")]
-visible = false
-
 [node name="PlantFrog" parent="PlayerMonLocation" instance=ExtResource("6_wtjbj")]
 visible = false
 
 [node name="WaterTurtle" parent="PlayerMonLocation" instance=ExtResource("7_yxhvp")]
 visible = false
 
+[node name="Pilloco" parent="PlayerMonLocation" instance=ExtResource("7_uxd3f")]
+visible = false
+
 [node name="EnemyMonster" parent="." instance=ExtResource("1_wiqs0")]
 position = Vector2(834, 145)
-hp = 5
+hp = 100
 my_name = "Money Cat"
 
 [node name="Sprite2D" parent="EnemyMonster" index="0"]

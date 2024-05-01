@@ -10,15 +10,22 @@ script = ExtResource("2_qymm1")
 texture = ExtResource("1_m57o5")
 
 [node name="Name" type="RichTextLabel" parent="."]
-offset_left = 140.0
-offset_top = -105.0
-offset_right = 267.0
-offset_bottom = -74.0
+offset_left = 144.0
+offset_top = -139.0
+offset_right = 271.0
+offset_bottom = -108.0
 text = "name"
 
 [node name="HP" type="RichTextLabel" parent="."]
-offset_left = 141.0
-offset_top = -75.0
-offset_right = 262.0
-offset_bottom = -45.0
+offset_left = 145.0
+offset_top = -109.0
+offset_right = 266.0
+offset_bottom = -79.0
 text = "hp"
+
+[node name="Type" type="RichTextLabel" parent="."]
+offset_left = 146.0
+offset_top = -79.0
+offset_right = 262.0
+offset_bottom = -44.0
+text = "type"

@@ -8,6 +8,8 @@
 hp = 2
 my_name = "Plant Frog"
 attack0 = NodePath("Drain")
+type1 = 1
+type2 = 2
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(0.557229, 0.557229)
