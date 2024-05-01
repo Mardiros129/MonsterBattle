@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Attacks/fire_punch.tscn" id="3_8o0ny"]
 
 [node name="FireLizard" node_paths=PackedStringArray("attack0") instance=ExtResource("1_qrxl7")]
-hp = 100
+max_hp = 200
 my_name = "Fire Lizard"
 attack0 = NodePath("Fire Punch")
 type1 = 1

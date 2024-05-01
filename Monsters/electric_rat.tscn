@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Attacks/shock.tscn" id="6_s6kar"]
 
 [node name="ElectricRat" node_paths=PackedStringArray("attack0", "attack1", "attack2") instance=ExtResource("1_d20mj")]
-hp = 10
+max_hp = 100
 my_name = "Electric Rat"
 attack0 = NodePath("Shock")
 attack1 = NodePath("Heal")

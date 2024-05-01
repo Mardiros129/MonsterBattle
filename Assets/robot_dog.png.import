@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d13rft2rt8wp1"
-path="res://.godot/imported/pilloco.png-26323f7127a2c78dae61cee90b4765e6.ctex"
+uid="uid://rxfp3nekm1w4"
+path="res://.godot/imported/robot_dog.png-4e28df8c39399abaee9134761b29a8f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/pilloco.png"
-dest_files=["res://.godot/imported/pilloco.png-26323f7127a2c78dae61cee90b4765e6.ctex"]
+source_file="res://Assets/robot_dog.png"
+dest_files=["res://.godot/imported/robot_dog.png-4e28df8c39399abaee9134761b29a8f3.ctex"]
 
 [params]
 

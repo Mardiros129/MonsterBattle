@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://cde0ice0s3el7"]
+
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_leaiy"]
+[ext_resource type="Texture2D" uid="uid://rxfp3nekm1w4" path="res://Assets/robot_dog.png" id="2_7ycpe"]
+[ext_resource type="PackedScene" uid="uid://lp8eeu2ig4s7" path="res://Attacks/poke.tscn" id="3_k4axe"]
+[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="4_781bd"]
+[ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Attacks/shock.tscn" id="5_dohyw"]
+[ext_resource type="PackedScene" uid="uid://ds52mnf1tcx4x" path="res://Attacks/metal_claw.tscn" id="6_ujvp6"]
+
+[node name="RobotDog" node_paths=PackedStringArray("attack0", "attack1", "attack2", "attack3") instance=ExtResource("1_leaiy")]
+max_hp = 120
+my_name = "Robot Dog"
+attack0 = NodePath("Poke")
+attack1 = NodePath("Shock")
+attack2 = NodePath("Heal")
+attack3 = NodePath("MetalClaw")
+type1 = 1
+type2 = 5
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.425781, 0.425781)
+texture = ExtResource("2_7ycpe")
+
+[node name="Poke" parent="." index="4" instance=ExtResource("3_k4axe")]
+
+[node name="Heal" parent="." index="5" instance=ExtResource("4_781bd")]
+
+[node name="Shock" parent="." index="6" instance=ExtResource("5_dohyw")]
+
+[node name="MetalClaw" parent="." index="7" instance=ExtResource("6_ujvp6")]

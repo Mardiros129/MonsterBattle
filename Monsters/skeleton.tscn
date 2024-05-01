@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://cykxfc1djurb2"]
+
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_tqmii"]
+[ext_resource type="Texture2D" uid="uid://r84gwcdjv0ku" path="res://Assets/hat_skeleton.png" id="2_oelij"]
+[ext_resource type="PackedScene" uid="uid://lp8eeu2ig4s7" path="res://Attacks/poke.tscn" id="3_dwl88"]
+[ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Attacks/drain.tscn" id="4_01dew"]
+[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="5_8gbwd"]
+
+[node name="Skeleton" node_paths=PackedStringArray("attack0", "attack1", "attack2") instance=ExtResource("1_tqmii")]
+max_hp = 50
+my_name = "Mr. Skeleton"
+attack0 = NodePath("Poke")
+attack1 = NodePath("Drain")
+attack2 = NodePath("Heal")
+type1 = 3
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("2_oelij")
+
+[node name="Poke" parent="." index="4" instance=ExtResource("3_dwl88")]
+
+[node name="Drain" parent="." index="5" instance=ExtResource("4_01dew")]
+
+[node name="Heal" parent="." index="6" instance=ExtResource("5_8gbwd")]

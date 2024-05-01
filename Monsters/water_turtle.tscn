@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="4_gvkrm"]
 
 [node name="WaterTurtle" node_paths=PackedStringArray("attack0", "attack1") instance=ExtResource("1_fsowb")]
-hp = 8
+max_hp = 90
 my_name = "Water Turtle"
 attack0 = NodePath("Poke")
 attack1 = NodePath("Heal")

@@ -5,14 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Attacks/drain.tscn" id="3_jvvwg"]
 
 [node name="PlantFrog" node_paths=PackedStringArray("attack0") instance=ExtResource("1_6fjbx")]
-hp = 2
+max_hp = 80
 my_name = "Plant Frog"
 attack0 = NodePath("Drain")
-type1 = 1
-type2 = 2
+type1 = 2
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(0.557229, 0.557229)
 texture = ExtResource("2_tqkyo")
 
-[node name="Drain" parent="." index="3" instance=ExtResource("3_jvvwg")]
+[node name="Drain" parent="." index="4" instance=ExtResource("3_jvvwg")]

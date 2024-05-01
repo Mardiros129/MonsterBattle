@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds52mnf1tcx4x"]
+
+[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://attack.tscn" id="1_5bq3d"]
+
+[node name="MetalClaw" instance=ExtResource("1_5bq3d")]
+attack_name = "Metal Claw"
+damage = 20
+type = 5
