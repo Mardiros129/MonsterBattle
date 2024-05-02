@@ -8,6 +8,8 @@ extends Node2D
 @onready var mon_team: Array
 @onready var player_turn = true
 @onready var resolve_turn_timer = $ResolveTurnTimer
+@onready var player_mon_loc = $PlayerMonLocation
+@onready var enemy_mon_loc = $EnemyMonLocation
 
 @export var player_monster0: Node2D
 @export var player_monster1: Node2D
@@ -21,13 +23,36 @@ extends Node2D
 @export var catch_chance = 0.1
 
 @onready var ui = $UI
+@onready var end_button = $UI/EndButton
 
 
 func _ready():
-	mon_team.append(player_monster0)
-	mon_team.append(player_monster1)
-	mon_team.append(player_monster2)
-	mon_team.append(player_monster3)
+	# Refactor later
+	if MonsterParty.party.size() > 0:
+		player_monster0 = MonsterParty.party[0]
+		player_mon_loc.add_child(player_monster0)
+		mon_team.append(player_monster0)
+		player_mon = mon_team[0]
+		
+	if MonsterParty.party.size() > 1:
+		player_monster1 = MonsterParty.party[1]
+		player_mon_loc.add_child(player_monster1)
+		mon_team.append(player_monster1)
+		support_mon0 = mon_team[1]
+		
+	if MonsterParty.party.size() > 2:
+		player_monster2 = MonsterParty.party[2]
+		player_mon_loc.add_child(player_monster2)
+		mon_team.append(player_monster2)
+		support_mon1 = mon_team[2]
+		
+	if MonsterParty.party.size() > 3:
+		player_monster3 = MonsterParty.party[3]
+		player_mon_loc.add_child(player_monster3)
+		mon_team.append(player_monster3)
+		sideboard_mon = mon_team[3]
+	
+	enemy_mon = enemy_mon_loc.get_child(0, false)
 	
 	# Signals
 	for x in mon_team.size():
@@ -35,11 +60,6 @@ func _ready():
 		mon_team[x].damage_enemy.connect(_player_damages_enemy)
 		mon_team[x].combat_message.connect(_on_combat_message_received)
 	enemy_mon.combat_message.connect(_on_combat_message_received)
-	
-	player_mon = mon_team[0]
-	support_mon0 = mon_team[1]
-	support_mon1 = mon_team[2]
-	sideboard_mon = mon_team[3]
 	
 	ui.set_moves(player_mon)
 	ui.set_button_icons(mon_team)
@@ -71,6 +91,9 @@ func end_turn():
 	
 	command_queue.clear()
 	start_turn()
+
+func end_combat():
+	end_button.show()
 
 func switch(button_index):
 	player_mon.visible = false
@@ -123,8 +146,12 @@ func _on_catch_button_pressed():
 	var result = rng.randf()
 	if result <= catch_chance:
 		ui.update_log("Catch success!")
+		
+		MonsterParty.add_to_party(enemy_mon)
+		
 		enemy_mon.queue_free()
 		ui.disable_ui()
+		end_combat()
 	else:
 		ui.update_log("Catch failed...")
 		end_turn()
@@ -149,6 +176,7 @@ func _player_damages_enemy(dmg):
 	if enemy_mon.current_hp <= 0:
 		ui.update_log("Enemy " + enemy_mon.my_name + " died!")
 		enemy_mon.queue_free()
+		end_combat()
 		#ui.disable_ui() <-- doesn't work
 
 func _on_switch_button_0_pressed():
@@ -159,3 +187,21 @@ func _on_switch_button_1_pressed():
 
 func _on_combat_message_received(message: String):
 	ui.update_log(message)
+
+func _on_end_button_pressed():
+	MonsterParty.party.clear()
+	MonsterParty.add_to_party(player_mon)
+	if support_mon0 != null:
+		MonsterParty.add_to_party(support_mon0)
+	if support_mon1 != null:
+		MonsterParty.add_to_party(support_mon1)
+	if sideboard_mon != null:
+		MonsterParty.add_to_party(sideboard_mon)
+	
+	var inst = load("res://Levels/end_screen.tscn").instantiate(false)
+	get_tree().root.add_child(inst, false, 0)
+	queue_free()
+
+func _on_run_button_pressed():
+	ui.disable_ui()
+	end_combat()

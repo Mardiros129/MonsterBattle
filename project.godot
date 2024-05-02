@@ -11,10 +11,12 @@ config_version=5
 [application]
 
 config/name="MonsterBattle"
-run/main_scene="res://Levels/main.tscn"
+run/main_scene="res://Levels/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 TypeList="*res://type_list.gd"
+SceneSwitcher="*res://scene_switcher.gd"
+MonsterParty="*res://monster_party.gd"

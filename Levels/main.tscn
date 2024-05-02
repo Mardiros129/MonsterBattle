@@ -1,23 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3ccrpeska432"]
+[gd_scene load_steps=5 format=3 uid="uid://c3ccrpeska432"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_2bifh"]
 [ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://attack.tscn" id="2_m8hxs"]
 [ext_resource type="Script" path="res://UI.gd" id="3_1s8rs"]
 [ext_resource type="Texture2D" uid="uid://cawikr2kgfvpd" path="res://icon.svg" id="3_pkqel"]
-[ext_resource type="PackedScene" uid="uid://cde0ice0s3el7" path="res://Monsters/robot_dog.tscn" id="5_hwk3d"]
-[ext_resource type="PackedScene" uid="uid://cjmje44xbewdp" path="res://Monsters/fireball.tscn" id="7_mtbu3"]
-[ext_resource type="PackedScene" uid="uid://dq47p4t6jot3n" path="res://Monsters/pillico.tscn" id="7_uxd3f"]
-[ext_resource type="PackedScene" uid="uid://cykxfc1djurb2" path="res://Monsters/skeleton.tscn" id="8_5ws4v"]
-[ext_resource type="PackedScene" uid="uid://dwxhnm1ouxe2h" path="res://Monsters/onion.tscn" id="9_jot7d"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("player_monster0", "player_monster1", "player_monster2", "player_monster3", "enemy_mon")]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_2bifh")
-player_monster0 = NodePath("PlayerMonLocation/RobotDog")
-player_monster1 = NodePath("PlayerMonLocation/Pillico")
-player_monster2 = NodePath("PlayerMonLocation/Fireball")
-player_monster3 = NodePath("PlayerMonLocation/Skeleton")
-enemy_mon = NodePath("EnemyMonLocation/Onion")
-catch_chance = 0.3
+catch_chance = 1.0
 
 [node name="Attack" parent="." instance=ExtResource("2_m8hxs")]
 
@@ -25,6 +15,16 @@ catch_chance = 0.3
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("3_1s8rs")
+
+[node name="EndButton" type="Button" parent="UI"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 445.0
+offset_top = 191.0
+offset_right = 658.0
+offset_bottom = 239.0
+text = "Go to end screen"
 
 [node name="AttackButton" type="Button" parent="UI"]
 layout_mode = 0
@@ -92,6 +92,7 @@ offset_left = 58.0
 offset_top = 494.0
 offset_right = 263.0
 offset_bottom = 630.0
+disabled = true
 text = "Switch 1"
 icon = ExtResource("3_pkqel")
 expand_icon = true
@@ -102,6 +103,7 @@ offset_left = 263.0
 offset_top = 494.0
 offset_right = 468.0
 offset_bottom = 630.0
+disabled = true
 text = "Switch 2"
 icon = ExtResource("3_pkqel")
 expand_icon = true
@@ -163,18 +165,6 @@ scroll_following = true
 [node name="PlayerMonLocation" type="Marker2D" parent="."]
 position = Vector2(294, 389)
 
-[node name="RobotDog" parent="PlayerMonLocation" instance=ExtResource("5_hwk3d")]
-
-[node name="Pillico" parent="PlayerMonLocation" instance=ExtResource("7_uxd3f")]
-visible = false
-my_name = "Pillico"
-
-[node name="Fireball" parent="PlayerMonLocation" instance=ExtResource("7_mtbu3")]
-visible = false
-
-[node name="Skeleton" parent="PlayerMonLocation" instance=ExtResource("8_5ws4v")]
-visible = false
-
 [node name="ResolveTurnTimer" type="Timer" parent="."]
 wait_time = 0.065
 one_shot = true
@@ -182,10 +172,10 @@ one_shot = true
 [node name="EnemyMonLocation" type="Marker2D" parent="."]
 position = Vector2(824, 183)
 
-[node name="Onion" parent="EnemyMonLocation" instance=ExtResource("9_jot7d")]
-
+[connection signal="pressed" from="UI/EndButton" to="." method="_on_end_button_pressed"]
 [connection signal="pressed" from="UI/AttackButton" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="UI/CatchButton" to="." method="_on_catch_button_pressed"]
+[connection signal="pressed" from="UI/RunButton" to="." method="_on_run_button_pressed"]
 [connection signal="pressed" from="UI/SwitchButton0" to="." method="_on_switch_button_0_pressed"]
 [connection signal="pressed" from="UI/SwitchButton1" to="." method="_on_switch_button_1_pressed"]
 [connection signal="pressed" from="UI/Reset" to="." method="_on_reset_pressed"]

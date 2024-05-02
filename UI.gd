@@ -25,9 +25,14 @@ func set_catch_labels(catch_count, catch_chance):
 	catch_chance_label.text = "Catch chance: " + str(catch_chance * 100) + "%"
 
 func set_button_icons(mon_team):
-	switch_buttons[0].set_button_icon(mon_team[1].get_node("Sprite2D").texture)
-	switch_buttons[1].set_button_icon(mon_team[2].get_node("Sprite2D").texture)
-	sideboard.set_button_icon(mon_team[3].get_node("Sprite2D").texture)
+	if mon_team.size() > 1:
+		switch_buttons[0].set_button_icon(mon_team[1].get_node("Sprite2D").texture)
+		switch_buttons[0].disabled = false
+		if mon_team.size() > 2:
+			switch_buttons[1].set_button_icon(mon_team[2].get_node("Sprite2D").texture)
+			switch_buttons[1].disabled = false
+			if mon_team.size() > 3:
+				sideboard.set_button_icon(mon_team[3].get_node("Sprite2D").texture)
 
 func get_selected_move():
 	var move = move_list.get_selected_items()[0]
