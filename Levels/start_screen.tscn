@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1qsinoh0ju71"]
+
+[ext_resource type="Script" path="res://Levels/start_screen.gd" id="1_bpiov"]
+
+[node name="StartScreen" type="Node2D"]
+script = ExtResource("1_bpiov")
+starter_mon_path = "res://Monsters/robot_dog.tscn"
+support_mon0_path = "res://Monsters/pillico.tscn"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 484.0
+offset_top = 328.0
+offset_right = 608.0
+offset_bottom = 369.0
+text = "Press Start"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -78,29 +78,29 @@ func pop_button():
 	last_button.disabled = true
 
 func set_moves(player_mon):
-	if player_mon.attack0 != null:
-		move_list.set_item_text(0, player_mon.attack0.attack_name)
+	if player_mon.attack_list.size() > 0:
+		move_list.set_item_text(0, player_mon.attack_list[0].attack_name)
 		move_list.set_item_disabled(0, false)
 	else:
 		move_list.set_item_text(0, "null")
 		move_list.set_item_disabled(0, true)
 	
-	if player_mon.attack1 != null:
-		move_list.set_item_text(1, player_mon.attack1.attack_name)
+	if player_mon.attack_list.size() > 1:
+		move_list.set_item_text(1, player_mon.attack_list[1].attack_name)
 		move_list.set_item_disabled(1, false)
 	else:
 		move_list.set_item_text(1, "null")
 		move_list.set_item_disabled(1, true)
 	
-	if player_mon.attack2 != null:
-		move_list.set_item_text(2, player_mon.attack2.attack_name)
+	if player_mon.attack_list.size() > 2:
+		move_list.set_item_text(2, player_mon.attack_list[2].attack_name)
 		move_list.set_item_disabled(2, false)
 	else:
 		move_list.set_item_text(2, "null")
 		move_list.set_item_disabled(2, true)
 	
-	if player_mon.attack3 != null:
-		move_list.set_item_text(3, player_mon.attack3.attack_name)
+	if player_mon.attack_list.size() > 3:
+		move_list.set_item_text(3, player_mon.attack_list[3].attack_name)
 		move_list.set_item_disabled(3, false)
 	else:
 		move_list.set_item_text(3, "null")

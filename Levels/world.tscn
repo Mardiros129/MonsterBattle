@@ -4,7 +4,6 @@
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_3rdto")
-starter_mon_path = "res://Monsters/pillico.tscn"
 
 [node name="OnionButton" type="Button" parent="."]
 offset_left = 467.0
@@ -13,12 +12,12 @@ offset_right = 641.0
 offset_bottom = 237.0
 text = "Fight Onion"
 
-[node name="FireballButton" type="Button" parent="."]
+[node name="PillicoButton" type="Button" parent="."]
 offset_left = 467.0
 offset_top = 271.0
 offset_right = 641.0
 offset_bottom = 340.0
-text = "Fight Fireball"
+text = "Fight Pillico"
 
 [node name="SkeletonButton" type="Button" parent="."]
 offset_left = 467.0
@@ -28,5 +27,5 @@ offset_bottom = 449.0
 text = "Fight Skeleton"
 
 [connection signal="pressed" from="OnionButton" to="." method="_on_onion_button_pressed"]
-[connection signal="pressed" from="FireballButton" to="." method="_on_fireball_button_pressed"]
+[connection signal="pressed" from="PillicoButton" to="." method="_on_fireball_button_pressed"]
 [connection signal="pressed" from="SkeletonButton" to="." method="_on_skeleton_button_pressed"]

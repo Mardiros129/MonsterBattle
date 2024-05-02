@@ -6,21 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://lp8eeu2ig4s7" path="res://Attacks/poke.tscn" id="4_nol68"]
 [ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="5_vj8yk"]
 
-[node name="Onion" node_paths=PackedStringArray("attack0", "attack1", "attack2") instance=ExtResource("1_mqg6k")]
+[node name="Onion" instance=ExtResource("1_mqg6k")]
 max_hp = 100
 my_name = "Onionmon"
 speed = 150
-attack0 = NodePath("Drain")
-attack1 = NodePath("Poke")
-attack2 = NodePath("Heal")
 type1 = 2
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(0.191979, 0.191979)
+position = Vector2(0, -21)
+scale = Vector2(0.182656, 0.182656)
 texture = ExtResource("2_feup8")
 
-[node name="Poke" parent="." index="5" instance=ExtResource("4_nol68")]
+[node name="Poke" parent="AttackNode" index="0" instance=ExtResource("4_nol68")]
 
-[node name="Drain" parent="." index="6" instance=ExtResource("3_u11u0")]
+[node name="Drain" parent="AttackNode" index="1" instance=ExtResource("3_u11u0")]
 
-[node name="Heal" parent="." index="7" instance=ExtResource("5_vj8yk")]
+[node name="Heal" parent="AttackNode" index="2" instance=ExtResource("5_vj8yk")]

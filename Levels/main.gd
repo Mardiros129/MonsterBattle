@@ -21,6 +21,7 @@ extends Node2D
 
 @export var catch_count = 5
 @export var catch_chance = 0.1
+@onready var captured = false
 
 @onready var ui = $UI
 @onready var end_button = $UI/EndButton
@@ -39,18 +40,21 @@ func _ready():
 		player_mon_loc.add_child(player_monster1)
 		mon_team.append(player_monster1)
 		support_mon0 = mon_team[1]
+		support_mon0.hide()
 		
 	if MonsterParty.party.size() > 2:
 		player_monster2 = MonsterParty.party[2]
 		player_mon_loc.add_child(player_monster2)
 		mon_team.append(player_monster2)
 		support_mon1 = mon_team[2]
+		support_mon1.hide()
 		
 	if MonsterParty.party.size() > 3:
 		player_monster3 = MonsterParty.party[3]
 		player_mon_loc.add_child(player_monster3)
 		mon_team.append(player_monster3)
 		sideboard_mon = mon_team[3]
+		sideboard_mon.hide()
 	
 	enemy_mon = enemy_mon_loc.get_child(0, false)
 	
@@ -146,10 +150,8 @@ func _on_catch_button_pressed():
 	var result = rng.randf()
 	if result <= catch_chance:
 		ui.update_log("Catch success!")
-		
-		MonsterParty.add_to_party(enemy_mon)
-		
-		enemy_mon.queue_free()
+		captured = true
+		enemy_mon.hide()
 		ui.disable_ui()
 		end_combat()
 	else:
@@ -189,15 +191,19 @@ func _on_combat_message_received(message: String):
 	ui.update_log(message)
 
 func _on_end_button_pressed():
+	# Setup party
 	MonsterParty.party.clear()
-	MonsterParty.add_to_party(player_mon)
+	MonsterParty.add_to_party(player_mon.duplicate())
 	if support_mon0 != null:
-		MonsterParty.add_to_party(support_mon0)
+		MonsterParty.add_to_party(support_mon0.duplicate())
 	if support_mon1 != null:
-		MonsterParty.add_to_party(support_mon1)
+		MonsterParty.add_to_party(support_mon1.duplicate())
 	if sideboard_mon != null:
-		MonsterParty.add_to_party(sideboard_mon)
+		MonsterParty.add_to_party(sideboard_mon.duplicate())
+	if captured:
+		MonsterParty.add_to_party(enemy_mon.duplicate())
 	
+	# Load next scene
 	var inst = load("res://Levels/end_screen.tscn").instantiate(false)
 	get_tree().root.add_child(inst, false, 0)
 	queue_free()

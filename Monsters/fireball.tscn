@@ -5,12 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://lp8eeu2ig4s7" path="res://Attacks/poke.tscn" id="3_hn875"]
 [ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Attacks/fire_punch.tscn" id="4_75q3y"]
 
-[node name="Fireball" node_paths=PackedStringArray("attack0", "attack1") instance=ExtResource("1_c4wxg")]
+[node name="Fireball" instance=ExtResource("1_c4wxg")]
 max_hp = 120
 my_name = "Fireball"
 speed = 200
-attack0 = NodePath("Poke")
-attack1 = NodePath("Fire Punch")
 type1 = 4
 
 [node name="Sprite2D" parent="." index="0"]
@@ -18,6 +16,6 @@ position = Vector2(-1, -68)
 scale = Vector2(0.29085, 0.29085)
 texture = ExtResource("2_hgl3q")
 
-[node name="Poke" parent="." index="4" instance=ExtResource("3_hn875")]
+[node name="Fire Punch" parent="AttackNode" index="0" instance=ExtResource("4_75q3y")]
 
-[node name="Fire Punch" parent="." index="5" instance=ExtResource("4_75q3y")]
+[node name="Poke" parent="AttackNode" index="1" instance=ExtResource("3_hn875")]

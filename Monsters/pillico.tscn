@@ -6,10 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="4_k62cy"]
 [ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Attacks/shock.tscn" id="5_dkce4"]
 
-[node name="Pilloco" node_paths=PackedStringArray("attack0") instance=ExtResource("1_6rq2u")]
+[node name="Pilloco" instance=ExtResource("1_6rq2u")]
 max_hp = 50
 my_name = "Pilloco"
-attack0 = NodePath("Poke")
 type1 = 1
 
 [node name="Sprite2D" parent="." index="0"]
@@ -17,8 +16,8 @@ position = Vector2(4, -38)
 scale = Vector2(0.232917, 0.232917)
 texture = ExtResource("2_a3qku")
 
-[node name="Poke" parent="." index="3" instance=ExtResource("3_fo42a")]
+[node name="Poke" parent="AttackNode" index="0" instance=ExtResource("3_fo42a")]
 
-[node name="Heal" parent="." index="4" instance=ExtResource("4_k62cy")]
+[node name="Heal" parent="AttackNode" index="1" instance=ExtResource("4_k62cy")]
 
-[node name="Shock" parent="." index="5" instance=ExtResource("5_dkce4")]
+[node name="Shock" parent="AttackNode" index="2" instance=ExtResource("5_dkce4")]

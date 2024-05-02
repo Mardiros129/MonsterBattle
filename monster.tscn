@@ -36,3 +36,5 @@ offset_top = -53.0
 offset_right = 256.0
 offset_bottom = -4.0
 text = "speed"
+
+[node name="AttackNode" type="Node2D" parent="."]

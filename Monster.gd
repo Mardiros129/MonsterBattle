@@ -9,11 +9,7 @@ extends Node2D
 @onready var hp_tag = $HP
 @onready var type_tag = $Type
 @onready var speed_tag = $Speed
-
-@export var attack0: Node2D
-@export var attack1: Node2D
-@export var attack2: Node2D
-@export var attack3: Node2D
+@onready var attack_node = $AttackNode
 
 @onready var attack_list: Array
 
@@ -36,14 +32,8 @@ func _ready():
 	speed_tag.text = "Speed: " + str(speed)
 	
 	# Setup attacks
-	if attack0 != null:
-		attack_list.append(attack0)
-	if attack1 != null:
-		attack_list.append(attack1)
-	if attack2 != null:
-		attack_list.append(attack2)
-	if attack3 != null:
-		attack_list.append(attack3)
+	for x in attack_node.get_child_count():
+		attack_list.append(attack_node.get_child(x))
 
 func attack(index, enemy_type1, enemy_type2):
 	if attack_list[index] == null:

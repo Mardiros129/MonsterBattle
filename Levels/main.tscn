@@ -163,7 +163,7 @@ text = "FIGHT!"
 scroll_following = true
 
 [node name="PlayerMonLocation" type="Marker2D" parent="."]
-position = Vector2(294, 389)
+position = Vector2(287, 352)
 
 [node name="ResolveTurnTimer" type="Timer" parent="."]
 wait_time = 0.065

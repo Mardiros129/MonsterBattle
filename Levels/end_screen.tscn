@@ -12,4 +12,7 @@ offset_right = 627.0
 offset_bottom = 295.0
 text = "Explore"
 
+[node name="TempParty" type="Node2D" parent="."]
+visible = false
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
