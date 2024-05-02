@@ -4,7 +4,7 @@ extends Control
 @onready var switch_button0 = $SwitchButton0
 @onready var switch_button1 = $SwitchButton1
 @onready var sideboard = $Sideboard
-@onready var switch_buttons = [switch_button0, switch_button1, sideboard]
+@onready var switch_buttons: Array
 
 @onready var attack_button = $AttackButton
 @onready var item_button = $ItemButton
@@ -19,6 +19,8 @@ extends Control
 
 func _ready():
 	inventory.select(0, true)
+	if PlayerInventory.catch_counter <= 0:
+		catch_button.disabled = true
 
 func set_catch_labels(catch_count, catch_chance):
 	catch_count_label.text = "Catch count: " + str(catch_count)
@@ -26,12 +28,15 @@ func set_catch_labels(catch_count, catch_chance):
 
 func set_button_icons(mon_team):
 	if mon_team.size() > 1:
+		switch_buttons.append(switch_button0)
 		switch_buttons[0].set_button_icon(mon_team[1].get_node("Sprite2D").texture)
 		switch_buttons[0].disabled = false
 		if mon_team.size() > 2:
+			switch_buttons.append(switch_button1)
 			switch_buttons[1].set_button_icon(mon_team[2].get_node("Sprite2D").texture)
 			switch_buttons[1].disabled = false
 			if mon_team.size() > 3:
+				switch_buttons.append(sideboard)
 				sideboard.set_button_icon(mon_team[3].get_node("Sprite2D").texture)
 
 func get_selected_move():
@@ -52,15 +57,15 @@ func disable_ui():
 	for x in switch_buttons.size():
 		switch_buttons[x].disabled = true
 
-func enable_ui(catch_count, team_size):
+func enable_ui(catch_count):
 	attack_button.disabled = false
 	item_button.disabled = false
 	run_button.disabled = false
 	
-	if team_size > 1:
+	if switch_buttons.size() > 0:
 		switch_button0.disabled = false
 	
-	if team_size > 2:
+	if switch_buttons.size() > 1:
 		switch_button1.disabled = false
 	
 	if catch_count > 0:

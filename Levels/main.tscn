@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3ccrpeska432"]
+[gd_scene load_steps=4 format=3 uid="uid://c3ccrpeska432"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_2bifh"]
 [ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://attack.tscn" id="2_m8hxs"]
 [ext_resource type="Script" path="res://UI.gd" id="3_1s8rs"]
-[ext_resource type="Texture2D" uid="uid://cawikr2kgfvpd" path="res://icon.svg" id="3_pkqel"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bifh")
@@ -94,7 +93,6 @@ offset_right = 263.0
 offset_bottom = 630.0
 disabled = true
 text = "Switch 1"
-icon = ExtResource("3_pkqel")
 expand_icon = true
 
 [node name="SwitchButton1" type="Button" parent="UI"]
@@ -105,7 +103,6 @@ offset_right = 468.0
 offset_bottom = 630.0
 disabled = true
 text = "Switch 2"
-icon = ExtResource("3_pkqel")
 expand_icon = true
 
 [node name="Sideboard" type="Button" parent="UI"]
@@ -115,7 +112,6 @@ offset_top = 494.0
 offset_right = 630.0
 offset_bottom = 630.0
 disabled = true
-icon = ExtResource("3_pkqel")
 expand_icon = true
 
 [node name="CatchCount" type="RichTextLabel" parent="UI"]

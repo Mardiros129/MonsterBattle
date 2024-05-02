@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dq47p4t6jot3n"]
+[gd_scene load_steps=7 format=3 uid="uid://dq47p4t6jot3n"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_6rq2u"]
 [ext_resource type="Texture2D" uid="uid://d13rft2rt8wp1" path="res://Assets/pillico.png" id="2_a3qku"]
+[ext_resource type="PackedScene" uid="uid://bbjk2onm5epln" path="res://Attacks/do_nothing.tscn" id="3_ct5hx"]
 [ext_resource type="PackedScene" uid="uid://lp8eeu2ig4s7" path="res://Attacks/poke.tscn" id="3_fo42a"]
 [ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="4_k62cy"]
 [ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Attacks/shock.tscn" id="5_dkce4"]
 
-[node name="Pilloco" instance=ExtResource("1_6rq2u")]
+[node name="Pillico" instance=ExtResource("1_6rq2u")]
 max_hp = 50
-my_name = "Pilloco"
+my_name = "Pillico"
 type1 = 1
 
 [node name="Sprite2D" parent="." index="0"]
@@ -16,8 +17,10 @@ position = Vector2(4, -38)
 scale = Vector2(0.232917, 0.232917)
 texture = ExtResource("2_a3qku")
 
-[node name="Poke" parent="AttackNode" index="0" instance=ExtResource("3_fo42a")]
+[node name="DoNothing" parent="AttackNode" index="0" instance=ExtResource("3_ct5hx")]
 
-[node name="Heal" parent="AttackNode" index="1" instance=ExtResource("4_k62cy")]
+[node name="Poke" parent="AttackNode" index="1" instance=ExtResource("3_fo42a")]
 
-[node name="Shock" parent="AttackNode" index="2" instance=ExtResource("5_dkce4")]
+[node name="Heal" parent="AttackNode" index="2" instance=ExtResource("4_k62cy")]
+
+[node name="Shock" parent="AttackNode" index="3" instance=ExtResource("5_dkce4")]

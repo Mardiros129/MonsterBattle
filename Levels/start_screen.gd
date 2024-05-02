@@ -4,6 +4,8 @@ extends Node2D
 @export var starter_mon_path: String
 @export var support_mon0_path: String
 @export var support_mon1_path: String
+@export var sideboard_mon_path: String
+@export var catch_counter = 0
 
 func _ready():
 	create_party_member(starter_mon_path)
@@ -11,6 +13,10 @@ func _ready():
 		create_party_member(support_mon0_path)
 	if support_mon1_path != "":
 		create_party_member(support_mon1_path)
+	if sideboard_mon_path != "":
+		create_party_member(sideboard_mon_path)
+	
+	PlayerInventory.catch_counter = catch_counter
 
 func create_party_member(path):
 	var mon_inst = load(path).instantiate(false)

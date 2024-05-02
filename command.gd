@@ -8,3 +8,6 @@ var speed: int
 
 func test():
 	print("test")
+
+func get_user():
+	return user

@@ -70,17 +70,12 @@ func attack(index, enemy_type1, enemy_type2):
 func take_damage(damage: int):
 	current_hp -= damage
 	update_hp_tag()
-	if current_hp <= 0:
-		die()
 
 func heal_damage(health:int):
 	current_hp += health
 	if current_hp > max_hp:
 		current_hp = max_hp
 	update_hp_tag()
-
-func die():
-	mon_dies.emit()
 
 func update_hp_tag():
 	hp_tag.text = str(current_hp) + "/" + str(max_hp) + " HP"
