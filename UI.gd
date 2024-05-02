@@ -14,6 +14,7 @@ extends Control
 @onready var inventory = $Inventory
 @onready var catch_count_label = $CatchCount
 @onready var catch_chance_label = $CatchChance
+@onready var combat_log = $CombatLog
 
 
 func _ready():
@@ -29,8 +30,8 @@ func set_button_icons(mon_team):
 	sideboard.set_button_icon(mon_team[3].get_node("Sprite2D").texture)
 
 func get_selected_move():
-	var item = move_list.get_selected_items()[0]
-	return item
+	var move = move_list.get_selected_items()[0]
+	return move
 
 func update_catch_count(catch_count):
 	catch_count_label.text = "Catch count: " + str(catch_count)
@@ -101,3 +102,7 @@ func set_moves(player_mon):
 		move_list.set_item_disabled(3, true)
 	
 	move_list.select(0)
+
+func update_log(info: String):
+	combat_log.text = combat_log.text + "\n" + info
+	combat_log.text += "\n" + "---------------------------"

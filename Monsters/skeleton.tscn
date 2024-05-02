@@ -15,7 +15,8 @@ attack2 = NodePath("Heal")
 type1 = 3
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(0.21, 0.21)
+position = Vector2(0, -24)
+scale = Vector2(0.185, 0.185)
 texture = ExtResource("2_oelij")
 
 [node name="Poke" parent="." index="4" instance=ExtResource("3_dwl88")]

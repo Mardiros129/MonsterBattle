@@ -17,7 +17,7 @@ player_monster1 = NodePath("PlayerMonLocation/Pillico")
 player_monster2 = NodePath("PlayerMonLocation/Fireball")
 player_monster3 = NodePath("PlayerMonLocation/Skeleton")
 enemy_mon = NodePath("EnemyMonLocation/Onion")
-catch_chance = 0.8
+catch_chance = 0.3
 
 [node name="Attack" parent="." instance=ExtResource("2_m8hxs")]
 
@@ -76,10 +76,10 @@ item_3/disabled = true
 
 [node name="EnemyAttackList" type="ItemList" parent="UI"]
 layout_mode = 0
-offset_left = 944.0
-offset_top = 143.0
-offset_right = 1061.0
-offset_bottom = 260.0
+offset_left = 943.0
+offset_top = 171.0
+offset_right = 1060.0
+offset_bottom = 288.0
 item_count = 4
 item_0/text = "???"
 item_1/text = "???"
@@ -151,8 +151,17 @@ item_0/text = "Potion"
 item_1/text = "Super Potion"
 item_2/text = "Super Duper Potion"
 
+[node name="CombatLog" type="RichTextLabel" parent="UI"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 16.0
+offset_right = 541.0
+offset_bottom = 211.0
+text = "FIGHT!"
+scroll_following = true
+
 [node name="PlayerMonLocation" type="Marker2D" parent="."]
-position = Vector2(299, 357)
+position = Vector2(294, 389)
 
 [node name="RobotDog" parent="PlayerMonLocation" instance=ExtResource("5_hwk3d")]
 
@@ -166,7 +175,8 @@ visible = false
 [node name="Skeleton" parent="PlayerMonLocation" instance=ExtResource("8_5ws4v")]
 visible = false
 
-[node name="EnemyTurnTimer" type="Timer" parent="."]
+[node name="ResolveTurnTimer" type="Timer" parent="."]
+wait_time = 0.065
 one_shot = true
 
 [node name="EnemyMonLocation" type="Marker2D" parent="."]
@@ -179,4 +189,4 @@ position = Vector2(824, 183)
 [connection signal="pressed" from="UI/SwitchButton0" to="." method="_on_switch_button_0_pressed"]
 [connection signal="pressed" from="UI/SwitchButton1" to="." method="_on_switch_button_1_pressed"]
 [connection signal="pressed" from="UI/Reset" to="." method="_on_reset_pressed"]
-[connection signal="timeout" from="EnemyTurnTimer" to="." method="_on_enemy_turn_timer_timeout"]
+[connection signal="timeout" from="ResolveTurnTimer" to="." method="_on_resolve_turn_timer_timeout"]

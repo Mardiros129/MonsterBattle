@@ -3,10 +3,12 @@ extends Node2D
 @export var max_hp = 1
 @onready var current_hp
 @export var my_name = "null_name"
+@export var speed = 0
 
 @onready var name_tag = $Name
 @onready var hp_tag = $HP
 @onready var type_tag = $Type
+@onready var speed_tag = $Speed
 
 @export var attack0: Node2D
 @export var attack1: Node2D
@@ -20,16 +22,20 @@ extends Node2D
 
 signal mon_dies
 signal damage_enemy(dmg)
+signal combat_message(message)
 
 
 func _ready():
+	# UI elements
 	current_hp = max_hp
 	name_tag.text = my_name
 	update_hp_tag()
 	type_tag.text = TypeList.TypeName[type1]
 	if type2 != TypeList.Type.NONE:
 		type_tag.append_text("/" + TypeList.TypeName[type2])
+	speed_tag.text = "Speed: " + str(speed)
 	
+	# Setup attacks
 	if attack0 != null:
 		attack_list.append(attack0)
 	if attack1 != null:
@@ -59,14 +65,16 @@ func attack(index, enemy_type1, enemy_type2):
 		attack_damage = snapped(attack_damage, 1.0)
 		
 		# Finish the attack
-		print(my_attack.attack_name)
+		var user_message = my_name + " used " + my_attack.attack_name
+		
 		if my_attack.damage > 0:
-			print(str(attack_damage) + " damage!")
+			user_message += "\n" + str(attack_damage) + " damage!"
 			emit_signal("damage_enemy", attack_damage)
 		if my_attack.healing > 0:
+			user_message += "\n" + str(my_attack.healing) + " healed!"
 			heal_damage(my_attack.healing)
-			print(str(my_attack.healing) + " healed!")
-		
+			
+		emit_signal("combat_message", user_message)
 		return attack_damage
 
 func take_damage(damage: int):

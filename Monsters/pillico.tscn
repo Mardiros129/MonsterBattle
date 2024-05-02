@@ -13,6 +13,7 @@ attack0 = NodePath("Poke")
 type1 = 1
 
 [node name="Sprite2D" parent="." index="0"]
+position = Vector2(4, -38)
 scale = Vector2(0.232917, 0.232917)
 texture = ExtResource("2_a3qku")
 
