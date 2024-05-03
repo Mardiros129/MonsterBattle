@@ -19,10 +19,10 @@ script = ExtResource("3_1s8rs")
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 445.0
-offset_top = 191.0
-offset_right = 658.0
-offset_bottom = 239.0
+offset_left = 677.0
+offset_top = 358.0
+offset_right = 890.0
+offset_bottom = 406.0
 text = "Go to end screen"
 
 [node name="AttackButton" type="Button" parent="UI"]

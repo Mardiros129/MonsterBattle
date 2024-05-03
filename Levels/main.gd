@@ -20,6 +20,7 @@ extends Node2D
 @export var enemy_mon: Node2D
 
 @onready var command_queue: Array
+@export var command_delay = 0.3
 
 @export var catch_chance = 0.1
 @onready var captured = false
@@ -79,8 +80,8 @@ func start_turn():
 	player_turn = true
 
 func end_turn():
-	ui.disable_ui()
 	player_turn = false
+	ui.disable_ui()
 	enemy_chooses_attack()
 	
 	# Go through everything in the queue one-by-one.
@@ -96,17 +97,29 @@ func end_turn():
 		
 		if enemy_mon.current_hp <= 0:
 			ui.update_log("Enemy " + enemy_mon.my_name + " died!")
+			await get_tree().create_timer(command_delay).timeout
+			
+			ui.update_log("You won!")
+			await get_tree().create_timer(command_delay).timeout
+			
 			enemy_mon.queue_free()
 			combat_finished = true
+		
 		elif player_mon.current_hp <= 0:
+			ui.update_log("You lose!")
+			await get_tree().create_timer(command_delay).timeout
+			
 			player_mon_dies()
 			if player_mon == null:
 				combat_finished = true
 		
+		await get_tree().create_timer(command_delay).timeout
+		
+		if combat_finished:
+			break
+		
 	if combat_finished:
 		end_combat()
-		ui.update_log("You lose!")
-		ui.disable_ui()
 	else:
 		command_queue.clear()
 		start_turn()
@@ -131,10 +144,12 @@ func switch(button_index):
 	player_mon.visible = true
 	ui.set_moves(player_mon)
 	ui.update_log(player_mon.my_name + " swapped in!")
+	await get_tree().create_timer(command_delay).timeout
 	end_turn()
 
 func player_mon_dies():
 	ui.update_log(player_mon.my_name + " died!")
+	await get_tree().create_timer(command_delay).timeout
 	
 	player_mon.queue_free()
 	if support_mon0 != null:
@@ -176,11 +191,13 @@ func _on_catch_button_pressed():
 	var result = rng.randf()
 	if result <= catch_chance:
 		ui.update_log("Catch success!")
+		await get_tree().create_timer(command_delay).timeout
 		captured = true
 		enemy_mon.hide()
 		end_combat()
 	else:
 		ui.update_log("Catch failed...")
+		await get_tree().create_timer(command_delay).timeout
 		end_turn()
 
 func _player_damages_enemy(dmg):
@@ -214,7 +231,7 @@ func _on_end_button_pressed():
 	queue_free()
 
 func _on_run_button_pressed():
-	ui.disable_ui()
+	ui.update_log("You got away safely!")
 	end_combat()
 
 func _on_reset_pressed():
