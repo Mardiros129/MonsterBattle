@@ -12,7 +12,7 @@ position = Vector2(554, 316)
 
 [node name="MonsterArea" parent="." instance=ExtResource("3_nam0o")]
 position = Vector2(199, 491)
-monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
+monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn", "res://Monsters/pillico.tscn"])
 
 [node name="CollisionShape2D" parent="MonsterArea" index="0"]
 metadata/_edit_lock_ = true
@@ -22,19 +22,19 @@ metadata/_edit_lock_ = true
 
 [node name="MonsterArea2" parent="." instance=ExtResource("3_nam0o")]
 position = Vector2(596, 530)
-monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
+monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn", "res://Monsters/pillico.tscn"])
 
 [node name="MonsterArea3" parent="." instance=ExtResource("3_nam0o")]
 position = Vector2(921, 433)
-monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
+monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn", "res://Monsters/pillico.tscn"])
 
 [node name="MonsterArea4" parent="." instance=ExtResource("3_nam0o")]
 position = Vector2(743, 127)
-monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
+monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn", "res://Monsters/pillico.tscn"])
 
 [node name="MonsterArea5" parent="." instance=ExtResource("3_nam0o")]
 position = Vector2(416, 127)
-monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
+monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn", "res://Monsters/pillico.tscn"])
 
 [connection signal="body_entered_return_path" from="MonsterArea" to="." method="_on_monster_area_body_entered_return_path"]
 [connection signal="body_entered_return_path" from="MonsterArea2" to="." method="_on_monster_area_body_entered_return_path"]

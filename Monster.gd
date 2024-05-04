@@ -5,6 +5,7 @@ extends Node2D
 @export var my_name = "null_name"
 @export var speed = 0
 
+@onready var sprite2d = $Sprite2D
 @onready var name_tag = $Name
 @onready var hp_tag = $HP
 @onready var type_tag = $Type
@@ -79,3 +80,6 @@ func heal_damage(health:int):
 
 func update_hp_tag():
 	hp_tag.text = str(current_hp) + "/" + str(max_hp) + " HP"
+
+func get_sprite():
+	return sprite2d.texture

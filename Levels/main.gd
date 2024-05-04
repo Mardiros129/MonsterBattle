@@ -225,7 +225,7 @@ func _on_end_button_pressed():
 		MonsterParty.add_to_party(enemy_mon.duplicate())
 	
 	# Load next scene
-	var inst = load("res://Levels/end_screen.tscn").instantiate(false)
+	var inst = load("res://Levels/end_screen.tscn").instantiate()
 	get_tree().root.add_child(inst, false, 0)
 	queue_free()
 

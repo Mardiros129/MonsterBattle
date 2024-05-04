@@ -1,5 +1,18 @@
 extends Node2D
 
+@onready var party0 = $Party0
+@onready var party1 = $Party1
+@onready var party2 = $Party2
+@onready var party3 = $Party3
+@onready var party_button = [party0, party1, party2, party3]
+
+
+func _ready():
+	for x in MonsterParty.party.size():
+		var monster = MonsterParty.party[x].duplicate()
+		add_child(monster)
+		monster.hide()
+		party_button[x].icon = monster.get_sprite()
 
 func go_to_world():
 	var inst = load("res://Levels/world.tscn").instantiate(false)

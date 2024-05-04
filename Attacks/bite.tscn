@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqwc0jq2ra0ol"]
+
+[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://attack.tscn" id="1_jln17"]
+
+[node name="Bite" instance=ExtResource("1_jln17")]
+attack_name = "Bite"
+damage = 20
+type = 1

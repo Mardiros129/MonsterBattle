@@ -1,21 +1,9 @@
 extends Node2D
 
 
-@export var starter_mon_path: String
-@export var support_mon0_path: String
-@export var support_mon1_path: String
-@export var sideboard_mon_path: String
 @export var catch_counter = 0
 
 func _ready():
-	create_party_member(starter_mon_path)
-	if support_mon0_path != "":
-		create_party_member(support_mon0_path)
-	if support_mon1_path != "":
-		create_party_member(support_mon1_path)
-	if sideboard_mon_path != "":
-		create_party_member(sideboard_mon_path)
-	
 	PlayerInventory.catch_counter = catch_counter
 
 func create_party_member(path):
@@ -33,4 +21,16 @@ func start_game():
 	get_tree().change_scene_to_file("res://Levels/world.tscn")
 
 func _on_button_pressed():
+	start_game()
+
+func _on_animal_starter_pressed():
+	create_party_member("res://Monsters/rat.tscn")
+	start_game()
+
+func _on_plant_starter_pressed():
+	create_party_member("res://Monsters/sprout.tscn")
+	start_game()
+
+func _on_undead_starter_pressed():
+	create_party_member("res://Monsters/skeleton.tscn")
 	start_game()
