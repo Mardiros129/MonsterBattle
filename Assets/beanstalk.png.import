@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du145pnrues4v"
-path="res://.godot/imported/water_turtle.png-e4fa14719ce393b4dc545982d6a2e54a.ctex"
+uid="uid://ch7gftktmiygk"
+path="res://.godot/imported/beanstalk.png-06d378d20378d1f5bb4106b148014290.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/water_turtle.png"
-dest_files=["res://.godot/imported/water_turtle.png-e4fa14719ce393b4dc545982d6a2e54a.ctex"]
+source_file="res://Assets/beanstalk.png"
+dest_files=["res://.godot/imported/beanstalk.png-06d378d20378d1f5bb4106b148014290.ctex"]
 
 [params]
 

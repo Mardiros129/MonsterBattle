@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_c4wxg"]
 [ext_resource type="Texture2D" uid="uid://d3jjmfp6v03sc" path="res://Assets/fireball.png" id="2_hgl3q"]
 [ext_resource type="PackedScene" uid="uid://lp8eeu2ig4s7" path="res://Attacks/poke.tscn" id="3_hn875"]
-[ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Attacks/fire_punch.tscn" id="4_75q3y"]
+[ext_resource type="PackedScene" uid="uid://bbjk2onm5epln" path="res://Attacks/do_nothing.tscn" id="3_vt5ar"]
 
 [node name="Fireball" instance=ExtResource("1_c4wxg")]
 max_hp = 120
@@ -16,6 +16,6 @@ position = Vector2(-1, -68)
 scale = Vector2(0.29085, 0.29085)
 texture = ExtResource("2_hgl3q")
 
-[node name="Fire Punch" parent="AttackNode" index="0" instance=ExtResource("4_75q3y")]
+[node name="DoNothing" parent="AttackNode" index="0" instance=ExtResource("3_vt5ar")]
 
 [node name="Poke" parent="AttackNode" index="1" instance=ExtResource("3_hn875")]

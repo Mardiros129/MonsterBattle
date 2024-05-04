@@ -1,31 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://c63t0phri8qx8"]
+[gd_scene load_steps=4 format=3 uid="uid://c63t0phri8qx8"]
 
 [ext_resource type="Script" path="res://Levels/world.gd" id="1_3rdto"]
+[ext_resource type="PackedScene" uid="uid://cjlcyt08dys50" path="res://character.tscn" id="2_roevs"]
+[ext_resource type="PackedScene" uid="uid://do35p2s2hvvxf" path="res://monster_area.tscn" id="3_nam0o"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_3rdto")
 
-[node name="OnionButton" type="Button" parent="."]
-offset_left = 467.0
-offset_top = 168.0
-offset_right = 641.0
-offset_bottom = 237.0
-text = "Fight Onion"
+[node name="Character" parent="." instance=ExtResource("2_roevs")]
+position = Vector2(554, 316)
 
-[node name="PillicoButton" type="Button" parent="."]
-offset_left = 467.0
-offset_top = 271.0
-offset_right = 641.0
-offset_bottom = 340.0
-text = "Fight Pillico"
+[node name="MonsterArea" parent="." instance=ExtResource("3_nam0o")]
+position = Vector2(199, 491)
+monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
 
-[node name="SkeletonButton" type="Button" parent="."]
-offset_left = 467.0
-offset_top = 380.0
-offset_right = 641.0
-offset_bottom = 449.0
-text = "Fight Skeleton"
+[node name="CollisionShape2D" parent="MonsterArea" index="0"]
+metadata/_edit_lock_ = true
 
-[connection signal="pressed" from="OnionButton" to="." method="_on_onion_button_pressed"]
-[connection signal="pressed" from="PillicoButton" to="." method="_on_fireball_button_pressed"]
-[connection signal="pressed" from="SkeletonButton" to="." method="_on_skeleton_button_pressed"]
+[node name="RichTextLabel" parent="MonsterArea" index="1"]
+metadata/_edit_lock_ = true
+
+[node name="MonsterArea2" parent="." instance=ExtResource("3_nam0o")]
+position = Vector2(596, 530)
+monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
+
+[node name="MonsterArea3" parent="." instance=ExtResource("3_nam0o")]
+position = Vector2(921, 433)
+monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
+
+[node name="MonsterArea4" parent="." instance=ExtResource("3_nam0o")]
+position = Vector2(743, 127)
+monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
+
+[node name="MonsterArea5" parent="." instance=ExtResource("3_nam0o")]
+position = Vector2(416, 127)
+monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
+
+[connection signal="body_entered_return_path" from="MonsterArea" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterArea2" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterArea3" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterArea4" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterArea5" to="." method="_on_monster_area_body_entered_return_path"]
+
+[editable path="MonsterArea"]

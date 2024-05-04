@@ -106,11 +106,10 @@ func end_turn():
 			combat_finished = true
 		
 		elif player_mon.current_hp <= 0:
-			ui.update_log("You lose!")
-			await get_tree().create_timer(command_delay).timeout
-			
 			player_mon_dies()
 			if player_mon == null:
+				ui.update_log("You lose!")
+				await get_tree().create_timer(command_delay).timeout
 				combat_finished = true
 		
 		await get_tree().create_timer(command_delay).timeout

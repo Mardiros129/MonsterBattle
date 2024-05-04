@@ -1,17 +1,51 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1qsinoh0ju71"]
+[gd_scene load_steps=5 format=3 uid="uid://b1qsinoh0ju71"]
 
 [ext_resource type="Script" path="res://Levels/start_screen.gd" id="1_bpiov"]
+[ext_resource type="Texture2D" uid="uid://cew7bvtkabqec" path="res://Assets/rat.png" id="2_b4rro"]
+[ext_resource type="Texture2D" uid="uid://ch7gftktmiygk" path="res://Assets/beanstalk.png" id="3_ry7g4"]
+[ext_resource type="Texture2D" uid="uid://r84gwcdjv0ku" path="res://Assets/hat_skeleton.png" id="3_y6kr1"]
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource("1_bpiov")
 starter_mon_path = "res://Monsters/robot_dog.tscn"
 catch_counter = 1
 
-[node name="Button" type="Button" parent="."]
-offset_left = 484.0
-offset_top = 328.0
-offset_right = 608.0
-offset_bottom = 369.0
+[node name="StartButton" type="Button" parent="."]
+offset_left = 481.0
+offset_top = 530.0
+offset_right = 605.0
+offset_bottom = 571.0
 text = "Press Start"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="AnimalStarter" type="Button" parent="."]
+offset_left = 120.0
+offset_top = 199.0
+offset_right = 297.0
+offset_bottom = 424.0
+icon = ExtResource("2_b4rro")
+expand_icon = true
+
+[node name="PlantStarter" type="Button" parent="."]
+offset_left = 460.0
+offset_top = 199.0
+offset_right = 637.0
+offset_bottom = 424.0
+icon = ExtResource("3_ry7g4")
+expand_icon = true
+
+[node name="UndeadStarter" type="Button" parent="."]
+offset_left = 803.0
+offset_top = 199.0
+offset_right = 980.0
+offset_bottom = 424.0
+icon = ExtResource("3_y6kr1")
+expand_icon = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 482.0
+offset_top = 55.0
+offset_right = 612.0
+offset_bottom = 100.0
+text = "Choose starter"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_button_pressed"]

@@ -10,11 +10,11 @@ func load_enemy_battle(enemy_path):
 	get_tree().root.add_child(battle_inst, false, 0)
 	queue_free()
 
-func _on_onion_button_pressed():
-	load_enemy_battle("res://Monsters/onion.tscn")
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_ESCAPE:
+			get_tree().quit()
 
-func _on_fireball_button_pressed():
-	load_enemy_battle("res://Monsters/pillico.tscn")
-
-func _on_skeleton_button_pressed():
-	load_enemy_battle("res://Monsters/skeleton.tscn")
+func _on_monster_area_body_entered_return_path(body, path):
+	if path != "":
+		load_enemy_battle(path)
