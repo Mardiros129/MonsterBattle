@@ -9,10 +9,11 @@ extends Node2D
 
 func _ready():
 	for x in MonsterParty.party.size():
-		var monster = MonsterParty.party[x].duplicate()
-		add_child(monster)
-		monster.hide()
-		party_button[x].icon = monster.get_sprite()
+		var temp_monster = MonsterParty.party[x].duplicate()
+		#temp_monster = temp_monster.check_transformation()
+		add_child(temp_monster)
+		temp_monster.hide()
+		party_button[x].icon = temp_monster.get_sprite()
 
 func go_to_world():
 	var inst = load("res://Levels/world.tscn").instantiate(false)

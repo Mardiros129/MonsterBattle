@@ -75,10 +75,10 @@ item_3/disabled = true
 
 [node name="EnemyAttackList" type="ItemList" parent="UI"]
 layout_mode = 0
-offset_left = 943.0
-offset_top = 171.0
-offset_right = 1060.0
-offset_bottom = 288.0
+offset_left = 547.0
+offset_top = 118.0
+offset_right = 664.0
+offset_bottom = 235.0
 item_count = 4
 item_0/text = "???"
 item_1/text = "???"

@@ -4,9 +4,14 @@ extends Node2D
 @onready var current_hp
 @export var my_name = "null_name"
 @export var speed = 0
+@onready var level = 1
+@export var level_req = 0
+
+@export var trans_mon: PackedScene
 
 @onready var sprite2d = $Sprite2D
 @onready var name_tag = $Name
+@onready var level_tag = $Level
 @onready var hp_tag = $HP
 @onready var type_tag = $Type
 @onready var speed_tag = $Speed
@@ -23,18 +28,20 @@ signal combat_message(message)
 
 
 func _ready():
-	# UI elements
 	current_hp = max_hp
+	
+	# Setup attacks
+	for x in attack_node.get_child_count():
+		attack_list.append(attack_node.get_child(x))
+
+func setup_mon_ui():
 	name_tag.text = my_name
+	level_tag.text = str(level)
 	update_hp_tag()
 	type_tag.text = TypeList.TypeName[type1]
 	if type2 != TypeList.Type.NONE:
 		type_tag.append_text("/" + TypeList.TypeName[type2])
 	speed_tag.text = "Speed: " + str(speed)
-	
-	# Setup attacks
-	for x in attack_node.get_child_count():
-		attack_list.append(attack_node.get_child(x))
 
 func attack(index, enemy_type1, enemy_type2):
 	if attack_list[index] == null:
@@ -83,3 +90,11 @@ func update_hp_tag():
 
 func get_sprite():
 	return sprite2d.texture
+
+func check_transformation():
+	var check_mon = trans_mon.instantiate()
+	var level_target = check_mon.level_req
+	if level >= level_target:
+		return trans_mon
+	else:
+		return self

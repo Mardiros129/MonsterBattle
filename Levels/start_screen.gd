@@ -8,7 +8,7 @@ func _ready():
 
 func create_party_member(path):
 	var mon_inst = load(path).instantiate(false)
-	MonsterParty.add_to_party(mon_inst)
+	MonsterParty.new_add_to_party(mon_inst)
 
 func _unhandled_input(event):
 	if event is InputEventKey:

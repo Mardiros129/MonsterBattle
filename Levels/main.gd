@@ -11,12 +11,13 @@ extends Node2D
 @export var player_monster2: Node2D
 @export var player_monster3: Node2D
 # Maintain the order for the whole game
-@onready var mon_team: Array
+@onready var mon_start_lineup: Array
 
 @onready var player_mon
 @onready var support_mon0
 @onready var support_mon1
 @onready var sideboard_mon
+@onready var mon_combat_order = [player_mon, support_mon0, support_mon1, sideboard_mon]
 @export var enemy_mon: Node2D
 
 @onready var command_queue: Array
@@ -34,40 +35,48 @@ func _ready():
 	if MonsterParty.party.size() > 0:
 		player_monster0 = MonsterParty.party[0]
 		player_mon_loc.add_child(player_monster0)
-		mon_team.append(player_monster0)
-		player_mon = mon_team[0]
+		mon_start_lineup.append(player_monster0)
+		player_mon = mon_start_lineup[0]
+		
+		if MonsterParty.party_hp.size() > 0:
+			player_monster0.current_hp = MonsterParty.party_hp[0]
+		
+		if MonsterParty.party_level.size() > 0:
+			player_monster0.level = MonsterParty.party_level[0]
+		
+		player_mon.setup_mon_ui()
 		
 	if MonsterParty.party.size() > 1:
 		player_monster1 = MonsterParty.party[1]
 		player_mon_loc.add_child(player_monster1)
-		mon_team.append(player_monster1)
-		support_mon0 = mon_team[1]
+		mon_start_lineup.append(player_monster1)
+		support_mon0 = mon_start_lineup[1]
 		support_mon0.hide()
 		
 	if MonsterParty.party.size() > 2:
 		player_monster2 = MonsterParty.party[2]
 		player_mon_loc.add_child(player_monster2)
-		mon_team.append(player_monster2)
-		support_mon1 = mon_team[2]
+		mon_start_lineup.append(player_monster2)
+		support_mon1 = mon_start_lineup[2]
 		support_mon1.hide()
 		
 	if MonsterParty.party.size() > 3:
 		player_monster3 = MonsterParty.party[3]
 		player_mon_loc.add_child(player_monster3)
-		mon_team.append(player_monster3)
-		sideboard_mon = mon_team[3]
+		mon_start_lineup.append(player_monster3)
+		sideboard_mon = mon_start_lineup[3]
 		sideboard_mon.hide()
 	
 	enemy_mon = enemy_mon_loc.get_child(0, false)
 	
 	# Signals
-	for x in mon_team.size():
-		mon_team[x].damage_enemy.connect(_player_damages_enemy)
-		mon_team[x].combat_message.connect(_on_combat_message_received)
+	for x in mon_start_lineup.size():
+		mon_start_lineup[x].damage_enemy.connect(_player_damages_enemy)
+		mon_start_lineup[x].combat_message.connect(_on_combat_message_received)
 	enemy_mon.combat_message.connect(_on_combat_message_received)
 	
 	ui.set_moves(player_mon)
-	ui.set_button_icons(mon_team)
+	ui.set_button_icons(mon_start_lineup)
 	ui.set_catch_labels(PlayerInventory.catch_counter, catch_chance)
 
 func _unhandled_input(event):
@@ -102,6 +111,7 @@ func end_turn():
 			ui.update_log("You won!")
 			await get_tree().create_timer(command_delay).timeout
 			
+			player_mon.level += 1
 			enemy_mon.queue_free()
 			combat_finished = true
 		
@@ -218,11 +228,12 @@ func _on_attack_button_pressed():
 func _on_end_button_pressed():
 	# Setup party, exclide slain allies, include captured enemy
 	MonsterParty.party.clear()
-	for x in mon_team.size():
-		if mon_team[x] != null:
-			MonsterParty.add_to_party(mon_team[x].duplicate())
+	for x in mon_start_lineup.size():
+		var current_mon = mon_start_lineup[x]
+		if current_mon != null:
+			MonsterParty.add_to_party(current_mon.duplicate(), current_mon.current_hp, current_mon.level)
 	if captured:
-		MonsterParty.add_to_party(enemy_mon.duplicate())
+		MonsterParty.add_to_party(enemy_mon.duplicate(), enemy_mon.current_hp, enemy_mon.level)
 	
 	# Load next scene
 	var inst = load("res://Levels/end_screen.tscn").instantiate()
