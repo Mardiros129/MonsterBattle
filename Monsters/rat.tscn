@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwfbya8ihpwre"]
+[gd_scene load_steps=8 format=3 uid="uid://bwfbya8ihpwre"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_gqr5r"]
 [ext_resource type="PackedScene" uid="uid://b727gocj5cjxl" path="res://Monsters/rat_king.tscn" id="2_tq1qd"]
 [ext_resource type="Texture2D" uid="uid://cew7bvtkabqec" path="res://Assets/rat.png" id="2_w4det"]
 [ext_resource type="PackedScene" uid="uid://cqwc0jq2ra0ol" path="res://Attacks/bite.tscn" id="3_4uc5s"]
 [ext_resource type="PackedScene" uid="uid://bbjk2onm5epln" path="res://Attacks/do_nothing.tscn" id="4_igt8j"]
+[ext_resource type="PackedScene" uid="uid://ba30u7wpk7i4j" path="res://transformation.tscn" id="6_qsbjm"]
+[ext_resource type="Script" path="res://trans_level.gd" id="7_eo57h"]
 
 [node name="Rat" instance=ExtResource("1_gqr5r")]
 max_hp = 90
 my_name = "Rat"
 speed = 90
-trans_mon = ExtResource("2_tq1qd")
 type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]
@@ -21,3 +22,8 @@ texture = ExtResource("2_w4det")
 [node name="Bite" parent="AttackNode" index="0" instance=ExtResource("3_4uc5s")]
 
 [node name="DoNothing" parent="AttackNode" index="1" instance=ExtResource("4_igt8j")]
+
+[node name="Transformation" parent="TransformNode" index="0" instance=ExtResource("6_qsbjm")]
+script = ExtResource("7_eo57h")
+level_req = 3
+TransMon = ExtResource("2_tq1qd")

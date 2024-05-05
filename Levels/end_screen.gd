@@ -10,8 +10,10 @@ extends Node2D
 func _ready():
 	for x in MonsterParty.party.size():
 		var temp_monster = MonsterParty.party[x].duplicate()
-		#temp_monster = temp_monster.check_transformation()
 		add_child(temp_monster)
+		temp_monster.level = MonsterParty.party_level[x]
+		temp_monster.monster_transforms.connect(_on_monster_transforms)
+		temp_monster.check_transformation(x)
 		temp_monster.hide()
 		party_button[x].icon = temp_monster.get_sprite()
 
@@ -29,3 +31,12 @@ func _unhandled_input(event):
 
 func _on_button_pressed():
 	go_to_world()
+
+func _on_monster_transforms(trans_mon: PackedScene, index: int):
+	var new_mon = trans_mon.instantiate()
+	
+	var old_mon = MonsterParty.party[index]
+	MonsterParty.party[index] = new_mon
+	
+	var health_bonus = new_mon.max_hp - old_mon.max_hp
+	MonsterParty.party_hp[index] += health_bonus

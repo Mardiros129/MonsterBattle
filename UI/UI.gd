@@ -132,3 +132,7 @@ func set_moves(player_mon):
 func update_log(info: String):
 	combat_log.text = combat_log.text + "\n" + info
 	combat_log.text += "\n" + "---------------------------"
+
+func _on_item_button_pressed():
+	var item_choice = inventory.get_selected_items()[0]
+	print(item_choice)

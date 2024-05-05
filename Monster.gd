@@ -5,9 +5,6 @@ extends Node2D
 @export var my_name = "null_name"
 @export var speed = 0
 @onready var level = 1
-@export var level_req = 0
-
-@export var trans_mon: PackedScene
 
 @onready var sprite2d = $Sprite2D
 @onready var attack_node = $AttackNode
@@ -20,6 +17,7 @@ extends Node2D
 signal mon_dies
 signal damage_enemy(dmg)
 signal combat_message(message)
+signal monster_transforms(trans_mon, index)
 
 
 func _ready():
@@ -72,10 +70,16 @@ func heal_damage(health:int):
 func get_sprite():
 	return sprite2d.texture
 
-func check_transformation():
-	var check_mon = trans_mon.instantiate()
-	var level_target = check_mon.level_req
-	if level >= level_target:
-		return trans_mon
+func transform_monster(trans_mon: PackedScene, index: int):
+	print("oh! it's transforming")
+	emit_signal("monster_transforms", trans_mon, index)
+
+func check_transformation(index: int):
+	var all_trans_options = find_child("TransformNode")
+	if all_trans_options.get_child_count() > 0:
+		for x in all_trans_options.get_child_count():
+			var chosen_option = all_trans_options.get_child(x)
+			if chosen_option.check_can_transform() == true:
+				transform_monster(chosen_option.TransMon, index)
 	else:
-		return self
+		print("no transformations exist")
