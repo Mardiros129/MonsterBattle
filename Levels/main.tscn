@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3ccrpeska432"]
+[gd_scene load_steps=5 format=3 uid="uid://c3ccrpeska432"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_2bifh"]
 [ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://attack.tscn" id="2_m8hxs"]
-[ext_resource type="Script" path="res://UI.gd" id="3_1s8rs"]
+[ext_resource type="Script" path="res://UI/UI.gd" id="3_1s8rs"]
+[ext_resource type="PackedScene" uid="uid://c0dy88gwgp6cu" path="res://UI/mon_ui.tscn" id="4_4psda"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bifh")
@@ -75,10 +76,10 @@ item_3/disabled = true
 
 [node name="EnemyAttackList" type="ItemList" parent="UI"]
 layout_mode = 0
-offset_left = 547.0
-offset_top = 118.0
-offset_right = 664.0
-offset_bottom = 235.0
+offset_left = 596.0
+offset_top = 134.0
+offset_right = 713.0
+offset_bottom = 251.0
 item_count = 4
 item_0/text = "???"
 item_1/text = "???"
@@ -116,18 +117,18 @@ expand_icon = true
 
 [node name="CatchCount" type="RichTextLabel" parent="UI"]
 layout_mode = 0
-offset_left = 590.0
-offset_top = 57.0
-offset_right = 736.0
-offset_bottom = 84.0
+offset_left = 595.0
+offset_top = 67.0
+offset_right = 741.0
+offset_bottom = 94.0
 text = "Catch count: 999"
 
 [node name="CatchChance" type="RichTextLabel" parent="UI"]
 layout_mode = 0
-offset_left = 590.0
-offset_top = 84.0
-offset_right = 753.0
-offset_bottom = 120.0
+offset_left = 595.0
+offset_top = 94.0
+offset_right = 758.0
+offset_bottom = 130.0
 text = "Catch chance: 100%"
 
 [node name="Reset" type="Button" parent="UI"]
@@ -158,15 +159,27 @@ offset_bottom = 211.0
 text = "FIGHT!"
 scroll_following = true
 
+[node name="PlayerMonUI" parent="UI" instance=ExtResource("4_4psda")]
+offset_left = 428.0
+offset_top = 324.0
+offset_right = 428.0
+offset_bottom = 324.0
+
+[node name="EnemyMonUI" parent="UI" instance=ExtResource("4_4psda")]
+offset_left = 1038.0
+offset_top = 90.0
+offset_right = 1038.0
+offset_bottom = 90.0
+
 [node name="PlayerMonLocation" type="Marker2D" parent="."]
-position = Vector2(287, 352)
+position = Vector2(264, 392)
 
 [node name="ResolveTurnTimer" type="Timer" parent="."]
 wait_time = 0.065
 one_shot = true
 
 [node name="EnemyMonLocation" type="Marker2D" parent="."]
-position = Vector2(824, 183)
+position = Vector2(875, 158)
 
 [connection signal="pressed" from="UI/EndButton" to="." method="_on_end_button_pressed"]
 [connection signal="pressed" from="UI/AttackButton" to="." method="_on_attack_button_pressed"]

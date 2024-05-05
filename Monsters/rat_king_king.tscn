@@ -8,7 +8,7 @@ max_hp = 250
 my_name = "Rat King King"
 speed = 200
 level_req = 5
-type1 = 1
+type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -20)

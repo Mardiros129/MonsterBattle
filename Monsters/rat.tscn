@@ -11,7 +11,7 @@ max_hp = 90
 my_name = "Rat"
 speed = 90
 trans_mon = ExtResource("2_tq1qd")
-type1 = 1
+type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(2.00002, -32)

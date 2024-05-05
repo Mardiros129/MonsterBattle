@@ -11,3 +11,8 @@ func add_to_party(monster, current_hp, level):
 	party.append(monster)
 	party_hp.append(current_hp)
 	party_level.append(level)
+
+func clear_all():
+	party.clear()
+	party_hp.clear()
+	party_level.clear()

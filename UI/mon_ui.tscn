@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0dy88gwgp6cu"]
+
+[ext_resource type="Script" path="res://UI/mon_ui.gd" id="1_0bqn8"]
+
+[node name="MonUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_0bqn8")
+
+[node name="MyName" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 125.0
+offset_bottom = 31.0
+text = "name"
+
+[node name="Level" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 31.0
+offset_right = 91.0
+offset_bottom = 61.0
+text = "level"
+
+[node name="HP" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 61.0
+offset_right = 75.0
+offset_bottom = 91.0
+text = "hp"
+
+[node name="Types" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 91.0
+offset_right = 120.0
+offset_bottom = 121.0
+text = "types"
+
+[node name="Speed" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 121.0
+offset_right = 125.0
+offset_bottom = 151.0
+text = "speed"

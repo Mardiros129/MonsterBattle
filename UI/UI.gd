@@ -16,6 +16,9 @@ extends Control
 @onready var catch_chance_label = $CatchChance
 @onready var combat_log = $CombatLog
 
+@onready var player_mon_ui = $PlayerMonUI
+@onready var enemy_mon_ui = $EnemyMonUI
+
 
 func _ready():
 	inventory.select(0, true)
@@ -38,6 +41,19 @@ func set_button_icons(mon_team):
 			if mon_team.size() > 3:
 				switch_buttons.append(sideboard)
 				sideboard.set_button_icon(mon_team[3].get_node("Sprite2D").texture)
+
+func set_player_mon_ui(player_mon):
+	player_mon_ui.set_mon_ui(player_mon)
+	set_moves(player_mon)
+
+func change_player_hp(player_mon):
+	player_mon_ui.set_mon_hp_ui(player_mon)
+
+func set_enemy_mon_ui(enemy_mon):
+	enemy_mon_ui.set_mon_ui(enemy_mon)
+
+func change_enemy_hp(enemy_mon):
+	enemy_mon_ui.set_mon_hp_ui(enemy_mon)
 
 func get_selected_move():
 	var move = move_list.get_selected_items()[0]

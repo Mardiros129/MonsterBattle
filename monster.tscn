@@ -9,39 +9,4 @@ script = ExtResource("2_qymm1")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_m57o5")
 
-[node name="Name" type="RichTextLabel" parent="."]
-offset_left = 143.0
-offset_top = -86.0
-offset_right = 270.0
-offset_bottom = -55.0
-text = "name"
-
-[node name="Level" type="RichTextLabel" parent="."]
-offset_left = 144.0
-offset_top = -56.0
-offset_right = 204.0
-offset_bottom = -16.0
-text = "level"
-
-[node name="HP" type="RichTextLabel" parent="."]
-offset_left = 145.0
-offset_top = -28.0
-offset_right = 235.0
-offset_bottom = 2.0
-text = "hp"
-
-[node name="Type" type="RichTextLabel" parent="."]
-offset_left = 145.0
-offset_top = -3.0
-offset_right = 261.0
-offset_bottom = 32.0
-text = "type"
-
-[node name="Speed" type="RichTextLabel" parent="."]
-offset_left = 145.0
-offset_top = 21.0
-offset_right = 254.0
-offset_bottom = 70.0
-text = "speed"
-
 [node name="AttackNode" type="Node2D" parent="."]

@@ -6,18 +6,16 @@ extends Node2D
 @onready var player_mon_loc = $PlayerMonLocation
 @onready var enemy_mon_loc = $EnemyMonLocation
 
-@export var player_monster0: Node2D
-@export var player_monster1: Node2D
-@export var player_monster2: Node2D
-@export var player_monster3: Node2D
-# Maintain the order for the whole game
+# Maintain the original order for the whole game
 @onready var mon_start_lineup: Array
+# Change the order by their combat role
+@onready var mon_combat_order: Array
 
 @onready var player_mon
 @onready var support_mon0
 @onready var support_mon1
 @onready var sideboard_mon
-@onready var mon_combat_order = [player_mon, support_mon0, support_mon1, sideboard_mon]
+
 @export var enemy_mon: Node2D
 
 @onready var command_queue: Array
@@ -31,53 +29,44 @@ extends Node2D
 
 
 func _ready():
-	# Refactor later
-	if MonsterParty.party.size() > 0:
-		player_monster0 = MonsterParty.party[0]
-		player_mon_loc.add_child(player_monster0)
-		mon_start_lineup.append(player_monster0)
-		player_mon = mon_start_lineup[0]
-		
-		if MonsterParty.party_hp.size() > 0:
-			player_monster0.current_hp = MonsterParty.party_hp[0]
-		
-		if MonsterParty.party_level.size() > 0:
-			player_monster0.level = MonsterParty.party_level[0]
-		
-		player_mon.setup_mon_ui()
-		
-	if MonsterParty.party.size() > 1:
-		player_monster1 = MonsterParty.party[1]
-		player_mon_loc.add_child(player_monster1)
-		mon_start_lineup.append(player_monster1)
-		support_mon0 = mon_start_lineup[1]
-		support_mon0.hide()
-		
-	if MonsterParty.party.size() > 2:
-		player_monster2 = MonsterParty.party[2]
-		player_mon_loc.add_child(player_monster2)
-		mon_start_lineup.append(player_monster2)
-		support_mon1 = mon_start_lineup[2]
-		support_mon1.hide()
-		
-	if MonsterParty.party.size() > 3:
-		player_monster3 = MonsterParty.party[3]
-		player_mon_loc.add_child(player_monster3)
-		mon_start_lineup.append(player_monster3)
-		sideboard_mon = mon_start_lineup[3]
-		sideboard_mon.hide()
+	mon_start_lineup = MonsterParty.party.duplicate()
 	
+	if MonsterParty.party.size() > 0:
+		player_mon = MonsterParty.party[0]
+	if MonsterParty.party.size() > 1:
+		support_mon0 = MonsterParty.party[1]
+	if MonsterParty.party.size() > 2:
+		support_mon1 = MonsterParty.party[2]
+	if MonsterParty.party.size() > 3:
+		sideboard_mon = MonsterParty.party[3]
+	
+	mon_combat_order.append(player_mon)
+	mon_combat_order.append(support_mon0)
+	mon_combat_order.append(support_mon1)
+	mon_combat_order.append(sideboard_mon)
+	
+	for x in mon_start_lineup.size():
+		player_mon_loc.add_child(mon_start_lineup[x])
+		mon_start_lineup[x].hide()
+		if MonsterParty.party_hp.size() > 0:
+			mon_start_lineup[x].current_hp = MonsterParty.party_hp[x]
+		if MonsterParty.party_level.size() > 0:
+			mon_start_lineup[x].level = MonsterParty.party_level[x]
+	
+	player_mon.show()
 	enemy_mon = enemy_mon_loc.get_child(0, false)
 	
-	# Signals
+	# Setup signals
 	for x in mon_start_lineup.size():
 		mon_start_lineup[x].damage_enemy.connect(_player_damages_enemy)
 		mon_start_lineup[x].combat_message.connect(_on_combat_message_received)
 	enemy_mon.combat_message.connect(_on_combat_message_received)
 	
-	ui.set_moves(player_mon)
+	# Setup UI
 	ui.set_button_icons(mon_start_lineup)
 	ui.set_catch_labels(PlayerInventory.catch_counter, catch_chance)
+	ui.set_player_mon_ui(player_mon)
+	ui.set_enemy_mon_ui(enemy_mon)
 
 func _unhandled_input(event):
 	if event is InputEventKey:
@@ -99,10 +88,13 @@ func end_turn():
 	for x in command_queue.size():
 		var command = command_queue.pop_front()
 		if command.get_user() == player_mon:
-			player_mon.attack(command.attack, enemy_mon.type1, enemy_mon.type2)
+			player_mon.attack(command.attack, enemy_mon.type0, enemy_mon.type1)
 		elif command.user == enemy_mon:
-			var damage = enemy_mon.attack(command.attack, player_mon.type1, player_mon.type2)
+			var damage = enemy_mon.attack(command.attack, player_mon.type0, player_mon.type1)
 			player_mon.take_damage(damage)
+		
+		ui.change_player_hp(player_mon)
+		ui.change_enemy_hp(enemy_mon)
 		
 		if enemy_mon.current_hp <= 0:
 			ui.update_log("Enemy " + enemy_mon.my_name + " died!")
@@ -138,7 +130,7 @@ func end_combat():
 	end_button.show()
 
 func switch(button_index):
-	player_mon.visible = false
+	player_mon.hide()
 	ui.swap_buttons(player_mon, button_index)
 	
 	# Swap the roles. Don't swap the order in the party.
@@ -150,8 +142,8 @@ func switch(button_index):
 		player_mon = support_mon1
 		support_mon1 = temp
 	
-	player_mon.visible = true
-	ui.set_moves(player_mon)
+	player_mon.show()
+	ui.set_player_mon_ui(player_mon)
 	ui.update_log(player_mon.my_name + " swapped in!")
 	await get_tree().create_timer(command_delay).timeout
 	end_turn()
@@ -165,8 +157,8 @@ func player_mon_dies():
 		player_mon = support_mon0
 		support_mon0 = support_mon1
 		support_mon1 = sideboard_mon
-		player_mon.visible = true
-		ui.set_moves(player_mon)
+		player_mon.show()
+		ui.set_player_mon_ui(player_mon)
 		ui.pop_button()
 
 # To do, implement some AI behavior
@@ -226,8 +218,8 @@ func _on_attack_button_pressed():
 	end_turn()
 
 func _on_end_button_pressed():
-	# Setup party, exclide slain allies, include captured enemy
-	MonsterParty.party.clear()
+	# Setup party, exclude slain allies, include captured enemy
+	MonsterParty.clear_all()
 	for x in mon_start_lineup.size():
 		var current_mon = mon_start_lineup[x]
 		if current_mon != null:

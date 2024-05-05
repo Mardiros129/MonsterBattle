@@ -10,17 +10,12 @@ extends Node2D
 @export var trans_mon: PackedScene
 
 @onready var sprite2d = $Sprite2D
-@onready var name_tag = $Name
-@onready var level_tag = $Level
-@onready var hp_tag = $HP
-@onready var type_tag = $Type
-@onready var speed_tag = $Speed
 @onready var attack_node = $AttackNode
 
 @onready var attack_list: Array
 
+@export var type0: TypeList.Type
 @export var type1: TypeList.Type
-@export var type2: TypeList.Type
 
 signal mon_dies
 signal damage_enemy(dmg)
@@ -34,16 +29,7 @@ func _ready():
 	for x in attack_node.get_child_count():
 		attack_list.append(attack_node.get_child(x))
 
-func setup_mon_ui():
-	name_tag.text = my_name
-	level_tag.text = str(level)
-	update_hp_tag()
-	type_tag.text = TypeList.TypeName[type1]
-	if type2 != TypeList.Type.NONE:
-		type_tag.append_text("/" + TypeList.TypeName[type2])
-	speed_tag.text = "Speed: " + str(speed)
-
-func attack(index, enemy_type1, enemy_type2):
+func attack(index, enemy_type0, enemy_type1):
 	if attack_list[index] == null:
 		pass
 	else:
@@ -51,14 +37,14 @@ func attack(index, enemy_type1, enemy_type2):
 		var attack_damage = my_attack.damage
 		
 		# Same-type attack bonus
-		if type1 == my_attack.type || type2 == my_attack.type && my_attack.type != TypeList.Type.NONE:
+		if type0 == my_attack.type || type1 == my_attack.type && my_attack.type != TypeList.Type.NONE:
 			attack_damage *= 1.5
 		
 		# Multiply the damage by the type advantage for both types
+		var multiplier0 = TypeList.TypeAdvantageChart[my_attack.type][enemy_type0]
 		var multiplier1 = TypeList.TypeAdvantageChart[my_attack.type][enemy_type1]
-		var multiplier2 = TypeList.TypeAdvantageChart[my_attack.type][enemy_type2]
+		attack_damage *= multiplier0
 		attack_damage *= multiplier1
-		attack_damage *= multiplier2
 		# Round up to the nearest whole number (ensures attacks always do minimum 1 damage)
 		attack_damage = snapped(attack_damage, 1.0)
 		
@@ -77,16 +63,11 @@ func attack(index, enemy_type1, enemy_type2):
 
 func take_damage(damage: int):
 	current_hp -= damage
-	update_hp_tag()
 
 func heal_damage(health:int):
 	current_hp += health
 	if current_hp > max_hp:
 		current_hp = max_hp
-	update_hp_tag()
-
-func update_hp_tag():
-	hp_tag.text = str(current_hp) + "/" + str(max_hp) + " HP"
 
 func get_sprite():
 	return sprite2d.texture

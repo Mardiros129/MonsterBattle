@@ -10,7 +10,7 @@ my_name = "Rat King"
 speed = 150
 level_req = 3
 trans_mon = ExtResource("2_0ty41")
-type1 = 1
+type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-3, -2)

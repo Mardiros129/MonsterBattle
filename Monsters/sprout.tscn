@@ -9,7 +9,7 @@
 max_hp = 120
 my_name = "Sprout"
 speed = 20
-type1 = 2
+type0 = 2
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -26)

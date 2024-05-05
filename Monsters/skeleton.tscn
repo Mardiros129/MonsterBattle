@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="5_8gbwd"]
 
 [node name="Skeleton" instance=ExtResource("1_tqmii")]
-max_hp = 50
+max_hp = 125
 my_name = "Mr. Skeleton"
-type1 = 3
+type0 = 3
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -24)

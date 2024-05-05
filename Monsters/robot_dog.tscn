@@ -11,8 +11,8 @@
 max_hp = 120
 my_name = "Robot Dog"
 speed = 100
+type0 = 5
 type1 = 1
-type2 = 5
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(0.425781, 0.425781)
