@@ -1,58 +1,94 @@
-[gd_scene load_steps=4 format=3 uid="uid://c63t0phri8qx8"]
+[gd_scene load_steps=8 format=3 uid="uid://c63t0phri8qx8"]
 
 [ext_resource type="Script" path="res://Levels/world.gd" id="1_3rdto"]
 [ext_resource type="PackedScene" uid="uid://cjlcyt08dys50" path="res://character.tscn" id="2_roevs"]
 [ext_resource type="PackedScene" uid="uid://do35p2s2hvvxf" path="res://monster_area.tscn" id="3_nam0o"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_i26br"]
+distance = -499.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r1hxe"]
+normal = Vector2(0, 1)
+distance = -376.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2lxn8"]
+normal = Vector2(-1, 0)
+distance = -704.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_acxa7"]
+normal = Vector2(1, 0)
+distance = -648.0
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_3rdto")
 
 [node name="Character" parent="." instance=ExtResource("2_roevs")]
-position = Vector2(554, 316)
+position = Vector2(1, 0)
 
-[node name="MonsterArea" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(199, 491)
+[node name="Camera2D" type="Camera2D" parent="Character"]
+position_smoothing_enabled = true
+
+[node name="DogTestArea" parent="." instance=ExtResource("3_nam0o")]
+position = Vector2(-233, 116)
 monster_options = Array[String](["res://Monsters/robot_dog.tscn"])
 
-[node name="CollisionShape2D" parent="MonsterArea" index="0"]
+[node name="CollisionShape2D" parent="DogTestArea" index="0"]
 metadata/_edit_lock_ = true
 
-[node name="RichTextLabel" parent="MonsterArea" index="1"]
+[node name="RichTextLabel" parent="DogTestArea" index="1"]
 visible = true
 metadata/_edit_lock_ = true
 
-[node name="MonsterArea2" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(596, 530)
+[node name="PillocoTestArea" parent="." instance=ExtResource("3_nam0o")]
+position = Vector2(39, 288)
 monster_options = Array[String](["res://Monsters/pillico.tscn"])
+encounter_chance = 0.01
 
-[node name="RichTextLabel" parent="MonsterArea2" index="1"]
+[node name="RichTextLabel" parent="PillocoTestArea" index="1"]
 visible = true
+metadata/_edit_use_anchors_ = true
 
-[node name="MonsterArea3" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(921, 433)
+[node name="OnionTestArea" parent="." instance=ExtResource("3_nam0o")]
+position = Vector2(339, 105)
 monster_options = Array[String](["res://Monsters/onion.tscn"])
 
-[node name="RichTextLabel" parent="MonsterArea3" index="1"]
+[node name="RichTextLabel" parent="OnionTestArea" index="1"]
 visible = true
+metadata/_edit_use_anchors_ = true
 
-[node name="MonsterArea4" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(743, 127)
+[node name="BossTestArea" parent="." instance=ExtResource("3_nam0o")]
+position = Vector2(232, -154)
 monster_options = Array[String](["res://Monsters/mech_boss.tscn"])
 
-[node name="RichTextLabel" parent="MonsterArea4" index="1"]
+[node name="RichTextLabel" parent="BossTestArea" index="1"]
 visible = true
+metadata/_edit_use_anchors_ = true
 
-[node name="MonsterArea5" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(416, 127)
+[node name="RandomTestArea" parent="." instance=ExtResource("3_nam0o")]
+position = Vector2(-136, -142)
 monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
 
-[connection signal="body_entered_return_path" from="MonsterArea" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="MonsterArea2" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="MonsterArea3" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="MonsterArea4" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="MonsterArea5" to="." method="_on_monster_area_body_entered_return_path"]
+[node name="Border" type="StaticBody2D" parent="."]
 
-[editable path="MonsterArea"]
-[editable path="MonsterArea2"]
-[editable path="MonsterArea3"]
-[editable path="MonsterArea4"]
+[node name="South" type="CollisionShape2D" parent="Border"]
+shape = SubResource("WorldBoundaryShape2D_i26br")
+
+[node name="North" type="CollisionShape2D" parent="Border"]
+shape = SubResource("WorldBoundaryShape2D_r1hxe")
+
+[node name="East" type="CollisionShape2D" parent="Border"]
+shape = SubResource("WorldBoundaryShape2D_2lxn8")
+
+[node name="West" type="CollisionShape2D" parent="Border"]
+shape = SubResource("WorldBoundaryShape2D_acxa7")
+
+[connection signal="body_entered_return_path" from="DogTestArea" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="PillocoTestArea" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="OnionTestArea" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="BossTestArea" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="RandomTestArea" to="." method="_on_monster_area_body_entered_return_path"]
+
+[editable path="DogTestArea"]
+[editable path="PillocoTestArea"]
+[editable path="OnionTestArea"]
+[editable path="BossTestArea"]

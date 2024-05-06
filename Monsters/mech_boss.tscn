@@ -1,17 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx36cwr1tswwq"]
+[gd_scene load_steps=8 format=3 uid="uid://dx36cwr1tswwq"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_taula"]
 [ext_resource type="Texture2D" uid="uid://dviqp6hyyux5t" path="res://Assets/mech_boss.png" id="2_8nvev"]
 [ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Attacks/poison_gas.tscn" id="3_jg3aw"]
+[ext_resource type="PackedScene" uid="uid://cga7gblieijby" path="res://Attacks/accelerate.tscn" id="4_4xhsb"]
+[ext_resource type="PackedScene" uid="uid://ds52mnf1tcx4x" path="res://Attacks/metal_claw.tscn" id="4_d3hpq"]
+[ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Attacks/shock.tscn" id="5_wqq0a"]
+[ext_resource type="PackedScene" uid="uid://bdshc5heim1gq" path="res://Effects/stun_effect.tscn" id="6_tasfi"]
 
 [node name="MechBoss" instance=ExtResource("1_taula")]
 my_name = "Diesel"
-max_hp = 500
-strength = 20
+max_hp = 300
+strength = 15
 intelligence = 10
-defense = 20
+defense = 17
 resistance = 10
-speed = 100
+speed = 5
 level = 5
 type0 = 5
 
@@ -19,4 +23,13 @@ type0 = 5
 scale = Vector2(0.700495, 0.700495)
 texture = ExtResource("2_8nvev")
 
-[node name="PoisonGas" parent="AttackNode" index="0" instance=ExtResource("3_jg3aw")]
+[node name="MetalClaw" parent="AttackNode" index="0" instance=ExtResource("4_d3hpq")]
+base_damage = 30
+
+[node name="PoisonGas" parent="AttackNode" index="1" instance=ExtResource("3_jg3aw")]
+type = 4
+
+[node name="Accelerate" parent="AttackNode" index="2" instance=ExtResource("4_4xhsb")]
+
+[node name="Shock" parent="AttackNode" index="3" instance=ExtResource("5_wqq0a")]
+effect_scene = ExtResource("6_tasfi")

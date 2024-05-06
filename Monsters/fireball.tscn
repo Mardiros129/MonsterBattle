@@ -6,9 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Attacks/fire_punch.tscn" id="4_5lrn1"]
 
 [node name="Fireball" instance=ExtResource("1_c4wxg")]
-max_hp = 120
 my_name = "Fireball"
-speed = 200
+max_hp = 120
+strength = 5
+intelligence = 10
+defense = 5
+resistance = 5
+speed = 20
 type0 = 4
 
 [node name="Sprite2D" parent="." index="0"]

@@ -10,7 +10,6 @@ max_hp = 50
 strength = 5
 defense = 8
 resistance = 8
-speed = 10
 type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]

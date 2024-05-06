@@ -86,6 +86,7 @@ func end_turn():
 	
 	# Eventually these should be given their own commands
 	player_mon.activate_all_effects()
+	enemy_mon.activate_all_effects()
 	
 	# Go through everything in the queue one-by-one.
 	for x in command_queue.size():

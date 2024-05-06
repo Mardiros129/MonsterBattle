@@ -7,3 +7,4 @@ attack_name = "Fire Punch"
 base_damage = 30
 type = 4
 category = 1
+attack_target = 2

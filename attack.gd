@@ -10,14 +10,22 @@ extends Node2D
 @onready var user
 @onready var target
 
+enum TargetType {NONE, SELF, OPPONENT, ALLY, ALL}
+@export var attack_target: TargetType
+
 @export var effect_scene: PackedScene
 
 @onready var user_message
 signal combat_message(message)
 
-func attack(new_user, new_target) -> String:
+func attack(new_user, opponent) -> String:
 	user = new_user
-	target = new_target
+	
+	if attack_target == TargetType.SELF:
+		target = user
+	elif attack_target == TargetType.OPPONENT:
+		target = opponent
+	
 	user_message = user.my_name + " used " + attack_name
 	
 	if base_damage > 0:

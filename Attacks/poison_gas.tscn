@@ -7,4 +7,5 @@
 attack_name = "Poison Gas"
 base_damage = 10
 category = 2
+attack_target = 2
 effect_scene = ExtResource("2_l2onw")

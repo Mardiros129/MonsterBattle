@@ -5,9 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://lp8eeu2ig4s7" path="res://Attacks/poke.tscn" id="4_nol68"]
 
 [node name="Onion" instance=ExtResource("1_mqg6k")]
-max_hp = 100
 my_name = "Onionmon"
-speed = 50
+max_hp = 50
+strength = 5
+intelligence = 5
+defense = 5
+resistance = 5
+speed = 5
 type0 = 2
 
 [node name="Sprite2D" parent="." index="0"]

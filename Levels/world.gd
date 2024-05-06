@@ -1,7 +1,16 @@
 extends Node2D
 
+@onready var character = $Character
+
+
+func _ready():
+	# The default value should always be out of bounds so the player will start where they are placed
+	if Player.position != Vector2(-9999999.99, -9999999.99):
+		character.position = Player.position
 
 func load_enemy_battle(enemy_path):
+	Player.position = character.position
+	
 	var battle_inst = load("res://Levels/main.tscn").instantiate(false)
 	var enemy_inst = load(enemy_path).instantiate(false)
 	var enemy_loc = battle_inst.find_child("EnemyMonLocation", false, false)

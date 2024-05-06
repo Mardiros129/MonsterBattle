@@ -8,3 +8,4 @@ base_damage = 20
 healing = 10
 type = 2
 category = 2
+attack_target = 2

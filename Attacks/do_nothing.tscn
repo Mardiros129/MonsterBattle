@@ -4,3 +4,4 @@
 
 [node name="DoNothing" instance=ExtResource("1_qrk8b")]
 attack_name = "Do Nothing"
+attack_target = 1

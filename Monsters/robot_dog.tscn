@@ -10,8 +10,11 @@
 [node name="RobotDog" instance=ExtResource("1_leaiy")]
 my_name = "Robot Dog"
 max_hp = 120
+strength = 10
+intelligence = 10
+defense = 10
+resistance = 10
 speed = 12
-level_spd_bonus = 1
 type0 = 5
 type1 = 1
 

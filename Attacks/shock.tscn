@@ -7,3 +7,4 @@ attack_name = "Shock"
 base_damage = 20
 type = 4
 category = 2
+attack_target = 2
