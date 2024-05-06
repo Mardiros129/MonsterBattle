@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx36cwr1tswwq"]
+
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_taula"]
+[ext_resource type="Texture2D" uid="uid://dviqp6hyyux5t" path="res://Assets/mech_boss.png" id="2_8nvev"]
+[ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Attacks/poison_gas.tscn" id="3_jg3aw"]
+
+[node name="MechBoss" instance=ExtResource("1_taula")]
+max_hp = 500
+my_name = "Diesel"
+speed = 100
+level = 5
+type0 = 5
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.700495, 0.700495)
+texture = ExtResource("2_8nvev")
+
+[node name="PoisonGas" parent="AttackNode" index="0" instance=ExtResource("3_jg3aw")]

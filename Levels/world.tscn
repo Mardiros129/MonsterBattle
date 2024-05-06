@@ -29,11 +29,17 @@ visible = true
 
 [node name="MonsterArea3" parent="." instance=ExtResource("3_nam0o")]
 position = Vector2(921, 433)
-monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
+monster_options = Array[String](["res://Monsters/onion.tscn"])
+
+[node name="RichTextLabel" parent="MonsterArea3" index="1"]
+visible = true
 
 [node name="MonsterArea4" parent="." instance=ExtResource("3_nam0o")]
 position = Vector2(743, 127)
-monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
+monster_options = Array[String](["res://Monsters/mech_boss.tscn"])
+
+[node name="RichTextLabel" parent="MonsterArea4" index="1"]
+visible = true
 
 [node name="MonsterArea5" parent="." instance=ExtResource("3_nam0o")]
 position = Vector2(416, 127)
@@ -47,3 +53,5 @@ monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters
 
 [editable path="MonsterArea"]
 [editable path="MonsterArea2"]
+[editable path="MonsterArea3"]
+[editable path="MonsterArea4"]

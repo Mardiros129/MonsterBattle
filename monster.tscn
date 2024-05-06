@@ -12,3 +12,5 @@ texture = ExtResource("1_m57o5")
 [node name="AttackNode" type="Node2D" parent="."]
 
 [node name="TransformNode" type="Node2D" parent="."]
+
+[node name="EffectNode" type="Node2D" parent="."]

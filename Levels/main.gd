@@ -56,11 +56,12 @@ func _ready():
 	player_mon.show()
 	enemy_mon = enemy_mon_loc.get_child(0, false)
 	
-	# Setup signals
+	# Setup signals (clean up later)
 	for x in mon_start_lineup.size():
-		mon_start_lineup[x].damage_enemy.connect(_player_damages_enemy)
-		mon_start_lineup[x].combat_message.connect(_on_combat_message_received)
-	enemy_mon.combat_message.connect(_on_combat_message_received)
+		for y in mon_start_lineup[x].find_child("AttackNode").get_child_count():
+			mon_start_lineup[x].find_child("AttackNode").get_child(y).combat_message.connect(_on_combat_message_received)
+	for x in enemy_mon.find_child("AttackNode").get_child_count():
+		enemy_mon.find_child("AttackNode").get_child(x).combat_message.connect(_on_combat_message_received)
 	
 	# Setup UI
 	ui.set_button_icons(mon_start_lineup)
@@ -79,23 +80,25 @@ func start_turn():
 
 func end_turn():
 	player_turn = false
+	var combat_finished = false
 	ui.disable_ui()
 	enemy_chooses_attack()
 	
-	# Go through everything in the queue one-by-one.
-	var combat_finished = false
+	# Eventually these should be given their own commands
+	player_mon.activate_all_effects()
 	
+	# Go through everything in the queue one-by-one.
 	for x in command_queue.size():
 		var command = command_queue.pop_front()
 		if command.get_user() == player_mon:
-			player_mon.attack(command.attack, enemy_mon.type0, enemy_mon.type1)
-		elif command.user == enemy_mon:
-			var damage = enemy_mon.attack(command.attack, player_mon.type0, player_mon.type1)
-			player_mon.take_damage(damage)
+			player_mon.attack(command.attack, enemy_mon)
+		elif command.get_user() == enemy_mon:
+			enemy_mon.attack(command.attack, player_mon)
 		
 		ui.change_player_hp(player_mon)
 		ui.change_enemy_hp(enemy_mon)
 		
+		# Check if the game ends
 		if enemy_mon.current_hp <= 0:
 			ui.update_log("Enemy " + enemy_mon.my_name + " died!")
 			await get_tree().create_timer(command_delay).timeout
@@ -109,10 +112,11 @@ func end_turn():
 		
 		elif player_mon.current_hp <= 0:
 			player_mon_dies()
-			if player_mon == null:
+			
+			if player_mon.current_hp <= 0 && support_mon0 == null:
+				combat_finished = true
 				ui.update_log("You lose!")
 				await get_tree().create_timer(command_delay).timeout
-				combat_finished = true
 		
 		await get_tree().create_timer(command_delay).timeout
 		
@@ -120,6 +124,7 @@ func end_turn():
 			break
 		
 	if combat_finished:
+		command_queue.clear()
 		end_combat()
 	else:
 		command_queue.clear()
@@ -151,8 +156,9 @@ func switch(button_index):
 func player_mon_dies():
 	ui.update_log(player_mon.my_name + " died!")
 	await get_tree().create_timer(command_delay).timeout
-	
 	player_mon.queue_free()
+	print_debug(support_mon0)
+	print_debug(player_mon)
 	if support_mon0 != null:
 		player_mon = support_mon0
 		support_mon0 = support_mon1

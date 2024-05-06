@@ -9,7 +9,7 @@
 max_hp = 120
 my_name = "Fireball"
 speed = 200
-type1 = 4
+type0 = 4
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-1, -68)

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ddgbqmhjbw8y3" path="res://Assets/rat_king.png" id="2_vppg4"]
 [ext_resource type="PackedScene" uid="uid://cqwc0jq2ra0ol" path="res://Attacks/bite.tscn" id="3_2hyqs"]
 [ext_resource type="PackedScene" uid="uid://ba30u7wpk7i4j" path="res://transformation.tscn" id="4_saxhh"]
-[ext_resource type="Script" path="res://trans_level.gd" id="5_a72u4"]
+[ext_resource type="Script" path="res://Transformations/trans_level.gd" id="5_a72u4"]
 
 [node name="RatKing" instance=ExtResource("1_uetr1")]
 max_hp = 200

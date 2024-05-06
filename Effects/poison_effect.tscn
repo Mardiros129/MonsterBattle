@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb4nqfosnqsv2"]
+
+[ext_resource type="Script" path="res://Effects/poison_effect.gd" id="1_xot7n"]
+
+[node name="PoisonEffect" type="Node2D"]
+script = ExtResource("1_xot7n")
+effect_name = "Poison"
