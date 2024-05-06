@@ -10,7 +10,11 @@ extends Control
 @onready var item_button = $ItemButton
 @onready var catch_button = $CatchButton
 @onready var run_button = $RunButton
+
 @onready var move_list = $PlayerAttackList
+@onready var enemy_attack_list = $EnemyAttackList
+@export var enemy_attack_missing_text = "???"
+
 @onready var inventory = $Inventory
 @onready var catch_count_label = $CatchCount
 @onready var catch_chance_label = $CatchChance
@@ -24,6 +28,9 @@ func _ready():
 	inventory.select(0, true)
 	if PlayerInventory.catch_counter <= 0:
 		catch_button.disabled = true
+	
+	for x in enemy_attack_list.item_count:
+		enemy_attack_list.set_item_text(x, enemy_attack_missing_text)
 
 func set_catch_labels(catch_count, catch_chance):
 	catch_count_label.text = "Catch count: " + str(catch_count)
@@ -128,6 +135,14 @@ func set_moves(player_mon):
 		move_list.set_item_disabled(3, true)
 	
 	move_list.select(0)
+
+func populate_enemy_attacks(attack_name: String) -> void:
+	for x in enemy_attack_list.item_count:
+		if enemy_attack_list.get_item_text(x) == attack_name:
+			break
+		if enemy_attack_list.get_item_text(x) == enemy_attack_missing_text:
+			enemy_attack_list.set_item_text(x, attack_name)
+			break
 
 func update_log(info: String):
 	combat_log.text = combat_log.text + "\n" + info

@@ -5,5 +5,6 @@
 
 [node name="PoisonGas" instance=ExtResource("1_lj06q")]
 attack_name = "Poison Gas"
-damage = 1
+base_damage = 10
+category = 2
 effect_scene = ExtResource("2_l2onw")

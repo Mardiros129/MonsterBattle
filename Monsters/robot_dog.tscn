@@ -8,9 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://ds52mnf1tcx4x" path="res://Attacks/metal_claw.tscn" id="6_ujvp6"]
 
 [node name="RobotDog" instance=ExtResource("1_leaiy")]
-max_hp = 120
 my_name = "Robot Dog"
-speed = 100
+max_hp = 120
+speed = 12
+level_spd_bonus = 1
 type0 = 5
 type1 = 1
 

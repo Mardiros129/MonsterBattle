@@ -12,12 +12,13 @@ position = Vector2(554, 316)
 
 [node name="MonsterArea" parent="." instance=ExtResource("3_nam0o")]
 position = Vector2(199, 491)
-monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
+monster_options = Array[String](["res://Monsters/robot_dog.tscn"])
 
 [node name="CollisionShape2D" parent="MonsterArea" index="0"]
 metadata/_edit_lock_ = true
 
 [node name="RichTextLabel" parent="MonsterArea" index="1"]
+visible = true
 metadata/_edit_lock_ = true
 
 [node name="MonsterArea2" parent="." instance=ExtResource("3_nam0o")]

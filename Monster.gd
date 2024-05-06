@@ -1,10 +1,23 @@
 extends Node2D
 
-@export var max_hp = 1
-@onready var current_hp
+
 @export var my_name = "null_name"
-@export var speed = 0
+@export var max_hp = 1
+@export var strength = 1 #physical damage
+@export var intelligence = 1 #magic damage
+@export var defense = 1 #physical defense
+@export var resistance = 1 #magic defense
+@export var speed = 1
+
 @export var level = 1
+@export var level_hp_bonus = 10
+@export var level_str_bonus = 1
+@export var level_int_bonus = 1
+@export var level_def_bonus = 1
+@export var level_res_bonus = 1
+@export var level_spd_bonus = 1
+
+@onready var current_hp
 
 @onready var sprite2d = $Sprite2D
 @onready var attack_node = $AttackNode
@@ -31,7 +44,7 @@ func attack(index, target):
 		print("attack is null!")
 	else:
 		var my_attack = attack_list[index]
-		my_attack.attack(self, target)
+		return my_attack.attack(self, target)
 
 func take_damage(damage: int):
 	current_hp -= damage
@@ -59,6 +72,16 @@ func activate_all_effects():
 
 func get_sprite():
 	return sprite2d.texture
+
+func level_up():
+	level += 1
+	max_hp += level_hp_bonus
+	current_hp += level_hp_bonus
+	strength += level_str_bonus
+	defense += level_def_bonus
+	intelligence += level_int_bonus
+	resistance += level_res_bonus
+	speed += level_spd_bonus
 
 func transform_monster(trans_mon: PackedScene, index: int):
 	print("oh! it's transforming")

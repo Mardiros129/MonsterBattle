@@ -2,6 +2,8 @@ extends Node
 
 enum Type {NONE, ANIMAL, PLANT, UNDEAD, PIXIE, MECH, DEMON, ANGEL}
 @onready var TypeName = ["", "animal", "plant", "undead", "pixie", "mech", "demon", "angel"]
+enum DamageCategory {UTILITY, PHYSICAL, MAGIC}
+@onready var DamageCategoryName = ["utility", "physical", "magic"]
 
 @onready var TypeAdvantageChart: Array[Array]
 @onready var NoneTypeAdvantage = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]

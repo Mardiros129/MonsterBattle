@@ -1,10 +1,11 @@
 extends Node2D
 
 @export var attack_name = "missing_name"
-@export var damage = 0
+@export var base_damage = 0
 @export var healing = 0
 @export var uses = 5
 @export var type: TypeList.Type
+@export var category: TypeList.DamageCategory
 
 @onready var user
 @onready var target
@@ -14,25 +15,37 @@ extends Node2D
 @onready var user_message
 signal combat_message(message)
 
-func attack(new_user, new_target):
+func attack(new_user, new_target) -> String:
 	user = new_user
 	target = new_target
 	user_message = user.my_name + " used " + attack_name
 	
-	if damage > 0:
+	if base_damage > 0:
 		do_damage()
 	if healing > 0:
 		gain_health()
-	create_effect()
+	if effect_scene != null:
+		create_effect()
 	
 	emit_signal("combat_message", user_message)
+	return attack_name
 
 func do_damage():
 	var user_type0 = user.type0
 	var user_type1 = user.type1
 	var target_type0 = target.type0
 	var target_type1 = target.type1
-	var attack_damage = damage
+	var attack_damage = base_damage
+	
+	# Multiply by damage categories
+	if category == TypeList.DamageCategory.PHYSICAL:
+		attack_damage *= user.strength
+		attack_damage /= target.defense
+	elif category == TypeList.DamageCategory.MAGIC:
+		attack_damage *= user.intelligence
+		attack_damage /= target.resistance
+	else:
+		print("no type category")
 	
 	# Same-type attack bonus
 	if user_type0 == type || user_type1 == type && type != TypeList.Type.NONE:
@@ -54,6 +67,5 @@ func gain_health():
 	user.heal_damage(healing)
 
 func create_effect():
-	if effect_scene != null:
-		var effect = effect_scene.instantiate()
-		target.add_effect(effect)
+	var effect = effect_scene.instantiate()
+	target.add_effect(effect)

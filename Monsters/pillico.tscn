@@ -5,9 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://bbjk2onm5epln" path="res://Attacks/do_nothing.tscn" id="3_ct5hx"]
 
 [node name="Pillico" instance=ExtResource("1_6rq2u")]
-max_hp = 50
 my_name = "Pillico"
-speed = 1
+max_hp = 50
+strength = 5
+defense = 8
+resistance = 8
+speed = 10
 type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]

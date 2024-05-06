@@ -4,5 +4,6 @@
 
 [node name="Bite" instance=ExtResource("1_jln17")]
 attack_name = "Bite"
-damage = 20
+base_damage = 20
 type = 1
+category = 1

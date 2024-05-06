@@ -4,5 +4,6 @@
 
 [node name="MetalClaw" instance=ExtResource("1_5bq3d")]
 attack_name = "Metal Claw"
-damage = 20
+base_damage = 40
 type = 5
+category = 1

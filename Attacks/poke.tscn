@@ -4,4 +4,4 @@
 
 [node name="Poke" instance=ExtResource("1_tr12a")]
 attack_name = "Poke"
-damage = 10
+base_damage = 10

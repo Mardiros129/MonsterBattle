@@ -4,5 +4,6 @@
 
 [node name="Fire Punch" instance=ExtResource("1_vq3px")]
 attack_name = "Fire Punch"
-damage = 30
+base_damage = 30
 type = 4
+category = 1

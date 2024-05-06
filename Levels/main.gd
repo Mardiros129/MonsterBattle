@@ -93,7 +93,8 @@ func end_turn():
 		if command.get_user() == player_mon:
 			player_mon.attack(command.attack, enemy_mon)
 		elif command.get_user() == enemy_mon:
-			enemy_mon.attack(command.attack, player_mon)
+			var attack_name = enemy_mon.attack(command.attack, player_mon)
+			ui.populate_enemy_attacks(attack_name)
 		
 		ui.change_player_hp(player_mon)
 		ui.change_enemy_hp(enemy_mon)
@@ -106,7 +107,7 @@ func end_turn():
 			ui.update_log("You won!")
 			await get_tree().create_timer(command_delay).timeout
 			
-			player_mon.level += 1
+			player_mon.level_up()
 			enemy_mon.queue_free()
 			combat_finished = true
 		
@@ -157,8 +158,7 @@ func player_mon_dies():
 	ui.update_log(player_mon.my_name + " died!")
 	await get_tree().create_timer(command_delay).timeout
 	player_mon.queue_free()
-	print_debug(support_mon0)
-	print_debug(player_mon)
+
 	if support_mon0 != null:
 		player_mon = support_mon0
 		support_mon0 = support_mon1

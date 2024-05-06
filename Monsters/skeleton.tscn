@@ -1,14 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://cykxfc1djurb2"]
+[gd_scene load_steps=7 format=3 uid="uid://cykxfc1djurb2"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_tqmii"]
 [ext_resource type="Texture2D" uid="uid://r84gwcdjv0ku" path="res://Assets/hat_skeleton.png" id="2_oelij"]
-[ext_resource type="PackedScene" uid="uid://lp8eeu2ig4s7" path="res://Attacks/poke.tscn" id="3_dwl88"]
 [ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Attacks/drain.tscn" id="4_01dew"]
 [ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="5_8gbwd"]
+[ext_resource type="PackedScene" uid="uid://cqwc0jq2ra0ol" path="res://Attacks/bite.tscn" id="5_df75w"]
+[ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Attacks/poison_gas.tscn" id="6_dffao"]
 
 [node name="Skeleton" instance=ExtResource("1_tqmii")]
-max_hp = 125
 my_name = "Mr. Skeleton"
+max_hp = 125
+strength = 10
+intelligence = 10
+defense = 10
+resistance = 10
+speed = 5
 type0 = 3
 
 [node name="Sprite2D" parent="." index="0"]
@@ -16,8 +22,10 @@ position = Vector2(0, -24)
 scale = Vector2(0.185, 0.185)
 texture = ExtResource("2_oelij")
 
-[node name="Poke" parent="AttackNode" index="0" instance=ExtResource("3_dwl88")]
+[node name="Drain" parent="AttackNode" index="0" instance=ExtResource("4_01dew")]
 
-[node name="Drain" parent="AttackNode" index="1" instance=ExtResource("4_01dew")]
+[node name="Heal" parent="AttackNode" index="1" instance=ExtResource("5_8gbwd")]
 
-[node name="Heal" parent="AttackNode" index="2" instance=ExtResource("5_8gbwd")]
+[node name="Bite" parent="AttackNode" index="2" instance=ExtResource("5_df75w")]
+
+[node name="PoisonGas" parent="AttackNode" index="3" instance=ExtResource("6_dffao")]

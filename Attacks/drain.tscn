@@ -4,6 +4,7 @@
 
 [node name="Drain" instance=ExtResource("1_w7hns")]
 attack_name = "Drain"
-damage = 20
+base_damage = 20
 healing = 10
 type = 2
+category = 2

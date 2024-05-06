@@ -9,9 +9,13 @@
 [ext_resource type="Script" path="res://Transformations/trans_level.gd" id="7_eo57h"]
 
 [node name="Rat" instance=ExtResource("1_gqr5r")]
-max_hp = 90
 my_name = "Rat"
-speed = 90
+max_hp = 100
+strength = 10
+defense = 10
+resistance = 10
+speed = 10
+level_spd_bonus = 1
 type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]
