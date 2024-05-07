@@ -8,7 +8,7 @@ func _ready():
 	# The default value should always be out of bounds so the player will start where they are placed
 	if Player.position != Vector2(-9999999.99, -9999999.99):
 		character.position = Player.position
-	
+		
 	for x in MonsterParty.party.size():
 		var temp_monster = MonsterParty.party[x].duplicate()
 		add_child(temp_monster)

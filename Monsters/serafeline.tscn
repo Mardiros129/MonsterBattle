@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk086neb14eg4"]
+
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_auktt"]
+[ext_resource type="Texture2D" uid="uid://dpxvdssit16bn" path="res://Assets/Monsters/serafeline.png" id="2_v4a63"]
+
+[node name="Serafeline" instance=ExtResource("1_auktt")]
+my_name = "Serafeline"
+type0 = 1
+type1 = 7
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(1.00001, -95)
+scale = Vector2(0.32375, 0.32375)
+texture = ExtResource("2_v4a63")

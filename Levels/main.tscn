@@ -184,17 +184,17 @@ one_shot = true
 z_index = 5
 position = Vector2(879, 296)
 
-[node name="TempStage" type="Sprite2D" parent="."]
+[node name="PlayerStage" type="Sprite2D" parent="."]
 position = Vector2(267, 455)
 scale = Vector2(0.335897, 0.335897)
 texture = ExtResource("4_g5kj7")
 
-[node name="TempStage2" type="Sprite2D" parent="."]
+[node name="EnemyStage" type="Sprite2D" parent="."]
 position = Vector2(879, 298)
 scale = Vector2(0.335897, 0.335897)
 texture = ExtResource("4_g5kj7")
 
-[node name="DarkForest" type="Sprite2D" parent="."]
+[node name="DarkForestBG" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(635.111, 272)
 scale = Vector2(0.711111, 0.711111)

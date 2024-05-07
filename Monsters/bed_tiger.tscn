@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://6v0toik2fswu"]
+
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_b8udb"]
+[ext_resource type="Texture2D" uid="uid://bc1cayw3hn887" path="res://Assets/Monsters/bed_tiger.png" id="2_und0p"]
+
+[node name="BedTiger" instance=ExtResource("1_b8udb")]
+my_name = "Bed Tiger"
+level = 5
+type0 = 1
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(3, -117)
+scale = Vector2(0.489891, 0.489891)
+texture = ExtResource("2_und0p")

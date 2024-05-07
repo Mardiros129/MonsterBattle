@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ofjxkenpybyi" path="res://Assets/player.png" id="2_61glm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5avmd"]
-size = Vector2(12, 14)
+size = Vector2(9, 13)
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_ihn33")
@@ -15,4 +15,5 @@ scale = Vector2(0.0537109, 0.0537109)
 texture = ExtResource("2_61glm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_5avmd")

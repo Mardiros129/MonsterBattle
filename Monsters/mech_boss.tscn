@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bdshc5heim1gq" path="res://Effects/stun_effect.tscn" id="6_tasfi"]
 
 [node name="MechBoss" instance=ExtResource("1_taula")]
-my_name = "Diesel"
+my_name = "Deforester"
 max_hp = 300
 strength = 15
 intelligence = 10

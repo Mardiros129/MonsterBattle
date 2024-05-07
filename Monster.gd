@@ -10,6 +10,7 @@ extends Node2D
 @export var speed = 1
 
 @export var level = 1
+@export var level_max = 10
 @export var level_hp_bonus = 10
 @export var level_str_bonus = 1
 @export var level_int_bonus = 1
@@ -74,14 +75,15 @@ func get_sprite():
 	return sprite2d.texture
 
 func level_up():
-	level += 1
-	max_hp += level_hp_bonus
-	current_hp += level_hp_bonus
-	strength += level_str_bonus
-	defense += level_def_bonus
-	intelligence += level_int_bonus
-	resistance += level_res_bonus
-	speed += level_spd_bonus
+	if level < level_max:
+		level += 1
+		max_hp += level_hp_bonus
+		current_hp += level_hp_bonus
+		strength += level_str_bonus
+		defense += level_def_bonus
+		intelligence += level_int_bonus
+		resistance += level_res_bonus
+		speed += level_spd_bonus
 
 func transform_monster(trans_mon: PackedScene, index: int):
 	print("oh! it's transforming")

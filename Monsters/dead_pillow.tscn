@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp0hb2mvhwvdk"]
+
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_0upqk"]
+[ext_resource type="Texture2D" uid="uid://dyfj2oqgqwdac" path="res://Assets/Monsters/dead_pillow.png" id="2_hqesc"]
+
+[node name="DeadPillow" instance=ExtResource("1_0upqk")]
+my_name = "Dead Pillow"
+type0 = 1
+type1 = 3
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-2, -79)
+scale = Vector2(0.491883, 0.491883)
+texture = ExtResource("2_hqesc")
