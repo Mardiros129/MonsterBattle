@@ -5,6 +5,12 @@
 
 [node name="BedTiger" instance=ExtResource("1_b8udb")]
 my_name = "Bed Tiger"
+max_hp = 150
+strength = 12
+intelligence = 12
+defense = 12
+resistance = 12
+speed = 12
 level = 5
 type0 = 1
 

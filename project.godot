@@ -18,10 +18,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 TypeList="*res://Globals/type_list.gd"
-SceneSwitcher="*res://Globals/scene_switcher.gd"
 MonsterParty="*res://Globals/monster_party.gd"
 PlayerInventory="*res://Globals/player_inventory.gd"
-Player="*res://Globals/player.gd"
+WorldLoad="*res://Globals/world_load.gd"
 
 [input]
 

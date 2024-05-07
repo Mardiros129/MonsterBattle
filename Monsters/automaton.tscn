@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0xnci25yw6wh"]
+
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_y6vsv"]
+[ext_resource type="Texture2D" uid="uid://dcpbr58or54l8" path="res://Assets/Monsters/automaton.png" id="2_y1y26"]
+[ext_resource type="PackedScene" uid="uid://ds52mnf1tcx4x" path="res://Attacks/buzzsaw.tscn" id="3_owudj"]
+[ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Attacks/shock.tscn" id="4_m24b5"]
+[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="5_4jffy"]
+
+[node name="Automaton" instance=ExtResource("1_y6vsv")]
+my_name = "Automaton"
+max_hp = 150
+strength = 12
+intelligence = 8
+defense = 12
+resistance = 10
+speed = 5
+type0 = 5
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(17, -86)
+scale = Vector2(0.376953, 0.376953)
+texture = ExtResource("2_y1y26")
+
+[node name="Buzzsaw" parent="AttackNode" index="0" instance=ExtResource("3_owudj")]
+
+[node name="Shock" parent="AttackNode" index="1" instance=ExtResource("4_m24b5")]
+
+[node name="Heal" parent="AttackNode" index="2" instance=ExtResource("5_4jffy")]

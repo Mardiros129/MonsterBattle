@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyw2ii0md7e4c"]
+[gd_scene load_steps=6 format=3 uid="uid://cyw2ii0md7e4c"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_eagvv"]
 [ext_resource type="Texture2D" uid="uid://ch7gftktmiygk" path="res://Assets/Monsters/beanstalk.png" id="2_ia061"]
-[ext_resource type="PackedScene" uid="uid://bbjk2onm5epln" path="res://Attacks/do_nothing.tscn" id="3_emtx8"]
+[ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Attacks/poison_gas.tscn" id="4_1nhtj"]
 [ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Attacks/drain.tscn" id="4_j3txp"]
+[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="5_xqskl"]
 
 [node name="Sprout" instance=ExtResource("1_eagvv")]
 my_name = "Sprout"
@@ -22,4 +23,6 @@ texture = ExtResource("2_ia061")
 
 [node name="Drain" parent="AttackNode" index="0" instance=ExtResource("4_j3txp")]
 
-[node name="DoNothing" parent="AttackNode" index="1" instance=ExtResource("3_emtx8")]
+[node name="PoisonGas" parent="AttackNode" index="1" instance=ExtResource("4_1nhtj")]
+
+[node name="Heal" parent="AttackNode" index="2" instance=ExtResource("5_xqskl")]

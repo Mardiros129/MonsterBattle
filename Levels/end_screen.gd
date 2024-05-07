@@ -19,7 +19,8 @@ func _ready():
 
 func go_to_world():
 	var inst = load("res://Levels/world.tscn").instantiate(false)
-	get_tree().root.add_child(inst, false, 0)
+	#get_tree().root.add_child(WorldLoad.world)
+	get_tree().root.add_child(inst)
 	queue_free()
 
 func _unhandled_input(event):

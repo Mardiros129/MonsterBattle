@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c63t0phri8qx8"]
+[gd_scene load_steps=23 format=3 uid="uid://c63t0phri8qx8"]
 
 [ext_resource type="Script" path="res://Levels/world.gd" id="1_3rdto"]
 [ext_resource type="PackedScene" uid="uid://cjlcyt08dys50" path="res://character.tscn" id="2_roevs"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dud33b2i45787" path="res://Assets/Tilesets/Sand.png" id="7_ywbgb"]
 [ext_resource type="Texture2D" uid="uid://dm8guj13xtlll" path="res://Assets/Tilesets/WaterEdge SpriteSheet.png" id="8_ohyuo"]
 [ext_resource type="Texture2D" uid="uid://18tha3oyubq" path="res://Assets/Tilesets/WaterFall Tile SpriteSheet.png" id="9_fb6hb"]
+[ext_resource type="PackedScene" uid="uid://c63hkynt46arj" path="res://Items/battery_item.tscn" id="10_ub1p1"]
+[ext_resource type="PackedScene" uid="uid://wn6yd4wg14gs" path="res://robot.tscn" id="11_b1gnq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x0aeo"]
 texture = ExtResource("4_mirx7")
@@ -584,36 +586,22 @@ sources/4 = SubResource("TileSetAtlasSource_8jk4n")
 sources/5 = SubResource("TileSetAtlasSource_yb0iq")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmpxu"]
-size = Vector2(31, 30)
+size = Vector2(99.5, 107)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qrxbq"]
-size = Vector2(30, 29)
+size = Vector2(104, 111.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ahdt"]
-size = Vector2(31, 30)
+size = Vector2(105.5, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1ano"]
-size = Vector2(37, 27)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_i26br"]
-distance = -100.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r1hxe"]
-normal = Vector2(0, 1)
-distance = -111.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2lxn8"]
-normal = Vector2(-1, 0)
-distance = -116.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_acxa7"]
-normal = Vector2(1, 0)
-distance = -82.0
+size = Vector2(124.5, 107.5)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_3rdto")
 
 [node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_qgxs3")
 format = 2
 layer_0/name = "Grass"
@@ -625,15 +613,7 @@ layer_2/tile_data = PackedInt32Array(-131077, 2, 0, -65541, 2, 1, -5, 2, 2, -131
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(7, -8)
-zoom = Vector2(5, 5)
 position_smoothing_enabled = true
-
-[node name="Character" parent="." instance=ExtResource("2_roevs")]
-z_index = 5
-position = Vector2(7, -8)
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Character"]
-remote_path = NodePath("../../Camera2D")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -666,51 +646,64 @@ offset_right = 302.0
 offset_bottom = 87.0
 expand_icon = true
 
-[node name="DogTestArea" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(-165, 31)
-monster_options = Array[String](["res://Monsters/robot_dog.tscn"])
-encounter_chance = 0.005
+[node name="Character" parent="." instance=ExtResource("2_roevs")]
+z_index = 5
+position = Vector2(7, -8)
+SPEED = 300.0
 
-[node name="CollisionShape2D" parent="DogTestArea" index="0"]
-position = Vector2(102, -16)
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Character"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Removable" type="Node2D" parent="."]
+
+[node name="Battery" parent="Removable" instance=ExtResource("10_ub1p1")]
+position = Vector2(115, 110)
+
+[node name="Robot" parent="Removable" instance=ExtResource("11_b1gnq")]
+position = Vector2(322, 235)
+
+[node name="MonsterArea0" parent="." instance=ExtResource("3_nam0o")]
+position = Vector2(-291, 21)
+monster_options = Array[String](["res://Monsters/onion.tscn", "res://Monsters/drone.tscn", "res://Monsters/pillico.tscn", "res://Monsters/elemental.tscn"])
+
+[node name="CollisionShape2D" parent="MonsterArea0" index="0"]
+position = Vector2(34.25, 38.5)
 shape = SubResource("RectangleShape2D_dmpxu")
 
-[node name="RichTextLabel" parent="DogTestArea" index="1"]
+[node name="RichTextLabel" parent="MonsterArea0" index="1"]
 metadata/_edit_lock_ = true
 
-[node name="PillocoTestArea" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(39, 288)
-monster_options = Array[String](["res://Monsters/pillico.tscn"])
-encounter_chance = 0.015
+[node name="MonsterArea1" parent="." instance=ExtResource("3_nam0o")]
+position = Vector2(-36, 276)
+monster_options = Array[String](["res://Monsters/onion.tscn", "res://Monsters/drone.tscn", "res://Monsters/pillico.tscn", "res://Monsters/elemental.tscn"])
 
-[node name="CollisionShape2D" parent="PillocoTestArea" index="0"]
-position = Vector2(-38, -208.5)
+[node name="CollisionShape2D" parent="MonsterArea1" index="0"]
+position = Vector2(37, 41.25)
 shape = SubResource("RectangleShape2D_qrxbq")
 
-[node name="RichTextLabel" parent="PillocoTestArea" index="1"]
+[node name="RichTextLabel" parent="MonsterArea1" index="1"]
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="OnionTestArea" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(339, 105)
-monster_options = Array[String](["res://Monsters/onion.tscn"])
-encounter_chance = 0.005
+[node name="MonsterArea2" parent="." instance=ExtResource("3_nam0o")]
+position = Vector2(352, -33)
+monster_options = Array[String](["res://Monsters/onion.tscn", "res://Monsters/drone.tscn", "res://Monsters/pillico.tscn", "res://Monsters/elemental.tscn"])
 
-[node name="CollisionShape2D" parent="OnionTestArea" index="0"]
-position = Vector2(-241.5, -106)
+[node name="CollisionShape2D" parent="MonsterArea2" index="0"]
+position = Vector2(37.25, 35)
 shape = SubResource("RectangleShape2D_8ahdt")
 
-[node name="RichTextLabel" parent="OnionTestArea" index="1"]
+[node name="RichTextLabel" parent="MonsterArea2" index="1"]
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
 [node name="BossTestArea" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(66, -78)
+position = Vector2(24, -360)
 monster_options = Array[String](["res://Monsters/mech_boss.tscn"])
 encounter_chance = 1.0
 
 [node name="CollisionShape2D" parent="BossTestArea" index="0"]
-position = Vector2(-49.5, -7.5)
+position = Vector2(43.75, 40.25)
 shape = SubResource("RectangleShape2D_v1ano")
 
 [node name="RichTextLabel" parent="BossTestArea" index="1"]
@@ -722,27 +715,14 @@ visible = false
 position = Vector2(-142, -95)
 monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
 
-[node name="Border" type="StaticBody2D" parent="."]
-
-[node name="South" type="CollisionShape2D" parent="Border"]
-shape = SubResource("WorldBoundaryShape2D_i26br")
-
-[node name="North" type="CollisionShape2D" parent="Border"]
-shape = SubResource("WorldBoundaryShape2D_r1hxe")
-
-[node name="East" type="CollisionShape2D" parent="Border"]
-shape = SubResource("WorldBoundaryShape2D_2lxn8")
-
-[node name="West" type="CollisionShape2D" parent="Border"]
-shape = SubResource("WorldBoundaryShape2D_acxa7")
-
-[connection signal="body_entered_return_path" from="DogTestArea" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="PillocoTestArea" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="OnionTestArea" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="start_fight" from="Removable/Robot" to="." method="_on_robot_start_fight"]
+[connection signal="body_entered_return_path" from="MonsterArea0" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterArea1" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterArea2" to="." method="_on_monster_area_body_entered_return_path"]
 [connection signal="body_entered_return_path" from="BossTestArea" to="." method="_on_monster_area_body_entered_return_path"]
 [connection signal="body_entered_return_path" from="RandomTestArea" to="." method="_on_monster_area_body_entered_return_path"]
 
-[editable path="DogTestArea"]
-[editable path="PillocoTestArea"]
-[editable path="OnionTestArea"]
+[editable path="MonsterArea0"]
+[editable path="MonsterArea1"]
+[editable path="MonsterArea2"]
 [editable path="BossTestArea"]

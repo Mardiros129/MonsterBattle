@@ -7,7 +7,7 @@
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource("1_bpiov")
-catch_counter = 5
+catch_counter = 3
 
 [node name="StartButton" type="Button" parent="."]
 visible = false
@@ -25,6 +25,15 @@ offset_bottom = 424.0
 icon = ExtResource("2_b4rro")
 expand_icon = true
 
+[node name="Label" type="Label" parent="AnimalStarter"]
+layout_mode = 0
+offset_top = 227.0
+offset_right = 175.0
+offset_bottom = 273.0
+theme_override_font_sizes/font_size = 26
+text = "Rat"
+horizontal_alignment = 1
+
 [node name="PlantStarter" type="Button" parent="."]
 offset_left = 460.0
 offset_top = 199.0
@@ -32,6 +41,15 @@ offset_right = 637.0
 offset_bottom = 424.0
 icon = ExtResource("3_ry7g4")
 expand_icon = true
+
+[node name="Label" type="Label" parent="PlantStarter"]
+layout_mode = 0
+offset_top = 227.0
+offset_right = 175.0
+offset_bottom = 273.0
+theme_override_font_sizes/font_size = 26
+text = "Sprout"
+horizontal_alignment = 1
 
 [node name="UndeadStarter" type="Button" parent="."]
 offset_left = 803.0
@@ -41,12 +59,23 @@ offset_bottom = 424.0
 icon = ExtResource("3_y6kr1")
 expand_icon = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 482.0
-offset_top = 55.0
-offset_right = 612.0
-offset_bottom = 100.0
-text = "Choose starter"
+[node name="Label" type="Label" parent="UndeadStarter"]
+layout_mode = 0
+offset_top = 227.0
+offset_right = 175.0
+offset_bottom = 273.0
+theme_override_font_sizes/font_size = 26
+text = "Deadbeat"
+horizontal_alignment = 1
+
+[node name="Heading" type="Label" parent="."]
+offset_left = 379.0
+offset_top = 42.0
+offset_right = 712.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 40
+text = "Choose a starter"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="StartButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="AnimalStarter" to="." method="_on_animal_starter_pressed"]
