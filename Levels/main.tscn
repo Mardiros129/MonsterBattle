@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3ccrpeska432"]
+[gd_scene load_steps=6 format=3 uid="uid://c3ccrpeska432"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_2bifh"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="3_1s8rs"]
 [ext_resource type="PackedScene" uid="uid://c0dy88gwgp6cu" path="res://UI/mon_ui.tscn" id="4_4psda"]
 [ext_resource type="Texture2D" uid="uid://pa8bxdyl7kd1" path="res://Assets/temp_stage.png" id="4_g5kj7"]
+[ext_resource type="Texture2D" uid="uid://cnkle2uwok0xu" path="res://Assets/Backgrounds/dark_forest.png" id="5_skoyj"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bifh")
@@ -79,10 +80,10 @@ offset_top = 134.0
 offset_right = 713.0
 offset_bottom = 251.0
 item_count = 4
-item_0/text = ""
-item_1/text = ""
-item_2/text = ""
-item_3/text = ""
+item_0/text = "attack"
+item_1/text = "attack"
+item_2/text = "attack"
+item_3/text = "attack"
 
 [node name="SwitchButton0" type="Button" parent="UI"]
 layout_mode = 0
@@ -130,6 +131,7 @@ offset_bottom = 130.0
 text = "Catch chance: 100%"
 
 [node name="Reset" type="Button" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 19.0
 offset_top = 14.0
@@ -151,10 +153,10 @@ item_2/text = "Super Duper Potion"
 
 [node name="CombatLog" type="RichTextLabel" parent="UI"]
 layout_mode = 0
-offset_left = 104.0
-offset_top = 16.0
-offset_right = 541.0
-offset_bottom = 211.0
+offset_left = 23.0
+offset_top = 18.0
+offset_right = 536.0
+offset_bottom = 213.0
 text = "FIGHT!"
 scroll_following = true
 
@@ -180,7 +182,7 @@ one_shot = true
 
 [node name="EnemyMonLocation" type="Marker2D" parent="."]
 z_index = 5
-position = Vector2(879, 257)
+position = Vector2(879, 296)
 
 [node name="TempStage" type="Sprite2D" parent="."]
 position = Vector2(267, 455)
@@ -188,9 +190,16 @@ scale = Vector2(0.335897, 0.335897)
 texture = ExtResource("4_g5kj7")
 
 [node name="TempStage2" type="Sprite2D" parent="."]
-position = Vector2(879, 261)
+position = Vector2(879, 298)
 scale = Vector2(0.335897, 0.335897)
 texture = ExtResource("4_g5kj7")
+
+[node name="DarkForest" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(635.111, 272)
+scale = Vector2(0.711111, 0.711111)
+texture = ExtResource("5_skoyj")
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="UI/EndButton" to="." method="_on_end_button_pressed"]
 [connection signal="pressed" from="UI/AttackButton" to="." method="_on_attack_button_pressed"]
