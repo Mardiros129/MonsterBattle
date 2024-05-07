@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwxhnm1ouxe2h"]
+[gd_scene load_steps=5 format=3 uid="uid://dwxhnm1ouxe2h"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_mqg6k"]
 [ext_resource type="Texture2D" uid="uid://bjya8kgf2n67x" path="res://Assets/Monsters/onion.png" id="2_feup8"]
-[ext_resource type="PackedScene" uid="uid://lp8eeu2ig4s7" path="res://Attacks/poke.tscn" id="4_nol68"]
+[ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Attacks/drain.tscn" id="3_st2d7"]
+[ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Attacks/poison_gas.tscn" id="4_3jffq"]
 
 [node name="Onion" instance=ExtResource("1_mqg6k")]
 my_name = "Onionmon"
@@ -19,4 +20,6 @@ position = Vector2(6, -103)
 scale = Vector2(0.182656, 0.182656)
 texture = ExtResource("2_feup8")
 
-[node name="Poke" parent="AttackNode" index="0" instance=ExtResource("4_nol68")]
+[node name="Drain" parent="AttackNode" index="0" instance=ExtResource("3_st2d7")]
+
+[node name="PoisonGas" parent="AttackNode" index="1" instance=ExtResource("4_3jffq")]

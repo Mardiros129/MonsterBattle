@@ -26,7 +26,6 @@ func _ready():
 		canvas_layer.get_child(x).icon = temp_monster.get_sprite()
 	
 	canvas_layer.show()
-	
 
 func load_enemy_battle(enemy_path):
 	# Save world scene
@@ -35,7 +34,7 @@ func load_enemy_battle(enemy_path):
 	WorldLoad.removable.clear()
 	if removable.get_child_count() > 0:
 		for x in removable.get_child_count():
-			WorldLoad.removable.append(removable.get_child(x).duplicate(DUPLICATE_SIGNALS))
+			WorldLoad.removable.append(removable.get_child(x).duplicate())
 	
 	# Load battle scene
 	var battle_inst = load("res://Levels/main.tscn").instantiate(false)

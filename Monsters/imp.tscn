@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctakoe7j0034f"]
+
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_x7pya"]
+[ext_resource type="Texture2D" uid="uid://d05n3ne66y2nc" path="res://Assets/Monsters/imp.png" id="2_lpd5o"]
+
+[node name="Imp" instance=ExtResource("1_x7pya")]
+my_name = "Imp"
+max_hp = 150
+strength = 15
+intelligence = 15
+defense = 15
+resistance = 15
+speed = 15
+type0 = 6
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(4.00001, -95)
+scale = Vector2(0.26132, 0.26132)
+texture = ExtResource("2_lpd5o")

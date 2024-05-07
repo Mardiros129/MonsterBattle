@@ -52,4 +52,14 @@ disabled = true
 icon = ExtResource("2_32ycu")
 expand_icon = true
 
+[node name="LoseLabel" type="Label" parent="."]
+visible = false
+offset_left = 441.0
+offset_top = 78.0
+offset_right = 687.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 50
+text = "You lose..."
+horizontal_alignment = 1
+
 [connection signal="pressed" from="ExploreButton" to="." method="_on_button_pressed"]

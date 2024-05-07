@@ -9,9 +9,8 @@ extends StaticBody2D
 signal start_fight(path: String)
 
 
-func _ready():
-	#get_parent().get_parent().connect("start_fight", monster_path)
-	pass
+#func _ready():
+	#get_parent().get_parent().on_robot_start_fight.connect("start_fight", monster_path)
 
 func _unhandled_input(event):
 	var has_battery = false
@@ -38,8 +37,8 @@ func _on_timer_timeout():
 	dialog_0.hide()
 
 func _on_fight_button_pressed():
-	queue_free()
-	await get_tree().create_timer(1.0).timeout
+	#queue_free()
+	#await get_tree().create_timer(1.0).timeout
 	start_fight.emit(monster_path)
 
 func _on_run_button_pressed():
