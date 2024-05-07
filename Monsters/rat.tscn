@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_gqr5r"]
 [ext_resource type="PackedScene" uid="uid://b727gocj5cjxl" path="res://Monsters/rat_king.tscn" id="2_tq1qd"]
-[ext_resource type="Texture2D" uid="uid://cew7bvtkabqec" path="res://Assets/rat.png" id="2_w4det"]
+[ext_resource type="Texture2D" uid="uid://cew7bvtkabqec" path="res://Assets/Monsters/rat.png" id="2_w4det"]
 [ext_resource type="PackedScene" uid="uid://cqwc0jq2ra0ol" path="res://Attacks/bite.tscn" id="3_4uc5s"]
 [ext_resource type="PackedScene" uid="uid://bbjk2onm5epln" path="res://Attacks/do_nothing.tscn" id="4_igt8j"]
 [ext_resource type="PackedScene" uid="uid://ba30u7wpk7i4j" path="res://transformation.tscn" id="6_qsbjm"]
@@ -15,11 +15,10 @@ strength = 10
 defense = 10
 resistance = 10
 speed = 10
-level_spd_bonus = 1
 type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(2.00002, -32)
+position = Vector2(-16, -86)
 scale = Vector2(0.571197, 0.571197)
 texture = ExtResource("2_w4det")
 

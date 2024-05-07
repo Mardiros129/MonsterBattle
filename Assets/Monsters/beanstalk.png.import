@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rxfp3nekm1w4"
-path="res://.godot/imported/robot_dog.png-4e28df8c39399abaee9134761b29a8f3.ctex"
+uid="uid://ch7gftktmiygk"
+path="res://.godot/imported/beanstalk.png-406a7321535bb5f92dd324df0a75ca23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/robot_dog.png"
-dest_files=["res://.godot/imported/robot_dog.png-4e28df8c39399abaee9134761b29a8f3.ctex"]
+source_file="res://Assets/Monsters/beanstalk.png"
+dest_files=["res://.godot/imported/beanstalk.png-406a7321535bb5f92dd324df0a75ca23.ctex"]
 
 [params]
 

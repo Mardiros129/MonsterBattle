@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ch7gftktmiygk"
-path="res://.godot/imported/beanstalk.png-06d378d20378d1f5bb4106b148014290.ctex"
+uid="uid://ddgbqmhjbw8y3"
+path="res://.godot/imported/rat_king.png-6b3868d10e140543ed5e9e6b6205b660.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/beanstalk.png"
-dest_files=["res://.godot/imported/beanstalk.png-06d378d20378d1f5bb4106b148014290.ctex"]
+source_file="res://Assets/Monsters/rat_king.png"
+dest_files=["res://.godot/imported/rat_king.png-6b3868d10e140543ed5e9e6b6205b660.ctex"]
 
 [params]
 

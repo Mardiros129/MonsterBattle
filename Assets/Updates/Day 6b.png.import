@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3jjmfp6v03sc"
-path="res://.godot/imported/fireball.png-fa5f0d567eec0e5ec34d80e08239efe3.ctex"
+uid="uid://ch0pc6i1qktjc"
+path="res://.godot/imported/Day 6b.png-253fe37338c88e0f0f01f9a0ec65da4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/fireball.png"
-dest_files=["res://.godot/imported/fireball.png-fa5f0d567eec0e5ec34d80e08239efe3.ctex"]
+source_file="res://Assets/Updates/Day 6b.png"
+dest_files=["res://.godot/imported/Day 6b.png-253fe37338c88e0f0f01f9a0ec65da4a.ctex"]
 
 [params]
 

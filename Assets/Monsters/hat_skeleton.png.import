@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dviqp6hyyux5t"
-path="res://.godot/imported/mech_boss.png-ce5e52980eb8a4fd296bcbd4794adf8b.ctex"
+uid="uid://r84gwcdjv0ku"
+path="res://.godot/imported/hat_skeleton.png-c85d565a92446de22994c18af6dd40f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/mech_boss.png"
-dest_files=["res://.godot/imported/mech_boss.png-ce5e52980eb8a4fd296bcbd4794adf8b.ctex"]
+source_file="res://Assets/Monsters/hat_skeleton.png"
+dest_files=["res://.godot/imported/hat_skeleton.png-c85d565a92446de22994c18af6dd40f5.ctex"]
 
 [params]
 

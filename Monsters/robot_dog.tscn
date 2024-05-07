@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cde0ice0s3el7"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_leaiy"]
-[ext_resource type="Texture2D" uid="uid://rxfp3nekm1w4" path="res://Assets/robot_dog.png" id="2_7ycpe"]
+[ext_resource type="Texture2D" uid="uid://rxfp3nekm1w4" path="res://Assets/Monsters/robot_dog.png" id="2_7ycpe"]
 [ext_resource type="PackedScene" uid="uid://lp8eeu2ig4s7" path="res://Attacks/poke.tscn" id="3_k4axe"]
 [ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="4_781bd"]
 [ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Attacks/shock.tscn" id="5_dohyw"]
@@ -19,6 +19,7 @@ type0 = 5
 type1 = 1
 
 [node name="Sprite2D" parent="." index="0"]
+position = Vector2(8, -80)
 scale = Vector2(0.425781, 0.425781)
 texture = ExtResource("2_7ycpe")
 

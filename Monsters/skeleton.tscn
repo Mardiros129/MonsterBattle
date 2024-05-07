@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cykxfc1djurb2"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_tqmii"]
-[ext_resource type="Texture2D" uid="uid://r84gwcdjv0ku" path="res://Assets/hat_skeleton.png" id="2_oelij"]
+[ext_resource type="Texture2D" uid="uid://r84gwcdjv0ku" path="res://Assets/Monsters/hat_skeleton.png" id="2_oelij"]
 [ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Attacks/drain.tscn" id="4_01dew"]
 [ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="5_8gbwd"]
 [ext_resource type="PackedScene" uid="uid://cqwc0jq2ra0ol" path="res://Attacks/bite.tscn" id="5_df75w"]
@@ -18,7 +18,7 @@ speed = 5
 type0 = 3
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(0, -24)
+position = Vector2(-6, -94)
 scale = Vector2(0.185, 0.185)
 texture = ExtResource("2_oelij")
 

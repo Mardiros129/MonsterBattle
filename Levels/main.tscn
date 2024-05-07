@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3ccrpeska432"]
+[gd_scene load_steps=5 format=3 uid="uid://c3ccrpeska432"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_2bifh"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="3_1s8rs"]
 [ext_resource type="PackedScene" uid="uid://c0dy88gwgp6cu" path="res://UI/mon_ui.tscn" id="4_4psda"]
+[ext_resource type="Texture2D" uid="uid://pa8bxdyl7kd1" path="res://Assets/temp_stage.png" id="4_g5kj7"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bifh")
@@ -170,14 +171,26 @@ offset_right = 1038.0
 offset_bottom = 90.0
 
 [node name="PlayerMonLocation" type="Marker2D" parent="."]
-position = Vector2(264, 379)
+z_index = 5
+position = Vector2(268, 452)
 
 [node name="ResolveTurnTimer" type="Timer" parent="."]
 wait_time = 0.065
 one_shot = true
 
 [node name="EnemyMonLocation" type="Marker2D" parent="."]
-position = Vector2(875, 158)
+z_index = 5
+position = Vector2(879, 257)
+
+[node name="TempStage" type="Sprite2D" parent="."]
+position = Vector2(267, 455)
+scale = Vector2(0.335897, 0.335897)
+texture = ExtResource("4_g5kj7")
+
+[node name="TempStage2" type="Sprite2D" parent="."]
+position = Vector2(879, 261)
+scale = Vector2(0.335897, 0.335897)
+texture = ExtResource("4_g5kj7")
 
 [connection signal="pressed" from="UI/EndButton" to="." method="_on_end_button_pressed"]
 [connection signal="pressed" from="UI/AttackButton" to="." method="_on_attack_button_pressed"]

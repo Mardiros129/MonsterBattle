@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddgbqmhjbw8y3"
-path="res://.godot/imported/rat_king.png-0ad6eca064552f3a2b334be2bfa251eb.ctex"
+uid="uid://dviqp6hyyux5t"
+path="res://.godot/imported/mech_boss.png-4f542a03f9222971d77a8efc30caa727.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/rat_king.png"
-dest_files=["res://.godot/imported/rat_king.png-0ad6eca064552f3a2b334be2bfa251eb.ctex"]
+source_file="res://Assets/Monsters/mech_boss.png"
+dest_files=["res://.godot/imported/mech_boss.png-4f542a03f9222971d77a8efc30caa727.ctex"]
 
 [params]
 

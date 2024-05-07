@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cew7bvtkabqec"
-path="res://.godot/imported/rat.png-72e4073f936b6b4616d210c2f33a0a04.ctex"
+uid="uid://d3jjmfp6v03sc"
+path="res://.godot/imported/fireball.png-0cc9be259e28e65e842dc6274cf6af28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/rat.png"
-dest_files=["res://.godot/imported/rat.png-72e4073f936b6b4616d210c2f33a0a04.ctex"]
+source_file="res://Assets/Monsters/fireball.png"
+dest_files=["res://.godot/imported/fireball.png-0cc9be259e28e65e842dc6274cf6af28.ctex"]
 
 [params]
 

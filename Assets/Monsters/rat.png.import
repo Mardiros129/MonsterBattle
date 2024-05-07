@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d13rft2rt8wp1"
-path="res://.godot/imported/pillico.png-32eee4285b0c502c337786051300c2dc.ctex"
+uid="uid://cew7bvtkabqec"
+path="res://.godot/imported/rat.png-951f24426b40cbfdd615fc429a6b1458.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/pillico.png"
-dest_files=["res://.godot/imported/pillico.png-32eee4285b0c502c337786051300c2dc.ctex"]
+source_file="res://Assets/Monsters/rat.png"
+dest_files=["res://.godot/imported/rat.png-951f24426b40cbfdd615fc429a6b1458.ctex"]
 
 [params]
 

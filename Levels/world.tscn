@@ -22,11 +22,46 @@ distance = -648.0
 [node name="World" type="Node2D"]
 script = ExtResource("1_3rdto")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1, 0)
+position_smoothing_enabled = true
+
 [node name="Character" parent="." instance=ExtResource("2_roevs")]
 position = Vector2(1, 0)
 
-[node name="Camera2D" type="Camera2D" parent="Character"]
-position_smoothing_enabled = true
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Character"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Monster0" type="Button" parent="CanvasLayer"]
+offset_left = 31.0
+offset_top = 30.0
+offset_right = 88.0
+offset_bottom = 87.0
+expand_icon = true
+
+[node name="Monster1" type="Button" parent="CanvasLayer"]
+offset_left = 102.0
+offset_top = 30.0
+offset_right = 159.0
+offset_bottom = 87.0
+expand_icon = true
+
+[node name="Monster2" type="Button" parent="CanvasLayer"]
+offset_left = 173.0
+offset_top = 30.0
+offset_right = 230.0
+offset_bottom = 87.0
+expand_icon = true
+
+[node name="Monster3" type="Button" parent="CanvasLayer"]
+offset_left = 245.0
+offset_top = 30.0
+offset_right = 302.0
+offset_bottom = 87.0
+expand_icon = true
 
 [node name="DogTestArea" parent="." instance=ExtResource("3_nam0o")]
 position = Vector2(-233, 116)

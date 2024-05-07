@@ -1,12 +1,21 @@
 extends Node2D
 
 @onready var character = $Character
+@onready var canvas_layer = $CanvasLayer
 
 
 func _ready():
 	# The default value should always be out of bounds so the player will start where they are placed
 	if Player.position != Vector2(-9999999.99, -9999999.99):
 		character.position = Player.position
+	
+	for x in MonsterParty.party.size():
+		var temp_monster = MonsterParty.party[x].duplicate()
+		add_child(temp_monster)
+		temp_monster.hide()
+		canvas_layer.get_child(x).icon = temp_monster.get_sprite()
+	
+	canvas_layer.show()
 
 func load_enemy_battle(enemy_path):
 	Player.position = character.position

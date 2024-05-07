@@ -7,3 +7,4 @@ attack_name = "Bite"
 base_damage = 20
 type = 1
 category = 1
+attack_target = 2

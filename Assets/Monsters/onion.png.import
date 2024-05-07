@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r84gwcdjv0ku"
-path="res://.godot/imported/hat_skeleton.png-b28ad336577d94f86f2adf5ec928f503.ctex"
+uid="uid://bjya8kgf2n67x"
+path="res://.godot/imported/onion.png-07dbc93eed7f37a4920f4a677079bf2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/hat_skeleton.png"
-dest_files=["res://.godot/imported/hat_skeleton.png-b28ad336577d94f86f2adf5ec928f503.ctex"]
+source_file="res://Assets/Monsters/onion.png"
+dest_files=["res://.godot/imported/onion.png-07dbc93eed7f37a4920f4a677079bf2e.ctex"]
 
 [params]
 

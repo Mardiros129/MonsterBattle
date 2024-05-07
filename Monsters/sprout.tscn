@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cyw2ii0md7e4c"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_eagvv"]
-[ext_resource type="Texture2D" uid="uid://ch7gftktmiygk" path="res://Assets/beanstalk.png" id="2_ia061"]
+[ext_resource type="Texture2D" uid="uid://ch7gftktmiygk" path="res://Assets/Monsters/beanstalk.png" id="2_ia061"]
 [ext_resource type="PackedScene" uid="uid://bbjk2onm5epln" path="res://Attacks/do_nothing.tscn" id="3_emtx8"]
 [ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Attacks/drain.tscn" id="4_j3txp"]
 
@@ -16,7 +16,7 @@ speed = 8
 type0 = 2
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(0, -26)
+position = Vector2(-4, -102)
 scale = Vector2(0.608333, 0.608333)
 texture = ExtResource("2_ia061")
 
