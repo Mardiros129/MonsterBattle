@@ -1,13 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://c63hkynt46arj"]
+[gd_scene load_steps=5 format=3 uid="uid://c63hkynt46arj"]
 
 [ext_resource type="PackedScene" uid="uid://cphc1futbkl7m" path="res://item.tscn" id="1_5tut4"]
 [ext_resource type="Texture2D" uid="uid://b3tkdv8v5fbtq" path="res://Assets/battery.png" id="2_ikrwv"]
+[ext_resource type="Script" path="res://Items/battery_item.gd" id="2_u75a7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l3xe4"]
 radius = 16.0312
 
 [node name="Battery" instance=ExtResource("1_5tut4")]
-item_name = "Battery"
+script = ExtResource("2_u75a7")
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(0.0072, 0.0072)

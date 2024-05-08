@@ -11,7 +11,7 @@ intelligence = 15
 defense = 15
 resistance = 15
 speed = 15
-type0 = 6
+type0 = 9
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(4.00001, -95)

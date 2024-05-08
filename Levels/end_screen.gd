@@ -25,7 +25,6 @@ func _ready():
 
 func go_to_world():
 	var inst = load("res://Levels/world.tscn").instantiate()
-	#get_tree().root.add_child(WorldLoad.world)
 	get_tree().root.add_child(inst)
 	queue_free()
 
@@ -48,5 +47,13 @@ func _on_monster_transforms(trans_mon: PackedScene, index: int):
 	var old_mon = MonsterParty.party[index]
 	MonsterParty.party[index] = new_mon
 	
+	# Set the transformation's health
 	var health_bonus = new_mon.max_hp - old_mon.max_hp
 	MonsterParty.party_hp[index] += health_bonus
+	
+	# Set the transformation's attacks
+	var attacks = old_mon.find_child("AttackNode")
+	for x in new_mon.find_child("AttackNode").get_children():
+		new_mon.find_child("AttackNode").remove_child(x)
+	for x in attacks.get_child_count():
+		new_mon.find_child("AttackNode").add_child(attacks.get_child(x).duplicate())

@@ -118,7 +118,7 @@ expand_icon = true
 layout_mode = 0
 offset_left = 595.0
 offset_top = 67.0
-offset_right = 741.0
+offset_right = 780.0
 offset_bottom = 94.0
 text = "Catch count: 999"
 

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cykxfc1djurb2"]
+[gd_scene load_steps=7 format=3 uid="uid://cykxfc1djurb2"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_tqmii"]
 [ext_resource type="Texture2D" uid="uid://r84gwcdjv0ku" path="res://Assets/Monsters/hat_skeleton.png" id="2_oelij"]
 [ext_resource type="PackedScene" uid="uid://lcn0eh76ixit" path="res://Attacks/death_note.tscn" id="3_e81yq"]
 [ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="5_8gbwd"]
+[ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Attacks/fire_punch.tscn" id="5_y2773"]
+[ext_resource type="PackedScene" uid="uid://d3vy67qjj0dvx" path="res://Attacks/infected_tooth.tscn" id="6_asm4y"]
 
 [node name="Skeleton" instance=ExtResource("1_tqmii")]
 my_name = "Deadbeat"
@@ -23,3 +25,7 @@ texture = ExtResource("2_oelij")
 [node name="DeathNote" parent="AttackNode" index="0" instance=ExtResource("3_e81yq")]
 
 [node name="Heal" parent="AttackNode" index="1" instance=ExtResource("5_8gbwd")]
+
+[node name="Fire Punch" parent="AttackNode" index="2" instance=ExtResource("5_y2773")]
+
+[node name="InfectedTooth" parent="AttackNode" index="3" instance=ExtResource("6_asm4y")]

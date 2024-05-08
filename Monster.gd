@@ -77,12 +77,9 @@ func get_sprite():
 func level_up():
 	if level < level_max:
 		level += 1
+		# Consider moving these later
 		max_hp += level_hp_bonus
 		current_hp += level_hp_bonus
-		strength += level_str_bonus
-		defense += level_def_bonus
-		intelligence += level_int_bonus
-		resistance += level_res_bonus
 		speed += level_spd_bonus
 
 func transform_monster(trans_mon: PackedScene, index: int):

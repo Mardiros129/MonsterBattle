@@ -5,3 +5,4 @@ extends Node
 @onready var player_position: Vector2
 @onready var removable: Array
 @onready var world
+@onready var run_chance = 100.0

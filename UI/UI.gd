@@ -31,9 +31,11 @@ func _ready():
 	
 	for x in enemy_attack_list.item_count:
 		enemy_attack_list.set_item_text(x, enemy_attack_missing_text)
+	
+	run_button.text = "Run! (" + str(WorldLoad.run_chance) + "%)"
 
 func set_catch_labels(catch_count, catch_chance):
-	catch_count_label.text = "Catch count: " + str(catch_count)
+	catch_count_label.text = "Blank card count: " + str(catch_count)
 	catch_chance_label.text = "Catch chance: " + str(catch_chance * 100) + "%"
 
 func set_button_icons(mon_team):

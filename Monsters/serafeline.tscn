@@ -6,7 +6,7 @@
 [node name="Serafeline" instance=ExtResource("1_auktt")]
 my_name = "Serafeline"
 type0 = 1
-type1 = 7
+type1 = 10
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(1.00001, -95)

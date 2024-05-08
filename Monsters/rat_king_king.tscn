@@ -6,9 +6,14 @@
 
 [node name="RatKingKing" instance=ExtResource("1_w73b7")]
 my_name = "Rat King King"
-max_hp = 250
-speed = 200
+max_hp = 200
+strength = 15
+intelligence = 15
+defense = 15
+resistance = 15
+speed = 20
 type0 = 1
+type1 = 7
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-1, -104)

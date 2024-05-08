@@ -5,5 +5,5 @@
 [node name="Heal" instance=ExtResource("1_xrshn")]
 attack_name = "Heal"
 healing = 50
-type = 7
+type = 4
 attack_target = 1

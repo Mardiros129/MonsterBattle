@@ -5,6 +5,6 @@
 [node name="Flamethrower" instance=ExtResource("1_ylamh")]
 attack_name = "Flamethrower"
 base_damage = 20
-type = 4
+type = 6
 category = 2
 attack_target = 2

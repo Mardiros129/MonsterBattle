@@ -7,15 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Attacks/poison_gas.tscn" id="5_ntmm6"]
 [ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="6_twtt0"]
 
-[node name="Elemental" instance=ExtResource("1_c4wxg")]
-my_name = "Elemental"
+[node name="Weather Ball" instance=ExtResource("1_c4wxg")]
+my_name = "Weather Ball"
 max_hp = 120
 strength = 5
 intelligence = 10
 defense = 5
 resistance = 5
 speed = 20
-type0 = 4
+type0 = 6
+type1 = 4
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-1, -102)

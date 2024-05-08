@@ -9,7 +9,7 @@
 script = ExtResource("1_bpiov")
 catch_counter = 3
 pool_size = 10
-monster_pool = Array[String](["res://Monsters/onion.tscn", "res://Monsters/drone.tscn", "res://Monsters/pillico.tscn", "res://Monsters/elemental.tscn", "res://Monsters/ghost.tscn"])
+monster_pool = Array[String](["res://Monsters/flytrap.tscn", "res://Monsters/drone.tscn", "res://Monsters/pillico.tscn", "res://Monsters/elemental.tscn", "res://Monsters/ghost.tscn"])
 
 [node name="StartButton" type="Button" parent="."]
 visible = false

@@ -47,11 +47,11 @@ func do_damage():
 	
 	# Multiply by damage categories
 	if category == TypeList.DamageCategory.PHYSICAL:
-		attack_damage *= user.strength
-		attack_damage /= target.defense
+		attack_damage *= user.strength + (user.level * user.level_str_bonus)
+		attack_damage /= target.defense + (target.level * target.level_def_bonus)
 	elif category == TypeList.DamageCategory.MAGIC:
-		attack_damage *= user.intelligence
-		attack_damage /= target.resistance
+		attack_damage *= user.intelligence + (user.level * user.level_int_bonus)
+		attack_damage /= target.resistance + (target.level * target.level_res_bonus)
 	else:
 		print("no type category")
 	

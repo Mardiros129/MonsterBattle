@@ -53,8 +53,7 @@ func _unhandled_input(event):
 func pickup_item():
 	if facing_item != null:
 		print("pick up")
-		PlayerInventory.unique_items.append(facing_item.item_name)
-		print(facing_item.item_name)
+		facing_item.pickup()
 		facing_item.queue_free()
 
 func _on_pickup_area_body_entered(body):

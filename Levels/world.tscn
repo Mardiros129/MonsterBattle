@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c63t0phri8qx8"]
+[gd_scene load_steps=30 format=3 uid="uid://c63t0phri8qx8"]
 
 [ext_resource type="Script" path="res://Levels/world.gd" id="1_3rdto"]
 [ext_resource type="PackedScene" uid="uid://cjlcyt08dys50" path="res://character.tscn" id="2_roevs"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dm8guj13xtlll" path="res://Assets/Tilesets/WaterEdge SpriteSheet.png" id="8_ohyuo"]
 [ext_resource type="Texture2D" uid="uid://18tha3oyubq" path="res://Assets/Tilesets/WaterFall Tile SpriteSheet.png" id="9_fb6hb"]
 [ext_resource type="Texture2D" uid="uid://dviqp6hyyux5t" path="res://Assets/Monsters/mech_boss.png" id="11_orbjh"]
+[ext_resource type="PackedScene" uid="uid://csi2asnb6igh7" path="res://Items/card_item.tscn" id="12_n6037"]
 [ext_resource type="Texture2D" uid="uid://ofjxkenpybyi" path="res://Assets/questgiver.png" id="14_4u0ha"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_qon1f"]
@@ -808,6 +809,9 @@ offset_top = -361.0
 offset_right = 5.0
 offset_bottom = -338.0
 text = "Deforester here ->"
+
+[node name="Card" parent="." instance=ExtResource("12_n6037")]
+position = Vector2(1093, 447)
 
 [connection signal="body_entered_return_path" from="MonsterArea0" to="." method="_on_monster_area_body_entered_return_path"]
 [connection signal="body_entered_return_path" from="MonsterArea1" to="." method="_on_monster_area_body_entered_return_path"]

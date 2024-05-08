@@ -1,24 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://b727gocj5cjxl"]
+[gd_scene load_steps=6 format=3 uid="uid://b727gocj5cjxl"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_uetr1"]
 [ext_resource type="PackedScene" uid="uid://5v5vhk55xtqq" path="res://Monsters/rat_king_king.tscn" id="2_0ty41"]
 [ext_resource type="Texture2D" uid="uid://ddgbqmhjbw8y3" path="res://Assets/Monsters/rat_king.png" id="2_vppg4"]
-[ext_resource type="PackedScene" uid="uid://cqwc0jq2ra0ol" path="res://Attacks/bite.tscn" id="3_2hyqs"]
 [ext_resource type="PackedScene" uid="uid://ba30u7wpk7i4j" path="res://transformation.tscn" id="4_saxhh"]
 [ext_resource type="Script" path="res://Transformations/trans_level.gd" id="5_a72u4"]
 
 [node name="RatKing" instance=ExtResource("1_uetr1")]
 my_name = "Rat King"
-max_hp = 200
-speed = 150
+max_hp = 150
+strength = 12
+intelligence = 12
+defense = 12
+resistance = 12
+speed = 15
+level_str_bonus = 2
+level_int_bonus = 2
+level_def_bonus = 2
+level_res_bonus = 2
 type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-3, -114)
 scale = Vector2(0.2775, 0.2775)
 texture = ExtResource("2_vppg4")
-
-[node name="Bite" parent="AttackNode" index="0" instance=ExtResource("3_2hyqs")]
 
 [node name="Transformation" parent="TransformNode" index="0" instance=ExtResource("4_saxhh")]
 script = ExtResource("5_a72u4")

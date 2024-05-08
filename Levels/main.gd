@@ -242,8 +242,14 @@ func _on_end_button_pressed():
 	queue_free()
 
 func _on_run_button_pressed():
-	ui.update_log("You got away safely!")
-	end_combat()
+	var r = RandomNumberGenerator.new().randf_range(0.0, 100.0)
+	if r <= WorldLoad.run_chance:
+		ui.update_log("You got away safely!")
+		WorldLoad.run_chance -= 5.0
+		end_combat()
+	else:
+		ui.update_log("you cannot escape!")
+		end_turn()
 
 func _on_reset_pressed():
 		get_tree().reload_current_scene()
