@@ -109,6 +109,7 @@ func end_turn():
 			await get_tree().create_timer(command_delay).timeout
 			
 			player_mon.level_up()
+			MonsterPool.pool_size -= 1
 			enemy_mon.queue_free()
 			combat_finished = true
 		
@@ -201,6 +202,7 @@ func _on_catch_button_pressed():
 		ui.update_log("Catch success!")
 		await get_tree().create_timer(command_delay).timeout
 		captured = true
+		MonsterPool.pool_size -= 1
 		enemy_mon.hide()
 		end_combat()
 	else:

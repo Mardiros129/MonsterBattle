@@ -3,6 +3,7 @@ extends Node2D
 @onready var character = $Character
 @onready var canvas_layer = $CanvasLayer
 @onready var removable = $Removable
+@onready var remaining_counter = $CanvasLayer/RemainingCounter
 
 
 func _ready():
@@ -26,6 +27,7 @@ func _ready():
 		canvas_layer.get_child(x).icon = temp_monster.get_sprite()
 	
 	canvas_layer.show()
+	remaining_counter.text = str(MonsterPool.pool_size) + " Monsters Remain"
 
 func load_enemy_battle(enemy_path):
 	# Save world scene

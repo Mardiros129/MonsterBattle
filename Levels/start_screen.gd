@@ -2,9 +2,13 @@ extends Node2D
 
 
 @export var catch_counter = 0
+@export var pool_size = 0
+@export var monster_pool: Array[String]
 
 func _ready():
 	PlayerInventory.catch_counter = catch_counter
+	MonsterPool.pool_size = pool_size
+	MonsterPool.pool = monster_pool
 
 func create_party_member(path):
 	var mon_inst = load(path).instantiate(false)
