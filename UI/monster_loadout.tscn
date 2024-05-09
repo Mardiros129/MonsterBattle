@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8idner5etalo"]
+
+[ext_resource type="Script" path="res://UI/monster_loadout.gd" id="1_dtloi"]
+
+[node name="MonsterLoadout" type="Button"]
+offset_left = 31.0
+offset_top = 30.0
+offset_right = 88.0
+offset_bottom = 87.0
+expand_icon = true
+script = ExtResource("1_dtloi")
+
+[node name="Level" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 58.0
+offset_right = 48.0
+offset_bottom = 81.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="Exp" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 81.0
+offset_right = 48.0
+offset_bottom = 104.0
+text = "0"
+horizontal_alignment = 1

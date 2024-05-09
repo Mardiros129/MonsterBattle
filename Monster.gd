@@ -19,6 +19,7 @@ extends Node2D
 @export var level_spd_bonus = 1
 
 @onready var current_hp
+@export var experience = 0 # Doesn't seem to save the number unless it's an export var
 
 @onready var sprite2d = $Sprite2D
 @onready var attack_node = $AttackNode
@@ -74,13 +75,20 @@ func activate_all_effects():
 func get_sprite():
 	return sprite2d.texture
 
+func gain_exp(exp: int):
+	experience += exp
+	
+	# Add more complex experience system later
+	if experience > level && level < level_max:
+		experience = 0
+		level_up()
+
 func level_up():
-	if level < level_max:
-		level += 1
-		# Consider moving these later
-		max_hp += level_hp_bonus
-		current_hp += level_hp_bonus
-		speed += level_spd_bonus
+	level += 1
+	# Consider moving these later
+	max_hp += level_hp_bonus
+	current_hp += level_hp_bonus
+	speed += level_spd_bonus
 
 func transform_monster(trans_mon: PackedScene, index: int):
 	print("oh! it's transforming")

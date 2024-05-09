@@ -6,21 +6,19 @@ extends Area2D
 @onready var player_in_zone = false
 @onready var player_body
 @onready var prev_player_pos
+@export var check_monster_pool = true
 
 signal body_entered_return_path(body, path)
 
 func _ready():
-	# Refactor later
-	if monster_options.size() > 0:
-		var r = randi_range(0, monster_options.size() - 1)
-		monster_path = monster_options[r]
-		$RichTextLabel.text = monster_path
-	elif MonsterPool.pool.size() > 0:
+	if check_monster_pool:
 		var r = randi_range(0, MonsterPool.pool.size() - 1)
 		monster_path = MonsterPool.pool[r]
-		$RichTextLabel.text = monster_path
 	else:
-		$RichTextLabel.text = "no monsters here!"
+		var r = randi_range(0, monster_options.size() - 1)
+		monster_path = monster_options[r]
+	
+	$RichTextLabel.text = monster_path
 
 func _process(delta):
 	if player_in_zone:
@@ -29,8 +27,9 @@ func _process(delta):
 		if prev_player_pos != player_body.position:
 			prev_player_pos = player_body.position
 			var r = RandomNumberGenerator.new().randf()
-			if r <= encounter_chance && MonsterPool.pool_size > 0:
-				emit_signal("body_entered_return_path", player_body, monster_path)
+			if r <= encounter_chance:
+				if MonsterPool.pool_size > 0 || !check_monster_pool:
+					emit_signal("body_entered_return_path", player_body, monster_path)
 
 func _on_body_entered(body):
 	player_in_zone = true

@@ -12,6 +12,10 @@ intelligence = 15
 defense = 15
 resistance = 15
 speed = 20
+level_str_bonus = 2
+level_int_bonus = 2
+level_def_bonus = 2
+level_res_bonus = 2
 type0 = 1
 type1 = 7
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://c63t0phri8qx8"]
+[gd_scene load_steps=31 format=3 uid="uid://c63t0phri8qx8"]
 
 [ext_resource type="Script" path="res://Levels/world.gd" id="1_3rdto"]
+[ext_resource type="PackedScene" uid="uid://b8idner5etalo" path="res://UI/monster_loadout.tscn" id="2_mlea4"]
 [ext_resource type="PackedScene" uid="uid://cjlcyt08dys50" path="res://character.tscn" id="2_roevs"]
 [ext_resource type="PackedScene" uid="uid://do35p2s2hvvxf" path="res://monster_area.tscn" id="3_nam0o"]
 [ext_resource type="Texture2D" uid="uid://xguelrgpx4f4" path="res://Assets/Tilesets/Cliffs.png" id="4_mirx7"]
@@ -623,33 +624,21 @@ script = ExtResource("1_3rdto")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Monster0" type="Button" parent="CanvasLayer"]
-offset_left = 31.0
-offset_top = 30.0
-offset_right = 88.0
-offset_bottom = 87.0
-expand_icon = true
+[node name="MonsterLoadout0" parent="CanvasLayer" instance=ExtResource("2_mlea4")]
 
-[node name="Monster1" type="Button" parent="CanvasLayer"]
-offset_left = 102.0
-offset_top = 30.0
-offset_right = 159.0
-offset_bottom = 87.0
-expand_icon = true
+[node name="MonsterLoadout1" parent="CanvasLayer" instance=ExtResource("2_mlea4")]
+offset_left = 109.0
+offset_right = 166.0
 
-[node name="Monster2" type="Button" parent="CanvasLayer"]
-offset_left = 173.0
-offset_top = 30.0
-offset_right = 230.0
-offset_bottom = 87.0
-expand_icon = true
+[node name="MonsterLoadout2" parent="CanvasLayer" instance=ExtResource("2_mlea4")]
+offset_left = 188.0
+offset_right = 245.0
 
-[node name="Monster3" type="Button" parent="CanvasLayer"]
-offset_left = 245.0
-offset_top = 30.0
-offset_right = 302.0
-offset_bottom = 87.0
-expand_icon = true
+[node name="MonsterLoadout3" parent="CanvasLayer" instance=ExtResource("2_mlea4")]
+offset_left = 266.0
+offset_top = 31.0
+offset_right = 323.0
+offset_bottom = 88.0
 
 [node name="RemainingCounter" type="Label" parent="CanvasLayer"]
 offset_left = 579.0
@@ -685,6 +674,9 @@ remote_path = NodePath("../../Camera2D")
 metadata/_edit_lock_ = true
 
 [node name="Removable" type="Node2D" parent="."]
+
+[node name="Card" parent="Removable" instance=ExtResource("12_n6037")]
+position = Vector2(1093, 447)
 
 [node name="MonsterArea0" parent="." instance=ExtResource("3_nam0o")]
 position = Vector2(-291, 21)
@@ -766,6 +758,7 @@ metadata/_edit_lock_ = true
 position = Vector2(24, -360)
 monster_options = Array[String](["res://Monsters/mech_boss.tscn"])
 encounter_chance = 1.0
+check_monster_pool = false
 
 [node name="CollisionShape2D" parent="BossTestArea" index="0"]
 position = Vector2(43.75, 40.25)
@@ -809,9 +802,6 @@ offset_top = -361.0
 offset_right = 5.0
 offset_bottom = -338.0
 text = "Deforester here ->"
-
-[node name="Card" parent="." instance=ExtResource("12_n6037")]
-position = Vector2(1093, 447)
 
 [connection signal="body_entered_return_path" from="MonsterArea0" to="." method="_on_monster_area_body_entered_return_path"]
 [connection signal="body_entered_return_path" from="MonsterArea1" to="." method="_on_monster_area_body_entered_return_path"]

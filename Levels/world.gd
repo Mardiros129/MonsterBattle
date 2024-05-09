@@ -24,7 +24,7 @@ func _ready():
 		var temp_monster = MonsterParty.party[x].duplicate()
 		add_child(temp_monster)
 		temp_monster.hide()
-		canvas_layer.get_child(x).icon = temp_monster.get_sprite()
+		canvas_layer.get_child(x).setup_monster_loadout(temp_monster)
 	
 	canvas_layer.show()
 	remaining_counter.text = str(MonsterPool.pool_size) + " Monsters Remain"

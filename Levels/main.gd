@@ -108,7 +108,7 @@ func end_turn():
 			ui.update_log("You won!")
 			await get_tree().create_timer(command_delay).timeout
 			
-			player_mon.level_up()
+			player_mon.gain_exp(1)
 			MonsterPool.pool_size -= 1
 			enemy_mon.queue_free()
 			combat_finished = true
