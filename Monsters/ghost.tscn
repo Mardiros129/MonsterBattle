@@ -1,14 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://3jwh6menokll"]
+[gd_scene load_steps=5 format=3 uid="uid://3jwh6menokll"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_sgb6o"]
 [ext_resource type="Texture2D" uid="uid://wdsnd6airj16" path="res://Assets/Monsters/ghost.png" id="2_xb1id"]
 [ext_resource type="PackedScene" uid="uid://lcn0eh76ixit" path="res://Attacks/death_note.tscn" id="3_8o25a"]
 [ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Attacks/poison_gas.tscn" id="4_imoox"]
-[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="5_hj8fv"]
 
 [node name="TimidGhost" instance=ExtResource("1_sgb6o")]
 my_name = "Timid Ghost"
-max_hp = 50
+max_hp = 80
 strength = 5
 intelligence = 5
 defense = 5
@@ -22,8 +21,6 @@ position = Vector2(3.00001, -74)
 scale = Vector2(0.142917, 0.142917)
 texture = ExtResource("2_xb1id")
 
-[node name="Heal" parent="AttackNode" index="0" instance=ExtResource("5_hj8fv")]
+[node name="PoisonGas" parent="AttackNode" index="0" instance=ExtResource("4_imoox")]
 
-[node name="PoisonGas" parent="AttackNode" index="1" instance=ExtResource("4_imoox")]
-
-[node name="DeathNote" parent="AttackNode" index="2" instance=ExtResource("3_8o25a")]
+[node name="DeathNote" parent="AttackNode" index="1" instance=ExtResource("3_8o25a")]

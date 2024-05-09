@@ -10,13 +10,18 @@
 
 [node name="MechBoss" instance=ExtResource("1_taula")]
 my_name = "Deforester"
-max_hp = 300
-strength = 15
-intelligence = 10
-defense = 17
-resistance = 10
-speed = 5
+max_hp = 200
+strength = 150
+intelligence = 100
+defense = 170
+resistance = 100
+speed = 50
 level = 5
+level_str_bonus = 10
+level_int_bonus = 10
+level_def_bonus = 10
+level_res_bonus = 10
+level_spd_bonus = 10
 type0 = 5
 type1 = 7
 

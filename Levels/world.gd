@@ -40,9 +40,10 @@ func load_enemy_battle(enemy_path):
 	
 	# Load battle scene
 	var battle_inst = load("res://Levels/main.tscn").instantiate(false)
-	var enemy_inst = load(enemy_path).instantiate(false)
 	var enemy_loc = battle_inst.find_child("EnemyMonLocation", false, false)
-	enemy_loc.add_child(enemy_inst, false, false)
+	for x in enemy_path.size():
+		var enemy_inst = load(enemy_path[x]).instantiate(false)
+		enemy_loc.add_child(enemy_inst, false, false)
 	
 	get_tree().root.add_child(battle_inst, false, 0)
 	queue_free()
@@ -53,7 +54,7 @@ func _unhandled_input(event):
 			get_tree().quit()
 
 func _on_monster_area_body_entered_return_path(body, path):
-	if path != "":
+	if path[0] != "":
 		load_enemy_battle(path)
 
 func _on_robot_start_fight(path):

@@ -11,7 +11,7 @@ enum DamageCategory {UTILITY, PHYSICAL, MAGIC}
 @onready var PlantTypeAdvantage = [1.0, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0]
 @onready var UndeadTypeAdvantage = [1.0, 2.0, 0.5, 0.5, 0.5, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0]
 @onready var PixieTypeAdvantage = [1.0, 1.0, 0.5, 2.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0]
-@onready var MechTypeAdvantage = [1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0]
+@onready var MechTypeAdvantage = [1.0, 1.0, 2.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0]
 @onready var ElementTypeAdvantage = [1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 @onready var CorruptTypeAdvantage = [1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0]
 @onready var MythicTypeAdvantage = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0]

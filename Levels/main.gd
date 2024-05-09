@@ -10,13 +10,15 @@ extends Node2D
 @onready var mon_start_lineup: Array
 # Change the order by their combat role
 @onready var mon_combat_order: Array
-
 @onready var player_mon
-@onready var support_mon0
-@onready var support_mon1
+@onready var player_support_mon0
+@onready var player_support_mon1
 @onready var sideboard_mon
 
-@export var enemy_mon: Node2D
+@onready var enemy_mon_start_lineup: Array
+@onready var enemy_mon
+@onready var enemy_support_mon0
+@onready var enemy_support_mon1
 
 @onready var command_queue: Array
 @export var command_delay = 0.3
@@ -29,20 +31,21 @@ extends Node2D
 
 
 func _ready():
+	# Setup player party
 	mon_start_lineup = MonsterParty.party.duplicate()
 	
 	if MonsterParty.party.size() > 0:
 		player_mon = MonsterParty.party[0]
 	if MonsterParty.party.size() > 1:
-		support_mon0 = MonsterParty.party[1]
+		player_support_mon0 = MonsterParty.party[1]
 	if MonsterParty.party.size() > 2:
-		support_mon1 = MonsterParty.party[2]
+		player_support_mon1 = MonsterParty.party[2]
 	if MonsterParty.party.size() > 3:
 		sideboard_mon = MonsterParty.party[3]
 	
 	mon_combat_order.append(player_mon)
-	mon_combat_order.append(support_mon0)
-	mon_combat_order.append(support_mon1)
+	mon_combat_order.append(player_support_mon0)
+	mon_combat_order.append(player_support_mon1)
 	mon_combat_order.append(sideboard_mon)
 	
 	for x in mon_start_lineup.size():
@@ -54,14 +57,25 @@ func _ready():
 			mon_start_lineup[x].level = MonsterParty.party_level[x]
 	
 	player_mon.show()
-	enemy_mon = enemy_mon_loc.get_child(0, false)
 	
-	# Setup signals (clean up later)
-	for x in mon_start_lineup.size():
-		for y in mon_start_lineup[x].find_child("AttackNode").get_child_count():
-			mon_start_lineup[x].find_child("AttackNode").get_child(y).combat_message.connect(_on_combat_message_received)
-	for x in enemy_mon.find_child("AttackNode").get_child_count():
-		enemy_mon.find_child("AttackNode").get_child(x).combat_message.connect(_on_combat_message_received)
+	# Setup enemy party
+	enemy_mon = enemy_mon_loc.get_child(0)
+	enemy_mon_start_lineup.append(enemy_mon)
+	if enemy_mon_loc.get_child_count() > 1:
+		enemy_support_mon0 = enemy_mon_loc.get_child(1)
+		enemy_mon_start_lineup.append(enemy_support_mon0)
+		enemy_support_mon0.hide()
+	if enemy_mon_loc.get_child_count() > 2:
+		enemy_support_mon1 = enemy_mon_loc.get_child(2)
+		enemy_mon_start_lineup.append(enemy_support_mon1)
+		enemy_support_mon1.hide()
+	
+	# Setup signals
+	var all_monsters = mon_start_lineup + enemy_mon_start_lineup
+	for x in all_monsters.size():
+		var chosen_mon_attacks = all_monsters[x].find_child("AttackNode")
+		for y in chosen_mon_attacks.get_child_count():
+			chosen_mon_attacks.get_child(y).combat_message.connect(_on_combat_message_received)
 	
 	# Setup UI
 	ui.set_button_icons(mon_start_lineup)
@@ -100,23 +114,23 @@ func end_turn():
 		ui.change_player_hp(player_mon)
 		ui.change_enemy_hp(enemy_mon)
 		
-		# Check if the game ends
 		if enemy_mon.current_hp <= 0:
-			ui.update_log("Enemy " + enemy_mon.my_name + " died!")
-			await get_tree().create_timer(command_delay).timeout
+			enemy_mon_dies()
 			
-			ui.update_log("You won!")
-			await get_tree().create_timer(command_delay).timeout
-			
-			player_mon.gain_exp(1)
-			MonsterPool.pool_size -= 1
-			enemy_mon.queue_free()
-			combat_finished = true
+			# Check if the game ends
+			if enemy_support_mon0 == null:
+				ui.update_log("You won!")
+				await get_tree().create_timer(command_delay).timeout
+				
+				player_mon.gain_exp(1)
+				MonsterPool.pool_size -= 1
+				enemy_mon.queue_free()
+				combat_finished = true
 		
 		elif player_mon.current_hp <= 0:
 			player_mon_dies()
 			
-			if player_mon.current_hp <= 0 && support_mon0 == null:
+			if player_mon.current_hp <= 0 && player_support_mon0 == null:
 				combat_finished = true
 				ui.update_log("You lose!")
 				await get_tree().create_timer(command_delay).timeout
@@ -144,11 +158,11 @@ func switch(button_index):
 	# Swap the roles. Don't swap the order in the party.
 	var temp = player_mon
 	if button_index == 0:
-		player_mon = support_mon0
-		support_mon0 = temp
+		player_mon = player_support_mon0
+		player_support_mon0 = temp
 	elif button_index == 1:
-		player_mon = support_mon1
-		support_mon1 = temp
+		player_mon = player_support_mon1
+		player_support_mon1 = temp
 	
 	player_mon.show()
 	ui.set_player_mon_ui(player_mon)
@@ -161,13 +175,24 @@ func player_mon_dies():
 	await get_tree().create_timer(command_delay).timeout
 	player_mon.queue_free()
 
-	if support_mon0 != null:
-		player_mon = support_mon0
-		support_mon0 = support_mon1
-		support_mon1 = sideboard_mon
+	if player_support_mon0 != null:
+		player_mon = player_support_mon0
+		player_support_mon0 = player_support_mon1
+		player_support_mon1 = sideboard_mon
 		player_mon.show()
 		ui.set_player_mon_ui(player_mon)
 		ui.pop_button()
+
+func enemy_mon_dies():
+	ui.update_log("Enemy " + enemy_mon.my_name + " died!")
+	await get_tree().create_timer(command_delay).timeout
+	enemy_mon.queue_free()
+
+	if enemy_support_mon0 != null:
+		enemy_mon = enemy_support_mon0
+		enemy_support_mon0 = enemy_support_mon1
+		enemy_mon.show()
+		ui.set_enemy_mon_ui(enemy_mon)
 
 # To do, implement some AI behavior
 func enemy_chooses_attack():

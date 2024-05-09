@@ -7,7 +7,7 @@
 
 [node name="Drone" instance=ExtResource("1_qj5ow")]
 my_name = "Drone"
-max_hp = 50
+max_hp = 80
 strength = 10
 intelligence = 10
 defense = 10

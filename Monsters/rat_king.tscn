@@ -9,15 +9,17 @@
 [node name="RatKing" instance=ExtResource("1_uetr1")]
 my_name = "Rat King"
 max_hp = 150
-strength = 12
-intelligence = 12
-defense = 12
-resistance = 12
-speed = 15
-level_str_bonus = 2
-level_int_bonus = 2
-level_def_bonus = 2
-level_res_bonus = 2
+strength = 120
+intelligence = 120
+defense = 120
+resistance = 120
+speed = 150
+level = 3
+level_str_bonus = 15
+level_int_bonus = 15
+level_def_bonus = 15
+level_res_bonus = 15
+level_spd_bonus = 15
 type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]
@@ -27,5 +29,5 @@ texture = ExtResource("2_vppg4")
 
 [node name="Transformation" parent="TransformNode" index="0" instance=ExtResource("4_saxhh")]
 script = ExtResource("5_a72u4")
-level_req = 5
+level_req = 6
 TransMon = ExtResource("2_0ty41")

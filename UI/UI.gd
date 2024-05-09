@@ -59,6 +59,8 @@ func change_player_hp(player_mon):
 	player_mon_ui.set_mon_hp_ui(player_mon)
 
 func set_enemy_mon_ui(enemy_mon):
+	for x in enemy_attack_list.item_count:
+		enemy_attack_list.set_item_text(x, enemy_attack_missing_text)
 	enemy_mon_ui.set_mon_ui(enemy_mon)
 
 func change_enemy_hp(enemy_mon):

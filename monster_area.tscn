@@ -8,13 +8,5 @@ encounter_chance = 0.005
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-visible = false
-offset_left = -105.0
-offset_top = -16.0
-offset_right = 251.0
-offset_bottom = 24.0
-text = "monster area"
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
