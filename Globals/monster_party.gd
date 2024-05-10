@@ -16,3 +16,12 @@ func clear_all():
 	party.clear()
 	party_hp.clear()
 	party_level.clear()
+
+func swap_party(index_a: int, index_b: int):
+	var temp_monster = party[index_a]
+	party[index_a] = party[index_b]
+	party[index_b] = temp_monster
+	
+	var temp_hp = party_hp[index_a]
+	party_hp[index_a] = party_hp[index_b]
+	party_hp[index_b] = temp_hp

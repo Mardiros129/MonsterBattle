@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://c63t0phri8qx8"]
+[gd_scene load_steps=32 format=3 uid="uid://c63t0phri8qx8"]
 
 [ext_resource type="Script" path="res://Levels/world.gd" id="1_3rdto"]
 [ext_resource type="PackedScene" uid="uid://b8idner5etalo" path="res://UI/monster_loadout.tscn" id="2_mlea4"]
 [ext_resource type="PackedScene" uid="uid://cjlcyt08dys50" path="res://character.tscn" id="2_roevs"]
+[ext_resource type="Script" path="res://UI/canvas_layer.gd" id="2_ymbtl"]
 [ext_resource type="PackedScene" uid="uid://do35p2s2hvvxf" path="res://monster_area.tscn" id="3_nam0o"]
 [ext_resource type="Texture2D" uid="uid://xguelrgpx4f4" path="res://Assets/Tilesets/Cliffs.png" id="4_mirx7"]
 [ext_resource type="Texture2D" uid="uid://0jbjr2unf5p2" path="res://Assets/Tilesets/Grass.png" id="5_o20vo"]
@@ -623,22 +624,43 @@ script = ExtResource("1_3rdto")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
+script = ExtResource("2_ymbtl")
 
-[node name="MonsterLoadout0" parent="CanvasLayer" instance=ExtResource("2_mlea4")]
+[node name="LoadoutButtons" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="MonsterLoadout1" parent="CanvasLayer" instance=ExtResource("2_mlea4")]
-offset_left = 109.0
-offset_right = 166.0
+[node name="MonsterLoadout0" parent="CanvasLayer/LoadoutButtons" instance=ExtResource("2_mlea4")]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 26.0
+offset_right = 87.0
+offset_bottom = 83.0
+disabled = true
 
-[node name="MonsterLoadout2" parent="CanvasLayer" instance=ExtResource("2_mlea4")]
-offset_left = 188.0
-offset_right = 245.0
+[node name="MonsterLoadout1" parent="CanvasLayer/LoadoutButtons" instance=ExtResource("2_mlea4")]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 26.0
+offset_right = 155.0
+offset_bottom = 83.0
+disabled = true
 
-[node name="MonsterLoadout3" parent="CanvasLayer" instance=ExtResource("2_mlea4")]
-offset_left = 266.0
-offset_top = 31.0
-offset_right = 323.0
-offset_bottom = 88.0
+[node name="MonsterLoadout2" parent="CanvasLayer/LoadoutButtons" instance=ExtResource("2_mlea4")]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 26.0
+offset_right = 223.0
+offset_bottom = 83.0
+disabled = true
+
+[node name="MonsterLoadout3" parent="CanvasLayer/LoadoutButtons" instance=ExtResource("2_mlea4")]
+layout_mode = 0
+offset_left = 233.0
+offset_top = 26.0
+offset_right = 290.0
+offset_bottom = 83.0
+disabled = true
 
 [node name="RemainingCounter" type="Label" parent="CanvasLayer"]
 offset_left = 579.0
@@ -648,6 +670,14 @@ offset_bottom = 97.0
 theme_override_font_sizes/font_size = 50
 text = "X Monsters Remain"
 horizontal_alignment = 2
+
+[node name="Swap" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 143.0
+offset_top = 1.0
+offset_right = 197.0
+offset_bottom = 24.0
+text = "swap..."
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(4, 4)
@@ -773,6 +803,10 @@ offset_right = 5.0
 offset_bottom = -338.0
 text = "Deforester here ->"
 
+[connection signal="pressed" from="CanvasLayer/LoadoutButtons/MonsterLoadout0" to="CanvasLayer" method="_on_monster_loadout_0_pressed"]
+[connection signal="pressed" from="CanvasLayer/LoadoutButtons/MonsterLoadout1" to="CanvasLayer" method="_on_monster_loadout_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/LoadoutButtons/MonsterLoadout2" to="CanvasLayer" method="_on_monster_loadout_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/LoadoutButtons/MonsterLoadout3" to="CanvasLayer" method="_on_monster_loadout_3_pressed"]
 [connection signal="body_entered_return_path" from="MonsterArea0" to="." method="_on_monster_area_body_entered_return_path"]
 [connection signal="body_entered_return_path" from="MonsterArea1" to="." method="_on_monster_area_body_entered_return_path"]
 [connection signal="body_entered_return_path" from="MonsterArea2" to="." method="_on_monster_area_body_entered_return_path"]

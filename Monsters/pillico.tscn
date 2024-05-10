@@ -13,9 +13,16 @@
 [node name="Pillico" instance=ExtResource("1_6rq2u")]
 my_name = "Pillico"
 max_hp = 60
-strength = 5
-defense = 8
-resistance = 8
+strength = 50
+intelligence = 20
+defense = 80
+resistance = 80
+speed = 10
+level_str_bonus = 10
+level_int_bonus = 10
+level_def_bonus = 10
+level_res_bonus = 10
+level_spd_bonus = 10
 type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]

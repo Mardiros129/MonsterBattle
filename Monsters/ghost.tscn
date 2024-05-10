@@ -8,11 +8,16 @@
 [node name="TimidGhost" instance=ExtResource("1_sgb6o")]
 my_name = "Timid Ghost"
 max_hp = 80
-strength = 5
-intelligence = 5
-defense = 5
-resistance = 5
-speed = 5
+strength = 70
+intelligence = 70
+defense = 70
+resistance = 70
+speed = 70
+level_str_bonus = 10
+level_int_bonus = 10
+level_def_bonus = 10
+level_res_bonus = 10
+level_spd_bonus = 10
 type0 = 3
 type1 = 7
 

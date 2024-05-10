@@ -8,11 +8,16 @@
 [node name="Drone" instance=ExtResource("1_qj5ow")]
 my_name = "Drone"
 max_hp = 80
-strength = 10
-intelligence = 10
-defense = 10
-resistance = 10
-speed = 10
+strength = 100
+intelligence = 100
+defense = 100
+resistance = 100
+speed = 100
+level_str_bonus = 10
+level_int_bonus = 10
+level_def_bonus = 10
+level_res_bonus = 10
+level_spd_bonus = 10
 type0 = 5
 
 [node name="Sprite2D" parent="." index="0"]

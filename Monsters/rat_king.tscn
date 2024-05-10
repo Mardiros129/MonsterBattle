@@ -15,11 +15,11 @@ defense = 120
 resistance = 120
 speed = 150
 level = 3
-level_str_bonus = 15
-level_int_bonus = 15
-level_def_bonus = 15
-level_res_bonus = 15
-level_spd_bonus = 15
+level_str_bonus = 12
+level_int_bonus = 12
+level_def_bonus = 12
+level_res_bonus = 12
+level_spd_bonus = 12
 type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]

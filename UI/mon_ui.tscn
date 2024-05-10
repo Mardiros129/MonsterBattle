@@ -33,7 +33,7 @@ text = "hp"
 [node name="Types" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_top = 91.0
-offset_right = 120.0
+offset_right = 173.0
 offset_bottom = 121.0
 text = "types"
 

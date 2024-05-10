@@ -80,7 +80,9 @@ func disable_ui():
 	item_button.disabled = true
 	catch_button.disabled = true
 	run_button.disabled = true
-	
+	disable_switch_buttons()
+
+func disable_switch_buttons():
 	for x in switch_buttons.size():
 		switch_buttons[x].disabled = true
 

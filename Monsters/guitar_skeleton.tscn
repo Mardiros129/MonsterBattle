@@ -6,16 +6,16 @@
 [node name="Merryachi" instance=ExtResource("1_joc38")]
 my_name = "Merryachi"
 max_hp = 175
-strength = 12
-intelligence = 12
-defense = 12
-resistance = 12
-speed = 8
+strength = 120
+intelligence = 120
+defense = 120
+resistance = 120
+speed = 80
 level = 3
-level_str_bonus = 2
-level_int_bonus = 2
-level_def_bonus = 2
-level_res_bonus = 2
+level_str_bonus = 12
+level_int_bonus = 12
+level_def_bonus = 12
+level_res_bonus = 12
 type0 = 3
 
 [node name="Sprite2D" parent="." index="0"]

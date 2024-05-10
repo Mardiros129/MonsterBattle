@@ -8,11 +8,16 @@
 [node name="Weather Ball" instance=ExtResource("1_c4wxg")]
 my_name = "Weather Ball"
 max_hp = 90
-strength = 5
-intelligence = 10
-defense = 5
-resistance = 5
-speed = 20
+strength = 50
+intelligence = 100
+defense = 50
+resistance = 50
+speed = 150
+level_str_bonus = 10
+level_int_bonus = 10
+level_def_bonus = 10
+level_res_bonus = 10
+level_spd_bonus = 10
 type0 = 6
 type1 = 4
 

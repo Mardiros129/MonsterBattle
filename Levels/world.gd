@@ -4,6 +4,7 @@ extends Node2D
 @onready var canvas_layer = $CanvasLayer
 @onready var removable = $Removable
 @onready var remaining_counter = $CanvasLayer/RemainingCounter
+@onready var loadout_buttons = $CanvasLayer/LoadoutButtons
 
 
 func _ready():
@@ -24,7 +25,8 @@ func _ready():
 		var temp_monster = MonsterParty.party[x].duplicate()
 		add_child(temp_monster)
 		temp_monster.hide()
-		canvas_layer.get_child(x).setup_monster_loadout(temp_monster)
+		loadout_buttons.get_child(x).setup_monster_loadout(temp_monster)
+		loadout_buttons.get_child(x).disabled = false
 	
 	canvas_layer.show()
 	remaining_counter.text = str(MonsterPool.pool_size) + " Monsters Remain"

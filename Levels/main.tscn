@@ -167,10 +167,10 @@ offset_right = 428.0
 offset_bottom = 324.0
 
 [node name="EnemyMonUI" parent="UI" instance=ExtResource("4_4psda")]
-offset_left = 1038.0
-offset_top = 90.0
-offset_right = 1038.0
-offset_bottom = 90.0
+offset_left = 1016.0
+offset_top = 92.0
+offset_right = 1016.0
+offset_bottom = 92.0
 
 [node name="PlayerMonLocation" type="Marker2D" parent="."]
 z_index = 5

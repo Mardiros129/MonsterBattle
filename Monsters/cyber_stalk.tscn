@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://chbglxlye8rl3"]
+
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_iabwi"]
+[ext_resource type="Texture2D" uid="uid://bt56a0sr8go36" path="res://Assets/Monsters/big_beanstalk.png" id="2_8cljj"]
+
+[node name="CyberStalk" instance=ExtResource("1_iabwi")]
+my_name = "Cyber Stalk"
+max_hp = 150
+strength = 120
+intelligence = 150
+defense = 100
+resistance = 150
+speed = 80
+level = 3
+level_str_bonus = 12
+level_int_bonus = 12
+level_def_bonus = 12
+level_res_bonus = 12
+level_spd_bonus = 12
+type0 = 2
+type1 = 5
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(6, -95)
+scale = Vector2(0.259135, 0.259135)
+texture = ExtResource("2_8cljj")

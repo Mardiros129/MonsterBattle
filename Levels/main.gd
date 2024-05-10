@@ -22,6 +22,7 @@ extends Node2D
 
 @onready var command_queue: Array
 @export var command_delay = 0.3
+@onready var bonus_turn = false # Currently only works for player, need to update later to include enemy
 
 @export var catch_chance = 0.1
 @onready var captured = false
@@ -168,7 +169,12 @@ func switch(button_index):
 	ui.set_player_mon_ui(player_mon)
 	ui.update_log(player_mon.my_name + " swapped in!")
 	await get_tree().create_timer(command_delay).timeout
-	end_turn()
+	
+	if player_mon.current_speed <= enemy_mon.current_speed:
+		end_turn()
+	else:
+		ui.disable_switch_buttons()
+		bonus_turn = true
 
 func player_mon_dies():
 	ui.update_log(player_mon.my_name + " died!")
@@ -205,7 +211,12 @@ func new_command(attack, user, target):
 	command.user = user
 	command.target = target
 	command.attack = attack
-	command.speed = user.speed
+	if !bonus_turn:
+		command.speed = user.current_speed
+	elif user == player_mon:
+		# Always go last if it's a bonus turn (regular speed will never be less than 0)
+		command.speed = -1
+		bonus_turn = false
 	
 	# Adds the command to the queue based on its speed. Highest number is first.
 	if command_queue.size() == 0:

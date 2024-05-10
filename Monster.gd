@@ -8,6 +8,7 @@ extends Node2D
 @export var defense = 1 #physical defense
 @export var resistance = 1 #magic defense
 @export var speed = 1
+@onready var current_speed
 
 @export var level = 1
 @export var level_max = 10
@@ -36,6 +37,7 @@ signal monster_transforms(trans_mon, index)
 
 func _ready():
 	current_hp = max_hp
+	current_speed = speed
 	
 	# Setup attacks
 	for x in attack_node.get_child_count():
