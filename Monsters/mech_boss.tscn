@@ -24,6 +24,7 @@ level_res_bonus = 10
 level_spd_bonus = 10
 type0 = 5
 type1 = 7
+catchable = false
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-6, -119)

@@ -73,7 +73,7 @@ func get_selected_move():
 func update_catch_count(catch_count):
 	catch_count_label.text = "Catch count: " + str(catch_count)
 	if catch_count <= 0:
-		catch_button.disabled = true
+		disable_catch_button()
 
 func disable_ui():
 	attack_button.disabled = true
@@ -81,6 +81,9 @@ func disable_ui():
 	catch_button.disabled = true
 	run_button.disabled = true
 	disable_switch_buttons()
+
+func disable_catch_button():
+	catch_button.disabled = true
 
 func disable_switch_buttons():
 	for x in switch_buttons.size():

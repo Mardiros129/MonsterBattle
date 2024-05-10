@@ -83,6 +83,7 @@ func _ready():
 	ui.set_catch_labels(PlayerInventory.catch_counter, catch_chance)
 	ui.set_player_mon_ui(player_mon)
 	ui.set_enemy_mon_ui(enemy_mon)
+	start_turn()
 
 func _unhandled_input(event):
 	if event is InputEventKey:
@@ -91,6 +92,10 @@ func _unhandled_input(event):
 
 func start_turn():
 	ui.enable_ui(PlayerInventory.catch_counter)
+	ui.player_mon_ui.update_mon_speed_ui(player_mon)
+	ui.enemy_mon_ui.update_mon_speed_ui(enemy_mon)
+	if !enemy_mon.catchable:
+		ui.disable_catch_button()
 	player_turn = true
 
 func end_turn():
@@ -195,10 +200,13 @@ func enemy_mon_dies():
 	enemy_mon.queue_free()
 
 	if enemy_support_mon0 != null:
-		enemy_mon = enemy_support_mon0
-		enemy_support_mon0 = enemy_support_mon1
-		enemy_mon.show()
-		ui.set_enemy_mon_ui(enemy_mon)
+		replace_enemy()
+
+func replace_enemy():
+	enemy_mon = enemy_support_mon0
+	enemy_support_mon0 = enemy_support_mon1
+	enemy_mon.show()
+	ui.set_enemy_mon_ui(enemy_mon)
 
 # To do, implement some AI behavior
 func enemy_chooses_attack():
@@ -239,8 +247,12 @@ func _on_catch_button_pressed():
 		await get_tree().create_timer(command_delay).timeout
 		captured = true
 		MonsterPool.pool_size -= 1
-		enemy_mon.hide()
-		end_combat()
+		
+		if enemy_support_mon0 != null:
+			replace_enemy()
+		else:
+			enemy_mon.hide()
+			end_combat()
 	else:
 		ui.update_log("Catch failed...")
 		await get_tree().create_timer(command_delay).timeout

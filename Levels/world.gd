@@ -42,6 +42,7 @@ func load_enemy_battle(enemy_path):
 	
 	# Load battle scene
 	var battle_inst = load("res://Levels/main.tscn").instantiate(false)
+	
 	var enemy_loc = battle_inst.find_child("EnemyMonLocation", false, false)
 	for x in enemy_path.size():
 		var enemy_inst = load(enemy_path[x]).instantiate(false)

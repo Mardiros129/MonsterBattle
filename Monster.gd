@@ -32,6 +32,8 @@ extends Node2D
 @export var type0: TypeList.Type
 @export var type1: TypeList.Type
 
+@export var catchable = true
+
 signal monster_transforms(trans_mon, index)
 
 
