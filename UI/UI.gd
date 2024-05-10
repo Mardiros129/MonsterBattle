@@ -23,6 +23,9 @@ extends Control
 @onready var player_mon_ui = $PlayerMonUI
 @onready var enemy_mon_ui = $EnemyMonUI
 
+@onready var type_matchup_button = $TypeMatchupButton
+@onready var type_matchup_chart = $TypeMatchupChart
+
 
 func _ready():
 	inventory.select(0, true)
@@ -71,7 +74,7 @@ func get_selected_move():
 	return move
 
 func update_catch_count(catch_count):
-	catch_count_label.text = "Catch count: " + str(catch_count)
+	catch_count_label.text = "Blank card count: " + str(catch_count)
 	if catch_count <= 0:
 		disable_catch_button()
 
@@ -160,3 +163,9 @@ func update_log(info: String):
 func _on_item_button_pressed():
 	var item_choice = inventory.get_selected_items()[0]
 	print(item_choice)
+
+func _on_type_matchup_button_pressed():
+	if type_matchup_chart.visible:
+		type_matchup_chart.hide()
+	else:
+		type_matchup_chart.show()

@@ -1,6 +1,6 @@
 Playtest To Do
-- Type advantage chart
 - Move info
 - Very basic explanation of what to do
 - Lower catch chance
-- Can't catch boss
+- it's super effective! it's not very effective!
+- effect text in ui

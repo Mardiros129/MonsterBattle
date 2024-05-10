@@ -62,6 +62,7 @@ func _ready():
 	# Setup enemy party
 	enemy_mon = enemy_mon_loc.get_child(0)
 	enemy_mon_start_lineup.append(enemy_mon)
+	
 	if enemy_mon_loc.get_child_count() > 1:
 		enemy_support_mon0 = enemy_mon_loc.get_child(1)
 		enemy_mon_start_lineup.append(enemy_support_mon0)
@@ -248,10 +249,11 @@ func _on_catch_button_pressed():
 		captured = true
 		MonsterPool.pool_size -= 1
 		
+		enemy_mon.hide()
 		if enemy_support_mon0 != null:
 			replace_enemy()
+			start_turn()
 		else:
-			enemy_mon.hide()
 			end_combat()
 	else:
 		ui.update_log("Catch failed...")

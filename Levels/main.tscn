@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3ccrpeska432"]
+[gd_scene load_steps=7 format=3 uid="uid://c3ccrpeska432"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_2bifh"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="3_1s8rs"]
 [ext_resource type="PackedScene" uid="uid://c0dy88gwgp6cu" path="res://UI/mon_ui.tscn" id="4_4psda"]
 [ext_resource type="Texture2D" uid="uid://pa8bxdyl7kd1" path="res://Assets/temp_stage.png" id="4_g5kj7"]
+[ext_resource type="Texture2D" uid="uid://d3276ue5ykter" path="res://Assets/type_chart.png" id="4_ujev1"]
 [ext_resource type="Texture2D" uid="uid://cnkle2uwok0xu" path="res://Assets/Backgrounds/dark_forest.png" id="5_skoyj"]
 
 [node name="Main" type="Node2D"]
@@ -123,6 +124,7 @@ offset_bottom = 94.0
 text = "Catch count: 999"
 
 [node name="CatchChance" type="RichTextLabel" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 595.0
 offset_top = 94.0
@@ -155,7 +157,7 @@ item_2/text = "Super Duper Potion"
 layout_mode = 0
 offset_left = 23.0
 offset_top = 18.0
-offset_right = 536.0
+offset_right = 316.0
 offset_bottom = 213.0
 text = "FIGHT!"
 scroll_following = true
@@ -171,6 +173,20 @@ offset_left = 1016.0
 offset_top = 92.0
 offset_right = 1016.0
 offset_bottom = 92.0
+
+[node name="TypeMatchupButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 382.0
+offset_top = 18.0
+offset_right = 508.0
+offset_bottom = 49.0
+text = "Type Matchups"
+
+[node name="TypeMatchupChart" type="Sprite2D" parent="UI"]
+visible = false
+position = Vector2(443, 168)
+scale = Vector2(0.336923, 0.336923)
+texture = ExtResource("4_ujev1")
 
 [node name="PlayerMonLocation" type="Marker2D" parent="."]
 z_index = 5
@@ -209,4 +225,5 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="UI/SwitchButton0" to="." method="_on_switch_button_0_pressed"]
 [connection signal="pressed" from="UI/SwitchButton1" to="." method="_on_switch_button_1_pressed"]
 [connection signal="pressed" from="UI/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="UI/TypeMatchupButton" to="UI" method="_on_type_matchup_button_pressed"]
 [connection signal="timeout" from="ResolveTurnTimer" to="." method="_on_resolve_turn_timer_timeout"]
