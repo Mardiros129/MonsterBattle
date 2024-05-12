@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3ccrpeska432"]
+[gd_scene load_steps=8 format=3 uid="uid://c3ccrpeska432"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_2bifh"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="3_1s8rs"]
+[ext_resource type="PackedScene" uid="uid://c5783ti8g731p" path="res://UI/attack_details.tscn" id="3_rdh00"]
 [ext_resource type="PackedScene" uid="uid://c0dy88gwgp6cu" path="res://UI/mon_ui.tscn" id="4_4psda"]
 [ext_resource type="Texture2D" uid="uid://pa8bxdyl7kd1" path="res://Assets/temp_stage.png" id="4_g5kj7"]
 [ext_resource type="Texture2D" uid="uid://d3276ue5ykter" path="res://Assets/type_chart.png" id="4_ujev1"]
@@ -73,6 +74,38 @@ item_2/text = "null"
 item_2/disabled = true
 item_3/text = "null"
 item_3/disabled = true
+
+[node name="PlayerAttackDetails" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerAttackDetails0" parent="UI/PlayerAttackDetails" instance=ExtResource("3_rdh00")]
+offset_left = 157.0
+offset_top = 1.0
+offset_right = 157.0
+offset_bottom = 1.0
+
+[node name="PlayerAttackDetails1" parent="UI/PlayerAttackDetails" instance=ExtResource("3_rdh00")]
+visible = false
+offset_left = 157.0
+offset_top = 1.0
+offset_right = 157.0
+offset_bottom = 1.0
+
+[node name="PlayerAttackDetails2" parent="UI/PlayerAttackDetails" instance=ExtResource("3_rdh00")]
+visible = false
+offset_left = 157.0
+offset_top = 1.0
+offset_right = 157.0
+offset_bottom = 1.0
+
+[node name="PlayerAttackDetails3" parent="UI/PlayerAttackDetails" instance=ExtResource("3_rdh00")]
+visible = false
+offset_left = 157.0
+offset_top = 1.0
+offset_right = 157.0
+offset_bottom = 1.0
 
 [node name="EnemyAttackList" type="ItemList" parent="UI"]
 layout_mode = 0
@@ -222,6 +255,7 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="UI/ItemButton" to="UI" method="_on_item_button_pressed"]
 [connection signal="pressed" from="UI/CatchButton" to="." method="_on_catch_button_pressed"]
 [connection signal="pressed" from="UI/RunButton" to="." method="_on_run_button_pressed"]
+[connection signal="item_selected" from="UI/PlayerAttackList" to="UI" method="_on_player_attack_list_item_selected"]
 [connection signal="pressed" from="UI/SwitchButton0" to="." method="_on_switch_button_0_pressed"]
 [connection signal="pressed" from="UI/SwitchButton1" to="." method="_on_switch_button_1_pressed"]
 [connection signal="pressed" from="UI/Reset" to="." method="_on_reset_pressed"]

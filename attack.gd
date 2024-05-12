@@ -6,6 +6,7 @@ extends Node2D
 @export var uses = 5
 @export var type: TypeList.Type
 @export var category: TypeList.DamageCategory
+@export var description: String
 
 @onready var user
 @onready var target

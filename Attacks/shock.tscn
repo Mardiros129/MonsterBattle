@@ -7,4 +7,5 @@ attack_name = "Shock"
 base_damage = 20
 type = 6
 category = 2
+description = "A shocking attack!"
 attack_target = 2

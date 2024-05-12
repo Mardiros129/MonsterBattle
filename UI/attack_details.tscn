@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5783ti8g731p"]
+
+[ext_resource type="Script" path="res://UI/attack_details.gd" id="1_bmaa2"]
+
+[node name="AttackDetails" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -783.0
+offset_top = -424.0
+offset_right = -743.0
+offset_bottom = -384.0
+script = ExtResource("1_bmaa2")
+
+[node name="AttackType" type="Label" parent="."]
+layout_mode = 0
+offset_left = 785.0
+offset_top = 425.0
+offset_right = 916.0
+offset_bottom = 448.0
+text = "Type"
+
+[node name="AttackDamage" type="Label" parent="."]
+layout_mode = 0
+offset_left = 785.0
+offset_top = 452.0
+offset_right = 1001.0
+offset_bottom = 475.0
+text = "Damage"
+
+[node name="AttackDescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 785.0
+offset_top = 483.0
+offset_right = 971.0
+offset_bottom = 629.0
+text = "Description"

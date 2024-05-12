@@ -11,6 +11,7 @@ extends Control
 @onready var catch_button = $CatchButton
 @onready var run_button = $RunButton
 
+@export var number_of_attacks = 4
 @onready var move_list = $PlayerAttackList
 @onready var enemy_attack_list = $EnemyAttackList
 @export var enemy_attack_missing_text = "???"
@@ -25,6 +26,8 @@ extends Control
 
 @onready var type_matchup_button = $TypeMatchupButton
 @onready var type_matchup_chart = $TypeMatchupChart
+
+@onready var player_attack_details = $PlayerAttackDetails
 
 
 func _ready():
@@ -118,33 +121,16 @@ func pop_button():
 	last_button.disabled = true
 
 func set_moves(player_mon):
-	if player_mon.attack_list.size() > 0:
-		move_list.set_item_text(0, player_mon.attack_list[0].attack_name)
-		move_list.set_item_disabled(0, false)
-	else:
-		move_list.set_item_text(0, "null")
-		move_list.set_item_disabled(0, true)
-	
-	if player_mon.attack_list.size() > 1:
-		move_list.set_item_text(1, player_mon.attack_list[1].attack_name)
-		move_list.set_item_disabled(1, false)
-	else:
-		move_list.set_item_text(1, "null")
-		move_list.set_item_disabled(1, true)
-	
-	if player_mon.attack_list.size() > 2:
-		move_list.set_item_text(2, player_mon.attack_list[2].attack_name)
-		move_list.set_item_disabled(2, false)
-	else:
-		move_list.set_item_text(2, "null")
-		move_list.set_item_disabled(2, true)
-	
-	if player_mon.attack_list.size() > 3:
-		move_list.set_item_text(3, player_mon.attack_list[3].attack_name)
-		move_list.set_item_disabled(3, false)
-	else:
-		move_list.set_item_text(3, "null")
-		move_list.set_item_disabled(3, true)
+	for x in number_of_attacks:
+		if player_mon.attack_list.size() > x:
+			move_list.set_item_text(x, player_mon.attack_list[x].attack_name)
+			move_list.set_item_disabled(x, false)
+			
+			var attack_details = player_attack_details.get_child(x)
+			attack_details.set_attack_details(player_mon.attack_list[x])
+		else:
+			move_list.set_item_text(x, "null")
+			move_list.set_item_disabled(x, true)
 	
 	move_list.select(0)
 
@@ -169,3 +155,8 @@ func _on_type_matchup_button_pressed():
 		type_matchup_chart.hide()
 	else:
 		type_matchup_chart.show()
+
+func _on_player_attack_list_item_selected(index):
+	for n in player_attack_details.get_child_count():
+		player_attack_details.get_child(n).hide()
+	player_attack_details.get_child(index).show()

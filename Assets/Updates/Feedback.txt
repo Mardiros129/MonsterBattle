@@ -1,0 +1,3 @@
+Color to show what's mine
+Health bar
+Menues go l -> r (category vs subcategory)
