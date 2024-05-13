@@ -7,4 +7,5 @@ attack_name = "Death Note"
 base_damage = 20
 type = 3
 category = 2
+description = "A weak magic attack."
 attack_target = 2

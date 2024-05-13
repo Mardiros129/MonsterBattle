@@ -1,6 +1,6 @@
 Playtest To Do
-- Move info
 - Very basic explanation of what to do
-- Lower catch chance
-- it's super effective! it's not very effective!
 - effect text in ui
+- test switching (switch -> fight -> ui is wrong)
+- Color to show what's mine
+- Menues go l -> r (category vs subcategory)

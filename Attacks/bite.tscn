@@ -3,8 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://attack.tscn" id="1_jln17"]
 
 [node name="Bite" instance=ExtResource("1_jln17")]
-attack_name = "Bite"
+attack_name = "Tooth & Claw"
 base_damage = 20
 type = 1
 category = 1
+description = "An animal's basic tools of combat."
 attack_target = 2

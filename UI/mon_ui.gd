@@ -5,6 +5,8 @@ extends Control
 @onready var hp = $HP
 @onready var types = $Types
 @onready var speed = $Speed
+@onready var hp_bar = $HPBar
+
 
 func set_mon_ui(monster):
 	my_name.text = monster.my_name
@@ -20,6 +22,9 @@ func set_mon_hp_ui(monster):
 	if current_hp_text < 0:
 		current_hp_text = 0
 	hp.text = str(current_hp_text) + "/" + str(monster.max_hp)
+	
+	hp_bar.max_value = monster.max_hp
+	hp_bar.value = monster.current_hp
 
 func update_mon_speed_ui(monster):
 	speed.text = "Speed " + str(monster.current_speed)

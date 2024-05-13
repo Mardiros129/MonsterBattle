@@ -63,13 +63,18 @@ func do_damage():
 	# Multiply the damage by the type advantage for both types
 	var multiplier0 = TypeList.TypeAdvantageChart[type][target_type0]
 	var multiplier1 = TypeList.TypeAdvantageChart[type][target_type1]
-	attack_damage *= multiplier0
-	attack_damage *= multiplier1
+	var multiplier_total = multiplier0 * multiplier1
+	attack_damage *= multiplier_total
+	
 	# Round up to the nearest whole number (ensures attacks always do minimum 1 damage)
 	attack_damage = snapped(attack_damage, 1.0)
+	target.take_damage(attack_damage)
 	
 	user_message += "\n" + str(attack_damage) + " damage!"
-	target.take_damage(attack_damage)
+	if multiplier_total > 1:
+		user_message += "\n" + "It's super effective!"
+	elif multiplier_total < 1:
+		user_message += "\n" + "It's not very effective..."
 
 func gain_health():
 	user_message += "\n" + str(healing) + " healed!"

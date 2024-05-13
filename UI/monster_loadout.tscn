@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8idner5etalo"]
+[gd_scene load_steps=4 format=3 uid="uid://b8idner5etalo"]
 
 [ext_resource type="Script" path="res://UI/monster_loadout.gd" id="1_dtloi"]
+[ext_resource type="Texture2D" uid="uid://cmca0rv7xu6qv" path="res://Assets/health_bar_under.png" id="2_2g0co"]
+[ext_resource type="Texture2D" uid="uid://d0733fxnwhpkr" path="res://Assets/health_bar.png" id="3_43rui"]
 
 [node name="MonsterLoadout" type="Button"]
 offset_left = 31.0
@@ -14,9 +16,9 @@ script = ExtResource("1_dtloi")
 visible = false
 layout_mode = 0
 offset_left = 8.0
-offset_top = 58.0
+offset_top = 65.0
 offset_right = 48.0
-offset_bottom = 81.0
+offset_bottom = 88.0
 text = "0"
 horizontal_alignment = 1
 
@@ -24,8 +26,19 @@ horizontal_alignment = 1
 visible = false
 layout_mode = 0
 offset_left = 8.0
-offset_top = 81.0
+offset_top = 88.0
 offset_right = 48.0
-offset_bottom = 104.0
+offset_bottom = 111.0
 text = "0"
 horizontal_alignment = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 58.0
+offset_right = 57.0
+offset_bottom = 64.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_2g0co")
+texture_progress = ExtResource("3_43rui")

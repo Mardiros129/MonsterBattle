@@ -19,7 +19,7 @@ func set_attack_details(attack):
 	
 	attack_damage_label.text = ""
 	if my_damage > 0:
-		attack_damage_label.text = str(my_damage) + " damage"
+		attack_damage_label.text = str(my_damage) + " power"
 	if my_damage > 0 && my_healing > 0:
 		attack_damage_label.text += ", "
 	if my_healing > 0:

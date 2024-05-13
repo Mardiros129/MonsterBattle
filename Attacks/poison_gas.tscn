@@ -8,5 +8,6 @@ attack_name = "Poison Gas"
 base_damage = 10
 type = 7
 category = 2
+description = "A weak attack that leaves the enemy [b]poisoned[/b]."
 attack_target = 2
 effect_scene = ExtResource("2_l2onw")

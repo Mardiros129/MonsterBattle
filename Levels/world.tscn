@@ -752,6 +752,7 @@ shape = SubResource("RectangleShape2D_imaxw")
 
 [node name="MonsterArea7" parent="." instance=ExtResource("3_nam0o")]
 position = Vector2(973, -108)
+monster_options = Array[String](["res://Monsters/pillico.tscn"])
 
 [node name="CollisionShape2D" parent="MonsterArea7" index="0"]
 position = Vector2(57.5, 136)

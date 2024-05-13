@@ -81,6 +81,9 @@ func update_catch_count(catch_count):
 	if catch_count <= 0:
 		disable_catch_button()
 
+func update_catch_chance():
+	catch_button.text = "Catch (" + str(int(WorldLoad.catch_chance * 100)) + "%)"
+
 func disable_ui():
 	attack_button.disabled = true
 	item_button.disabled = true
@@ -108,6 +111,7 @@ func enable_ui(catch_count):
 	
 	if catch_count > 0:
 		catch_button.disabled = false
+	update_catch_chance()
 
 func swap_buttons(player_mon, index):
 	var new_icon = player_mon.get_node("Sprite2D").texture

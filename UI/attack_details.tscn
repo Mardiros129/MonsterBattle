@@ -33,4 +33,5 @@ offset_left = 785.0
 offset_top = 483.0
 offset_right = 971.0
 offset_bottom = 629.0
+bbcode_enabled = true
 text = "Description"

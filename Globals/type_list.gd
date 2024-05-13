@@ -25,5 +25,8 @@ func _ready():
 	TypeAdvantageChart.append(UndeadTypeAdvantage)
 	TypeAdvantageChart.append(PixieTypeAdvantage)
 	TypeAdvantageChart.append(MechTypeAdvantage)
+	TypeAdvantageChart.append(ElementTypeAdvantage)
+	TypeAdvantageChart.append(CorruptTypeAdvantage)
+	TypeAdvantageChart.append(MythicTypeAdvantage)
 	TypeAdvantageChart.append(DemonTypeAdvantage)
 	TypeAdvantageChart.append(AngelTypeAdvantage)

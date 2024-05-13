@@ -25,7 +25,7 @@ func _ready():
 		var temp_monster = MonsterParty.party[x].duplicate()
 		add_child(temp_monster)
 		temp_monster.hide()
-		loadout_buttons.get_child(x).setup_monster_loadout(temp_monster)
+		loadout_buttons.get_child(x).setup_monster_loadout(temp_monster, x)
 		loadout_buttons.get_child(x).disabled = false
 	
 	canvas_layer.show()
@@ -33,7 +33,6 @@ func _ready():
 
 func load_enemy_battle(enemy_path):
 	# Save world scene
-	#WorldLoad.world = duplicate()
 	WorldLoad.player_position = character.position
 	WorldLoad.removable.clear()
 	if removable.get_child_count() > 0:

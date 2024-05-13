@@ -6,3 +6,4 @@ extends Node
 @onready var removable: Array
 @onready var world
 @onready var run_chance = 100.0
+@onready var catch_chance = 100.0

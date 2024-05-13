@@ -4,7 +4,8 @@
 
 [node name="Laser" instance=ExtResource("1_vuocr")]
 attack_name = "Laser"
-base_damage = 10
+base_damage = 20
 type = 5
 category = 2
+description = "A weak magic attack."
 attack_target = 2

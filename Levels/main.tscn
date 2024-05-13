@@ -10,7 +10,6 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bifh")
-catch_chance = 1.0
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -31,7 +30,7 @@ text = "Go to end screen"
 layout_mode = 0
 offset_left = 662.0
 offset_top = 420.0
-offset_right = 757.0
+offset_right = 769.0
 offset_bottom = 464.0
 text = "Attack!"
 
@@ -39,7 +38,7 @@ text = "Attack!"
 layout_mode = 0
 offset_left = 662.0
 offset_top = 478.0
-offset_right = 757.0
+offset_right = 769.0
 offset_bottom = 522.0
 text = "Item"
 
@@ -47,7 +46,7 @@ text = "Item"
 layout_mode = 0
 offset_left = 662.0
 offset_top = 533.0
-offset_right = 757.0
+offset_right = 769.0
 offset_bottom = 577.0
 text = "Catch"
 
@@ -55,7 +54,7 @@ text = "Catch"
 layout_mode = 0
 offset_left = 662.0
 offset_top = 590.0
-offset_right = 757.0
+offset_right = 769.0
 offset_bottom = 634.0
 text = "Run!"
 
@@ -109,10 +108,10 @@ offset_bottom = 1.0
 
 [node name="EnemyAttackList" type="ItemList" parent="UI"]
 layout_mode = 0
-offset_left = 596.0
-offset_top = 134.0
-offset_right = 713.0
-offset_bottom = 251.0
+offset_left = 1026.0
+offset_top = 120.0
+offset_right = 1143.0
+offset_bottom = 237.0
 item_count = 4
 item_0/text = "attack"
 item_1/text = "attack"
@@ -150,10 +149,10 @@ expand_icon = true
 
 [node name="CatchCount" type="RichTextLabel" parent="UI"]
 layout_mode = 0
-offset_left = 595.0
-offset_top = 67.0
-offset_right = 780.0
-offset_bottom = 94.0
+offset_left = 785.0
+offset_top = 546.0
+offset_right = 970.0
+offset_bottom = 573.0
 text = "Catch count: 999"
 
 [node name="CatchChance" type="RichTextLabel" parent="UI"]
@@ -202,10 +201,10 @@ offset_right = 428.0
 offset_bottom = 324.0
 
 [node name="EnemyMonUI" parent="UI" instance=ExtResource("4_4psda")]
-offset_left = 1016.0
-offset_top = 92.0
-offset_right = 1016.0
-offset_bottom = 92.0
+offset_left = 533.0
+offset_top = 93.0
+offset_right = 533.0
+offset_bottom = 93.0
 
 [node name="TypeMatchupButton" type="Button" parent="UI"]
 layout_mode = 0

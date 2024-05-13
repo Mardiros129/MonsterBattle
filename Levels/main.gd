@@ -24,7 +24,6 @@ extends Node2D
 @export var command_delay = 0.3
 @onready var bonus_turn = false # Currently only works for player, need to update later to include enemy
 
-@export var catch_chance = 0.1
 @onready var captured = false
 
 @onready var ui = $UI
@@ -81,7 +80,7 @@ func _ready():
 	
 	# Setup UI
 	ui.set_button_icons(mon_start_lineup)
-	ui.set_catch_labels(PlayerInventory.catch_counter, catch_chance)
+	ui.set_catch_labels(PlayerInventory.catch_counter, WorldLoad.catch_chance)
 	ui.set_player_mon_ui(player_mon)
 	ui.set_enemy_mon_ui(enemy_mon)
 	start_turn()
@@ -92,11 +91,13 @@ func _unhandled_input(event):
 			get_tree().quit()
 
 func start_turn():
+	WorldLoad.catch_chance = 1.0 - float(enemy_mon.current_hp) / float(enemy_mon.max_hp)
 	ui.enable_ui(PlayerInventory.catch_counter)
 	ui.player_mon_ui.update_mon_speed_ui(player_mon)
 	ui.enemy_mon_ui.update_mon_speed_ui(enemy_mon)
 	if !enemy_mon.catchable:
 		ui.disable_catch_button()
+	
 	player_turn = true
 
 func end_turn():
@@ -243,7 +244,8 @@ func _on_catch_button_pressed():
 	
 	var rng = RandomNumberGenerator.new()
 	var result = rng.randf()
-	if result <= catch_chance:
+	
+	if result <= WorldLoad.catch_chance:
 		ui.update_log("Catch success!")
 		await get_tree().create_timer(command_delay).timeout
 		captured = true

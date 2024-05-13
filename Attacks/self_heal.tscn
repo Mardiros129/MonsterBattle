@@ -6,4 +6,5 @@
 attack_name = "Heal"
 healing = 25
 type = 4
+description = "Heal yourself a moderate amount."
 attack_target = 1
