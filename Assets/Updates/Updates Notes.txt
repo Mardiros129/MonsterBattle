@@ -1,6 +1,6 @@
-Playtest To Do
+Week 3 Goals
 - Very basic explanation of what to do
 - effect text in ui
 - test switching (switch -> fight -> ui is wrong)
-- Color to show what's mine
 - Menues go l -> r (category vs subcategory)
+- simple audio

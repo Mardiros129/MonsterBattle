@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3ccrpeska432"]
+[gd_scene load_steps=10 format=3 uid="uid://c3ccrpeska432"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_2bifh"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="3_1s8rs"]
+[ext_resource type="Theme" uid="uid://nnjsyjl2ingj" path="res://Themes/player_ui.tres" id="3_ibsr8"]
 [ext_resource type="PackedScene" uid="uid://c5783ti8g731p" path="res://UI/attack_details.tscn" id="3_rdh00"]
 [ext_resource type="PackedScene" uid="uid://c0dy88gwgp6cu" path="res://UI/mon_ui.tscn" id="4_4psda"]
 [ext_resource type="Texture2D" uid="uid://pa8bxdyl7kd1" path="res://Assets/temp_stage.png" id="4_g5kj7"]
 [ext_resource type="Texture2D" uid="uid://d3276ue5ykter" path="res://Assets/type_chart.png" id="4_ujev1"]
 [ext_resource type="Texture2D" uid="uid://cnkle2uwok0xu" path="res://Assets/Backgrounds/dark_forest.png" id="5_skoyj"]
+[ext_resource type="Texture2D" uid="uid://xt3wv43400y4" path="res://Assets/enemy_health_bar.png" id="5_xdxbd"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bifh")
@@ -32,6 +34,7 @@ offset_left = 662.0
 offset_top = 420.0
 offset_right = 769.0
 offset_bottom = 464.0
+theme = ExtResource("3_ibsr8")
 text = "Attack!"
 
 [node name="ItemButton" type="Button" parent="UI"]
@@ -40,6 +43,7 @@ offset_left = 662.0
 offset_top = 478.0
 offset_right = 769.0
 offset_bottom = 522.0
+theme = ExtResource("3_ibsr8")
 text = "Item"
 
 [node name="CatchButton" type="Button" parent="UI"]
@@ -48,6 +52,7 @@ offset_left = 662.0
 offset_top = 533.0
 offset_right = 769.0
 offset_bottom = 577.0
+theme = ExtResource("3_ibsr8")
 text = "Catch"
 
 [node name="RunButton" type="Button" parent="UI"]
@@ -56,6 +61,7 @@ offset_left = 662.0
 offset_top = 590.0
 offset_right = 769.0
 offset_bottom = 634.0
+theme = ExtResource("3_ibsr8")
 text = "Run!"
 
 [node name="PlayerAttackList" type="ItemList" parent="UI"]
@@ -206,6 +212,9 @@ offset_top = 93.0
 offset_right = 533.0
 offset_bottom = 93.0
 
+[node name="HPBar" parent="UI/EnemyMonUI" index="5"]
+texture_progress = ExtResource("5_xdxbd")
+
 [node name="TypeMatchupButton" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 382.0
@@ -260,3 +269,5 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="UI/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="UI/TypeMatchupButton" to="UI" method="_on_type_matchup_button_pressed"]
 [connection signal="timeout" from="ResolveTurnTimer" to="." method="_on_resolve_turn_timer_timeout"]
+
+[editable path="UI/EnemyMonUI"]
