@@ -4,3 +4,4 @@ Week 3 Goals
 - test switching (switch -> fight -> ui is wrong)
 - Menues go l -> r (category vs subcategory)
 - simple audio
+- combine level and type lines
