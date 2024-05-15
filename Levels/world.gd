@@ -1,5 +1,6 @@
 extends Node2D
 
+
 @onready var character = $Character
 @onready var canvas_layer = $CanvasLayer
 @onready var removable = $Removable
@@ -31,6 +32,7 @@ func _ready():
 	canvas_layer.show()
 	remaining_counter.text = str(MonsterPool.pool_size) + " Monsters Remain"
 
+
 func load_enemy_battle(enemy_path):
 	# Save world scene
 	WorldLoad.player_position = character.position
@@ -50,14 +52,17 @@ func load_enemy_battle(enemy_path):
 	get_tree().root.add_child(battle_inst, false, 0)
 	queue_free()
 
+
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().quit()
 
+
 func _on_monster_area_body_entered_return_path(body, path):
 	if path[0] != "":
 		load_enemy_battle(path)
+
 
 func _on_robot_start_fight(path):
 	load_enemy_battle(path)

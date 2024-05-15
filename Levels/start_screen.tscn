@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1qsinoh0ju71"]
+[gd_scene load_steps=8 format=3 uid="uid://b1qsinoh0ju71"]
 
 [ext_resource type="Script" path="res://Levels/start_screen.gd" id="1_bpiov"]
 [ext_resource type="Texture2D" uid="uid://cew7bvtkabqec" path="res://Assets/Monsters/rat.png" id="2_b4rro"]
+[ext_resource type="Texture2D" uid="uid://py4tnn1idt5g" path="res://Assets/card_frame.png" id="3_qvego"]
 [ext_resource type="Texture2D" uid="uid://ch7gftktmiygk" path="res://Assets/Monsters/beanstalk.png" id="3_ry7g4"]
 [ext_resource type="Texture2D" uid="uid://r84gwcdjv0ku" path="res://Assets/Monsters/hat_skeleton.png" id="3_y6kr1"]
 [ext_resource type="AudioStream" uid="uid://peoy0akqoaqi" path="res://Assets/Audio/click.wav" id="5_27rc5"]
+[ext_resource type="Texture2D" uid="uid://r04h48q6okhr" path="res://Assets/Backgrounds/book.jpg" id="6_s6al1"]
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource("1_bpiov")
@@ -21,61 +23,90 @@ offset_bottom = 571.0
 text = "Press Start"
 
 [node name="AnimalStarter" type="Button" parent="."]
-offset_left = 120.0
-offset_top = 199.0
-offset_right = 297.0
-offset_bottom = 424.0
+z_index = 1
+offset_left = 96.0
+offset_top = 235.0
+offset_right = 273.0
+offset_bottom = 460.0
 icon = ExtResource("2_b4rro")
+flat = true
 expand_icon = true
+
+[node name="CardFrame" type="Sprite2D" parent="AnimalStarter"]
+z_index = -1
+position = Vector2(90, 82)
+scale = Vector2(0.846154, 0.846154)
+texture = ExtResource("3_qvego")
 
 [node name="Label" type="Label" parent="AnimalStarter"]
 layout_mode = 0
-offset_top = 227.0
+offset_top = -45.0
 offset_right = 175.0
-offset_bottom = 273.0
-theme_override_font_sizes/font_size = 26
+offset_bottom = 1.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 text = "Rat"
 horizontal_alignment = 1
 
 [node name="PlantStarter" type="Button" parent="."]
-offset_left = 460.0
-offset_top = 199.0
-offset_right = 637.0
-offset_bottom = 424.0
+z_index = 1
+offset_left = 468.0
+offset_top = 196.0
+offset_right = 645.0
+offset_bottom = 421.0
 icon = ExtResource("3_ry7g4")
+flat = true
 expand_icon = true
 
 [node name="Label" type="Label" parent="PlantStarter"]
 layout_mode = 0
-offset_top = 227.0
-offset_right = 175.0
-offset_bottom = 273.0
-theme_override_font_sizes/font_size = 26
+offset_left = 15.0
+offset_top = -48.0
+offset_right = 190.0
+offset_bottom = -2.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 text = "Sprout"
 horizontal_alignment = 1
 
+[node name="CardFrame" type="Sprite2D" parent="PlantStarter"]
+z_index = -1
+position = Vector2(101, 87)
+scale = Vector2(0.846154, 0.846154)
+texture = ExtResource("3_qvego")
+
 [node name="UndeadStarter" type="Button" parent="."]
-offset_left = 803.0
-offset_top = 199.0
-offset_right = 980.0
-offset_bottom = 424.0
+z_index = 1
+offset_left = 875.0
+offset_top = 240.0
+offset_right = 1052.0
+offset_bottom = 465.0
 icon = ExtResource("3_y6kr1")
+flat = true
 expand_icon = true
 
 [node name="Label" type="Label" parent="UndeadStarter"]
 layout_mode = 0
-offset_top = 227.0
-offset_right = 175.0
-offset_bottom = 273.0
-theme_override_font_sizes/font_size = 26
+offset_left = -4.0
+offset_top = -56.0
+offset_right = 171.0
+offset_bottom = -10.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 text = "Deadbeat"
 horizontal_alignment = 1
 
+[node name="CardFrame" type="Sprite2D" parent="UndeadStarter"]
+z_index = -1
+position = Vector2(85, 78)
+scale = Vector2(0.846154, 0.846154)
+texture = ExtResource("3_qvego")
+
 [node name="Heading" type="Label" parent="."]
-offset_left = 379.0
-offset_top = 42.0
-offset_right = 712.0
-offset_bottom = 122.0
+offset_left = 399.0
+offset_top = 27.0
+offset_right = 732.0
+offset_bottom = 107.0
 theme_override_font_sizes/font_size = 40
 text = "Choose a starter"
 horizontal_alignment = 1
@@ -83,7 +114,19 @@ horizontal_alignment = 1
 [node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_27rc5")
 
+[node name="AudioDelay" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Book" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(579, 311)
+scale = Vector2(0.790816, 0.790816)
+texture = ExtResource("6_s6al1")
+metadata/_edit_lock_ = true
+
 [connection signal="pressed" from="StartButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="AnimalStarter" to="." method="_on_animal_starter_pressed"]
 [connection signal="pressed" from="PlantStarter" to="." method="_on_plant_starter_pressed"]
 [connection signal="pressed" from="UndeadStarter" to="." method="_on_undead_starter_pressed"]
+[connection signal="timeout" from="AudioDelay" to="." method="_on_timer_timeout"]

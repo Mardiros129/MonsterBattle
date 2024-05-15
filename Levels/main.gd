@@ -5,7 +5,6 @@ extends Node2D
 @onready var resolve_turn_timer = $ResolveTurnTimer
 @onready var player_mon_loc = $PlayerMonLocation
 @onready var enemy_mon_loc = $EnemyMonLocation
-@onready var death_timer = $DeathTimer
 @onready var run_audio = $RunAudio
 
 # Maintain the original order for the whole game
@@ -23,14 +22,14 @@ extends Node2D
 @onready var enemy_support_mon1
 
 @onready var command_queue: Array
-@export var command_delay = 0.3
+@export var command_delay = 0.4
 @onready var bonus_turn = false # Currently only works for player, need to update later to include enemy
-
-@onready var captured = false
 
 @onready var ui = $UI
 @onready var end_button = $UI/EndButton
 @onready var click_sound = $UI/ClickSound
+
+@onready var catch_chance = 100.0
 
 
 func _ready():
@@ -39,17 +38,16 @@ func _ready():
 	
 	if MonsterParty.party.size() > 0:
 		player_mon = MonsterParty.party[0]
+		mon_combat_order.append(player_mon)
 	if MonsterParty.party.size() > 1:
 		player_support_mon0 = MonsterParty.party[1]
+		mon_combat_order.append(player_support_mon0)
 	if MonsterParty.party.size() > 2:
 		player_support_mon1 = MonsterParty.party[2]
+		mon_combat_order.append(player_support_mon1)
 	if MonsterParty.party.size() > 3:
 		sideboard_mon = MonsterParty.party[3]
-	
-	mon_combat_order.append(player_mon)
-	mon_combat_order.append(player_support_mon0)
-	mon_combat_order.append(player_support_mon1)
-	mon_combat_order.append(sideboard_mon)
+		mon_combat_order.append(sideboard_mon)
 	
 	for x in mon_start_lineup.size():
 		player_mon_loc.add_child(mon_start_lineup[x])
@@ -60,6 +58,7 @@ func _ready():
 			mon_start_lineup[x].level = MonsterParty.party_level[x]
 	
 	player_mon.show()
+	player_mon.reset_anim()
 	
 	# Setup enemy party
 	enemy_mon = enemy_mon_loc.get_child(0)
@@ -86,7 +85,7 @@ func _ready():
 	
 	# Setup UI
 	ui.set_button_icons(mon_start_lineup)
-	ui.set_catch_labels(PlayerInventory.catch_counter, WorldLoad.catch_chance)
+	ui.set_catch_labels(PlayerInventory.catch_counter, catch_chance)
 	ui.set_player_mon_ui(player_mon)
 	ui.set_enemy_mon_ui(enemy_mon)
 	start_turn()
@@ -99,8 +98,9 @@ func _unhandled_input(event):
 
 
 func start_turn():
-	WorldLoad.catch_chance = 1.0 - float(enemy_mon.current_hp) / float(enemy_mon.max_hp)
-	ui.enable_ui(PlayerInventory.catch_counter)
+	catch_chance = 1.0 - float(enemy_mon.current_hp) / float(enemy_mon.max_hp)
+	ui.enable_ui()
+	ui.update_catch_chance(catch_chance)
 	ui.player_mon_ui.update_mon_speed_ui(player_mon)
 	ui.enemy_mon_ui.update_mon_speed_ui(enemy_mon)
 	if !enemy_mon.catchable:
@@ -218,6 +218,7 @@ func enemy_mon_dies():
 
 
 func replace_enemy():
+	enemy_mon.hide()
 	enemy_mon = enemy_support_mon0
 	enemy_support_mon0 = enemy_support_mon1
 	enemy_mon.show()
@@ -226,8 +227,7 @@ func replace_enemy():
 
 # To do, implement some AI behavior
 func enemy_chooses_attack():
-	var rng = RandomNumberGenerator.new()
-	var result = rng.randi_range(0, enemy_mon.attack_list.size()-1)
+	var result = randi_range(0, enemy_mon.attack_list.size() - 1)
 	new_command(result, enemy_mon, player_mon)
 
 
@@ -254,25 +254,49 @@ func new_command(attack, user, target):
 				command_queue.append(command)
 
 
+func add_monster_to_party(monster):
+	if player_support_mon0 == null:
+		player_support_mon0 = monster
+	elif player_support_mon1 == null:
+		player_support_mon1 = monster
+	elif sideboard_mon == null:
+		sideboard_mon = monster
+	
+	
+	player_mon_loc.add_child(monster)
+	monster.reset_anim()
+	monster.hide()
+	mon_combat_order.append(monster)
+	mon_start_lineup.append(monster)
+	ui.set_button_icons(mon_combat_order)
+
+
 func _on_catch_button_pressed():
 	PlayerInventory.catch_counter -= 1
 	ui.update_catch_count(PlayerInventory.catch_counter)
 	
-	var rng = RandomNumberGenerator.new()
-	var result = rng.randf()
-	
-	if result <= WorldLoad.catch_chance:
+	var result = randf()
+	if result <= catch_chance:
 		enemy_mon.catch()
 		ui.update_log("Catch successful!")
-		await get_tree().create_timer(command_delay).timeout
-		captured = true
+		#await get_tree().create_timer(command_delay).timeout
+		await get_tree().create_timer(1.0).timeout
 		MonsterPool.pool_size -= 1
+		
+		# Add to party
+		if mon_combat_order.size() < 4:
+			enemy_mon_loc.remove_child(enemy_mon)
+			add_monster_to_party(enemy_mon)
+		else:
+			# TODO: send to box
+			pass
 		
 		if enemy_support_mon0 != null:
 			replace_enemy()
 			start_turn()
 		else:
 			end_combat()
+	
 	else:
 		ui.update_log("Catch failed...")
 		await get_tree().create_timer(command_delay).timeout
@@ -311,8 +335,6 @@ func _on_end_button_pressed():
 		var current_mon = mon_start_lineup[x]
 		if current_mon != null:
 			MonsterParty.add_to_party(current_mon.duplicate(), current_mon.current_hp, current_mon.level)
-	if captured:
-		MonsterParty.add_to_party(enemy_mon.duplicate(), enemy_mon.current_hp, enemy_mon.level)
 	
 	# Load next scene
 	var inst = load("res://Levels/end_screen.tscn").instantiate()
@@ -323,10 +345,11 @@ func _on_end_button_pressed():
 func _on_run_button_pressed():
 	click_sound.play()
 	var r = RandomNumberGenerator.new().randf_range(0.0, 100.0)
-	if r <= WorldLoad.run_chance:
+	if r <= FightData.run_chance:
 		ui.update_log("You got away safely!")
 		run_audio.play()
-		WorldLoad.run_chance -= 5.0
+		player_mon.run()
+		FightData.run_chance -= 5.0
 		end_combat()
 	else:
 		ui.update_log("you cannot escape!")

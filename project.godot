@@ -22,6 +22,7 @@ MonsterParty="*res://Globals/monster_party.gd"
 PlayerInventory="*res://Globals/player_inventory.gd"
 WorldLoad="*res://Globals/world_load.gd"
 MonsterPool="*res://Globals/monster_pool.gd"
+FightData="*res://Globals/fight_data.gd"
 
 [input]
 

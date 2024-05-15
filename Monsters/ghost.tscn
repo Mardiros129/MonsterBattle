@@ -22,8 +22,8 @@ type0 = 3
 type1 = 7
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(3.00001, -74)
-scale = Vector2(0.142917, 0.142917)
+position = Vector2(3, -106)
+scale = Vector2(0.347561, 0.347561)
 texture = ExtResource("2_xb1id")
 
 [node name="PoisonGas" parent="AttackNode" index="0" instance=ExtResource("4_imoox")]

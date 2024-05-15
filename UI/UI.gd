@@ -40,7 +40,11 @@ func _ready():
 	for x in enemy_attack_list.item_count:
 		enemy_attack_list.set_item_text(x, enemy_attack_missing_text)
 	
-	run_button.text = "Run! (" + str(WorldLoad.run_chance) + "%)"
+	if FightData.boss_fight:
+		run_button.disabled = true
+		run_button.text = "Can't run!"
+	else:
+		run_button.text = "Run! (" + str(FightData.run_chance) + "%)"
 
 
 func set_catch_labels(catch_count, catch_chance):
@@ -92,8 +96,8 @@ func update_catch_count(catch_count):
 		disable_catch_button()
 
 
-func update_catch_chance():
-	catch_button.text = "Catch (" + str(int(WorldLoad.catch_chance * 100)) + "%)"
+func update_catch_chance(catch_chance):
+	catch_button.text = "Catch (" + str(int(catch_chance * 100)) + "%)"
 
 
 func disable_ui():
@@ -101,6 +105,12 @@ func disable_ui():
 	item_button.disabled = true
 	catch_button.disabled = true
 	run_button.disabled = true
+	
+	for x in move_list.item_count:
+		move_list.set_item_disabled(x, true)
+	player_attack_details.hide()
+	
+	type_matchup_button.disabled = true
 	disable_switch_buttons()
 
 
@@ -113,10 +123,18 @@ func disable_switch_buttons():
 		switch_buttons[x].disabled = true
 
 
-func enable_ui(catch_count):
+func enable_ui():
 	attack_button.disabled = false
 	item_button.disabled = false
-	run_button.disabled = false
+	
+	if not FightData.boss_fight:
+		run_button.disabled = false
+	
+	for x in move_list.item_count:
+		move_list.set_item_disabled(x, false)
+	player_attack_details.show()
+	
+	type_matchup_button.disabled = false
 	
 	if switch_buttons.size() > 0:
 		switch_button0.disabled = false
@@ -124,9 +142,8 @@ func enable_ui(catch_count):
 	if switch_buttons.size() > 1:
 		switch_button1.disabled = false
 	
-	if catch_count > 0:
+	if PlayerInventory.catch_counter > 0:
 		catch_button.disabled = false
-	update_catch_chance()
 
 
 func swap_buttons(player_mon, index):

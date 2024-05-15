@@ -13,7 +13,7 @@
 [node name="Rat" instance=ExtResource("1_gqr5r")]
 my_name = "Rat"
 max_hp = 100
-strength = 100
+strength = 110
 intelligence = 100
 defense = 100
 resistance = 100

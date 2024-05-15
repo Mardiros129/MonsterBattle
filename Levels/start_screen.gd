@@ -1,6 +1,7 @@
 extends Node2D
 
 
+@onready var timer = $AudioDelay
 @onready var click_sound = $ClickSound
 @export var catch_counter = 0
 @export var pool_size = 0
@@ -37,16 +38,20 @@ func _on_button_pressed():
 func _on_animal_starter_pressed():
 	click_sound.play()
 	create_party_member("res://Monsters/rat.tscn")
-	start_game()
+	timer.start()
 
 
 func _on_plant_starter_pressed():
 	click_sound.play()
 	create_party_member("res://Monsters/sprout.tscn")
-	start_game()
+	timer.start()
 
 
 func _on_undead_starter_pressed():
 	click_sound.play()
 	create_party_member("res://Monsters/skeleton.tscn")
+	timer.start()
+
+
+func _on_timer_timeout():
 	start_game()

@@ -32,6 +32,7 @@ extends Node2D
 
 @onready var current_hp
 @export var experience = 0 # Doesn't seem to save the number unless it's an export var
+@onready var exp_req = 2
 
 @onready var attack_list: Array
 
@@ -62,15 +63,17 @@ func setup_enemy():
 
 
 func attack(index, target):
-	if is_enemy:
-		animation_player.play("enemy_attack")
-	else:
-		animation_player.play("player_attack")
-	
 	if attack_list[index] == null:
 		print("attack is null!")
 	else:
 		var my_attack = attack_list[index]
+		if my_attack.category == TypeList.DamageCategory.UTILITY:
+			animation_player.play("use_ability")
+		elif is_enemy:
+			animation_player.play("enemy_attack")
+		else:
+			animation_player.play("player_attack")
+		
 		return my_attack.attack(self, target)
 
 
@@ -120,6 +123,15 @@ func display_monster():
 	sprite2d.show()
 
 
+func reset_anim():
+	animation_player.play("RESET")
+	sprite2d.flip_h = false
+
+
+func run():
+	animation_player.play("run")
+
+
 func get_sprite():
 	return sprite2d.texture
 
@@ -127,7 +139,7 @@ func get_sprite():
 func gain_exp(exp: int):
 	experience += exp
 	
-	# Add more complex experience system later
+	# Add more complex experience system later, TODO: use exp_req instead
 	if experience > level && level < level_max:
 		experience = 0
 		level_up()
@@ -139,6 +151,7 @@ func level_up():
 	max_hp += level_hp_bonus
 	current_hp += level_hp_bonus
 	speed += level_spd_bonus
+	#exp_req += 1
 
 
 func transform_monster(trans_mon: PackedScene, index: int):
