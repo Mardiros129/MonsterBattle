@@ -214,7 +214,7 @@ offset_top = 93.0
 offset_right = 533.0
 offset_bottom = 93.0
 
-[node name="HPBar" parent="UI/EnemyMonUI" index="5"]
+[node name="HPBar" parent="UI/EnemyMonUI" index="4"]
 texture_progress = ExtResource("5_xdxbd")
 
 [node name="TypeMatchupButton" type="Button" parent="UI"]

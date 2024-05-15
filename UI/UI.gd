@@ -34,7 +34,7 @@ extends Control
 
 func _ready():
 	inventory.select(0, true)
-	if PlayerInventory.catch_counter <= 0:
+	if PlayerInventory.catch_counter <= 0 || FightData.catch_chance <= 0.0:
 		catch_button.disabled = true
 	
 	for x in enemy_attack_list.item_count:
@@ -92,8 +92,6 @@ func get_selected_move():
 
 func update_catch_count(catch_count):
 	catch_count_label.text = "Blank card count: " + str(catch_count)
-	if catch_count <= 0:
-		disable_catch_button()
 
 
 func update_catch_chance(catch_chance):
@@ -112,10 +110,6 @@ func disable_ui():
 	
 	type_matchup_button.disabled = true
 	disable_switch_buttons()
-
-
-func disable_catch_button():
-	catch_button.disabled = true
 
 
 func disable_switch_buttons():
@@ -142,13 +136,18 @@ func enable_ui():
 	if switch_buttons.size() > 1:
 		switch_button1.disabled = false
 	
-	if PlayerInventory.catch_counter > 0:
+	if PlayerInventory.catch_counter > 0 && FightData.catch_chance > 0.0:
 		catch_button.disabled = false
 
 
 func swap_buttons(player_mon, index):
 	var new_icon = player_mon.get_node("Sprite2D").texture
 	switch_buttons[index].set_button_icon(new_icon)
+
+
+func not_catchable_button():
+	catch_button.disabled = true
+	catch_button.text = "Can't catch!"
 
 
 func pop_button():

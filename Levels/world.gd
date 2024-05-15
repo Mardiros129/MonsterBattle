@@ -49,6 +49,8 @@ func load_enemy_battle(enemy_path):
 		var enemy_inst = load(enemy_path[x]).instantiate(false)
 		enemy_loc.add_child(enemy_inst, false, false)
 	
+	FightData.catch_chance = 0.0 # Can't catch at full HP; could change later
+	
 	get_tree().root.add_child(battle_inst, false, 0)
 	queue_free()
 

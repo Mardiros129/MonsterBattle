@@ -25,3 +25,7 @@ func swap_party(index_a: int, index_b: int):
 	var temp_hp = party_hp[index_a]
 	party_hp[index_a] = party_hp[index_b]
 	party_hp[index_b] = temp_hp
+	
+	var temp_level = party_level[index_a]
+	party_level[index_a] = party_level[index_b]
+	party_level[index_b] = temp_level
