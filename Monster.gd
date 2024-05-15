@@ -6,9 +6,11 @@ extends Node2D
 @onready var effect_node = $EffectNode
 @onready var animation_player = $AnimationPlayer
 @onready var death_timer = $DeathTimer
+@onready var card_frame = $CardFrame
+
 @onready var hit_sound = $HitSound
 @onready var death_sound = $DeathSound
-@onready var card_frame = $CardFrame
+@onready var heal_sound = $HealSound
 
 @export var my_name = "null_name"
 @export var max_hp = 1
@@ -37,6 +39,7 @@ extends Node2D
 @export var type1: TypeList.Type
 
 @export var catchable = true
+@onready var is_enemy = false
 
 signal monster_transforms(trans_mon, index)
 
@@ -46,13 +49,24 @@ func _ready():
 	current_speed = speed
 	
 	card_frame.hide()
+	sprite2d.flip_h = false
 	
 	# Setup attacks
 	for x in attack_node.get_child_count():
 		attack_list.append(attack_node.get_child(x))
 
 
+func setup_enemy():
+	sprite2d.flip_h = true
+	is_enemy = true
+
+
 func attack(index, target):
+	if is_enemy:
+		animation_player.play("enemy_attack")
+	else:
+		animation_player.play("player_attack")
+	
 	if attack_list[index] == null:
 		print("attack is null!")
 	else:
@@ -61,12 +75,13 @@ func attack(index, target):
 
 
 func take_damage(damage: int):
-	current_hp -= damage
 	animation_player.play("damage")
 	hit_sound.play()
+	current_hp -= damage
 
 
 func heal_damage(health:int):
+	heal_sound.play()
 	current_hp += health
 	if current_hp > max_hp:
 		current_hp = max_hp
@@ -79,6 +94,7 @@ func die():
 
 
 func catch():
+	is_enemy = false
 	animation_player.play("catch")
 
 

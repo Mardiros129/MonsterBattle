@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3ccrpeska432"]
+[gd_scene load_steps=12 format=3 uid="uid://c3ccrpeska432"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_2bifh"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="3_1s8rs"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d3276ue5ykter" path="res://Assets/type_chart.png" id="4_ujev1"]
 [ext_resource type="Texture2D" uid="uid://cnkle2uwok0xu" path="res://Assets/Backgrounds/dark_forest.png" id="5_skoyj"]
 [ext_resource type="Texture2D" uid="uid://xt3wv43400y4" path="res://Assets/enemy_health_bar.png" id="5_xdxbd"]
+[ext_resource type="AudioStream" uid="uid://peoy0akqoaqi" path="res://Assets/Audio/click.wav" id="8_4uffq"]
 [ext_resource type="AudioStream" uid="uid://cb4qodw1vc2pd" path="res://Assets/Audio/footsteps.mp3" id="10_wlmlo"]
 
 [node name="Main" type="Node2D"]
@@ -230,6 +231,9 @@ visible = false
 position = Vector2(443, 168)
 scale = Vector2(0.336923, 0.336923)
 texture = ExtResource("4_ujev1")
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="UI"]
+stream = ExtResource("8_4uffq")
 
 [node name="PlayerMonLocation" type="Marker2D" parent="."]
 z_index = 5

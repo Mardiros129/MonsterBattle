@@ -29,6 +29,8 @@ extends Control
 
 @onready var player_attack_details = $PlayerAttackDetails
 
+@onready var click_sound = $ClickSound
+
 
 func _ready():
 	inventory.select(0, true)
@@ -40,9 +42,11 @@ func _ready():
 	
 	run_button.text = "Run! (" + str(WorldLoad.run_chance) + "%)"
 
+
 func set_catch_labels(catch_count, catch_chance):
 	catch_count_label.text = "Blank card count: " + str(catch_count)
 	catch_chance_label.text = "Catch chance: " + str(catch_chance * 100) + "%"
+
 
 func set_button_icons(mon_team):
 	if mon_team.size() > 1:
@@ -57,32 +61,40 @@ func set_button_icons(mon_team):
 				switch_buttons.append(sideboard)
 				sideboard.set_button_icon(mon_team[3].get_node("Sprite2D").texture)
 
+
 func set_player_mon_ui(player_mon):
 	player_mon_ui.set_mon_ui(player_mon)
 	set_moves(player_mon)
 
+
 func change_player_hp(player_mon):
 	player_mon_ui.set_mon_hp_ui(player_mon)
+
 
 func set_enemy_mon_ui(enemy_mon):
 	for x in enemy_attack_list.item_count:
 		enemy_attack_list.set_item_text(x, enemy_attack_missing_text)
 	enemy_mon_ui.set_mon_ui(enemy_mon)
 
+
 func change_enemy_hp(enemy_mon):
 	enemy_mon_ui.set_mon_hp_ui(enemy_mon)
+
 
 func get_selected_move():
 	var move = move_list.get_selected_items()[0]
 	return move
+
 
 func update_catch_count(catch_count):
 	catch_count_label.text = "Blank card count: " + str(catch_count)
 	if catch_count <= 0:
 		disable_catch_button()
 
+
 func update_catch_chance():
 	catch_button.text = "Catch (" + str(int(WorldLoad.catch_chance * 100)) + "%)"
+
 
 func disable_ui():
 	attack_button.disabled = true
@@ -91,12 +103,15 @@ func disable_ui():
 	run_button.disabled = true
 	disable_switch_buttons()
 
+
 func disable_catch_button():
 	catch_button.disabled = true
+
 
 func disable_switch_buttons():
 	for x in switch_buttons.size():
 		switch_buttons[x].disabled = true
+
 
 func enable_ui(catch_count):
 	attack_button.disabled = false
@@ -113,9 +128,11 @@ func enable_ui(catch_count):
 		catch_button.disabled = false
 	update_catch_chance()
 
+
 func swap_buttons(player_mon, index):
 	var new_icon = player_mon.get_node("Sprite2D").texture
 	switch_buttons[index].set_button_icon(new_icon)
+
 
 func pop_button():
 	for x in switch_buttons.size() - 1:
@@ -123,6 +140,7 @@ func pop_button():
 	var last_button = switch_buttons.pop_back()
 	last_button.icon = null
 	last_button.disabled = true
+
 
 func set_moves(player_mon):
 	for x in number_of_attacks:
@@ -138,6 +156,7 @@ func set_moves(player_mon):
 	
 	move_list.select(0)
 
+
 func populate_enemy_attacks(attack_name: String) -> void:
 	for x in enemy_attack_list.item_count:
 		if enemy_attack_list.get_item_text(x) == attack_name:
@@ -146,19 +165,25 @@ func populate_enemy_attacks(attack_name: String) -> void:
 			enemy_attack_list.set_item_text(x, attack_name)
 			break
 
+
 func update_log(info: String):
 	combat_log.text = combat_log.text + "\n" + info
 	combat_log.text += "\n" + "---------------------------"
 
+
 func _on_item_button_pressed():
 	var item_choice = inventory.get_selected_items()[0]
 	print(item_choice)
+	click_sound.play()
+
 
 func _on_type_matchup_button_pressed():
+	click_sound.play()
 	if type_matchup_chart.visible:
 		type_matchup_chart.hide()
 	else:
 		type_matchup_chart.show()
+
 
 func _on_player_attack_list_item_selected(index):
 	for n in player_attack_details.get_child_count():

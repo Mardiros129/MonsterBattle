@@ -30,6 +30,7 @@ extends Node2D
 
 @onready var ui = $UI
 @onready var end_button = $UI/EndButton
+@onready var click_sound = $UI/ClickSound
 
 
 func _ready():
@@ -72,6 +73,9 @@ func _ready():
 		enemy_support_mon1 = enemy_mon_loc.get_child(2)
 		enemy_mon_start_lineup.append(enemy_support_mon1)
 		enemy_support_mon1.hide()
+	
+	for x in enemy_mon_start_lineup.size():
+		enemy_mon_start_lineup[x].setup_enemy()
 	
 	# Setup signals
 	var all_monsters = mon_start_lineup + enemy_mon_start_lineup
@@ -280,10 +284,12 @@ func _player_damages_enemy(dmg):
 
 
 func _on_switch_button_0_pressed():
+	click_sound.play()
 	switch(0)
 
 
 func _on_switch_button_1_pressed():
+	click_sound.play()
 	switch(1)
 
 
@@ -292,11 +298,13 @@ func _on_combat_message_received(message: String):
 
 
 func _on_attack_button_pressed():
+	click_sound.play()
 	new_command(ui.get_selected_move(), player_mon, enemy_mon)
 	end_turn()
 
 
 func _on_end_button_pressed():
+	click_sound.play()
  	# Setup party, exclude slain allies, include captured enemy
 	MonsterParty.clear_all()
 	for x in mon_start_lineup.size():
@@ -313,6 +321,7 @@ func _on_end_button_pressed():
 
 
 func _on_run_button_pressed():
+	click_sound.play()
 	var r = RandomNumberGenerator.new().randf_range(0.0, 100.0)
 	if r <= WorldLoad.run_chance:
 		ui.update_log("You got away safely!")

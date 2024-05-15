@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1qsinoh0ju71"]
+[gd_scene load_steps=6 format=3 uid="uid://b1qsinoh0ju71"]
 
 [ext_resource type="Script" path="res://Levels/start_screen.gd" id="1_bpiov"]
 [ext_resource type="Texture2D" uid="uid://cew7bvtkabqec" path="res://Assets/Monsters/rat.png" id="2_b4rro"]
 [ext_resource type="Texture2D" uid="uid://ch7gftktmiygk" path="res://Assets/Monsters/beanstalk.png" id="3_ry7g4"]
 [ext_resource type="Texture2D" uid="uid://r84gwcdjv0ku" path="res://Assets/Monsters/hat_skeleton.png" id="3_y6kr1"]
+[ext_resource type="AudioStream" uid="uid://peoy0akqoaqi" path="res://Assets/Audio/click.wav" id="5_27rc5"]
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource("1_bpiov")
@@ -78,6 +79,9 @@ offset_bottom = 122.0
 theme_override_font_sizes/font_size = 40
 text = "Choose a starter"
 horizontal_alignment = 1
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_27rc5")
 
 [connection signal="pressed" from="StartButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="AnimalStarter" to="." method="_on_animal_starter_pressed"]
