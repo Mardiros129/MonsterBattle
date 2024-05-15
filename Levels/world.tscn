@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c63t0phri8qx8"]
+[gd_scene load_steps=33 format=3 uid="uid://c63t0phri8qx8"]
 
 [ext_resource type="Script" path="res://Levels/world.gd" id="1_3rdto"]
 [ext_resource type="PackedScene" uid="uid://b8idner5etalo" path="res://UI/monster_loadout.tscn" id="2_mlea4"]
@@ -582,6 +582,9 @@ texture = ExtResource("9_fb6hb")
 5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:2/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ag5ht"]
+scenes/1/scene = ExtResource("3_nam0o")
+
 [sub_resource type="TileSet" id="TileSet_qgxs3"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_x0aeo")
@@ -590,6 +593,7 @@ sources/2 = SubResource("TileSetAtlasSource_m7q4p")
 sources/3 = SubResource("TileSetAtlasSource_jdews")
 sources/4 = SubResource("TileSetAtlasSource_8jk4n")
 sources/5 = SubResource("TileSetAtlasSource_yb0iq")
+sources/6 = SubResource("TileSetScenesCollectionSource_ag5ht")
 pattern_0 = SubResource("TileMapPattern_qon1f")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmpxu"]

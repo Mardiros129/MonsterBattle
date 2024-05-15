@@ -5,6 +5,8 @@ extends Node2D
 @onready var resolve_turn_timer = $ResolveTurnTimer
 @onready var player_mon_loc = $PlayerMonLocation
 @onready var enemy_mon_loc = $EnemyMonLocation
+@onready var death_timer = $DeathTimer
+@onready var run_audio = $RunAudio
 
 # Maintain the original order for the whole game
 @onready var mon_start_lineup: Array
@@ -85,10 +87,12 @@ func _ready():
 	ui.set_enemy_mon_ui(enemy_mon)
 	start_turn()
 
+
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().quit()
+
 
 func start_turn():
 	WorldLoad.catch_chance = 1.0 - float(enemy_mon.current_hp) / float(enemy_mon.max_hp)
@@ -99,6 +103,7 @@ func start_turn():
 		ui.disable_catch_button()
 	
 	player_turn = true
+
 
 func end_turn():
 	player_turn = false
@@ -132,13 +137,12 @@ func end_turn():
 				
 				player_mon.gain_exp(1)
 				MonsterPool.pool_size -= 1
-				enemy_mon.queue_free()
 				combat_finished = true
 		
 		elif player_mon.current_hp <= 0:
 			player_mon_dies()
 			
-			if player_mon.current_hp <= 0 && player_support_mon0 == null:
+			if player_mon.current_hp <= 0 and player_support_mon0 == null:
 				combat_finished = true
 				ui.update_log("You lose!")
 				await get_tree().create_timer(command_delay).timeout
@@ -155,9 +159,11 @@ func end_turn():
 		command_queue.clear()
 		start_turn()
 
+
 func end_combat():
 	ui.disable_ui()
 	end_button.show()
+
 
 func switch(button_index):
 	player_mon.hide()
@@ -183,10 +189,11 @@ func switch(button_index):
 		ui.disable_switch_buttons()
 		bonus_turn = true
 
+
 func player_mon_dies():
+	player_mon.die()
 	ui.update_log(player_mon.my_name + " died!")
 	await get_tree().create_timer(command_delay).timeout
-	player_mon.queue_free()
 
 	if player_support_mon0 != null:
 		player_mon = player_support_mon0
@@ -196,13 +203,15 @@ func player_mon_dies():
 		ui.set_player_mon_ui(player_mon)
 		ui.pop_button()
 
+
 func enemy_mon_dies():
+	enemy_mon.die()
 	ui.update_log("Enemy " + enemy_mon.my_name + " died!")
 	await get_tree().create_timer(command_delay).timeout
-	enemy_mon.queue_free()
 
 	if enemy_support_mon0 != null:
 		replace_enemy()
+
 
 func replace_enemy():
 	enemy_mon = enemy_support_mon0
@@ -210,11 +219,13 @@ func replace_enemy():
 	enemy_mon.show()
 	ui.set_enemy_mon_ui(enemy_mon)
 
+
 # To do, implement some AI behavior
 func enemy_chooses_attack():
 	var rng = RandomNumberGenerator.new()
 	var result = rng.randi_range(0, enemy_mon.attack_list.size()-1)
 	new_command(result, enemy_mon, player_mon)
+
 
 func new_command(attack, user, target):
 	var command = preload("res://command.gd").new()
@@ -238,6 +249,7 @@ func new_command(attack, user, target):
 			elif x == command_queue.size()-1:
 				command_queue.append(command)
 
+
 func _on_catch_button_pressed():
 	PlayerInventory.catch_counter -= 1
 	ui.update_catch_count(PlayerInventory.catch_counter)
@@ -246,12 +258,12 @@ func _on_catch_button_pressed():
 	var result = rng.randf()
 	
 	if result <= WorldLoad.catch_chance:
-		ui.update_log("Catch success!")
+		enemy_mon.catch()
+		ui.update_log("Catch successful!")
 		await get_tree().create_timer(command_delay).timeout
 		captured = true
 		MonsterPool.pool_size -= 1
 		
-		enemy_mon.hide()
 		if enemy_support_mon0 != null:
 			replace_enemy()
 			start_turn()
@@ -262,24 +274,30 @@ func _on_catch_button_pressed():
 		await get_tree().create_timer(command_delay).timeout
 		end_turn()
 
+
 func _player_damages_enemy(dmg):
 	enemy_mon.take_damage(dmg)
+
 
 func _on_switch_button_0_pressed():
 	switch(0)
 
+
 func _on_switch_button_1_pressed():
 	switch(1)
 
+
 func _on_combat_message_received(message: String):
 	ui.update_log(message)
+
 
 func _on_attack_button_pressed():
 	new_command(ui.get_selected_move(), player_mon, enemy_mon)
 	end_turn()
 
+
 func _on_end_button_pressed():
-	# Setup party, exclude slain allies, include captured enemy
+ 	# Setup party, exclude slain allies, include captured enemy
 	MonsterParty.clear_all()
 	for x in mon_start_lineup.size():
 		var current_mon = mon_start_lineup[x]
@@ -293,15 +311,18 @@ func _on_end_button_pressed():
 	get_tree().root.add_child(inst, false, 0)
 	queue_free()
 
+
 func _on_run_button_pressed():
 	var r = RandomNumberGenerator.new().randf_range(0.0, 100.0)
 	if r <= WorldLoad.run_chance:
 		ui.update_log("You got away safely!")
+		run_audio.play()
 		WorldLoad.run_chance -= 5.0
 		end_combat()
 	else:
 		ui.update_log("you cannot escape!")
 		end_turn()
+
 
 func _on_reset_pressed():
 		get_tree().reload_current_scene()

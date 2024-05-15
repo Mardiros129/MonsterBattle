@@ -1,5 +1,14 @@
 extends Node2D
 
+@onready var sprite2d = $Sprite2D
+@onready var attack_node = $AttackNode
+@onready var transform_node = $TransformNode
+@onready var effect_node = $EffectNode
+@onready var animation_player = $AnimationPlayer
+@onready var death_timer = $DeathTimer
+@onready var hit_sound = $HitSound
+@onready var death_sound = $DeathSound
+@onready var card_frame = $CardFrame
 
 @export var my_name = "null_name"
 @export var max_hp = 1
@@ -22,11 +31,6 @@ extends Node2D
 @onready var current_hp
 @export var experience = 0 # Doesn't seem to save the number unless it's an export var
 
-@onready var sprite2d = $Sprite2D
-@onready var attack_node = $AttackNode
-@onready var transform_node = $TransformNode
-@onready var effect_node = $EffectNode
-
 @onready var attack_list: Array
 
 @export var type0: TypeList.Type
@@ -41,9 +45,12 @@ func _ready():
 	current_hp = max_hp
 	current_speed = speed
 	
+	card_frame.hide()
+	
 	# Setup attacks
 	for x in attack_node.get_child_count():
 		attack_list.append(attack_node.get_child(x))
+
 
 func attack(index, target):
 	if attack_list[index] == null:
@@ -52,13 +59,28 @@ func attack(index, target):
 		var my_attack = attack_list[index]
 		return my_attack.attack(self, target)
 
+
 func take_damage(damage: int):
 	current_hp -= damage
+	animation_player.play("damage")
+	hit_sound.play()
+
 
 func heal_damage(health:int):
 	current_hp += health
 	if current_hp > max_hp:
 		current_hp = max_hp
+
+
+func die():
+	animation_player.play("die")
+	death_sound.play()
+	death_timer.start()
+
+
+func catch():
+	animation_player.play("catch")
+
 
 func add_effect(effect):
 	var has_this_effect = false
@@ -71,13 +93,20 @@ func add_effect(effect):
 	if !has_this_effect:
 		effect_node.add_child(effect)
 
+
 func activate_all_effects():
 	if effect_node.get_child_count() > 0:
 		for x in effect_node.get_child_count():
 			effect_node.get_child(x).activate_effect()
 
+
+func display_monster():
+	sprite2d.show()
+
+
 func get_sprite():
 	return sprite2d.texture
+
 
 func gain_exp(exp: int):
 	experience += exp
@@ -87,6 +116,7 @@ func gain_exp(exp: int):
 		experience = 0
 		level_up()
 
+
 func level_up():
 	level += 1
 	# Consider moving these later
@@ -94,9 +124,11 @@ func level_up():
 	current_hp += level_hp_bonus
 	speed += level_spd_bonus
 
+
 func transform_monster(trans_mon: PackedScene, index: int):
 	print("oh! it's transforming")
 	emit_signal("monster_transforms", trans_mon, index)
+
 
 func check_transformation(index: int):
 	if transform_node.get_child_count() > 0:
@@ -106,3 +138,7 @@ func check_transformation(index: int):
 				transform_monster(chosen_option.TransMon, index)
 	else:
 		print("no transformations exist")
+
+
+func _on_death_timer_timeout():
+	queue_free()

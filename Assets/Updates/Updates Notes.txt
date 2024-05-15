@@ -5,3 +5,9 @@ Week 3 Goals
 - Menues go l -> r (category vs subcategory)
 - simple audio
 - combine level and type lines
+- add deaths to end screen
+- one-use items
+- auras
+- characters
+- can't interact w/ robot after reload
+- robot isn't removed before a fight
