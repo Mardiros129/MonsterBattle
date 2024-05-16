@@ -35,8 +35,9 @@ func _ready():
 
 func load_enemy_battle(enemy_path):
 	# Save world scene
+	WorldLoad.world = duplicate()
 	WorldLoad.player_position = character.position
-	WorldLoad.removable.clear()
+	WorldLoad.removable.clear() # reset before adding stuff in
 	if removable.get_child_count() > 0:
 		for x in removable.get_child_count():
 			WorldLoad.removable.append(removable.get_child(x).duplicate())

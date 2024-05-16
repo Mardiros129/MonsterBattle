@@ -4,10 +4,27 @@ extends StaticBody2D
 @onready var facing = false
 @onready var nametag = $Nametag
 @onready var dialog_timer = $DialogTimer
+@onready var physics_body = $PhysicsBody
+@onready var collision_shape_2d = $Area2D/CollisionShape2D
+@onready var area_2d = $Area2D
+
+
+func _ready():
+	# Remembers the scene state between fights. Could be improved later.
+	if not visible:
+		physics_body.disabled = true
+		collision_shape_2d.disabled = true
 
 
 func start_interaction():
 	pass
+
+
+# Doesn't delete from the tree, but becomes non-interactible in the game world.
+func delete_me():
+	hide()
+	physics_body.disabled = true
+	collision_shape_2d.disabled = true
 
 
 func _unhandled_input(event):
@@ -22,3 +39,12 @@ func _on_area_2d_area_entered(area):
 func _on_area_2d_area_exited(area):
 	facing = false
 
+
+#
+#func _on_visibility_changed():
+	#if not visible:
+		#physics_body.disabled = true
+		#collision_shape_2d.disabled = true
+	#else:
+		#physics_body.disabled = false
+		#collision_shape_2d.disabled = false

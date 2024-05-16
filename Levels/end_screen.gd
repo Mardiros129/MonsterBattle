@@ -24,7 +24,8 @@ func _ready():
 		party_button[x].icon = temp_monster.get_sprite()
 
 func go_to_world():
-	var inst = load("res://Levels/world.tscn").instantiate()
+	#var inst = load("res://Levels/world.tscn").instantiate()
+	var inst = WorldLoad.world
 	get_tree().root.add_child(inst)
 	queue_free()
 

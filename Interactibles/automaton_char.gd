@@ -23,4 +23,5 @@ func _on_dialog_timer_timeout():
 
 func _on_battery_button_pressed():
 	PlayerInventory.unique_items.erase("Battery")
+	delete_me()
 	start_fight.emit(null, monster_path)

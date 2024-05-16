@@ -7,8 +7,10 @@ extends CharacterBody2D
 @onready var pickup_area = $PickupArea
 @onready var facing_item
 
+
 func _ready():
 	pickup_offset = abs(pickup_area.position.x + pickup_area.position.y)
+
 
 func _physics_process(_delta):
 	# Move the player
@@ -43,6 +45,7 @@ func _physics_process(_delta):
 	velocity = velocity.normalized() * SPEED
 	move_and_slide()
 
+
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
@@ -50,16 +53,17 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_SPACE:
 			pickup_item()
 
+
 func pickup_item():
 	if facing_item != null:
-		print("pick up")
 		facing_item.pickup()
 		facing_item.queue_free()
+
 
 func _on_pickup_area_body_entered(body):
 	if body.is_in_group("Item"):
 		facing_item = body
-		print("facing")
+
 
 func _on_pickup_area_body_exited(body):
 	if body.is_in_group("Item"):

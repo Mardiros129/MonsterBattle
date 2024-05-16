@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://Interactibles/questgiver.gd" id="2_bkxu8"]
 [ext_resource type="Texture2D" uid="uid://ofjxkenpybyi" path="res://Assets/questgiver.png" id="2_e6kbn"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vk80v"]
-radius = 27.0185
+[sub_resource type="CircleShape2D" id="CircleShape2D_dwarm"]
+radius = 27.074
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3niu"]
 size = Vector2(38, 50)
@@ -17,15 +17,14 @@ script = ExtResource("2_bkxu8")
 scale = Vector2(0.203125, 0.203125)
 texture = ExtResource("2_e6kbn")
 
-[node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource("CircleShape2D_vk80v")
+[node name="PhysicsBody" parent="." index="1"]
+shape = SubResource("CircleShape2D_dwarm")
 
 [node name="Nametag" parent="." index="2"]
 offset_left = -69.0
 offset_top = -57.0
 offset_right = 69.0
 offset_bottom = -12.0
-theme_override_font_sizes/font_size = 20
 text = "Mr. Wizard"
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]

@@ -17,7 +17,7 @@ speed = 50
 type0 = 5
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(-18, -90)
+position = Vector2(-5, -92)
 scale = Vector2(0.376953, 0.376953)
 texture = ExtResource("2_y1y26")
 

@@ -11,7 +11,7 @@ position = Vector2(-1.00001, -2.00001)
 scale = Vector2(0.484375, 0.484375)
 texture = ExtResource("2_562ye")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PhysicsBody" type="CollisionShape2D" parent="."]
 
 [node name="Nametag" type="Label" parent="."]
 z_index = 3
