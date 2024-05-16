@@ -7,7 +7,6 @@ extends Node2D
 @onready var enemy_mon_loc = $EnemyMonLocation
 @onready var run_audio = $RunAudio
 
-
 @onready var mon_start_lineup: Array # Maintain the original order for the whole game
 @onready var player_mon: Array # Change the order by their combat role
 # 0 = point, monster in combat
@@ -15,10 +14,10 @@ extends Node2D
 # 2 = second support
 # 3 = standby
 
-@onready var enemy_mon_start_lineup: Array
-@onready var enemy_mon
-@onready var enemy_support_mon0
-@onready var enemy_support_mon1
+@onready var enemy_mon: Array
+# 0 = point, monster in combat
+# 1 = first support
+# 2 = second support
 
 @onready var command_queue: Array
 @export var command_delay = 0.4
@@ -48,23 +47,15 @@ func _ready():
 	player_mon[0].reset_anim()
 	
 	# Setup enemy party
-	enemy_mon = enemy_mon_loc.get_child(0)
-	enemy_mon_start_lineup.append(enemy_mon)
+	for x in enemy_mon_loc.get_child_count():
+		enemy_mon.append(enemy_mon_loc.get_child(x))
+		enemy_mon[x].hide()
+		enemy_mon[x].setup_enemy()
 	
-	if enemy_mon_loc.get_child_count() > 1:
-		enemy_support_mon0 = enemy_mon_loc.get_child(1)
-		enemy_mon_start_lineup.append(enemy_support_mon0)
-		enemy_support_mon0.hide()
-	if enemy_mon_loc.get_child_count() > 2:
-		enemy_support_mon1 = enemy_mon_loc.get_child(2)
-		enemy_mon_start_lineup.append(enemy_support_mon1)
-		enemy_support_mon1.hide()
-	
-	for x in enemy_mon_start_lineup.size():
-		enemy_mon_start_lineup[x].setup_enemy()
+	enemy_mon[0].show()
 	
 	# Setup signals
-	var all_monsters = mon_start_lineup + enemy_mon_start_lineup
+	var all_monsters = mon_start_lineup + enemy_mon
 	for x in all_monsters.size():
 		var chosen_mon_attacks = all_monsters[x].find_child("AttackNode")
 		for y in chosen_mon_attacks.get_child_count():
@@ -74,7 +65,7 @@ func _ready():
 	ui.set_button_icons(mon_start_lineup)
 	ui.set_catch_labels(PlayerInventory.catch_counter, FightData.catch_chance)
 	ui.set_player_mon_ui(player_mon[0])
-	ui.set_enemy_mon_ui(enemy_mon)
+	ui.set_enemy_mon_ui(enemy_mon[0])
 	start_turn()
 
 
@@ -85,12 +76,12 @@ func _unhandled_input(event):
 
 
 func start_turn():
-	FightData.catch_chance = 1.0 - float(enemy_mon.current_hp) / float(enemy_mon.max_hp)
+	FightData.catch_chance = 1.0 - float(enemy_mon[0].current_hp) / float(enemy_mon[0].max_hp)
 	ui.enable_ui()
 	ui.update_catch_chance(FightData.catch_chance)
 	ui.player_mon_ui.update_mon_speed_ui(player_mon[0])
-	ui.enemy_mon_ui.update_mon_speed_ui(enemy_mon)
-	if !enemy_mon.catchable:
+	ui.enemy_mon_ui.update_mon_speed_ui(enemy_mon[0])
+	if !enemy_mon[0].catchable:
 		ui.not_catchable_button()
 	player_turn = true
 
@@ -103,25 +94,25 @@ func end_turn():
 	
 	# Eventually these should be given their own commands
 	player_mon[0].activate_all_statuses()
-	enemy_mon.activate_all_statuses()
+	enemy_mon[0].activate_all_statuses()
 	
 	# Go through everything in the queue one-by-one.
 	for x in command_queue.size():
 		var command = command_queue.pop_front()
 		if command.get_user() == player_mon[0]:
-			player_mon[0].attack(command.attack, enemy_mon)
-		elif command.get_user() == enemy_mon:
-			var attack_name = enemy_mon.attack(command.attack, player_mon[0])
+			player_mon[0].attack(command.attack, enemy_mon[0])
+		elif command.get_user() == enemy_mon[0]:
+			var attack_name = enemy_mon[0].attack(command.attack, player_mon[0])
 			ui.populate_enemy_attacks(attack_name)
 		
 		ui.change_player_hp(player_mon[0])
-		ui.change_enemy_hp(enemy_mon)
+		ui.change_enemy_hp(enemy_mon[0])
 		
-		if enemy_mon.current_hp <= 0:
+		if enemy_mon[0].current_hp <= 0:
 			enemy_mon_dies()
 			
 			# Check if the game ends
-			if enemy_support_mon0 == null:
+			if enemy_mon.size() <= 1:
 				ui.update_log("You won!")
 				await get_tree().create_timer(command_delay).timeout
 				
@@ -173,7 +164,7 @@ func switch(button_index):
 	ui.update_log(player_mon[0].my_name + " swapped in!")
 	await get_tree().create_timer(command_delay).timeout
 	
-	if player_mon[0].current_speed <= enemy_mon.current_speed:
+	if player_mon[0].current_speed <= enemy_mon[0].current_speed:
 		end_turn()
 	else:
 		ui.disable_switch_buttons()
@@ -193,26 +184,24 @@ func player_mon_dies():
 
 
 func enemy_mon_dies():
-	enemy_mon.die()
-	ui.update_log("Enemy " + enemy_mon.my_name + " died!")
+	enemy_mon[0].die()
+	ui.update_log("Enemy " + enemy_mon[0].my_name + " died!")
 	await get_tree().create_timer(command_delay).timeout
 
-	if enemy_support_mon0 != null:
+	if enemy_mon.size() > 1:
 		replace_enemy()
 
 
 func replace_enemy():
-	enemy_mon.hide()
-	enemy_mon = enemy_support_mon0
-	enemy_support_mon0 = enemy_support_mon1
-	enemy_mon.show()
-	ui.set_enemy_mon_ui(enemy_mon)
+	enemy_mon.pop_front()
+	enemy_mon[0].show()
+	ui.set_enemy_mon_ui(enemy_mon[0])
 
 
 # To do, implement some AI behavior
 func enemy_chooses_attack():
-	var result = randi_range(0, enemy_mon.attack_list.size() - 1)
-	new_command(result, enemy_mon, player_mon[0])
+	var result = randi_range(0, enemy_mon[0].attack_list.size() - 1)
+	new_command(result, enemy_mon[0], player_mon[0])
 
 
 func new_command(attack, user, target):
@@ -253,7 +242,7 @@ func _on_catch_button_pressed():
 	
 	var result = randf()
 	if result <= FightData.catch_chance:
-		enemy_mon.catch()
+		enemy_mon[0].catch()
 		ui.update_log("Catch successful!")
 		#await get_tree().create_timer(command_delay).timeout
 		await get_tree().create_timer(1.0).timeout
@@ -261,13 +250,13 @@ func _on_catch_button_pressed():
 		
 		# Add to party
 		if player_mon.size() < 4:
-			enemy_mon_loc.remove_child(enemy_mon)
-			add_monster_to_party(enemy_mon)
+			enemy_mon_loc.remove_child(enemy_mon[0])
+			add_monster_to_party(enemy_mon[0])
 		else:
 			# TODO: send to box
 			pass
 		
-		if enemy_support_mon0 != null:
+		if enemy_mon.size() > 1:
 			replace_enemy()
 			start_turn()
 		else:
@@ -280,7 +269,7 @@ func _on_catch_button_pressed():
 
 
 func _player_damages_enemy(dmg):
-	enemy_mon.take_damage(dmg)
+	enemy_mon[0].take_damage(dmg)
 
 
 func _on_switch_button_0_pressed():
@@ -299,7 +288,7 @@ func _on_combat_message_received(message: String):
 
 func _on_attack_button_pressed():
 	click_sound.play()
-	new_command(ui.get_selected_move(), player_mon[0], enemy_mon)
+	new_command(ui.get_selected_move(), player_mon[0], enemy_mon[0])
 	end_turn()
 
 
@@ -314,7 +303,7 @@ func _on_end_button_pressed():
 	
 	# Load next scene
 	var inst = load("res://Levels/end_screen.tscn").instantiate()
-	get_tree().root.add_child(inst, false, 0)
+	get_tree().root.add_child(inst)
 	queue_free()
 
 

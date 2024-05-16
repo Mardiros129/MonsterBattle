@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx36cwr1tswwq"]
+[gd_scene load_steps=7 format=3 uid="uid://dx36cwr1tswwq"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_taula"]
 [ext_resource type="Texture2D" uid="uid://dviqp6hyyux5t" path="res://Assets/Monsters/mech_boss.png" id="2_8nvev"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cga7gblieijby" path="res://Attacks/accelerate.tscn" id="4_4xhsb"]
 [ext_resource type="PackedScene" uid="uid://ds52mnf1tcx4x" path="res://Attacks/buzzsaw.tscn" id="4_d3hpq"]
 [ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Attacks/shock.tscn" id="5_wqq0a"]
-[ext_resource type="PackedScene" uid="uid://bdshc5heim1gq" path="res://Status/stun_status.tscn" id="6_tasfi"]
 
 [node name="MechBoss" instance=ExtResource("1_taula")]
 my_name = "Deforester"
@@ -15,7 +14,7 @@ strength = 150
 intelligence = 100
 defense = 170
 resistance = 100
-speed = 50
+speed = 20
 level = 5
 level_str_bonus = 10
 level_int_bonus = 10
@@ -40,4 +39,3 @@ type = 4
 [node name="Accelerate" parent="AttackNode" index="2" instance=ExtResource("4_4xhsb")]
 
 [node name="Shock" parent="AttackNode" index="3" instance=ExtResource("5_wqq0a")]
-effect_scene = ExtResource("6_tasfi")

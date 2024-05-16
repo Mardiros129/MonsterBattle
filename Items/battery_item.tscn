@@ -9,6 +9,7 @@ radius = 16.0312
 
 [node name="Battery" instance=ExtResource("1_5tut4")]
 script = ExtResource("2_u75a7")
+item_name = "Battery"
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(0.0072, 0.0072)

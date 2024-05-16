@@ -25,7 +25,7 @@ func _ready():
 			monster_paths.append(monster_options[x])
 
 
-func _process(delta):
+func _process(_delta):
 	if player_in_zone:
 		if prev_player_pos != player_body.position:
 			prev_player_pos = player_body.position
@@ -42,7 +42,7 @@ func _on_body_entered(body):
 	prev_player_pos = player_body.position
 
 
-func _on_body_exited(body):
+func _on_body_exited(_body):
 	player_in_zone = false
 	player_body = null
 	prev_player_pos = null

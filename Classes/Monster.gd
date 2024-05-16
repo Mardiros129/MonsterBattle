@@ -60,8 +60,11 @@ func _ready():
 
 
 func setup_enemy():
-	sprite2d.flip_h = true
 	is_enemy = true
+	
+	sprite2d.flip_h = true
+	sprite2d.position.x *= -1
+	effect_attachment_point.flip_h = true
 	effect_attachment_point.position.x *= -1
 
 
@@ -143,8 +146,8 @@ func attach_effect(effect):
 	effect_attachment_point.add_child(effect)
 
 
-func gain_exp(exp: int):
-	experience += exp
+func gain_exp(acquired_exp: int):
+	experience += acquired_exp
 	
 	# Add more complex experience system later, TODO: use exp_req instead
 	if experience > level && level < level_max:

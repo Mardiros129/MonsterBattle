@@ -1,8 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://c63t0phri8qx8"]
+[gd_scene load_steps=35 format=3 uid="uid://c63t0phri8qx8"]
 
 [ext_resource type="Script" path="res://Levels/world.gd" id="1_3rdto"]
 [ext_resource type="PackedScene" uid="uid://b8idner5etalo" path="res://UI/monster_loadout.tscn" id="2_mlea4"]
-[ext_resource type="PackedScene" uid="uid://cjlcyt08dys50" path="res://Classes/character.tscn" id="2_roevs"]
+[ext_resource type="PackedScene" uid="uid://cjlcyt08dys50" path="res://character.tscn" id="2_roevs"]
 [ext_resource type="Script" path="res://UI/canvas_layer.gd" id="2_ymbtl"]
 [ext_resource type="PackedScene" uid="uid://do35p2s2hvvxf" path="res://monster_area.tscn" id="3_nam0o"]
 [ext_resource type="Texture2D" uid="uid://xguelrgpx4f4" path="res://Assets/Tilesets/Cliffs.png" id="4_mirx7"]
@@ -13,9 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://18tha3oyubq" path="res://Assets/Tilesets/WaterFall Tile SpriteSheet.png" id="9_fb6hb"]
 [ext_resource type="Texture2D" uid="uid://dviqp6hyyux5t" path="res://Assets/Monsters/mech_boss.png" id="11_orbjh"]
 [ext_resource type="PackedScene" uid="uid://csi2asnb6igh7" path="res://Items/card_item.tscn" id="12_n6037"]
-[ext_resource type="Texture2D" uid="uid://ofjxkenpybyi" path="res://Assets/questgiver.png" id="14_4u0ha"]
-[ext_resource type="Texture2D" uid="uid://b8f3x2kcm40oj" path="res://Assets/book.png" id="14_o65ug"]
+[ext_resource type="PackedScene" uid="uid://clsmsu77obbyg" path="res://Interactibles/questgiver.tscn" id="15_pcd5s"]
 [ext_resource type="PackedScene" uid="uid://c63hkynt46arj" path="res://Items/battery_item.tscn" id="16_o3nt1"]
+[ext_resource type="PackedScene" uid="uid://bxamglk65x42r" path="res://Interactibles/automaton_char.tscn" id="16_roh7g"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_qon1f"]
 tile_data = PackedInt32Array(0, 4, 0, 65536, 4, 1, 131072, 4, 2, 196608, 4, 3, 1, 65540, 0, 65537, 65540, 1, 131073, 65540, 2, 196609, 65540, 3, 2, 65540, 0, 65538, 65540, 1, 131074, 65540, 2, 196610, 65540, 3, 3, 131076, 0, 65539, 131076, 1, 131075, 131076, 2, 196611, 131076, 3)
@@ -830,21 +830,18 @@ size = Vector2(124.5, 107.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kddel"]
 size = Vector2(624, 162)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_777co"]
-radius = 133.744
-
 [node name="World" type="Node2D"]
 script = ExtResource("1_3rdto")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("2_ymbtl")
 
-[node name="LoadoutButtons" type="Control" parent="CanvasLayer"]
+[node name="LoadoutButtons" type="Control" parent="HUD"]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="MonsterLoadout0" parent="CanvasLayer/LoadoutButtons" instance=ExtResource("2_mlea4")]
+[node name="MonsterLoadout0" parent="HUD/LoadoutButtons" instance=ExtResource("2_mlea4")]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 26.0
@@ -852,7 +849,7 @@ offset_right = 87.0
 offset_bottom = 83.0
 disabled = true
 
-[node name="MonsterLoadout1" parent="CanvasLayer/LoadoutButtons" instance=ExtResource("2_mlea4")]
+[node name="MonsterLoadout1" parent="HUD/LoadoutButtons" instance=ExtResource("2_mlea4")]
 layout_mode = 0
 offset_left = 98.0
 offset_top = 26.0
@@ -860,7 +857,7 @@ offset_right = 155.0
 offset_bottom = 83.0
 disabled = true
 
-[node name="MonsterLoadout2" parent="CanvasLayer/LoadoutButtons" instance=ExtResource("2_mlea4")]
+[node name="MonsterLoadout2" parent="HUD/LoadoutButtons" instance=ExtResource("2_mlea4")]
 layout_mode = 0
 offset_left = 166.0
 offset_top = 26.0
@@ -868,7 +865,7 @@ offset_right = 223.0
 offset_bottom = 83.0
 disabled = true
 
-[node name="MonsterLoadout3" parent="CanvasLayer/LoadoutButtons" instance=ExtResource("2_mlea4")]
+[node name="MonsterLoadout3" parent="HUD/LoadoutButtons" instance=ExtResource("2_mlea4")]
 layout_mode = 0
 offset_left = 233.0
 offset_top = 26.0
@@ -876,7 +873,7 @@ offset_right = 290.0
 offset_bottom = 83.0
 disabled = true
 
-[node name="RemainingCounter" type="Label" parent="CanvasLayer"]
+[node name="RemainingCounter" type="Label" parent="HUD"]
 offset_left = 579.0
 offset_top = 14.0
 offset_right = 1141.0
@@ -885,7 +882,7 @@ theme_override_font_sizes/font_size = 50
 text = "X Monsters Remain"
 horizontal_alignment = 2
 
-[node name="Swap" type="Label" parent="CanvasLayer"]
+[node name="Swap" type="Label" parent="HUD"]
 visible = false
 offset_left = 143.0
 offset_top = 1.0
@@ -911,7 +908,7 @@ position = Vector2(853, 127)
 position_smoothing_enabled = true
 
 [node name="Character" parent="." instance=ExtResource("2_roevs")]
-z_index = 5
+z_index = 1
 position = Vector2(853, 127)
 SPEED = 300.0
 
@@ -919,121 +916,13 @@ SPEED = 300.0
 remote_path = NodePath("../../Camera2D")
 metadata/_edit_lock_ = true
 
-[node name="Removable" type="Node2D" parent="."]
-
-[node name="Card" parent="Removable" instance=ExtResource("12_n6037")]
-position = Vector2(1093, 447)
-
-[node name="Hint2" type="Label" parent="Removable/Card"]
-offset_left = -60.0
-offset_top = -47.0
-offset_right = 66.0
-offset_bottom = -24.0
-text = "Space to pick up"
-
-[node name="MonsterArea0" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(-291, 21)
-
-[node name="CollisionShape2D" parent="MonsterArea0" index="0"]
-position = Vector2(34.25, 38.5)
-shape = SubResource("RectangleShape2D_dmpxu")
-
-[node name="MonsterArea1" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(-36, 276)
-
-[node name="CollisionShape2D" parent="MonsterArea1" index="0"]
-position = Vector2(70, -20)
-shape = SubResource("RectangleShape2D_qrxbq")
-
-[node name="MonsterArea2" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(352, -33)
-
-[node name="CollisionShape2D" parent="MonsterArea2" index="0"]
-position = Vector2(36, 25.5)
-shape = SubResource("RectangleShape2D_8qylf")
-
-[node name="MonsterArea4" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(313, 445)
-
-[node name="CollisionShape2D" parent="MonsterArea4" index="0"]
-position = Vector2(41, 127.5)
-shape = SubResource("RectangleShape2D_8ahdt")
-
-[node name="MonsterArea5" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(1013, 782)
-
-[node name="CollisionShape2D" parent="MonsterArea5" index="0"]
-position = Vector2(52, 122.5)
-shape = SubResource("RectangleShape2D_aokl6")
-
-[node name="MonsterArea6" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(1181, 320)
-
-[node name="CollisionShape2D" parent="MonsterArea6" index="0"]
-position = Vector2(44, 112.5)
-shape = SubResource("RectangleShape2D_imaxw")
-
-[node name="MonsterArea7" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(973, -108)
-monster_options = Array[String](["res://Monsters/pillico.tscn"])
-
-[node name="CollisionShape2D" parent="MonsterArea7" index="0"]
-position = Vector2(57.5, 136)
-shape = SubResource("RectangleShape2D_vov46")
-
-[node name="BossTestArea" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(24, -360)
-monster_options = Array[String](["res://Monsters/tree.tscn", "res://Monsters/tree.tscn", "res://Monsters/mech_boss.tscn"])
-encounter_chance = 1.0
-check_monster_pool = false
-encounter_size = 3
-boss_fight = true
-
-[node name="CollisionShape2D" parent="BossTestArea" index="0"]
-position = Vector2(43.75, 40.25)
-shape = SubResource("RectangleShape2D_v1ano")
-
-[node name="RandomTestArea" parent="." instance=ExtResource("3_nam0o")]
-visible = false
-position = Vector2(-142, -95)
-monster_options = Array[String](["res://Monsters/fireball.tscn", "res://Monsters/onion.tscn", "res://Monsters/robot_dog.tscn"])
-
-[node name="MonsterArea" parent="." instance=ExtResource("3_nam0o")]
-position = Vector2(-529, 962)
-
-[node name="CollisionShape2D" parent="MonsterArea" index="0"]
-position = Vector2(210, 59)
-shape = SubResource("RectangleShape2D_kddel")
-
-[node name="Questgiver" type="StaticBody2D" parent="."]
-position = Vector2(754, 155)
-scale = Vector2(0.166016, 0.166016)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Questgiver"]
-shape = SubResource("CircleShape2D_777co")
-
-[node name="Questgiver" type="Sprite2D" parent="Questgiver"]
-texture = ExtResource("14_4u0ha")
-
-[node name="Label" type="Label" parent="Questgiver"]
-offset_left = -403.576
-offset_top = -271.058
-offset_right = 411.424
-offset_bottom = -147.058
-theme_override_font_sizes/font_size = 90
-text = "Kill the Deforester!"
-
-[node name="Book" type="Sprite2D" parent="Questgiver"]
-position = Vector2(102.4, 54.2117)
-scale = Vector2(0.113746, 0.113746)
-texture = ExtResource("14_o65ug")
-
 [node name="MechBoss" type="Sprite2D" parent="."]
 position = Vector2(65, -366)
 scale = Vector2(0.29538, 0.29538)
 texture = ExtResource("11_orbjh")
 
 [node name="Hint1" type="Label" parent="."]
+z_index = 2
 offset_left = -24.0
 offset_top = -92.0
 offset_right = 151.0
@@ -1042,30 +931,129 @@ theme_override_font_sizes/font_size = 23
 text = "^ ^ ^ ^ ^ ^ ^ ^ ^ ^
 Deforester here"
 
-[node name="Battery" parent="." instance=ExtResource("16_o3nt1")]
-position = Vector2(-666, 1020)
+[node name="MonsterAreas" type="Node2D" parent="."]
 
-[connection signal="pressed" from="CanvasLayer/LoadoutButtons/MonsterLoadout0" to="CanvasLayer" method="_on_monster_loadout_0_pressed"]
-[connection signal="pressed" from="CanvasLayer/LoadoutButtons/MonsterLoadout1" to="CanvasLayer" method="_on_monster_loadout_1_pressed"]
-[connection signal="pressed" from="CanvasLayer/LoadoutButtons/MonsterLoadout2" to="CanvasLayer" method="_on_monster_loadout_2_pressed"]
-[connection signal="pressed" from="CanvasLayer/LoadoutButtons/MonsterLoadout3" to="CanvasLayer" method="_on_monster_loadout_3_pressed"]
-[connection signal="body_entered_return_path" from="MonsterArea0" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="MonsterArea1" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="MonsterArea2" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="MonsterArea4" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="MonsterArea5" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="MonsterArea6" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="MonsterArea7" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="BossTestArea" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="RandomTestArea" to="." method="_on_monster_area_body_entered_return_path"]
-[connection signal="body_entered_return_path" from="MonsterArea" to="." method="_on_monster_area_body_entered_return_path"]
+[node name="MonsterArea0" parent="MonsterAreas" instance=ExtResource("3_nam0o")]
+position = Vector2(-291, 21)
 
-[editable path="MonsterArea0"]
-[editable path="MonsterArea1"]
-[editable path="MonsterArea2"]
-[editable path="MonsterArea4"]
-[editable path="MonsterArea5"]
-[editable path="MonsterArea6"]
-[editable path="MonsterArea7"]
-[editable path="BossTestArea"]
-[editable path="MonsterArea"]
+[node name="CollisionShape2D" parent="MonsterAreas/MonsterArea0" index="0"]
+position = Vector2(34.25, 38.5)
+shape = SubResource("RectangleShape2D_dmpxu")
+
+[node name="MonsterArea1" parent="MonsterAreas" instance=ExtResource("3_nam0o")]
+position = Vector2(-36, 276)
+
+[node name="CollisionShape2D" parent="MonsterAreas/MonsterArea1" index="0"]
+position = Vector2(70, -20)
+shape = SubResource("RectangleShape2D_qrxbq")
+
+[node name="MonsterArea2" parent="MonsterAreas" instance=ExtResource("3_nam0o")]
+position = Vector2(352, -33)
+
+[node name="CollisionShape2D" parent="MonsterAreas/MonsterArea2" index="0"]
+position = Vector2(36, 25.5)
+shape = SubResource("RectangleShape2D_8qylf")
+
+[node name="MonsterArea4" parent="MonsterAreas" instance=ExtResource("3_nam0o")]
+position = Vector2(313, 445)
+
+[node name="CollisionShape2D" parent="MonsterAreas/MonsterArea4" index="0"]
+position = Vector2(41, 127.5)
+shape = SubResource("RectangleShape2D_8ahdt")
+
+[node name="MonsterArea5" parent="MonsterAreas" instance=ExtResource("3_nam0o")]
+position = Vector2(1013, 782)
+
+[node name="CollisionShape2D" parent="MonsterAreas/MonsterArea5" index="0"]
+position = Vector2(52, 122.5)
+shape = SubResource("RectangleShape2D_aokl6")
+
+[node name="MonsterArea6" parent="MonsterAreas" instance=ExtResource("3_nam0o")]
+position = Vector2(1181, 320)
+
+[node name="CollisionShape2D" parent="MonsterAreas/MonsterArea6" index="0"]
+position = Vector2(44, 112.5)
+shape = SubResource("RectangleShape2D_imaxw")
+
+[node name="MonsterArea7" parent="MonsterAreas" instance=ExtResource("3_nam0o")]
+position = Vector2(973, -108)
+monster_options = Array[String](["res://Monsters/pillico.tscn"])
+
+[node name="CollisionShape2D" parent="MonsterAreas/MonsterArea7" index="0"]
+position = Vector2(57.5, 136)
+shape = SubResource("RectangleShape2D_vov46")
+
+[node name="BossTestArea" parent="MonsterAreas" instance=ExtResource("3_nam0o")]
+position = Vector2(24, -360)
+monster_options = Array[String](["res://Monsters/tree.tscn", "res://Monsters/tree.tscn", "res://Monsters/mech_boss.tscn"])
+encounter_chance = 1.0
+check_monster_pool = false
+encounter_size = 3
+boss_fight = true
+
+[node name="CollisionShape2D" parent="MonsterAreas/BossTestArea" index="0"]
+position = Vector2(43.75, 40.25)
+shape = SubResource("RectangleShape2D_v1ano")
+
+[node name="MonsterArea" parent="MonsterAreas" instance=ExtResource("3_nam0o")]
+position = Vector2(-529, 962)
+
+[node name="CollisionShape2D" parent="MonsterAreas/MonsterArea" index="0"]
+position = Vector2(210, 59)
+shape = SubResource("RectangleShape2D_kddel")
+
+[node name="Removable" type="Node2D" parent="."]
+
+[node name="Battery" parent="Removable" instance=ExtResource("16_o3nt1")]
+position = Vector2(-672, 1006)
+
+[node name="Card" parent="Removable" instance=ExtResource("12_n6037")]
+position = Vector2(1093, 447)
+
+[node name="Hint2" type="Label" parent="Removable/Card"]
+z_index = 2
+offset_left = -60.0
+offset_top = -47.0
+offset_right = 66.0
+offset_bottom = -24.0
+text = "Space to pick up"
+
+[node name="Battery2" parent="Removable" instance=ExtResource("16_o3nt1")]
+position = Vector2(988, 274)
+
+[node name="Battery3" parent="Removable" instance=ExtResource("16_o3nt1")]
+position = Vector2(1015, 319)
+
+[node name="Battery4" parent="Removable" instance=ExtResource("16_o3nt1")]
+position = Vector2(1054, 273)
+
+[node name="Questgiver" parent="." instance=ExtResource("15_pcd5s")]
+position = Vector2(760, 177)
+
+[node name="Automaton" parent="." instance=ExtResource("16_roh7g")]
+position = Vector2(929, 389)
+
+[connection signal="pressed" from="HUD/LoadoutButtons/MonsterLoadout0" to="HUD" method="_on_monster_loadout_0_pressed"]
+[connection signal="pressed" from="HUD/LoadoutButtons/MonsterLoadout1" to="HUD" method="_on_monster_loadout_1_pressed"]
+[connection signal="pressed" from="HUD/LoadoutButtons/MonsterLoadout2" to="HUD" method="_on_monster_loadout_2_pressed"]
+[connection signal="pressed" from="HUD/LoadoutButtons/MonsterLoadout3" to="HUD" method="_on_monster_loadout_3_pressed"]
+[connection signal="body_entered_return_path" from="MonsterAreas/MonsterArea0" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterAreas/MonsterArea1" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterAreas/MonsterArea2" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterAreas/MonsterArea4" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterAreas/MonsterArea5" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterAreas/MonsterArea6" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterAreas/MonsterArea7" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterAreas/BossTestArea" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="body_entered_return_path" from="MonsterAreas/MonsterArea" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="start_fight" from="Automaton" to="." method="_on_monster_area_body_entered_return_path"]
+
+[editable path="MonsterAreas/MonsterArea0"]
+[editable path="MonsterAreas/MonsterArea1"]
+[editable path="MonsterAreas/MonsterArea2"]
+[editable path="MonsterAreas/MonsterArea4"]
+[editable path="MonsterAreas/MonsterArea5"]
+[editable path="MonsterAreas/MonsterArea6"]
+[editable path="MonsterAreas/MonsterArea7"]
+[editable path="MonsterAreas/BossTestArea"]
+[editable path="MonsterAreas/MonsterArea"]

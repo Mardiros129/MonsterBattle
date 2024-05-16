@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://clsmsu77obbyg"]
+
+[ext_resource type="PackedScene" uid="uid://1ldmxdymmuo0" path="res://Classes/interactible.tscn" id="1_2e1ak"]
+[ext_resource type="Script" path="res://Interactibles/questgiver.gd" id="2_bkxu8"]
+[ext_resource type="Texture2D" uid="uid://ofjxkenpybyi" path="res://Assets/questgiver.png" id="2_e6kbn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vk80v"]
+radius = 27.0185
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3niu"]
+size = Vector2(38, 50)
+
+[node name="Questgiver" instance=ExtResource("1_2e1ak")]
+script = ExtResource("2_bkxu8")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.203125, 0.203125)
+texture = ExtResource("2_e6kbn")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_vk80v")
+
+[node name="Nametag" parent="." index="2"]
+offset_left = -69.0
+offset_top = -57.0
+offset_right = 69.0
+offset_bottom = -12.0
+theme_override_font_sizes/font_size = 20
+text = "Mr. Wizard"
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(2, -3.8147e-06)
+shape = SubResource("RectangleShape2D_i3niu")
+
+[node name="Dialog" type="Label" parent="." index="5"]
+visible = false
+z_index = 2
+offset_left = -73.0
+offset_top = 34.0
+offset_right = 72.0
+offset_bottom = 73.0
+text = "Kill the Deforester!"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="DialogTimer" to="." method="_on_dialog_timer_timeout"]

@@ -610,7 +610,7 @@ stream = ExtResource("4_m2doq")
 [node name="HealSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_scctt")
 
-[node name="EffectAttachmentPoint" type="Marker2D" parent="."]
+[node name="EffectAttachmentPoint" type="Sprite2D" parent="."]
 z_index = 5
 position = Vector2(0, -100)
 

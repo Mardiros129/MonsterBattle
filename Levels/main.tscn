@@ -14,7 +14,7 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bifh")
-command_delay = 0.7
+command_delay = 0.8
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

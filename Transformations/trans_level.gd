@@ -11,4 +11,3 @@ func check_can_transform() -> bool:
 	else:
 		print("cannot transform")
 		return false
-	return false

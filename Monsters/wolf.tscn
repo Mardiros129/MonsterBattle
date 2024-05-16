@@ -17,7 +17,7 @@ speed = 100
 type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(-10, -82)
+position = Vector2(-16, -83)
 scale = Vector2(0.472059, 0.472059)
 texture = ExtResource("2_1e62i")
 
@@ -29,4 +29,4 @@ effect = null
 [node name="Accelerate" parent="AttackNode" index="2" instance=ExtResource("5_6ocq4")]
 
 [node name="EffectAttachmentPoint" parent="." index="10"]
-position = Vector2(47, -100)
+position = Vector2(-2, -84)

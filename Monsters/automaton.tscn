@@ -9,15 +9,15 @@
 [node name="Automaton" instance=ExtResource("1_y6vsv")]
 my_name = "Automaton"
 max_hp = 150
-strength = 12
-intelligence = 8
-defense = 12
-resistance = 10
-speed = 5
+strength = 120
+intelligence = 80
+defense = 120
+resistance = 100
+speed = 50
 type0 = 5
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(17, -86)
+position = Vector2(-18, -90)
 scale = Vector2(0.376953, 0.376953)
 texture = ExtResource("2_y1y26")
 

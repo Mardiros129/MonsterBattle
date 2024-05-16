@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://1ldmxdymmuo0"]
+
+[ext_resource type="Script" path="res://Classes/interactible.gd" id="1_flrtm"]
+[ext_resource type="Texture2D" uid="uid://cawikr2kgfvpd" path="res://icon.svg" id="2_562ye"]
+
+[node name="Interactible" type="StaticBody2D"]
+script = ExtResource("1_flrtm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.00001, -2.00001)
+scale = Vector2(0.484375, 0.484375)
+texture = ExtResource("2_562ye")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Nametag" type="Label" parent="."]
+z_index = 3
+offset_left = -70.0
+offset_top = -76.0
+offset_right = 68.0
+offset_bottom = -31.0
+theme_override_font_sizes/font_size = 20
+text = "nametag"
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[node name="DialogTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

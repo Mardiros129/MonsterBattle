@@ -2,10 +2,10 @@ extends Node2D
 
 
 @onready var character = $Character
-@onready var canvas_layer = $CanvasLayer
+@onready var hud = $HUD
+@onready var remaining_counter = $HUD/RemainingCounter
+@onready var loadout_buttons = $HUD/LoadoutButtons
 @onready var removable = $Removable
-@onready var remaining_counter = $CanvasLayer/RemainingCounter
-@onready var loadout_buttons = $CanvasLayer/LoadoutButtons
 
 
 func _ready():
@@ -29,7 +29,7 @@ func _ready():
 		loadout_buttons.get_child(x).setup_monster_loadout(temp_monster, x)
 		loadout_buttons.get_child(x).disabled = false
 	
-	canvas_layer.show()
+	hud.show()
 	remaining_counter.text = str(MonsterPool.pool_size) + " Monsters Remain"
 
 
@@ -51,7 +51,7 @@ func load_enemy_battle(enemy_path):
 	
 	FightData.catch_chance = 0.0 # Can't catch at full HP; could change later
 	
-	get_tree().root.add_child(battle_inst, false, 0)
+	get_tree().root.add_child(battle_inst)
 	queue_free()
 
 
@@ -61,10 +61,7 @@ func _unhandled_input(event):
 			get_tree().quit()
 
 
-func _on_monster_area_body_entered_return_path(body, path):
+# Consider renaming to something like "fight triggered"
+func _on_monster_area_body_entered_return_path(_body, path):
 	if path[0] != "":
 		load_enemy_battle(path)
-
-
-func _on_robot_start_fight(path):
-	load_enemy_battle(path)

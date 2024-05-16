@@ -2,18 +2,18 @@ extends Button
 
 
 @onready var level = $Level
-@onready var exp = $Exp
+@onready var total_exp = $Exp
 @onready var health_bar = $HealthBar
 
 func setup_monster_loadout(monster, index):
 	icon =  monster.get_sprite()
 	level.text = "Lv " + str(monster.level)
-	exp.text = str(monster.experience) + "/" + str(monster.level + 1)
+	total_exp.text = str(monster.experience) + "/" + str(monster.level + 1)
 	
 	if MonsterParty.party_hp.size() > 0:
 		health_bar.max_value = monster.max_hp
 		health_bar.value = MonsterParty.party_hp[index]
 	
 	level.show()
-	exp.show()
+	total_exp.show()
 	health_bar.show()
