@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://ba30u7wpk7i4j" path="res://transformation.tscn" id="6_qsbjm"]
 [ext_resource type="Script" path="res://Transformations/trans_level.gd" id="7_eo57h"]
 
-[node name="Rat" instance=ExtResource("1_gqr5r")]
-my_name = "Rat"
+[node name="Prouse" instance=ExtResource("1_gqr5r")]
+my_name = "Prouse"
 max_hp = 100
 strength = 110
 intelligence = 100

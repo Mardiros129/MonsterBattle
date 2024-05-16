@@ -10,8 +10,8 @@
 [ext_resource type="Script" path="res://Transformations/trans_level.gd" id="8_a3q5f"]
 [ext_resource type="PackedScene" uid="uid://chbglxlye8rl3" path="res://Monsters/cyber_stalk.tscn" id="9_5q2ee"]
 
-[node name="Sprout" instance=ExtResource("1_eagvv")]
-my_name = "Sprout"
+[node name="Stalker" instance=ExtResource("1_eagvv")]
+my_name = "Stalker"
 max_hp = 120
 strength = 100
 intelligence = 120

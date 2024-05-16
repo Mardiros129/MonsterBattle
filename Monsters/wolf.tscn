@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://csryv4ttm66n2"]
+
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_n6eyo"]
+[ext_resource type="Texture2D" uid="uid://m1cbhhlahgec" path="res://Assets/Monsters/wolf.png" id="2_1e62i"]
+[ext_resource type="PackedScene" uid="uid://cqwc0jq2ra0ol" path="res://Attacks/bite.tscn" id="3_rpy5q"]
+[ext_resource type="PackedScene" uid="uid://d3vy67qjj0dvx" path="res://Attacks/infected_tooth.tscn" id="4_v8s3i"]
+[ext_resource type="PackedScene" uid="uid://cga7gblieijby" path="res://Attacks/accelerate.tscn" id="5_6ocq4"]
+
+[node name="Wolf" instance=ExtResource("1_n6eyo")]
+my_name = "Wolf"
+max_hp = 80
+strength = 120
+intelligence = 80
+defense = 80
+resistance = 70
+speed = 100
+type0 = 1
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-10, -82)
+scale = Vector2(0.472059, 0.472059)
+texture = ExtResource("2_1e62i")
+
+[node name="Bite" parent="AttackNode" index="0" instance=ExtResource("3_rpy5q")]
+
+[node name="InfectedTooth" parent="AttackNode" index="1" instance=ExtResource("4_v8s3i")]
+
+[node name="Accelerate" parent="AttackNode" index="2" instance=ExtResource("5_6ocq4")]
