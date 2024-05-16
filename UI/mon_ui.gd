@@ -4,7 +4,6 @@ extends Control
 @onready var my_name = $MyName
 @onready var level_types = $LevelTypes
 @onready var hp = $HP
-@onready var types = $Types
 @onready var speed = $Speed
 @onready var hp_bar = $HPBar
 
@@ -13,9 +12,9 @@ func set_mon_ui(monster):
 	my_name.text = monster.my_name
 	level_types.text = "Level " + str(monster.level) + " "
 	set_mon_hp_ui(monster)
-	level_types.text += TypeList.TypeName[monster.type0]
-	if TypeList.TypeName[monster.type1] != "":
-		level_types.text += "/" + TypeList.TypeName[monster.type1]
+	level_types.text += CombatRules.TypeName[monster.type0]
+	if CombatRules.TypeName[monster.type1] != "":
+		level_types.text += "/" + CombatRules.TypeName[monster.type1]
 	update_mon_speed_ui(monster)
 
 

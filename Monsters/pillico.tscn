@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://dq47p4t6jot3n"]
 
-[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_6rq2u"]
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_6rq2u"]
 [ext_resource type="Texture2D" uid="uid://d13rft2rt8wp1" path="res://Assets/Monsters/pillico.png" id="2_a3qku"]
 [ext_resource type="PackedScene" uid="uid://bbjk2onm5epln" path="res://Attacks/do_nothing.tscn" id="3_ct5hx"]
 [ext_resource type="PackedScene" uid="uid://cqwc0jq2ra0ol" path="res://Attacks/bite.tscn" id="4_r4f81"]
-[ext_resource type="PackedScene" uid="uid://ba30u7wpk7i4j" path="res://transformation.tscn" id="4_u0ke1"]
+[ext_resource type="PackedScene" uid="uid://ba30u7wpk7i4j" path="res://Classes/transformation.tscn" id="4_u0ke1"]
 [ext_resource type="Script" path="res://Transformations/trans_level.gd" id="5_7fluk"]
 [ext_resource type="Script" path="res://Transformations/trans_death.gd" id="5_udxo5"]
 [ext_resource type="PackedScene" uid="uid://6v0toik2fswu" path="res://Monsters/bed_tiger.tscn" id="6_bagpe"]
@@ -42,3 +42,6 @@ TransMon = ExtResource("6_idprd")
 script = ExtResource("5_7fluk")
 level_req = 5
 TransMon = ExtResource("6_bagpe")
+
+[node name="EffectAttachmentPoint" parent="." index="10"]
+position = Vector2(39, -65)

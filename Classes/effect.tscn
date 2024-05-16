@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://wi7ms2flgs58"]
+
+[ext_resource type="Script" path="res://Classes/effect.gd" id="1_bby87"]
+
+[node name="Effect" type="Node2D"]
+scale = Vector2(0.496516, 0.496516)
+script = ExtResource("1_bby87")

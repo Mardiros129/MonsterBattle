@@ -17,7 +17,7 @@ config/icon="res://Assets/Monsters/pillico.png"
 
 [autoload]
 
-TypeList="*res://Globals/type_list.gd"
+CombatRules="*res://Globals/combat_rules.gd"
 MonsterParty="*res://Globals/monster_party.gd"
 PlayerInventory="*res://Globals/player_inventory.gd"
 WorldLoad="*res://Globals/world_load.gd"

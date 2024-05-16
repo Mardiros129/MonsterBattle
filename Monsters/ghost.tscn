@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://3jwh6menokll"]
 
-[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_sgb6o"]
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_sgb6o"]
 [ext_resource type="Texture2D" uid="uid://wdsnd6airj16" path="res://Assets/Monsters/ghost.png" id="2_xb1id"]
 [ext_resource type="PackedScene" uid="uid://lcn0eh76ixit" path="res://Attacks/death_note.tscn" id="3_8o25a"]
 [ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Attacks/poison_gas.tscn" id="4_imoox"]
@@ -29,3 +29,6 @@ texture = ExtResource("2_xb1id")
 [node name="PoisonGas" parent="AttackNode" index="0" instance=ExtResource("4_imoox")]
 
 [node name="DeathNote" parent="AttackNode" index="1" instance=ExtResource("3_8o25a")]
+
+[node name="EffectAttachmentPoint" parent="." index="10"]
+position = Vector2(0, -104)

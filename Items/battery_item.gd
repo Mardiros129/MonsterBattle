@@ -1,4 +1,4 @@
-extends "res://item.gd"
+extends "res://classes/item.gd"
 
 
 func pickup():

@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://bbjk2onm5epln"]
 
-[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://attack.tscn" id="1_qrk8b"]
+[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/attack.tscn" id="1_qrk8b"]
+
 
 [node name="DoNothing" instance=ExtResource("1_qrk8b")]
 attack_name = "Do Nothing"

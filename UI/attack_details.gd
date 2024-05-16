@@ -15,7 +15,7 @@ func set_attack_details(attack):
 	my_healing = attack.healing
 	my_description = attack.description
 	
-	attack_type_label.text = TypeList.TypeName[my_type] + " type"
+	attack_type_label.text = CombatRules.TypeName[my_type] + " type"
 	
 	attack_damage_label.text = ""
 	if my_damage > 0:

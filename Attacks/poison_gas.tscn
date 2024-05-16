@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://ggpd7iycl6vu"]
 
-[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://attack.tscn" id="1_lj06q"]
-[ext_resource type="PackedScene" uid="uid://bb4nqfosnqsv2" path="res://Effects/poison_effect.tscn" id="2_l2onw"]
+[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/attack.tscn" id="1_lj06q"]
+[ext_resource type="PackedScene" uid="uid://bb4nqfosnqsv2" path="res://Status/poison_status.tscn" id="2_l2onw"]
+
 
 [node name="PoisonGas" instance=ExtResource("1_lj06q")]
 attack_name = "Poison Gas"

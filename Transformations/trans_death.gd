@@ -1,4 +1,4 @@
-extends "res://transformation.gd"
+extends "res://classes/transformation.gd"
 
 
 # Called when the node enters the scene tree for the first time.

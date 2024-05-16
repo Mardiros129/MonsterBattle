@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Levels/world.gd" id="1_3rdto"]
 [ext_resource type="PackedScene" uid="uid://b8idner5etalo" path="res://UI/monster_loadout.tscn" id="2_mlea4"]
-[ext_resource type="PackedScene" uid="uid://cjlcyt08dys50" path="res://character.tscn" id="2_roevs"]
+[ext_resource type="PackedScene" uid="uid://cjlcyt08dys50" path="res://Classes/character.tscn" id="2_roevs"]
 [ext_resource type="Script" path="res://UI/canvas_layer.gd" id="2_ymbtl"]
 [ext_resource type="PackedScene" uid="uid://do35p2s2hvvxf" path="res://monster_area.tscn" id="3_nam0o"]
 [ext_resource type="Texture2D" uid="uid://xguelrgpx4f4" path="res://Assets/Tilesets/Cliffs.png" id="4_mirx7"]

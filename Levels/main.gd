@@ -10,6 +10,10 @@ extends Node2D
 
 @onready var mon_start_lineup: Array # Maintain the original order for the whole game
 @onready var player_mon: Array # Change the order by their combat role
+# 0 = point, monster in combat
+# 1 = first support
+# 2 = second support
+# 3 = standby
 
 @onready var enemy_mon_start_lineup: Array
 @onready var enemy_mon
@@ -98,8 +102,8 @@ func end_turn():
 	enemy_chooses_attack()
 	
 	# Eventually these should be given their own commands
-	player_mon[0].activate_all_effects()
-	enemy_mon.activate_all_effects()
+	player_mon[0].activate_all_statuses()
+	enemy_mon.activate_all_statuses()
 	
 	# Go through everything in the queue one-by-one.
 	for x in command_queue.size():
@@ -181,7 +185,7 @@ func player_mon_dies():
 	ui.update_log(player_mon[0].my_name + " died!")
 	await get_tree().create_timer(command_delay).timeout
 
-	if player_mon[1] != null:
+	if player_mon.size() > 1:
 		player_mon.pop_front()
 		player_mon[0].show()
 		ui.set_player_mon_ui(player_mon[0])

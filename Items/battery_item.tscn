@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c63hkynt46arj"]
 
-[ext_resource type="PackedScene" uid="uid://cphc1futbkl7m" path="res://item.tscn" id="1_5tut4"]
+[ext_resource type="PackedScene" uid="uid://cphc1futbkl7m" path="res://Classes/item.tscn" id="1_5tut4"]
 [ext_resource type="Texture2D" uid="uid://b3tkdv8v5fbtq" path="res://Assets/battery.png" id="2_ikrwv"]
 [ext_resource type="Script" path="res://Items/battery_item.gd" id="2_u75a7"]
 

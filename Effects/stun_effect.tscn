@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdshc5heim1gq"]
-
-[ext_resource type="Script" path="res://Effects/stun_effect.gd" id="1_xsa3f"]
-
-[node name="StunEffect" type="Node2D"]
-script = ExtResource("1_xsa3f")
-effect_name = "Stun"

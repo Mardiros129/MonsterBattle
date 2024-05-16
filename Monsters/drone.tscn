@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bw272sfmtuh2o"]
 
-[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_qj5ow"]
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_qj5ow"]
 [ext_resource type="Texture2D" uid="uid://dmgw2uyvtitdf" path="res://Assets/Monsters/drone.png" id="2_xy3tk"]
 [ext_resource type="PackedScene" uid="uid://cga7gblieijby" path="res://Attacks/accelerate.tscn" id="3_fqcdp"]
 [ext_resource type="PackedScene" uid="uid://ce8o78n3t2ouh" path="res://Attacks/laser.tscn" id="4_qhi4n"]
@@ -28,3 +28,6 @@ texture = ExtResource("2_xy3tk")
 [node name="Laser" parent="AttackNode" index="0" instance=ExtResource("4_qhi4n")]
 
 [node name="Accelerate" parent="AttackNode" index="1" instance=ExtResource("3_fqcdp")]
+
+[node name="HealSound" parent="." index="9"]
+position = Vector2(40, -45)

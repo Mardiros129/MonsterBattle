@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0rapjrba0f8l"]
-
-[ext_resource type="Script" path="res://Effects/speed_effect.gd" id="1_j08sg"]
-
-[node name="SpeedEffect" type="Node2D"]
-script = ExtResource("1_j08sg")
-effect_name = "Speed Boost"

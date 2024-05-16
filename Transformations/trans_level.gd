@@ -1,4 +1,4 @@
-extends "res://transformation.gd"
+extends "res://classes/transformation.gd"
 
 
 @export var level_req: int

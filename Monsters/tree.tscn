@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b41k1vbi3qa0r"]
 
-[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_tyw07"]
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_tyw07"]
 [ext_resource type="Texture2D" uid="uid://c60st1axns4f6" path="res://Assets/Monsters/tree.png" id="2_k8uek"]
 [ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="3_b55jf"]
 [ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Attacks/drain.tscn" id="4_5v1yk"]
@@ -28,3 +28,6 @@ texture = ExtResource("2_k8uek")
 [node name="Heal" parent="AttackNode" index="0" instance=ExtResource("3_b55jf")]
 
 [node name="Drain" parent="AttackNode" index="1" instance=ExtResource("4_5v1yk")]
+
+[node name="EffectAttachmentPoint" parent="." index="10"]
+position = Vector2(8, -56)

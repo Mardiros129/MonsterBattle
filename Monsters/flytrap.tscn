@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwxhnm1ouxe2h"]
 
-[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://monster.tscn" id="1_n33vt"]
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_n33vt"]
 [ext_resource type="Texture2D" uid="uid://6p40ewg55jqc" path="res://Assets/Monsters/flytrap.png" id="2_bmqdg"]
 [ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Attacks/drain.tscn" id="3_1yynx"]
 [ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Attacks/poison_gas.tscn" id="4_blksi"]
@@ -29,3 +29,6 @@ texture = ExtResource("2_bmqdg")
 [node name="Drain" parent="AttackNode" index="0" instance=ExtResource("3_1yynx")]
 
 [node name="PoisonGas" parent="AttackNode" index="1" instance=ExtResource("4_blksi")]
+
+[node name="EffectAttachmentPoint" parent="." index="10"]
+position = Vector2(9, -58)
