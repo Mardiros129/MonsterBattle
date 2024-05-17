@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_y6vsv"]
 [ext_resource type="Texture2D" uid="uid://dcpbr58or54l8" path="res://Assets/Monsters/automaton.png" id="2_y1y26"]
-[ext_resource type="PackedScene" uid="uid://ds52mnf1tcx4x" path="res://Attacks/buzzsaw.tscn" id="3_owudj"]
-[ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Attacks/shock.tscn" id="4_m24b5"]
-[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="5_4jffy"]
+[ext_resource type="PackedScene" uid="uid://ds52mnf1tcx4x" path="res://Moves/buzzsaw.tscn" id="3_owudj"]
+[ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Moves/shock.tscn" id="4_m24b5"]
+[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Moves/self_heal.tscn" id="5_4jffy"]
 
 [node name="Automaton" instance=ExtResource("1_y6vsv")]
 my_name = "Automaton"

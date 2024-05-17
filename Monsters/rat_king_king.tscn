@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_w73b7"]
 [ext_resource type="Texture2D" uid="uid://bt4e2vpvgybbn" path="res://Assets/Monsters/rat_king_king.png" id="2_reb5t"]
-[ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Attacks/fire_punch.tscn" id="3_ii3mx"]
+[ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Moves/fire_punch.tscn" id="3_ii3mx"]
 
 [node name="RatKingKing" instance=ExtResource("1_w73b7")]
 my_name = "Rat King King"

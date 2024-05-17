@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_tyw07"]
 [ext_resource type="Texture2D" uid="uid://c60st1axns4f6" path="res://Assets/Monsters/tree.png" id="2_k8uek"]
-[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="3_b55jf"]
-[ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Attacks/drain.tscn" id="4_5v1yk"]
+[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Moves/self_heal.tscn" id="3_b55jf"]
+[ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Moves/drain.tscn" id="4_5v1yk"]
 
 [node name="Tree" instance=ExtResource("1_tyw07")]
 my_name = "Tree"

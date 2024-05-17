@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_n6eyo"]
 [ext_resource type="Texture2D" uid="uid://m1cbhhlahgec" path="res://Assets/Monsters/wolf.png" id="2_1e62i"]
-[ext_resource type="PackedScene" uid="uid://cqwc0jq2ra0ol" path="res://Attacks/bite.tscn" id="3_rpy5q"]
-[ext_resource type="PackedScene" uid="uid://d3vy67qjj0dvx" path="res://Attacks/infected_tooth.tscn" id="4_v8s3i"]
-[ext_resource type="PackedScene" uid="uid://cga7gblieijby" path="res://Attacks/accelerate.tscn" id="5_6ocq4"]
+[ext_resource type="PackedScene" uid="uid://cqwc0jq2ra0ol" path="res://Moves/bite.tscn" id="3_rpy5q"]
+[ext_resource type="PackedScene" uid="uid://d3vy67qjj0dvx" path="res://Moves/infected_tooth.tscn" id="4_v8s3i"]
+[ext_resource type="PackedScene" uid="uid://cga7gblieijby" path="res://Moves/accelerate.tscn" id="5_6ocq4"]
 
 [node name="Wolf" instance=ExtResource("1_n6eyo")]
 my_name = "Wolf"

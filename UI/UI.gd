@@ -12,11 +12,13 @@ extends Control
 @onready var run_button = $RunButton
 
 @export var number_of_attacks = 4
-@onready var move_list = $PlayerAttackList
-@onready var enemy_attack_list = $EnemyAttackList
-@export var enemy_attack_missing_text = "???"
+@onready var player_move_list = $PlayerMoveList
+@onready var enemy_move_list = $EnemyMoveList
+@export var enemy_move_missing_text = "???"
 
-@onready var inventory = $Inventory
+@onready var player_item_list = $PlayerItemList
+@onready var potion_button = $PlayerItemList/PotionButton
+
 @onready var catch_count_label = $CatchCount
 @onready var catch_chance_label = $CatchChance
 @onready var combat_log = $CombatLog
@@ -27,18 +29,17 @@ extends Control
 @onready var type_matchup_button = $TypeMatchupButton
 @onready var type_matchup_chart = $TypeMatchupChart
 
-@onready var player_attack_details = $PlayerAttackDetails
+@onready var player_move_details = $PlayerMoveDetails
 
 @onready var click_sound = $ClickSound
 
 
 func _ready():
-	inventory.select(0, true)
 	if PlayerInventory.catch_counter <= 0 || FightData.catch_chance <= 0.0:
 		catch_button.disabled = true
 	
-	for x in enemy_attack_list.item_count:
-		enemy_attack_list.set_item_text(x, enemy_attack_missing_text)
+	for x in enemy_move_list.item_count:
+		enemy_move_list.set_item_text(x, enemy_move_missing_text)
 	
 	if FightData.boss_fight:
 		run_button.disabled = true
@@ -76,8 +77,8 @@ func change_player_hp(player_mon):
 
 
 func set_enemy_mon_ui(enemy_mon):
-	for x in enemy_attack_list.item_count:
-		enemy_attack_list.set_item_text(x, enemy_attack_missing_text)
+	for x in enemy_move_list.item_count:
+		enemy_move_list.set_item_text(x, enemy_move_missing_text)
 	enemy_mon_ui.set_mon_ui(enemy_mon)
 
 
@@ -85,9 +86,19 @@ func change_enemy_hp(enemy_mon):
 	enemy_mon_ui.set_mon_hp_ui(enemy_mon)
 
 
-func get_selected_move():
-	var move = move_list.get_selected_items()[0]
-	return move
+func show_move_list():
+	player_move_list.show()
+	player_item_list.hide()
+
+
+func show_item_list():
+	player_item_list.show()
+	player_move_list.hide()
+	
+	potion_button.text = "Potion x" + str(PlayerInventory.potion_counter)
+	
+	if PlayerInventory.potion_counter <= 0:
+		potion_button.disabled = true
 
 
 func update_catch_count(catch_count):
@@ -104,9 +115,9 @@ func disable_ui():
 	catch_button.disabled = true
 	run_button.disabled = true
 	
-	for x in move_list.item_count:
-		move_list.set_item_disabled(x, true)
-	player_attack_details.hide()
+	player_move_list.hide()
+	hide_all_move_details()
+	player_item_list.hide()
 	
 	type_matchup_button.disabled = true
 	disable_switch_buttons()
@@ -123,10 +134,6 @@ func enable_ui():
 	
 	if not FightData.boss_fight:
 		run_button.disabled = false
-	
-	for x in move_list.item_count:
-		move_list.set_item_disabled(x, false)
-	player_attack_details.show()
 	
 	type_matchup_button.disabled = false
 	
@@ -160,25 +167,25 @@ func pop_button():
 
 func set_moves(player_mon):
 	for x in number_of_attacks:
+		var move_button = player_move_list.get_child(x)
+		
 		if player_mon.attack_list.size() > x:
-			move_list.set_item_text(x, player_mon.attack_list[x].attack_name)
-			move_list.set_item_disabled(x, false)
+			move_button.text = player_mon.attack_list[x].attack_name
+			move_button.disabled = false
 			
-			var attack_details = player_attack_details.get_child(x)
+			var attack_details = player_move_details.get_child(x)
 			attack_details.set_attack_details(player_mon.attack_list[x])
 		else:
-			move_list.set_item_text(x, "null")
-			move_list.set_item_disabled(x, true)
-	
-	move_list.select(0)
+			move_button.text = "null"
+			move_button.disabled = true
 
 
-func populate_enemy_attacks(attack_name: String) -> void:
-	for x in enemy_attack_list.item_count:
-		if enemy_attack_list.get_item_text(x) == attack_name:
+func populate_enemy_attacks(move_name: String) -> void:
+	for x in enemy_move_list.item_count:
+		if enemy_move_list.get_item_text(x) == move_name:
 			break
-		if enemy_attack_list.get_item_text(x) == enemy_attack_missing_text:
-			enemy_attack_list.set_item_text(x, attack_name)
+		if enemy_move_list.get_item_text(x) == enemy_move_missing_text:
+			enemy_move_list.set_item_text(x, move_name)
 			break
 
 
@@ -188,9 +195,8 @@ func update_log(info: String):
 
 
 func _on_item_button_pressed():
-	var item_choice = inventory.get_selected_items()[0]
-	print(item_choice)
 	click_sound.play()
+	show_item_list()
 
 
 func _on_type_matchup_button_pressed():
@@ -201,7 +207,37 @@ func _on_type_matchup_button_pressed():
 		type_matchup_chart.show()
 
 
-func _on_player_attack_list_item_selected(index):
-	for n in player_attack_details.get_child_count():
-		player_attack_details.get_child(n).hide()
-	player_attack_details.get_child(index).show()
+func hover_move_button(index):
+	hide_all_move_details()
+	player_move_details.get_child(index).show()
+
+
+func hide_all_move_details():
+	for n in player_move_details.get_child_count():
+		player_move_details.get_child(n).hide()
+
+
+func _on_move_0_mouse_entered():
+	hover_move_button(0)
+
+
+func _on_move_1_mouse_entered():
+	hover_move_button(1)
+
+
+func _on_move_2_mouse_entered():
+	hover_move_button(2)
+
+
+func _on_move_3_mouse_entered():
+	hover_move_button(3)
+
+
+func _on_switch_button_0_pressed():
+	player_move_list.hide()
+	hide_all_move_details()
+
+
+func _on_switch_button_1_pressed():
+	player_move_list.hide()
+	hide_all_move_details()

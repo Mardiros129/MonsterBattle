@@ -9,14 +9,13 @@ signal combat_message(message)
 @export var type: CombatRules.Type
 @export var category: CombatRules.DamageCategory
 @export var description: String
+@export var attack_target: CombatRules.TargetType
 
 @export var effect: PackedScene
 @export var effect_target: CombatRules.TargetType
 
 @onready var user
 @onready var target
-
-@export var attack_target: CombatRules.TargetType
 
 @export var status_scene: PackedScene
 

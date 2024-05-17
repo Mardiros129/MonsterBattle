@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_n33vt"]
 [ext_resource type="Texture2D" uid="uid://6p40ewg55jqc" path="res://Assets/Monsters/flytrap.png" id="2_bmqdg"]
-[ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Attacks/drain.tscn" id="3_1yynx"]
-[ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Attacks/poison_gas.tscn" id="4_blksi"]
+[ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Moves/drain.tscn" id="3_1yynx"]
+[ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Moves/poison_gas.tscn" id="4_blksi"]
 
 [node name="Flytrap" instance=ExtResource("1_n33vt")]
 my_name = "Flytrap"

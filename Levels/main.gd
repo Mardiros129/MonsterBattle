@@ -75,6 +75,9 @@ func _unhandled_input(event):
 			get_tree().quit()
 
 
+## *** *** COMBAT *** ***
+
+
 func start_turn():
 	FightData.catch_chance = 1.0 - float(enemy_mon[0].current_hp) / float(enemy_mon[0].max_hp)
 	ui.enable_ui()
@@ -140,37 +143,6 @@ func end_turn():
 		command_queue.clear()
 		start_turn()
 
-
-func end_combat():
-	ui.disable_ui()
-	end_button.show()
-
-
-func switch(button_index):
-	player_mon[0].hide()
-	ui.swap_buttons(player_mon[0], button_index)
-	
-	# Swap the roles. Don't swap the order in the party.
-	var temp = player_mon[0]
-	if button_index == 0:
-		player_mon[0] = player_mon[1]
-		player_mon[1] = temp
-	elif button_index == 1:
-		player_mon[0] = player_mon[2]
-		player_mon[2] = temp
-	
-	player_mon[0].show()
-	ui.set_player_mon_ui(player_mon[0])
-	ui.update_log(player_mon[0].my_name + " swapped in!")
-	await get_tree().create_timer(command_delay).timeout
-	
-	if player_mon[0].current_speed <= enemy_mon[0].current_speed:
-		end_turn()
-	else:
-		ui.disable_switch_buttons()
-		bonus_turn = true
-
-
 func player_mon_dies():
 	player_mon[0].die()
 	ui.update_log(player_mon[0].my_name + " died!")
@@ -227,6 +199,99 @@ func new_command(attack, user, target):
 				command_queue.append(command)
 
 
+func _player_damages_enemy(dmg):
+	enemy_mon[0].take_damage(dmg)
+
+
+func _on_combat_message_received(message: String):
+	ui.update_log(message)
+
+
+## *** *** ATTACK *** ***
+
+
+func _on_attack_button_pressed():
+	click_sound.play()
+	ui.show_move_list()
+
+
+func _on_move_0_pressed():
+	choose_attack(0)
+
+
+func _on_move_1_pressed():
+	choose_attack(1)
+
+
+func _on_move_2_pressed():
+	choose_attack(2)
+
+
+func _on_move_3_pressed():
+	choose_attack(3)
+
+
+func choose_attack(index):
+	click_sound.play()
+	new_command(index, player_mon[0], enemy_mon[0])
+	end_turn()
+
+
+## *** *** SWITCH *** ***
+
+
+func switch(button_index):
+	player_mon[0].hide()
+	ui.swap_buttons(player_mon[0], button_index)
+	
+	# Swap the roles. Don't swap the order in the party.
+	var temp = player_mon[0]
+	if button_index == 0:
+		player_mon[0] = player_mon[1]
+		player_mon[1] = temp
+	elif button_index == 1:
+		player_mon[0] = player_mon[2]
+		player_mon[2] = temp
+	
+	player_mon[0].show()
+	ui.set_player_mon_ui(player_mon[0])
+	ui.update_log(player_mon[0].my_name + " swapped in!")
+	await get_tree().create_timer(command_delay).timeout
+	
+	if player_mon[0].current_speed <= enemy_mon[0].current_speed:
+		end_turn()
+	else:
+		ui.disable_switch_buttons()
+		bonus_turn = true
+
+
+func _on_switch_button_0_pressed():
+	click_sound.play()
+	switch(0)
+
+
+func _on_switch_button_1_pressed():
+	click_sound.play()
+	switch(1)
+
+
+## *** *** ITEM *** ***
+
+
+func _on_potion_button_pressed():
+	PlayerInventory.potion_counter -= 1
+	player_mon[0].heal_damage(FightData.potion_healing)
+	
+	ui.change_player_hp(player_mon[0])
+	ui.update_log("Healed " + str(FightData.potion_healing) + " with a potion!")
+	await get_tree().create_timer(command_delay).timeout
+	
+	end_turn()
+
+
+## *** *** CATCH *** ***
+
+
 func add_monster_to_party(monster):
 	player_mon_loc.add_child(monster)
 	monster.reset_anim()
@@ -268,43 +333,7 @@ func _on_catch_button_pressed():
 		end_turn()
 
 
-func _player_damages_enemy(dmg):
-	enemy_mon[0].take_damage(dmg)
-
-
-func _on_switch_button_0_pressed():
-	click_sound.play()
-	switch(0)
-
-
-func _on_switch_button_1_pressed():
-	click_sound.play()
-	switch(1)
-
-
-func _on_combat_message_received(message: String):
-	ui.update_log(message)
-
-
-func _on_attack_button_pressed():
-	click_sound.play()
-	new_command(ui.get_selected_move(), player_mon[0], enemy_mon[0])
-	end_turn()
-
-
-func _on_end_button_pressed():
-	click_sound.play()
- 	# Setup party, exclude slain allies, include captured enemy
-	MonsterParty.clear_all()
-	for x in mon_start_lineup.size():
-		var current_mon = mon_start_lineup[x]
-		if current_mon != null:
-			MonsterParty.add_to_party(current_mon.duplicate(), current_mon.current_hp, current_mon.level)
-	
-	# Load next scene
-	var inst = load("res://Levels/end_screen.tscn").instantiate()
-	get_tree().root.add_child(inst)
-	queue_free()
+## *** *** RUN *** ***
 
 
 func _on_run_button_pressed():
@@ -321,5 +350,29 @@ func _on_run_button_pressed():
 		end_turn()
 
 
+## *** *** END *** ***
+
+
+func end_combat():
+	ui.disable_ui()
+	end_button.show()
+
+func _on_end_button_pressed():
+	click_sound.play()
+ 	# Setup party, exclude slain allies, include captured enemy
+	MonsterParty.clear_all()
+	for x in mon_start_lineup.size():
+		var current_mon = mon_start_lineup[x]
+		if current_mon != null:
+			MonsterParty.add_to_party(current_mon.duplicate(), current_mon.current_hp, current_mon.level)
+	
+	# Load next scene
+	var inst = load("res://Levels/end_screen.tscn").instantiate()
+	get_tree().root.add_child(inst)
+	queue_free()
+
+
 func _on_reset_pressed():
 		get_tree().reload_current_scene()
+
+

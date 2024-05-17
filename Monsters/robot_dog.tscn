@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_leaiy"]
 [ext_resource type="Texture2D" uid="uid://rxfp3nekm1w4" path="res://Assets/Monsters/robot_dog.png" id="2_7ycpe"]
-[ext_resource type="PackedScene" uid="uid://lp8eeu2ig4s7" path="res://Attacks/poke.tscn" id="3_k4axe"]
-[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Attacks/self_heal.tscn" id="4_781bd"]
-[ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Attacks/shock.tscn" id="5_dohyw"]
-[ext_resource type="PackedScene" uid="uid://ds52mnf1tcx4x" path="res://Attacks/buzzsaw.tscn" id="6_ujvp6"]
+[ext_resource type="PackedScene" uid="uid://lp8eeu2ig4s7" path="res://Moves/poke.tscn" id="3_k4axe"]
+[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Moves/self_heal.tscn" id="4_781bd"]
+[ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Moves/shock.tscn" id="5_dohyw"]
+[ext_resource type="PackedScene" uid="uid://ds52mnf1tcx4x" path="res://Moves/buzzsaw.tscn" id="6_ujvp6"]
 
 [node name="RobotDog" instance=ExtResource("1_leaiy")]
 my_name = "Robot Dog"

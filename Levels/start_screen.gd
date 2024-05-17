@@ -4,12 +4,14 @@ extends Node2D
 @onready var timer = $AudioDelay
 @onready var click_sound = $ClickSound
 @export var catch_counter = 0
+@export var potion_counter = 0
 @export var pool_size = 0
 @export var monster_pool: Array[String]
 
 
 func _ready():
 	PlayerInventory.catch_counter = catch_counter
+	PlayerInventory.potion_counter = potion_counter
 	MonsterPool.pool_size = pool_size
 	MonsterPool.pool = monster_pool
 

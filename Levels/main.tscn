@@ -67,55 +67,84 @@ offset_bottom = 634.0
 theme = ExtResource("3_ibsr8")
 text = "Run!"
 
-[node name="PlayerAttackList" type="ItemList" parent="UI"]
-layout_mode = 0
-offset_left = 783.0
-offset_top = 424.0
-offset_right = 922.0
-offset_bottom = 541.0
-item_count = 4
-item_0/text = "null"
-item_0/disabled = true
-item_1/text = "null"
-item_1/disabled = true
-item_2/text = "null"
-item_2/disabled = true
-item_3/text = "null"
-item_3/disabled = true
-
-[node name="PlayerAttackDetails" type="Control" parent="UI"]
+[node name="PlayerMoveList" type="Control" parent="UI"]
+visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 780.0
+offset_top = 413.0
+offset_right = 909.0
+offset_bottom = 541.0
 
-[node name="PlayerAttackDetails0" parent="UI/PlayerAttackDetails" instance=ExtResource("3_rdh00")]
-offset_left = 157.0
-offset_top = 1.0
-offset_right = 157.0
-offset_bottom = 1.0
+[node name="Move0" type="Button" parent="UI/PlayerMoveList"]
+layout_mode = 0
+offset_right = 124.0
+offset_bottom = 31.0
+text = "Move 0"
 
-[node name="PlayerAttackDetails1" parent="UI/PlayerAttackDetails" instance=ExtResource("3_rdh00")]
+[node name="Move1" type="Button" parent="UI/PlayerMoveList"]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 124.0
+offset_bottom = 62.0
+text = "Move 1"
+
+[node name="Move2" type="Button" parent="UI/PlayerMoveList"]
+layout_mode = 0
+offset_top = 62.0
+offset_right = 124.0
+offset_bottom = 93.0
+text = "Move 2"
+
+[node name="Move3" type="Button" parent="UI/PlayerMoveList"]
+layout_mode = 0
+offset_top = 93.0
+offset_right = 124.0
+offset_bottom = 124.0
+text = "Move 3"
+
+[node name="PlayerItemList" type="Control" parent="UI"]
 visible = false
-offset_left = 157.0
-offset_top = 1.0
-offset_right = 157.0
-offset_bottom = 1.0
+anchors_preset = 0
+offset_left = 780.0
+offset_top = 413.0
+offset_right = 820.0
+offset_bottom = 453.0
 
-[node name="PlayerAttackDetails2" parent="UI/PlayerAttackDetails" instance=ExtResource("3_rdh00")]
+[node name="PotionButton" type="Button" parent="UI/PlayerItemList"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 124.0
+offset_bottom = 33.0
+text = "Potion"
+
+[node name="PlayerMoveDetails" type="Control" parent="UI"]
+anchors_preset = 0
+offset_left = 938.0
+offset_top = 410.0
+offset_right = 1138.0
+offset_bottom = 630.0
+
+[node name="PlayerAttackDetails0" parent="UI/PlayerMoveDetails" instance=ExtResource("3_rdh00")]
 visible = false
-offset_left = 157.0
-offset_top = 1.0
-offset_right = 157.0
-offset_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
 
-[node name="PlayerAttackDetails3" parent="UI/PlayerAttackDetails" instance=ExtResource("3_rdh00")]
+[node name="PlayerAttackDetails1" parent="UI/PlayerMoveDetails" instance=ExtResource("3_rdh00")]
 visible = false
-offset_left = 157.0
-offset_top = 1.0
-offset_right = 157.0
-offset_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
 
-[node name="EnemyAttackList" type="ItemList" parent="UI"]
+[node name="PlayerAttackDetails2" parent="UI/PlayerMoveDetails" instance=ExtResource("3_rdh00")]
+visible = false
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="PlayerAttackDetails3" parent="UI/PlayerMoveDetails" instance=ExtResource("3_rdh00")]
+visible = false
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="EnemyMoveList" type="ItemList" parent="UI"]
 layout_mode = 0
 offset_left = 1017.0
 offset_top = 120.0
@@ -158,10 +187,10 @@ expand_icon = true
 
 [node name="CatchCount" type="RichTextLabel" parent="UI"]
 layout_mode = 0
-offset_left = 785.0
-offset_top = 546.0
-offset_right = 970.0
-offset_bottom = 573.0
+offset_left = 786.0
+offset_top = 544.0
+offset_right = 971.0
+offset_bottom = 571.0
 text = "Catch count: 999"
 
 [node name="CatchChance" type="RichTextLabel" parent="UI"]
@@ -181,18 +210,6 @@ offset_top = 14.0
 offset_right = 70.0
 offset_bottom = 45.0
 text = "Reset"
-
-[node name="Inventory" type="ItemList" parent="UI"]
-visible = false
-layout_mode = 0
-offset_left = 942.0
-offset_top = 425.0
-offset_right = 1117.0
-offset_bottom = 516.0
-item_count = 3
-item_0/text = "Potion"
-item_1/text = "Super Potion"
-item_2/text = "Super Duper Potion"
 
 [node name="CombatLog" type="RichTextLabel" parent="UI"]
 layout_mode = 0
@@ -275,9 +292,19 @@ wait_time = 0.2
 [connection signal="pressed" from="UI/ItemButton" to="UI" method="_on_item_button_pressed"]
 [connection signal="pressed" from="UI/CatchButton" to="." method="_on_catch_button_pressed"]
 [connection signal="pressed" from="UI/RunButton" to="." method="_on_run_button_pressed"]
-[connection signal="item_selected" from="UI/PlayerAttackList" to="UI" method="_on_player_attack_list_item_selected"]
+[connection signal="mouse_entered" from="UI/PlayerMoveList/Move0" to="UI" method="_on_move_0_mouse_entered"]
+[connection signal="pressed" from="UI/PlayerMoveList/Move0" to="." method="_on_move_0_pressed"]
+[connection signal="mouse_entered" from="UI/PlayerMoveList/Move1" to="UI" method="_on_move_1_mouse_entered"]
+[connection signal="pressed" from="UI/PlayerMoveList/Move1" to="." method="_on_move_1_pressed"]
+[connection signal="mouse_entered" from="UI/PlayerMoveList/Move2" to="UI" method="_on_move_2_mouse_entered"]
+[connection signal="pressed" from="UI/PlayerMoveList/Move2" to="." method="_on_move_2_pressed"]
+[connection signal="mouse_entered" from="UI/PlayerMoveList/Move3" to="UI" method="_on_move_3_mouse_entered"]
+[connection signal="pressed" from="UI/PlayerMoveList/Move3" to="." method="_on_move_3_pressed"]
+[connection signal="pressed" from="UI/PlayerItemList/PotionButton" to="." method="_on_potion_button_pressed"]
 [connection signal="pressed" from="UI/SwitchButton0" to="." method="_on_switch_button_0_pressed"]
+[connection signal="pressed" from="UI/SwitchButton0" to="UI" method="_on_switch_button_0_pressed"]
 [connection signal="pressed" from="UI/SwitchButton1" to="." method="_on_switch_button_1_pressed"]
+[connection signal="pressed" from="UI/SwitchButton1" to="UI" method="_on_switch_button_1_pressed"]
 [connection signal="pressed" from="UI/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="UI/TypeMatchupButton" to="UI" method="_on_type_matchup_button_pressed"]
 [connection signal="timeout" from="ResolveTurnTimer" to="." method="_on_resolve_turn_timer_timeout"]

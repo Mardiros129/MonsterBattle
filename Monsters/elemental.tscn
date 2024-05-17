@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_c4wxg"]
 [ext_resource type="Texture2D" uid="uid://ck7qvoxfh13tt" path="res://Assets/Monsters/elemental.png" id="2_imn0e"]
-[ext_resource type="PackedScene" uid="uid://brferi2sgosog" path="res://Attacks/flamethrower.tscn" id="3_mymab"]
-[ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Attacks/shock.tscn" id="4_y3vx5"]
+[ext_resource type="PackedScene" uid="uid://brferi2sgosog" path="res://Moves/flamethrower.tscn" id="3_mymab"]
+[ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Moves/shock.tscn" id="4_y3vx5"]
 
 [node name="Weather Ball" instance=ExtResource("1_c4wxg")]
 my_name = "Weather Ball"

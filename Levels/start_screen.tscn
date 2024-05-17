@@ -11,6 +11,7 @@
 [node name="StartScreen" type="Node2D"]
 script = ExtResource("1_bpiov")
 catch_counter = 1
+potion_counter = 10
 pool_size = 20
 monster_pool = Array[String](["res://Monsters/pillico.tscn", "res://Monsters/drone.tscn", "res://Monsters/ghost.tscn", "res://Monsters/tree.tscn", "res://Monsters/elemental.tscn", "res://Monsters/flytrap.tscn", "res://Monsters/wolf.tscn"])
 

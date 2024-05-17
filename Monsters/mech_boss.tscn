@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_taula"]
 [ext_resource type="Texture2D" uid="uid://dviqp6hyyux5t" path="res://Assets/Monsters/mech_boss.png" id="2_8nvev"]
-[ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Attacks/poison_gas.tscn" id="3_jg3aw"]
-[ext_resource type="PackedScene" uid="uid://cga7gblieijby" path="res://Attacks/accelerate.tscn" id="4_4xhsb"]
-[ext_resource type="PackedScene" uid="uid://ds52mnf1tcx4x" path="res://Attacks/buzzsaw.tscn" id="4_d3hpq"]
-[ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Attacks/shock.tscn" id="5_wqq0a"]
+[ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Moves/poison_gas.tscn" id="3_jg3aw"]
+[ext_resource type="PackedScene" uid="uid://cga7gblieijby" path="res://Moves/accelerate.tscn" id="4_4xhsb"]
+[ext_resource type="PackedScene" uid="uid://ds52mnf1tcx4x" path="res://Moves/buzzsaw.tscn" id="4_d3hpq"]
+[ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Moves/shock.tscn" id="5_wqq0a"]
 
 [node name="MechBoss" instance=ExtResource("1_taula")]
 my_name = "Deforester"

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkd27kvk7wale"]
+
+[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/attack.tscn" id="1_tnqb1"]
+
+[node name="Stardust" instance=ExtResource("1_tnqb1")]
+attack_name = "Stardust"
+base_damage = 20
+healing = 5
+type = 4
+category = 2
+description = "Stars rain down, hurting the enemy and healing the party slightly."
+attack_target = 2
