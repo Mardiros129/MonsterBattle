@@ -33,15 +33,15 @@ func _ready():
 	for x in MonsterParty.party.size():
 		var new_monster = load(MonsterParty.party[x]).instantiate()
 		mon_start_lineup.append(new_monster)
-		player_mon = mon_start_lineup
+		player_mon.append(new_monster)
 	
-	for x in mon_start_lineup.size():
-		player_mon_loc.add_child(mon_start_lineup[x])
-		mon_start_lineup[x].hide()
+	for x in player_mon.size():
+		player_mon_loc.add_child(player_mon[x])
+		player_mon[x].hide()
 		if MonsterParty.party_hp.size() > 0:
-			mon_start_lineup[x].current_hp = MonsterParty.party_hp[x]
+			player_mon[x].current_hp = MonsterParty.party_hp[x]
 		if MonsterParty.party_level.size() > 0:
-			mon_start_lineup[x].level = MonsterParty.party_level[x]
+			player_mon[x].level = MonsterParty.party_level[x]
 	
 	player_mon[0].show()
 	player_mon[0].reset_anim()
@@ -55,14 +55,14 @@ func _ready():
 	enemy_mon[0].show()
 	
 	# Setup signals
-	var all_monsters = mon_start_lineup + enemy_mon
+	var all_monsters = player_mon + enemy_mon
 	for x in all_monsters.size():
 		var chosen_mon_attacks = all_monsters[x].find_child("AttackNode")
 		for y in chosen_mon_attacks.get_child_count():
 			chosen_mon_attacks.get_child(y).combat_message.connect(_on_combat_message_received)
 	
 	# Setup UI
-	ui.set_button_icons(mon_start_lineup)
+	ui.set_button_icons(player_mon)
 	ui.set_catch_labels(PlayerInventory.catch_counter, FightData.catch_chance)
 	ui.set_player_mon_ui(player_mon[0])
 	ui.set_enemy_mon_ui(enemy_mon[0])
@@ -152,7 +152,7 @@ func player_mon_dies():
 		player_mon.pop_front()
 		player_mon[0].show()
 		ui.set_player_mon_ui(player_mon[0])
-		ui.pop_button()
+		ui.set_button_icons(player_mon)
 
 
 func enemy_mon_dies():
@@ -165,7 +165,6 @@ func enemy_mon_dies():
 
 
 func replace_enemy():
-	enemy_mon.pop_front()
 	enemy_mon[0].show()
 	ui.set_enemy_mon_ui(enemy_mon[0])
 
@@ -298,21 +297,24 @@ func _on_catch_button_pressed():
 	
 	var result = randf()
 	if result <= FightData.catch_chance:
-		enemy_mon[0].catch()
+		var caught_enemy = enemy_mon[0]
+		caught_enemy.catch_anim()
 		ui.update_log("Catch successful!")
 		#await get_tree().create_timer(command_delay).timeout
 		await get_tree().create_timer(1.0).timeout
+		
 		MonsterPool.pool_size -= 1
+		enemy_mon_loc.remove_child(caught_enemy)
+		enemy_mon.pop_front()
 		
 		# Add to party
 		if player_mon.size() < 4:
-			enemy_mon_loc.remove_child(enemy_mon[0])
-			add_monster_to_party(enemy_mon[0])
+			add_monster_to_party(caught_enemy)
 		else:
 			# TODO: send to box
 			pass
 		
-		if enemy_mon.size() > 1:
+		if enemy_mon.size() > 0:
 			replace_enemy()
 			start_turn()
 		else:

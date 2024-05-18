@@ -12,6 +12,19 @@ extends CanvasLayer
 @onready var swap_index_b
 
 
+func setup_hud():
+	for x in loadout_buttons.get_child_count():
+		loadout_buttons.get_child(x).clear_monster_loadout()
+		
+	for x in MonsterParty.party.size():
+		var monster_path = MonsterParty.party[x]
+		var temp_monster = load(monster_path).instantiate()
+		add_child(temp_monster)
+		temp_monster.hide()
+		loadout_buttons.get_child(x).setup_monster_loadout(temp_monster, x)
+		loadout_buttons.get_child(x).disabled = false
+
+
 func check_swap(index: int):
 	if !swapping:
 		swapping = true
@@ -23,11 +36,8 @@ func check_swap(index: int):
 		swap_index_b = index
 		
 		if swap_index_a != swap_index_b:
-			var temp_position = loadout_buttons.get_child(swap_index_a).position
-			loadout_buttons.get_child(swap_index_a).position = loadout_buttons.get_child(swap_index_b).position
-			loadout_buttons.get_child(swap_index_b).position = temp_position
-			
 			MonsterParty.swap_party(swap_index_a, swap_index_b)
+			setup_hud()
 
 
 func _on_monster_loadout_0_pressed():

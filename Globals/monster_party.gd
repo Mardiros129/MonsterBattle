@@ -1,8 +1,9 @@
 extends Node
 
-var party: Array
-var party_hp: Array[int]
-var party_level: Array[int]
+var party : Array
+var party_hp : Array[int]
+var party_exp : Array[int]
+var party_level : Array[int]
 
 func new_add_to_party(path):
 	var monster = load(path).instantiate()

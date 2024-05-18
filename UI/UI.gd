@@ -4,7 +4,7 @@ extends Control
 @onready var switch_button0 = $SwitchButton0
 @onready var switch_button1 = $SwitchButton1
 @onready var sideboard = $Sideboard
-@onready var switch_buttons: Array
+@onready var switch_buttons = [switch_button0, switch_button1, sideboard]
 
 @onready var attack_button = $AttackButton
 @onready var item_button = $ItemButton
@@ -33,6 +33,8 @@ extends Control
 
 @onready var click_sound = $ClickSound
 
+@onready var party_size := 1
+
 
 func _ready():
 	if PlayerInventory.catch_counter <= 0 || FightData.catch_chance <= 0.0:
@@ -54,17 +56,16 @@ func set_catch_labels(catch_count, catch_chance):
 
 
 func set_button_icons(mon_team):
-	if mon_team.size() > 1:
-		switch_buttons.append(switch_button0)
-		switch_buttons[0].set_button_icon(mon_team[1].get_node("Sprite2D").texture)
-		switch_buttons[0].disabled = false
-		if mon_team.size() > 2:
-			switch_buttons.append(switch_button1)
-			switch_buttons[1].set_button_icon(mon_team[2].get_node("Sprite2D").texture)
-			switch_buttons[1].disabled = false
-			if mon_team.size() > 3:
-				switch_buttons.append(sideboard)
-				sideboard.set_button_icon(mon_team[3].get_node("Sprite2D").texture)
+	party_size = mon_team.size() # Maybe remove later
+	
+	for x in switch_buttons.size():
+		if mon_team.size() > x + 1:
+			switch_buttons[x].set_button_icon(mon_team[x + 1].get_sprite())
+			if switch_buttons[x] != sideboard:
+				switch_buttons[x].disabled = false
+		else:
+			switch_buttons[x].set_button_icon(null)
+			switch_buttons[x].disabled = true
 
 
 func set_player_mon_ui(player_mon):
@@ -95,7 +96,7 @@ func show_item_list():
 	player_item_list.show()
 	player_move_list.hide()
 	
-	potion_button.text = "Potion x" + str(PlayerInventory.potion_counter)
+	potion_button.text = "Heal x" + str(PlayerInventory.potion_counter)
 	
 	if PlayerInventory.potion_counter <= 0:
 		potion_button.disabled = true
@@ -137,10 +138,10 @@ func enable_ui():
 	
 	type_matchup_button.disabled = false
 	
-	if switch_buttons.size() > 0:
+	if party_size > 1:
 		switch_button0.disabled = false
 	
-	if switch_buttons.size() > 1:
+	if party_size > 2:
 		switch_button1.disabled = false
 	
 	if PlayerInventory.catch_counter > 0 && FightData.catch_chance > 0.0:
@@ -155,14 +156,6 @@ func swap_buttons(player_mon, index):
 func not_catchable_button():
 	catch_button.disabled = true
 	catch_button.text = "Can't catch!"
-
-
-func pop_button():
-	for x in switch_buttons.size() - 1:
-		switch_buttons[x].set_button_icon(switch_buttons[x+1].icon)
-	var last_button = switch_buttons.pop_back()
-	last_button.icon = null
-	last_button.disabled = true
 
 
 func set_moves(player_mon):

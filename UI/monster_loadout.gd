@@ -17,3 +17,11 @@ func setup_monster_loadout(monster, index):
 	level.show()
 	total_exp.show()
 	health_bar.show()
+
+
+func clear_monster_loadout():
+	level.hide()
+	total_exp.hide()
+	health_bar.hide()
+	disabled = true
+	icon = null

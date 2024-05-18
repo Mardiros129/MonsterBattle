@@ -104,7 +104,7 @@ func die():
 	death_timer.start()
 
 
-func catch():
+func catch_anim():
 	is_enemy = false
 	animation_player.play("catch")
 

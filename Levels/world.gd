@@ -4,7 +4,6 @@ extends Node2D
 @onready var character = $Character
 @onready var hud = $HUD
 @onready var remaining_counter = $HUD/RemainingCounter
-@onready var loadout_buttons = $HUD/LoadoutButtons
 @onready var removable = $Removable
 
 
@@ -22,14 +21,7 @@ func _ready():
 	else:
 		WorldLoad.first_load = false
 		
-	for x in MonsterParty.party.size():
-		var monster_path = MonsterParty.party[x]
-		var temp_monster = load(monster_path).instantiate()
-		add_child(temp_monster)
-		temp_monster.hide()
-		loadout_buttons.get_child(x).setup_monster_loadout(temp_monster, x)
-		loadout_buttons.get_child(x).disabled = false
-	
+	hud.setup_hud()
 	hud.show()
 	remaining_counter.text = str(MonsterPool.pool_size) + " Monsters Remain"
 
