@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://Transformations/trans_level.gd" id="8_a3q5f"]
 [ext_resource type="PackedScene" uid="uid://chbglxlye8rl3" path="res://Monsters/cyber_stalk.tscn" id="9_5q2ee"]
 
-[node name="Stalker" instance=ExtResource("1_eagvv")]
-my_name = "Stalker"
+[node name="Stalk" instance=ExtResource("1_eagvv")]
+my_name = "Stalk"
 max_hp = 120
 strength = 100
 intelligence = 120
@@ -29,11 +29,11 @@ position = Vector2(-4, -102)
 scale = Vector2(0.608333, 0.608333)
 texture = ExtResource("2_ia061")
 
-[node name="Drain" parent="AttackNode" index="0" instance=ExtResource("4_j3txp")]
+[node name="AttackNode#Drain" parent="MoveNode" index="0" instance=ExtResource("4_j3txp")]
 
-[node name="PoisonGas" parent="AttackNode" index="1" instance=ExtResource("4_1nhtj")]
+[node name="AttackNode#PoisonGas" parent="MoveNode" index="1" instance=ExtResource("4_1nhtj")]
 
-[node name="Shock" parent="AttackNode" index="2" instance=ExtResource("6_0115q")]
+[node name="AttackNode#Shock" parent="MoveNode" index="2" instance=ExtResource("6_0115q")]
 
 [node name="Transformation" parent="TransformNode" index="0" instance=ExtResource("7_b4bhd")]
 script = ExtResource("8_a3q5f")

@@ -587,7 +587,7 @@ position = Vector2(0, -79)
 scale = Vector2(0.552448, 0.552448)
 texture = ExtResource("2_5c5hs")
 
-[node name="AttackNode" type="Node2D" parent="."]
+[node name="MoveNode" type="Node2D" parent="."]
 
 [node name="TransformNode" type="Node2D" parent="."]
 

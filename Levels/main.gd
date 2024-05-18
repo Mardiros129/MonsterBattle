@@ -38,10 +38,9 @@ func _ready():
 	for x in player_mon.size():
 		player_mon_loc.add_child(player_mon[x])
 		player_mon[x].hide()
-		if MonsterParty.party_hp.size() > 0:
-			player_mon[x].current_hp = MonsterParty.party_hp[x]
-		if MonsterParty.party_level.size() > 0:
-			player_mon[x].level = MonsterParty.party_level[x]
+		player_mon[x].current_hp = MonsterParty.party_hp[x]
+		player_mon[x].experience = MonsterParty.party_exp[x]
+		player_mon[x].level = MonsterParty.party_level[x]
 	
 	player_mon[0].show()
 	player_mon[0].reset_anim()
@@ -57,7 +56,7 @@ func _ready():
 	# Setup signals
 	var all_monsters = player_mon + enemy_mon
 	for x in all_monsters.size():
-		var chosen_mon_attacks = all_monsters[x].find_child("AttackNode")
+		var chosen_mon_attacks = all_monsters[x].find_child("MoveNode")
 		for y in chosen_mon_attacks.get_child_count():
 			chosen_mon_attacks.get_child(y).combat_message.connect(_on_combat_message_received)
 	
@@ -119,7 +118,6 @@ func end_turn():
 				ui.update_log("You won!")
 				await get_tree().create_timer(command_delay).timeout
 				
-				player_mon[0].gain_exp(1)
 				MonsterPool.pool_size -= 1
 				combat_finished = true
 		
@@ -159,7 +157,10 @@ func enemy_mon_dies():
 	enemy_mon[0].die()
 	ui.update_log("Enemy " + enemy_mon[0].my_name + " died!")
 	await get_tree().create_timer(command_delay).timeout
-
+	
+	enemy_mon.pop_front()
+	player_mon[0].gain_exp(1)
+	
 	if enemy_mon.size() > 1:
 		replace_enemy()
 
@@ -171,7 +172,7 @@ func replace_enemy():
 
 # To do, implement some AI behavior
 func enemy_chooses_attack():
-	var result = randi_range(0, enemy_mon[0].attack_list.size() - 1)
+	var result = randi_range(0, enemy_mon[0].move_list.size() - 1)
 	new_command(result, enemy_mon[0], player_mon[0])
 
 
@@ -366,7 +367,7 @@ func _on_end_button_pressed():
 	for x in mon_start_lineup.size():
 		var current_mon = mon_start_lineup[x]
 		if current_mon != null:
-			MonsterParty.add_to_party(current_mon.get_scene_file_path(), current_mon.current_hp, current_mon.level)
+			MonsterParty.add_to_party(mon_start_lineup[x])
 	
 	# Load next scene
 	var inst = load("res://Levels/end_screen.tscn").instantiate()

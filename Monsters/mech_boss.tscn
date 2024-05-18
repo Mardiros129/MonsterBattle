@@ -9,11 +9,11 @@
 
 [node name="MechBoss" instance=ExtResource("1_taula")]
 my_name = "Deforester"
-max_hp = 200
+max_hp = 250
 strength = 150
 intelligence = 100
 defense = 170
-resistance = 100
+resistance = 110
 speed = 20
 level = 5
 level_str_bonus = 10
@@ -30,12 +30,12 @@ position = Vector2(-6, -119)
 scale = Vector2(0.700495, 0.700495)
 texture = ExtResource("2_8nvev")
 
-[node name="Buzzsaw" parent="AttackNode" index="0" instance=ExtResource("4_d3hpq")]
+[node name="AttackNode#Buzzsaw" parent="MoveNode" index="0" instance=ExtResource("4_d3hpq")]
 base_damage = 30
 
-[node name="PoisonGas" parent="AttackNode" index="1" instance=ExtResource("3_jg3aw")]
+[node name="AttackNode#PoisonGas" parent="MoveNode" index="1" instance=ExtResource("3_jg3aw")]
 type = 4
 
-[node name="Accelerate" parent="AttackNode" index="2" instance=ExtResource("4_4xhsb")]
+[node name="AttackNode#Accelerate" parent="MoveNode" index="2" instance=ExtResource("4_4xhsb")]
 
-[node name="Shock" parent="AttackNode" index="3" instance=ExtResource("5_wqq0a")]
+[node name="AttackNode#Shock" parent="MoveNode" index="3" instance=ExtResource("5_wqq0a")]

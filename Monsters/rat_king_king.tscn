@@ -19,9 +19,9 @@ level_res_bonus = 2
 type0 = 1
 type1 = 7
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="AttackNode#Fire Punch" parent="." index="0" instance=ExtResource("3_ii3mx")]
+
+[node name="Sprite2D" parent="." index="1"]
 position = Vector2(-1, -104)
 scale = Vector2(0.035924, 0.035924)
 texture = ExtResource("2_reb5t")
-
-[node name="Fire Punch" parent="AttackNode" index="0" instance=ExtResource("3_ii3mx")]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8xru7iis86p"]
+
+[ext_resource type="PackedScene" uid="uid://cphc1futbkl7m" path="res://Classes/item.tscn" id="1_0cxxg"]
+[ext_resource type="Script" path="res://Items/unique_item.gd" id="2_60221"]
+[ext_resource type="Texture2D" uid="uid://b6tffxmlkgum4" path="res://Assets/flour.png" id="3_r2gve"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l3xe4"]
+radius = 16.0312
+
+[node name="Flour" instance=ExtResource("1_0cxxg")]
+script = ExtResource("2_60221")
+item_name = "Flour"
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.0165779, 0.0165779)
+texture = ExtResource("3_r2gve")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_l3xe4")

@@ -1,56 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxe8byc2neki4"]
+[gd_scene load_steps=4 format=3 uid="uid://bxe8byc2neki4"]
 
 [ext_resource type="Script" path="res://Levels/end_screen.gd" id="1_rl62q"]
-[ext_resource type="Texture2D" uid="uid://bnk3d7oftye8u" path="res://Assets/card_back.png" id="2_32ycu"]
+[ext_resource type="Script" path="res://UI/PartySummary.gd" id="2_fwrny"]
+[ext_resource type="PackedScene" uid="uid://cnclpfl72ucra" path="res://UI/member_summary.tscn" id="2_uj54d"]
 
 [node name="EndScreen" type="Node2D"]
 script = ExtResource("1_rl62q")
 
 [node name="ExploreButton" type="Button" parent="."]
-offset_left = 487.0
-offset_top = 483.0
-offset_right = 618.0
-offset_bottom = 531.0
+offset_left = 486.0
+offset_top = 565.0
+offset_right = 617.0
+offset_bottom = 613.0
 text = "Explore"
 
 [node name="TempParty" type="Node2D" parent="."]
 visible = false
 
-[node name="Party0" type="Button" parent="."]
-offset_left = 146.0
-offset_top = 171.0
-offset_right = 311.0
-offset_bottom = 428.0
-disabled = true
-icon = ExtResource("2_32ycu")
-expand_icon = true
+[node name="PartySummary" type="Node2D" parent="."]
+script = ExtResource("2_fwrny")
 
-[node name="Party1" type="Button" parent="."]
-offset_left = 359.0
-offset_top = 171.0
-offset_right = 524.0
-offset_bottom = 428.0
-disabled = true
-icon = ExtResource("2_32ycu")
-expand_icon = true
+[node name="MemberSummary0" parent="PartySummary" instance=ExtResource("2_uj54d")]
+offset_left = 102.0
+offset_top = 151.0
+offset_right = 267.0
+offset_bottom = 408.0
 
-[node name="Party2" type="Button" parent="."]
-offset_left = 579.0
-offset_top = 171.0
-offset_right = 744.0
-offset_bottom = 428.0
-disabled = true
-icon = ExtResource("2_32ycu")
-expand_icon = true
+[node name="MemberSummary1" parent="PartySummary" instance=ExtResource("2_uj54d")]
+offset_left = 352.0
+offset_top = 151.0
+offset_right = 517.0
+offset_bottom = 408.0
 
-[node name="Party3" type="Button" parent="."]
-offset_left = 798.0
-offset_top = 171.0
-offset_right = 963.0
-offset_bottom = 428.0
-disabled = true
-icon = ExtResource("2_32ycu")
-expand_icon = true
+[node name="MemberSummary2" parent="PartySummary" instance=ExtResource("2_uj54d")]
+offset_left = 607.0
+offset_top = 152.0
+offset_right = 772.0
+offset_bottom = 409.0
+
+[node name="MemberSummary3" parent="PartySummary" instance=ExtResource("2_uj54d")]
+offset_left = 861.0
+offset_top = 151.0
+offset_right = 1026.0
+offset_bottom = 408.0
 
 [node name="LoseLabel" type="Label" parent="."]
 visible = false

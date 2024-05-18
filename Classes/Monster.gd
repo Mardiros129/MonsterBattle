@@ -3,7 +3,7 @@ extends Node2D
 
 
 @onready var sprite2d = $Sprite2D
-@onready var attack_node = $AttackNode
+@onready var move_node = $MoveNode
 @onready var transform_node = $TransformNode
 @onready var status_node = $StatusNode
 @onready var animation_player = $AnimationPlayer
@@ -35,10 +35,10 @@ extends Node2D
 @export var level_spd_bonus = 1
 
 @onready var current_hp
-@export var experience = 0 # Doesn't seem to save the number unless it's an export var
+@onready var experience = 0
 @onready var exp_req = 2
 
-@onready var attack_list: Array
+@onready var move_list: Array
 
 @export var type0: CombatRules.Type
 @export var type1: CombatRules.Type
@@ -56,9 +56,9 @@ func _ready():
 	card_frame.hide()
 	sprite2d.flip_h = false
 	
-	# Setup attacks
-	for x in attack_node.get_child_count():
-		attack_list.append(attack_node.get_child(x))
+	# Setup moves
+	for x in move_node.get_child_count():
+		move_list.append(move_node.get_child(x))
 
 
 func setup_enemy():
@@ -71,10 +71,10 @@ func setup_enemy():
 
 
 func attack(index, target):
-	if attack_list[index] == null:
-		print("attack is null!")
+	if move_list[index] == null:
+		print("move is null!")
 	else:
-		var my_attack = attack_list[index]
+		var my_attack = move_list[index]
 		if my_attack.category == CombatRules.DamageCategory.UTILITY:
 			animation_player.play("use_ability")
 		elif is_enemy:
@@ -151,9 +151,9 @@ func attach_effect(effect):
 func gain_exp(acquired_exp: int):
 	experience += acquired_exp
 	
-	# Add more complex experience system later, TODO: use exp_req instead
-	if experience > level && level < level_max:
-		experience = 0
+	# Exp requirement is a global
+	if (experience >= FightData.level_exp_requirements[level]) and (level < level_max):
+		experience -= FightData.level_exp_requirements[level]
 		level_up()
 
 
@@ -163,7 +163,6 @@ func level_up():
 	max_hp += level_hp_bonus
 	current_hp += level_hp_bonus
 	speed += level_spd_bonus
-	#exp_req += 1
 
 
 func transform_monster(trans_mon: PackedScene, index: int):

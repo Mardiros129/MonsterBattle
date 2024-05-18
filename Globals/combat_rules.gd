@@ -2,9 +2,6 @@ extends Node
 
 enum Type {NONE, ANIMAL, PLANT, UNDEAD, PIXIE, MECH, ELEMENT, CORRUPT, MYTHIC, DEMON, ANGEL}
 @onready var TypeName = ["", "animal", "plant", "undead", "pixie", "mech", "element", "corrupt", "mythic","demon", "angel"]
-enum DamageCategory { UTILITY, PHYSICAL, MAGIC }
-enum TargetType { NONE, SELF, OPPONENT, ALLY, ALL }
-@onready var DamageCategoryName = ["utility", "physical", "magic"]
 
 @onready var TypeAdvantageChart: Array[Array]
 @onready var NoneTypeAdvantage = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
@@ -18,6 +15,12 @@ enum TargetType { NONE, SELF, OPPONENT, ALLY, ALL }
 @onready var MythicTypeAdvantage = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0]
 @onready var DemonTypeAdvantage = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0]
 @onready var AngelTypeAdvantage = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0]
+
+enum DamageCategory { UTILITY, PHYSICAL, MAGIC }
+@onready var DamageCategoryName = ["utility", "physical", "magic"]
+
+enum TargetType { NONE, SELF, OPPONENT, ALLY, ALL }
+
 
 func _ready():
 	TypeAdvantageChart.append(NoneTypeAdvantage)

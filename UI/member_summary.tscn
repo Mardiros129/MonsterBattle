@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnclpfl72ucra"]
+
+[ext_resource type="Texture2D" uid="uid://bnk3d7oftye8u" path="res://Assets/card_back.png" id="1_wwiwo"]
+[ext_resource type="Texture2D" uid="uid://cmca0rv7xu6qv" path="res://Assets/health_bar_under.png" id="2_nt0df"]
+[ext_resource type="Texture2D" uid="uid://d0733fxnwhpkr" path="res://Assets/health_bar.png" id="3_7wngy"]
+[ext_resource type="Texture2D" uid="uid://bh2x5xmwrl1cw" path="res://Assets/exp_bar.png" id="4_e6hvu"]
+
+[node name="MemberSummary" type="Button"]
+offset_right = 165.0
+offset_bottom = 257.0
+disabled = true
+icon = ExtResource("1_wwiwo")
+expand_icon = true
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 257.0
+offset_right = 106.0
+offset_bottom = 280.0
+text = "Name"
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 280.0
+offset_right = 106.0
+offset_bottom = 303.0
+text = "Level"
+horizontal_alignment = 1
+
+[node name="HPBar" type="TextureProgressBar" parent="."]
+offset_left = -25.0
+offset_top = 314.0
+offset_right = 192.0
+offset_bottom = 337.0
+value = 100.0
+texture_under = ExtResource("2_nt0df")
+texture_progress = ExtResource("3_7wngy")
+
+[node name="ExpBar" type="TextureProgressBar" parent="."]
+offset_left = -25.0
+offset_top = 350.0
+offset_right = 192.0
+offset_bottom = 373.0
+texture_under = ExtResource("2_nt0df")
+texture_progress = ExtResource("4_e6hvu")

@@ -23,10 +23,10 @@ position = Vector2(8, -80)
 scale = Vector2(0.425781, 0.425781)
 texture = ExtResource("2_7ycpe")
 
-[node name="MetalClaw" parent="AttackNode" index="0" instance=ExtResource("6_ujvp6")]
+[node name="AttackNode#MetalClaw" parent="MoveNode" index="0" instance=ExtResource("6_ujvp6")]
 
-[node name="Poke" parent="AttackNode" index="1" instance=ExtResource("3_k4axe")]
+[node name="AttackNode#Poke" parent="MoveNode" index="1" instance=ExtResource("3_k4axe")]
 
-[node name="Heal" parent="AttackNode" index="2" instance=ExtResource("4_781bd")]
+[node name="AttackNode#Heal" parent="MoveNode" index="2" instance=ExtResource("4_781bd")]
 
-[node name="Shock" parent="AttackNode" index="3" instance=ExtResource("5_dohyw")]
+[node name="AttackNode#Shock" parent="MoveNode" index="3" instance=ExtResource("5_dohyw")]

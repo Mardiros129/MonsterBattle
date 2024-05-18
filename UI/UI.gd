@@ -11,7 +11,7 @@ extends Control
 @onready var catch_button = $CatchButton
 @onready var run_button = $RunButton
 
-@export var number_of_attacks = 4
+@export var number_of_moves = 4
 @onready var player_move_list = $PlayerMoveList
 @onready var enemy_move_list = $EnemyMoveList
 @export var enemy_move_missing_text = "???"
@@ -159,15 +159,15 @@ func not_catchable_button():
 
 
 func set_moves(player_mon):
-	for x in number_of_attacks:
+	for x in number_of_moves:
 		var move_button = player_move_list.get_child(x)
 		
-		if player_mon.attack_list.size() > x:
-			move_button.text = player_mon.attack_list[x].attack_name
+		if player_mon.move_list.size() > x:
+			move_button.text = player_mon.move_list[x].attack_name
 			move_button.disabled = false
 			
 			var attack_details = player_move_details.get_child(x)
-			attack_details.set_attack_details(player_mon.attack_list[x])
+			attack_details.set_attack_details(player_mon.move_list[x])
 		else:
 			move_button.text = "null"
 			move_button.disabled = true

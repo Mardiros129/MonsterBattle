@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://eiojj77oe67g"]
+
+[ext_resource type="PackedScene" uid="uid://cphc1futbkl7m" path="res://Classes/item.tscn" id="1_ubq11"]
+[ext_resource type="Script" path="res://Items/unique_item.gd" id="2_505sh"]
+[ext_resource type="Texture2D" uid="uid://cwxll8crpetkj" path="res://Assets/sugar.png" id="3_uikje"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l3xe4"]
+radius = 16.0312
+
+[node name="Sugar" instance=ExtResource("1_ubq11")]
+script = ExtResource("2_505sh")
+item_name = "Sugar"
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-8, 0)
+scale = Vector2(0.023416, 0.023416)
+texture = ExtResource("3_uikje")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_l3xe4")
