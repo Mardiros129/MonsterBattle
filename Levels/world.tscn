@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c63t0phri8qx8"]
+[gd_scene load_steps=37 format=3 uid="uid://c63t0phri8qx8"]
 
 [ext_resource type="Script" path="res://Levels/world.gd" id="1_3rdto"]
 [ext_resource type="PackedScene" uid="uid://b8idner5etalo" path="res://UI/monster_loadout.tscn" id="2_mlea4"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://clsmsu77obbyg" path="res://Interactibles/questgiver.tscn" id="15_pcd5s"]
 [ext_resource type="PackedScene" uid="uid://c63hkynt46arj" path="res://Items/battery_item.tscn" id="16_o3nt1"]
 [ext_resource type="PackedScene" uid="uid://bxamglk65x42r" path="res://Interactibles/automaton_char.tscn" id="16_roh7g"]
+[ext_resource type="PackedScene" uid="uid://b5i8ctr6dqe5d" path="res://Interactibles/baker.tscn" id="17_ipkil"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_qon1f"]
 tile_data = PackedInt32Array(0, 4, 0, 65536, 4, 1, 131072, 4, 2, 196608, 4, 3, 1, 65540, 0, 65537, 65540, 1, 131073, 65540, 2, 196609, 65540, 3, 2, 65540, 0, 65538, 65540, 1, 131074, 65540, 2, 196610, 65540, 3, 3, 131076, 0, 65539, 131076, 1, 131075, 131076, 2, 196611, 131076, 3)
@@ -1054,6 +1055,9 @@ position = Vector2(760, 177)
 [node name="Automaton" parent="." instance=ExtResource("16_roh7g")]
 position = Vector2(1766, -7)
 
+[node name="Baker" parent="." instance=ExtResource("17_ipkil")]
+position = Vector2(1015, 227)
+
 [connection signal="pressed" from="HUD/LoadoutButtons/MonsterLoadout0" to="HUD" method="_on_monster_loadout_0_pressed"]
 [connection signal="pressed" from="HUD/LoadoutButtons/MonsterLoadout1" to="HUD" method="_on_monster_loadout_1_pressed"]
 [connection signal="pressed" from="HUD/LoadoutButtons/MonsterLoadout2" to="HUD" method="_on_monster_loadout_2_pressed"]
@@ -1069,6 +1073,7 @@ position = Vector2(1766, -7)
 [connection signal="body_entered_return_path" from="MonsterAreas/MonsterArea" to="." method="_on_monster_area_body_entered_return_path"]
 [connection signal="body_entered_return_path" from="MonsterAreas/MonsterArea3" to="." method="_on_monster_area_body_entered_return_path"]
 [connection signal="start_fight" from="Automaton" to="." method="_on_monster_area_body_entered_return_path"]
+[connection signal="update_mon_hud" from="Baker" to="HUD" method="_on_update_mon_hud"]
 
 [editable path="MonsterAreas/MonsterArea0"]
 [editable path="MonsterAreas/MonsterArea1"]

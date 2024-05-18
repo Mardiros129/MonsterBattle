@@ -1,4 +1,5 @@
 extends StaticBody2D
+#class_name Interactible
 
 
 @onready var facing = false
@@ -7,6 +8,8 @@ extends StaticBody2D
 @onready var physics_body = $PhysicsBody
 @onready var collision_shape_2d = $Area2D/CollisionShape2D
 @onready var area_2d = $Area2D
+@onready var dialog_control = $DialogControl
+
 
 
 func _ready():
@@ -17,6 +20,13 @@ func _ready():
 
 
 func start_interaction():
+	dialog_timer.timeout.connect(_on_dialog_timer_timeout) # Gets dc'd if scene is reloaded
+	dialog_timer.start()
+	dialog_control.show()
+	special_interaction()
+
+
+func special_interaction():
 	pass
 
 
@@ -39,6 +49,9 @@ func _on_area_2d_area_entered(area):
 func _on_area_2d_area_exited(area):
 	facing = false
 
+
+func _on_dialog_timer_timeout():
+	dialog_control.hide()
 
 #
 #func _on_visibility_changed():

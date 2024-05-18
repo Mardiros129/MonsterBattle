@@ -17,8 +17,10 @@ func _ready():
 
 
 func create_party_member(path):
-	var mon_inst = load(path).instantiate(false)
-	MonsterParty.new_add_to_party(mon_inst)
+	#var mon_inst = load(path).instantiate()
+	#MonsterParty.new_add_to_party(mon_inst)
+	
+	MonsterParty.new_add_to_party(path)
 
 
 func _unhandled_input(event):

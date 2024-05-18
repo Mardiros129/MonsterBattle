@@ -15,7 +15,7 @@ func _ready():
 		explore_button.text = "End"
 	
 	for x in MonsterParty.party.size():
-		var temp_monster = MonsterParty.party[x].duplicate()
+		var temp_monster = load(MonsterParty.party[x]).instantiate()
 		add_child(temp_monster)
 		temp_monster.level = MonsterParty.party_level[x]
 		temp_monster.monster_transforms.connect(_on_monster_transforms)

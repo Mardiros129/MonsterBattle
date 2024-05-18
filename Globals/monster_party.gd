@@ -4,11 +4,15 @@ var party: Array
 var party_hp: Array[int]
 var party_level: Array[int]
 
-func new_add_to_party(monster):
-	party.append(monster)
+func new_add_to_party(path):
+	var monster = load(path).instantiate()
+	
+	party.append(path)
+	party_hp.append(monster.max_hp)
+	party_level.append(monster.level)
 
-func add_to_party(monster, current_hp, level):
-	party.append(monster)
+func add_to_party(path, current_hp, level):
+	party.append(path)
 	party_hp.append(current_hp)
 	party_level.append(level)
 

@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5i8ctr6dqe5d"]
+
+[ext_resource type="PackedScene" uid="uid://1ldmxdymmuo0" path="res://Classes/interactible.tscn" id="1_ie1lx"]
+[ext_resource type="Texture2D" uid="uid://ch1djnddlxy8n" path="res://Assets/chef.png" id="2_ahova"]
+[ext_resource type="Script" path="res://Interactibles/baker.gd" id="2_oyw71"]
+[ext_resource type="Texture2D" uid="uid://cbblr5uulonwd" path="res://Assets/cauldron.png" id="3_6qnrm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ibxg"]
+radius = 933.419
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7lwuo"]
+radius = 30.0666
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i774j"]
+size = Vector2(67, 58)
+
+[node name="Baker" instance=ExtResource("1_ie1lx")]
+script = ExtResource("2_oyw71")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(2, -12)
+scale = Vector2(0.172344, 0.172344)
+texture = ExtResource("2_ahova")
+
+[node name="Cauldron" type="StaticBody2D" parent="." index="1"]
+position = Vector2(-38, 14)
+scale = Vector2(0.0234961, 0.0234961)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cauldron" index="0"]
+scale = Vector2(1, 1)
+texture = ExtResource("3_6qnrm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron" index="1"]
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_2ibxg")
+
+[node name="PhysicsBody" parent="." index="2"]
+position = Vector2(-1, -9)
+shape = SubResource("CircleShape2D_7lwuo")
+
+[node name="Nametag" parent="." index="3"]
+text = "The Baker"
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-15.5, -5)
+shape = SubResource("RectangleShape2D_i774j")
+
+[node name="Dialog0" type="Label" parent="." index="6"]
+visible = false
+offset_left = -66.0
+offset_top = 22.0
+offset_right = 66.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 12
+text = "Bring me an egg, 
+flour, and sugar, 
+and I'll make you 
+a special treat."
+horizontal_alignment = 1
+
+[node name="BakeButton" type="Button" parent="." index="7"]
+visible = false
+offset_left = -33.0
+offset_top = 105.0
+offset_right = 33.0
+offset_bottom = 136.0
+text = "Bake it!"
+
+[node name="Dialog0" parent="DialogControl" index="0"]
+layout_mode = 0

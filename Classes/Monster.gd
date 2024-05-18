@@ -1,4 +1,6 @@
 extends Node2D
+#class_name Monster
+
 
 @onready var sprite2d = $Sprite2D
 @onready var attack_node = $AttackNode

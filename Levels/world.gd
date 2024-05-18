@@ -23,7 +23,8 @@ func _ready():
 		WorldLoad.first_load = false
 		
 	for x in MonsterParty.party.size():
-		var temp_monster = MonsterParty.party[x].duplicate()
+		var monster_path = MonsterParty.party[x]
+		var temp_monster = load(monster_path).instantiate()
 		add_child(temp_monster)
 		temp_monster.hide()
 		loadout_buttons.get_child(x).setup_monster_loadout(temp_monster, x)

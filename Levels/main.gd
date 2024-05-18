@@ -30,10 +30,10 @@ extends Node2D
 
 func _ready():
 	# Setup player party
-	mon_start_lineup = MonsterParty.party.duplicate()
-	
 	for x in MonsterParty.party.size():
-		player_mon.append(MonsterParty.party[x])
+		var new_monster = load(MonsterParty.party[x]).instantiate()
+		mon_start_lineup.append(new_monster)
+		player_mon = mon_start_lineup
 	
 	for x in mon_start_lineup.size():
 		player_mon_loc.add_child(mon_start_lineup[x])
@@ -292,15 +292,6 @@ func _on_potion_button_pressed():
 ## *** *** CATCH *** ***
 
 
-func add_monster_to_party(monster):
-	player_mon_loc.add_child(monster)
-	monster.reset_anim()
-	monster.hide()
-	player_mon.append(monster)
-	mon_start_lineup.append(monster)
-	ui.set_button_icons(player_mon)
-
-
 func _on_catch_button_pressed():
 	PlayerInventory.catch_counter -= 1
 	ui.update_catch_count(PlayerInventory.catch_counter)
@@ -331,6 +322,15 @@ func _on_catch_button_pressed():
 		ui.update_log("Catch failed...")
 		await get_tree().create_timer(command_delay).timeout
 		end_turn()
+
+
+func add_monster_to_party(monster):
+	player_mon_loc.add_child(monster)
+	monster.reset_anim()
+	monster.hide()
+	player_mon.append(monster)
+	mon_start_lineup.append(monster)
+	ui.set_button_icons(player_mon)
 
 
 ## *** *** RUN *** ***
@@ -364,7 +364,7 @@ func _on_end_button_pressed():
 	for x in mon_start_lineup.size():
 		var current_mon = mon_start_lineup[x]
 		if current_mon != null:
-			MonsterParty.add_to_party(current_mon.duplicate(), current_mon.current_hp, current_mon.level)
+			MonsterParty.add_to_party(current_mon.get_scene_file_path(), current_mon.current_hp, current_mon.level)
 	
 	# Load next scene
 	var inst = load("res://Levels/end_screen.tscn").instantiate()

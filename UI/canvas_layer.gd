@@ -29,14 +29,23 @@ func check_swap(index: int):
 			
 			MonsterParty.swap_party(swap_index_a, swap_index_b)
 
+
 func _on_monster_loadout_0_pressed():
 	check_swap(0)
+
 
 func _on_monster_loadout_1_pressed():
 	check_swap(1)
 
+
 func _on_monster_loadout_2_pressed():
 	check_swap(2)
 
+
 func _on_monster_loadout_3_pressed():
 	check_swap(3)
+
+
+func _on_update_mon_hud(mon_inst, index):
+	loadout_buttons.get_child(index).setup_monster_loadout(mon_inst, index)
+	loadout_buttons.get_child(index).disabled = false

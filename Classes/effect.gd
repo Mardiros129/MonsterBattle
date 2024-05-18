@@ -1,4 +1,5 @@
 extends Node2D
+#class_name Effect
 
 
 @export var animation_player: AnimationPlayer

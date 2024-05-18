@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3ua4c510ucud"]
+
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_ljkul"]
+[ext_resource type="Texture2D" uid="uid://d1ngc0n5mnj71" path="res://Assets/Monsters/muffin.png" id="2_lhrpg"]
+[ext_resource type="PackedScene" uid="uid://bkd27kvk7wale" path="res://Moves/stardust.tscn" id="3_xq2m8"]
+
+[node name="Petuffin" instance=ExtResource("1_ljkul")]
+my_name = "Petuffin"
+max_hp = 90
+strength = 70
+intelligence = 120
+defense = 90
+resistance = 120
+speed = 70
+type0 = 4
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -75)
+scale = Vector2(0.215, 0.215)
+texture = ExtResource("2_lhrpg")
+
+[node name="Stardust" parent="AttackNode" index="0" instance=ExtResource("3_xq2m8")]

@@ -33,16 +33,16 @@ text = "Automaton"
 position = Vector2(-2.5, 6)
 shape = SubResource("RectangleShape2D_bpdkd")
 
-[node name="Dialog0" type="Label" parent="." index="5"]
-visible = false
-z_index = 2
-offset_left = -70.0
-offset_top = 45.0
-offset_right = 69.0
-offset_bottom = 68.0
-text = "<It has no power>"
+[node name="Dialog0" parent="DialogControl" index="0"]
+layout_mode = 0
+offset_left = -71.0
+offset_top = 44.0
+offset_right = 68.0
+offset_bottom = 94.0
+text = "<It has no power>
+"
 
-[node name="BatteryButton" type="Button" parent="." index="6"]
+[node name="BatteryButton" type="Button" parent="DialogControl" index="1"]
 visible = false
 z_index = 2
 offset_left = -54.0
@@ -51,4 +51,4 @@ offset_right = 56.0
 offset_bottom = 107.0
 text = "Give battery?"
 
-[connection signal="pressed" from="BatteryButton" to="." method="_on_battery_button_pressed"]
+[connection signal="pressed" from="DialogControl/BatteryButton" to="." method="_on_battery_button_pressed"]
