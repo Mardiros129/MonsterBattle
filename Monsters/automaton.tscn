@@ -26,4 +26,6 @@ texture = ExtResource("2_y1y26")
 [node name="MoveNode#AttackNode#Shock" parent="DefaultMoveNode" index="1" instance=ExtResource("4_m24b5")]
 
 [node name="MoveNode#AttackNode#Heal" parent="DefaultMoveNode" index="2" instance=ExtResource("5_4jffy")]
+attack_name = "Repair"
 healing = 15
+type = 5

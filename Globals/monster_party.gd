@@ -44,6 +44,14 @@ func clear_all():
 	party_moves.clear()
 
 
+func pop_at(index):
+	party.pop_at(index)
+	party_hp.pop_at(index)
+	party_exp.pop_at(index)
+	party_level.pop_at(index)
+	party_moves.pop_at(index)
+
+
 func swap_party(index_a: int, index_b: int):
 	var temp_monster = party[index_a]
 	party[index_a] = party[index_b]

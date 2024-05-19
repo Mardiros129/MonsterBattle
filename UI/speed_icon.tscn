@@ -20,6 +20,7 @@ texture = ExtResource("1_scnma")
 
 [node name="Hint" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 23.0
 offset_top = -27.0
 offset_right = 163.0

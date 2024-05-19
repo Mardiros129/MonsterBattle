@@ -59,3 +59,7 @@ func _on_monster_loadout_3_pressed():
 func _on_update_mon_hud(mon_inst, index):
 	loadout_buttons.get_child(index).setup_monster_loadout(mon_inst, index)
 	loadout_buttons.get_child(index).disabled = false
+
+
+func _on_sacrifice_pyre_update_ui():
+	setup_hud()

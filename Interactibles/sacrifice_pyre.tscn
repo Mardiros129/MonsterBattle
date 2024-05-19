@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://ut1f2s88ymds"]
+
+[ext_resource type="PackedScene" uid="uid://1ldmxdymmuo0" path="res://Classes/interactible.tscn" id="1_dsdio"]
+[ext_resource type="Texture2D" uid="uid://bhtotlqbiitbc" path="res://Assets/altar.png" id="2_5v0yi"]
+[ext_resource type="Script" path="res://Interactibles/sacrifice_pyre.gd" id="2_fu1hq"]
+[ext_resource type="PackedScene" uid="uid://ctakoe7j0034f" path="res://Monsters/imp.tscn" id="3_jqsc3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pi055"]
+radius = 34.0147
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f54ip"]
+size = Vector2(59, 57)
+
+[node name="SacrificePyre" instance=ExtResource("1_dsdio")]
+script = ExtResource("2_fu1hq")
+summoned_monster = ExtResource("3_jqsc3")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(1.19209e-07, -12)
+texture = ExtResource("2_5v0yi")
+
+[node name="PhysicsBody" parent="." index="1"]
+position = Vector2(1, -3)
+shape = SubResource("CircleShape2D_pi055")
+
+[node name="Nametag" parent="." index="2"]
+offset_left = -69.0
+offset_top = -74.0
+offset_right = 69.0
+offset_bottom = -29.0
+text = "Pyre"
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0.5, -4.5)
+shape = SubResource("RectangleShape2D_f54ip")
+
+[node name="Dialog0" parent="DialogControl" index="0"]
+offset_left = -140.0
+offset_top = 36.0
+offset_right = 137.0
+offset_bottom = 86.0
+text = "<Sacrifice a creature to gain power>"
+
+[node name="ButtonGroup" type="Control" parent="DialogControl" index="1"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button0" type="Button" parent="DialogControl/ButtonGroup" index="0"]
+visible = false
+layout_mode = 0
+offset_left = -50.0
+offset_top = 74.0
+offset_right = 50.0
+offset_bottom = 105.0
+text = "Creature #1"
+
+[node name="Button1" type="Button" parent="DialogControl/ButtonGroup" index="1"]
+visible = false
+layout_mode = 0
+offset_left = -50.0
+offset_top = 105.0
+offset_right = 50.0
+offset_bottom = 136.0
+text = "Creature #2"
+
+[node name="Button2" type="Button" parent="DialogControl/ButtonGroup" index="2"]
+visible = false
+layout_mode = 0
+offset_left = -50.0
+offset_top = 136.0
+offset_right = 50.0
+offset_bottom = 167.0
+text = "Creature #3"
+
+[node name="Button3" type="Button" parent="DialogControl/ButtonGroup" index="3"]
+visible = false
+layout_mode = 0
+offset_left = -50.0
+offset_top = 167.0
+offset_right = 50.0
+offset_bottom = 198.0
+text = "Creature #4"
+
+[node name="EndDialog" type="Label" parent="DialogControl" index="2"]
+visible = false
+layout_mode = 0
+offset_left = -92.0
+offset_top = 37.0
+offset_right = 91.0
+offset_bottom = 60.0
+text = "<The fire has subsided>"
+
+[connection signal="pressed" from="DialogControl/ButtonGroup/Button0" to="." method="_on_button_0_pressed"]
+[connection signal="pressed" from="DialogControl/ButtonGroup/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="DialogControl/ButtonGroup/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="DialogControl/ButtonGroup/Button3" to="." method="_on_button_3_pressed"]
