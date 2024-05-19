@@ -17,9 +17,6 @@ func _ready():
 
 
 func create_party_member(path):
-	#var mon_inst = load(path).instantiate()
-	#MonsterParty.new_add_to_party(mon_inst)
-	
 	MonsterParty.new_add_to_party(path)
 
 

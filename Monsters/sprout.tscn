@@ -29,11 +29,11 @@ position = Vector2(-4, -102)
 scale = Vector2(0.608333, 0.608333)
 texture = ExtResource("2_ia061")
 
-[node name="AttackNode#Drain" parent="MoveNode" index="0" instance=ExtResource("4_j3txp")]
+[node name="MoveNode#AttackNode#Drain" parent="DefaultMoveNode" index="0" instance=ExtResource("4_j3txp")]
 
-[node name="AttackNode#PoisonGas" parent="MoveNode" index="1" instance=ExtResource("4_1nhtj")]
+[node name="MoveNode#AttackNode#PoisonGas" parent="DefaultMoveNode" index="1" instance=ExtResource("4_1nhtj")]
 
-[node name="AttackNode#Shock" parent="MoveNode" index="2" instance=ExtResource("6_0115q")]
+[node name="MoveNode#AttackNode#Shock" parent="DefaultMoveNode" index="2" instance=ExtResource("6_0115q")]
 
 [node name="Transformation" parent="TransformNode" index="0" instance=ExtResource("7_b4bhd")]
 script = ExtResource("8_a3q5f")

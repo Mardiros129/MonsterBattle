@@ -30,9 +30,9 @@ position = Vector2(6, -82)
 scale = Vector2(0.181049, 0.181049)
 texture = ExtResource("2_a3qku")
 
-[node name="AttackNode#DoNothing" parent="MoveNode" index="0" instance=ExtResource("3_ct5hx")]
+[node name="MoveNode#AttackNode#DoNothing" parent="DefaultMoveNode" index="0" instance=ExtResource("3_ct5hx")]
 
-[node name="AttackNode#Bite" parent="MoveNode" index="1" instance=ExtResource("4_r4f81")]
+[node name="MoveNode#AttackNode#Bite" parent="DefaultMoveNode" index="1" instance=ExtResource("4_r4f81")]
 
 [node name="TransDeath" parent="TransformNode" index="0" instance=ExtResource("4_u0ke1")]
 script = ExtResource("5_udxo5")

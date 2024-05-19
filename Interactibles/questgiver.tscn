@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://clsmsu77obbyg"]
+[gd_scene load_steps=6 format=3 uid="uid://clsmsu77obbyg"]
 
 [ext_resource type="PackedScene" uid="uid://1ldmxdymmuo0" path="res://Classes/interactible.tscn" id="1_2e1ak"]
+[ext_resource type="Script" path="res://Interactibles/questgiver.gd" id="2_3lcpv"]
 [ext_resource type="Texture2D" uid="uid://ofjxkenpybyi" path="res://Assets/questgiver.png" id="2_e6kbn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dwarm"]
@@ -10,6 +11,7 @@ radius = 27.074
 size = Vector2(38, 50)
 
 [node name="Questgiver" instance=ExtResource("1_2e1ak")]
+script = ExtResource("2_3lcpv")
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(0.203125, 0.203125)
@@ -36,5 +38,14 @@ offset_top = 34.0
 offset_right = 72.0
 offset_bottom = 57.0
 text = "Kill the Deforester!"
+
+[node name="Hint" type="Label" parent="." index="6"]
+z_index = 2
+offset_left = -186.0
+offset_top = -13.0
+offset_right = -11.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 20
+text = "space to talk -->"
 
 [connection signal="timeout" from="DialogTimer" to="." method="_on_dialog_timer_timeout"]

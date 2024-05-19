@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dm8rdxaoty3ow"]
 
 [ext_resource type="Texture2D" uid="uid://cawikr2kgfvpd" path="res://icon.svg" id="1_m57o5"]
-[ext_resource type="Texture2D" uid="uid://py4tnn1idt5g" path="res://Assets/card_frame.png" id="2_5c5hs"]
+[ext_resource type="Texture2D" uid="uid://py4tnn1idt5g" path="res://Assets/UI/card_frame.png" id="2_5c5hs"]
 [ext_resource type="Script" path="res://Classes/Monster.gd" id="2_qymm1"]
 [ext_resource type="AudioStream" uid="uid://cu182esky1hf4" path="res://Assets/Audio/smack.mp3" id="3_vln6c"]
 [ext_resource type="AudioStream" uid="uid://dyj0d3br10lpl" path="res://Assets/Audio/whistle.mp3" id="4_m2doq"]
@@ -587,7 +587,7 @@ position = Vector2(0, -79)
 scale = Vector2(0.552448, 0.552448)
 texture = ExtResource("2_5c5hs")
 
-[node name="MoveNode" type="Node2D" parent="."]
+[node name="DefaultMoveNode" type="Node2D" parent="."]
 
 [node name="TransformNode" type="Node2D" parent="."]
 

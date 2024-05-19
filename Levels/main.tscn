@@ -1,15 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3ccrpeska432"]
+[gd_scene load_steps=17 format=3 uid="uid://c3ccrpeska432"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_2bifh"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="3_1s8rs"]
-[ext_resource type="Texture2D" uid="uid://beybofb4mggvs" path="res://Assets/spellbook.png" id="3_80hdh"]
+[ext_resource type="Texture2D" uid="uid://beybofb4mggvs" path="res://Assets/UI/spellbook.png" id="3_80hdh"]
 [ext_resource type="Theme" uid="uid://nnjsyjl2ingj" path="res://Themes/player_ui.tres" id="3_ibsr8"]
 [ext_resource type="PackedScene" uid="uid://c5783ti8g731p" path="res://UI/attack_details.tscn" id="3_rdh00"]
 [ext_resource type="PackedScene" uid="uid://c0dy88gwgp6cu" path="res://UI/mon_ui.tscn" id="4_4psda"]
-[ext_resource type="Texture2D" uid="uid://pa8bxdyl7kd1" path="res://Assets/temp_stage.png" id="4_g5kj7"]
-[ext_resource type="Texture2D" uid="uid://d3276ue5ykter" path="res://Assets/type_chart.png" id="4_ujev1"]
+[ext_resource type="Texture2D" uid="uid://6y384xf65y32" path="res://Assets/UI/wooden_sign.png" id="4_5l02s"]
+[ext_resource type="Texture2D" uid="uid://c8jo7dxvhur7q" path="res://Assets/UI/closed_book.png" id="4_cxgb7"]
+[ext_resource type="Texture2D" uid="uid://pa8bxdyl7kd1" path="res://Assets/UI/temp_stage.png" id="4_g5kj7"]
+[ext_resource type="Texture2D" uid="uid://d3276ue5ykter" path="res://Assets/UI/type_chart.png" id="4_ujev1"]
+[ext_resource type="Texture2D" uid="uid://c1uoixwkncshw" path="res://Assets/UI/bookmark.png" id="5_6mauy"]
 [ext_resource type="Texture2D" uid="uid://cnkle2uwok0xu" path="res://Assets/Backgrounds/dark_forest.png" id="5_skoyj"]
-[ext_resource type="Texture2D" uid="uid://xt3wv43400y4" path="res://Assets/enemy_health_bar.png" id="5_xdxbd"]
+[ext_resource type="Texture2D" uid="uid://cfna7srxs1qlq" path="res://Assets/UI/empty_move.png" id="5_wwq1g"]
+[ext_resource type="Texture2D" uid="uid://xt3wv43400y4" path="res://Assets/UI/enemy_health_bar.png" id="5_xdxbd"]
 [ext_resource type="AudioStream" uid="uid://peoy0akqoaqi" path="res://Assets/Audio/click.wav" id="8_4uffq"]
 [ext_resource type="AudioStream" uid="uid://cb4qodw1vc2pd" path="res://Assets/Audio/footsteps.mp3" id="10_wlmlo"]
 
@@ -23,128 +27,224 @@ anchors_preset = 0
 script = ExtResource("3_1s8rs")
 
 [node name="Spellbook" type="Sprite2D" parent="UI"]
-position = Vector2(970, 516)
+visible = false
+position = Vector2(977.385, 523.25)
 scale = Vector2(0.702733, 0.668056)
 texture = ExtResource("3_80hdh")
+
+[node name="ClosedBook" type="Sprite2D" parent="UI"]
+position = Vector2(974, 526)
+scale = Vector2(0.0292484, 0.0292485)
+texture = ExtResource("4_cxgb7")
 
 [node name="EndButton" type="Button" parent="UI"]
 visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 864.0
-offset_top = 345.0
+offset_top = 476.0
 offset_right = 1077.0
-offset_bottom = 393.0
+offset_bottom = 524.0
 text = "Go to end screen"
+
+[node name="WoodenSign" type="Sprite2D" parent="UI"]
+position = Vector2(696.25, 540.977)
+scale = Vector2(0.263263, 0.263263)
+texture = ExtResource("4_5l02s")
 
 [node name="AttackButton" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 677.0
-offset_top = 418.0
-offset_right = 784.0
-offset_bottom = 462.0
+offset_left = 660.25
+offset_top = 423.977
+offset_right = 767.25
+offset_bottom = 467.977
 theme = ExtResource("3_ibsr8")
+theme_override_colors/font_color = Color(0.4, 0.211765, 0.141176, 1)
 text = "Attack!"
+flat = true
 
-[node name="ItemButton" type="Button" parent="UI"]
+[node name="SpellButton" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 677.0
-offset_top = 476.0
-offset_right = 784.0
-offset_bottom = 520.0
+offset_left = 663.25
+offset_top = 474.977
+offset_right = 770.25
+offset_bottom = 518.977
 theme = ExtResource("3_ibsr8")
+theme_override_colors/font_color = Color(0.4, 0.211765, 0.141176, 1)
 text = "Spell"
+flat = true
 
 [node name="CatchButton" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 677.0
-offset_top = 531.0
-offset_right = 784.0
-offset_bottom = 575.0
+offset_left = 655.25
+offset_top = 524.977
+offset_right = 762.25
+offset_bottom = 568.977
 theme = ExtResource("3_ibsr8")
+theme_override_colors/font_color = Color(0.4, 0.211765, 0.141176, 1)
 text = "Catch"
+flat = true
 
 [node name="RunButton" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 677.0
-offset_top = 588.0
-offset_right = 784.0
-offset_bottom = 632.0
+offset_left = 669.25
+offset_top = 572.977
+offset_right = 776.25
+offset_bottom = 616.977
 theme = ExtResource("3_ibsr8")
+theme_override_colors/font_color = Color(0.4, 0.211765, 0.141176, 1)
 text = "Run!"
+flat = true
 
 [node name="PlayerMoveList" type="Control" parent="UI"]
 visible = false
 anchors_preset = 0
-offset_left = 836.0
-offset_top = 437.0
-offset_right = 965.0
-offset_bottom = 565.0
+offset_left = 844.385
+offset_top = 448.25
+offset_right = 973.385
+offset_bottom = 576.25
 
 [node name="Move0" type="Button" parent="UI/PlayerMoveList"]
+z_index = 1
 layout_mode = 0
-offset_right = 124.0
+offset_left = -45.0
+offset_top = -6.0
+offset_right = 132.0
+offset_bottom = 33.0
+icon = ExtResource("5_6mauy")
+flat = true
+expand_icon = true
+
+[node name="Label" type="Label" parent="UI/PlayerMoveList/Move0"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 8.0
+offset_right = 166.0
 offset_bottom = 31.0
 text = "Move 0"
+horizontal_alignment = 2
 
 [node name="Move1" type="Button" parent="UI/PlayerMoveList"]
+z_index = 1
 layout_mode = 0
-offset_top = 31.0
-offset_right = 124.0
-offset_bottom = 62.0
-text = "Move 1"
+offset_left = -45.0
+offset_top = 27.0
+offset_right = 130.0
+offset_bottom = 66.0
+icon = ExtResource("5_6mauy")
+flat = true
+expand_icon = true
+
+[node name="Label" type="Label" parent="UI/PlayerMoveList/Move1"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 8.0
+offset_right = 166.0
+offset_bottom = 31.0
+text = "Move 0"
+horizontal_alignment = 2
 
 [node name="Move2" type="Button" parent="UI/PlayerMoveList"]
+z_index = 1
 layout_mode = 0
-offset_top = 62.0
-offset_right = 124.0
-offset_bottom = 93.0
-text = "Move 2"
+offset_left = -45.0
+offset_top = 58.0
+offset_right = 129.0
+offset_bottom = 101.0
+icon = ExtResource("5_6mauy")
+flat = true
+expand_icon = true
+
+[node name="Label" type="Label" parent="UI/PlayerMoveList/Move2"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 8.0
+offset_right = 166.0
+offset_bottom = 33.0
+text = "Move 0"
+horizontal_alignment = 2
 
 [node name="Move3" type="Button" parent="UI/PlayerMoveList"]
+z_index = 1
 layout_mode = 0
+offset_left = -45.0
 offset_top = 93.0
-offset_right = 124.0
-offset_bottom = 124.0
-text = "Move 3"
+offset_right = 133.0
+offset_bottom = 132.0
+icon = ExtResource("5_6mauy")
+flat = true
+expand_icon = true
 
-[node name="PlayerItemList" type="Control" parent="UI"]
+[node name="Label" type="Label" parent="UI/PlayerMoveList/Move3"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 8.0
+offset_right = 166.0
+offset_bottom = 31.0
+text = "Move 0"
+horizontal_alignment = 2
+
+[node name="EmptyMove0" type="Sprite2D" parent="UI/PlayerMoveList"]
+position = Vector2(73.5, 14)
+scale = Vector2(0.162304, 0.0320856)
+texture = ExtResource("5_wwq1g")
+
+[node name="EmptyMove1" type="Sprite2D" parent="UI/PlayerMoveList"]
+position = Vector2(73.5, 48)
+scale = Vector2(0.162304, 0.0320856)
+texture = ExtResource("5_wwq1g")
+
+[node name="EmptyMove2" type="Sprite2D" parent="UI/PlayerMoveList"]
+position = Vector2(73.5, 80)
+scale = Vector2(0.162304, 0.0320856)
+texture = ExtResource("5_wwq1g")
+
+[node name="EmptyMove3" type="Sprite2D" parent="UI/PlayerMoveList"]
+position = Vector2(74.5, 114)
+scale = Vector2(0.162304, 0.0320856)
+texture = ExtResource("5_wwq1g")
+
+[node name="PlayerSpellList" type="Control" parent="UI"]
 visible = false
 anchors_preset = 0
-offset_left = 838.0
-offset_top = 421.0
-offset_right = 878.0
-offset_bottom = 461.0
+offset_left = 848.0
+offset_top = 462.0
+offset_right = 888.0
+offset_bottom = 502.0
 
-[node name="PotionButton" type="Button" parent="UI/PlayerItemList"]
+[node name="PotionButton" type="Button" parent="UI/PlayerSpellList"]
 layout_mode = 0
 offset_top = 2.0
 offset_right = 124.0
 offset_bottom = 33.0
 text = "Heal"
 
-[node name="SwapButton" type="Button" parent="UI/PlayerItemList"]
+[node name="SwapButton" type="Button" parent="UI/PlayerSpellList"]
+visible = false
 layout_mode = 0
 offset_top = 33.0
 offset_right = 124.0
 offset_bottom = 64.0
 text = "Fast Swap"
 
-[node name="SuperCatchButton" type="Button" parent="UI/PlayerItemList"]
+[node name="SuperCatchButton" type="Button" parent="UI/PlayerSpellList"]
+visible = false
 layout_mode = 0
 offset_top = 64.0
 offset_right = 124.0
 offset_bottom = 95.0
 text = "Super Catch"
 
-[node name="SmokebombButton" type="Button" parent="UI/PlayerItemList"]
+[node name="SmokebombButton" type="Button" parent="UI/PlayerSpellList"]
+visible = false
 layout_mode = 0
 offset_top = 95.0
 offset_right = 124.0
 offset_bottom = 126.0
 text = "Smokebomb"
 
-[node name="ThirdEyeButton" type="Button" parent="UI/PlayerItemList"]
+[node name="ThirdEyeButton" type="Button" parent="UI/PlayerSpellList"]
+visible = false
 layout_mode = 0
 offset_top = 126.0
 offset_right = 124.0
@@ -153,10 +253,10 @@ text = "Third Eye"
 
 [node name="PlayerMoveDetails" type="Control" parent="UI"]
 anchors_preset = 0
-offset_left = 976.0
-offset_top = 423.0
-offset_right = 1176.0
-offset_bottom = 643.0
+offset_left = 983.385
+offset_top = 430.25
+offset_right = 1183.39
+offset_bottom = 650.25
 
 [node name="PlayerAttackDetails0" parent="UI/PlayerMoveDetails" instance=ExtResource("3_rdh00")]
 visible = false
@@ -192,40 +292,41 @@ item_3/text = "attack"
 
 [node name="SwitchButton0" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 494.0
-offset_right = 263.0
-offset_bottom = 630.0
+offset_left = 20.0
+offset_top = 497.0
+offset_right = 225.0
+offset_bottom = 633.0
 disabled = true
 text = "Switch 1"
 expand_icon = true
 
 [node name="SwitchButton1" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 263.0
-offset_top = 494.0
-offset_right = 468.0
-offset_bottom = 630.0
+offset_left = 225.0
+offset_top = 497.0
+offset_right = 430.0
+offset_bottom = 633.0
 disabled = true
 text = "Switch 2"
 expand_icon = true
 
 [node name="Sideboard" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 494.0
-offset_top = 494.0
-offset_right = 630.0
-offset_bottom = 630.0
+offset_left = 463.0
+offset_top = 498.0
+offset_right = 599.0
+offset_bottom = 634.0
 disabled = true
 expand_icon = true
 
-[node name="CatchCount" type="RichTextLabel" parent="UI"]
+[node name="CatchCount" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 665.0
-offset_top = 382.0
-offset_right = 850.0
-offset_bottom = 409.0
+offset_left = 620.0
+offset_top = 376.0
+offset_right = 805.0
+offset_bottom = 403.0
 text = "Catch count: 999"
+horizontal_alignment = 1
 
 [node name="CatchChance" type="RichTextLabel" parent="UI"]
 visible = false
@@ -255,10 +356,10 @@ text = "FIGHT!"
 scroll_following = true
 
 [node name="PlayerMonUI" parent="UI" instance=ExtResource("4_4psda")]
-offset_left = 428.0
-offset_top = 324.0
-offset_right = 428.0
-offset_bottom = 324.0
+offset_left = 383.718
+offset_top = 321.0
+offset_right = 383.718
+offset_bottom = 321.0
 
 [node name="EnemyMonUI" parent="UI" instance=ExtResource("4_4psda")]
 offset_left = 533.0
@@ -288,7 +389,7 @@ stream = ExtResource("8_4uffq")
 
 [node name="PlayerMonLocation" type="Marker2D" parent="."]
 z_index = 5
-position = Vector2(268, 452)
+position = Vector2(223.718, 449)
 
 [node name="ResolveTurnTimer" type="Timer" parent="."]
 wait_time = 0.065
@@ -299,7 +400,7 @@ z_index = 5
 position = Vector2(879, 296)
 
 [node name="PlayerStage" type="Sprite2D" parent="."]
-position = Vector2(267, 455)
+position = Vector2(222.718, 452)
 scale = Vector2(0.335897, 0.335897)
 texture = ExtResource("4_g5kj7")
 
@@ -323,7 +424,8 @@ wait_time = 0.2
 
 [connection signal="pressed" from="UI/EndButton" to="." method="_on_end_button_pressed"]
 [connection signal="pressed" from="UI/AttackButton" to="." method="_on_attack_button_pressed"]
-[connection signal="pressed" from="UI/ItemButton" to="UI" method="_on_item_button_pressed"]
+[connection signal="pressed" from="UI/AttackButton" to="UI" method="_on_attack_button_pressed"]
+[connection signal="pressed" from="UI/SpellButton" to="UI" method="_on_spell_button_pressed"]
 [connection signal="pressed" from="UI/CatchButton" to="." method="_on_catch_button_pressed"]
 [connection signal="pressed" from="UI/RunButton" to="." method="_on_run_button_pressed"]
 [connection signal="mouse_entered" from="UI/PlayerMoveList/Move0" to="UI" method="_on_move_0_mouse_entered"]
@@ -334,7 +436,7 @@ wait_time = 0.2
 [connection signal="pressed" from="UI/PlayerMoveList/Move2" to="." method="_on_move_2_pressed"]
 [connection signal="mouse_entered" from="UI/PlayerMoveList/Move3" to="UI" method="_on_move_3_mouse_entered"]
 [connection signal="pressed" from="UI/PlayerMoveList/Move3" to="." method="_on_move_3_pressed"]
-[connection signal="pressed" from="UI/PlayerItemList/PotionButton" to="." method="_on_potion_button_pressed"]
+[connection signal="pressed" from="UI/PlayerSpellList/PotionButton" to="." method="_on_potion_button_pressed"]
 [connection signal="pressed" from="UI/SwitchButton0" to="." method="_on_switch_button_0_pressed"]
 [connection signal="pressed" from="UI/SwitchButton0" to="UI" method="_on_switch_button_0_pressed"]
 [connection signal="pressed" from="UI/SwitchButton1" to="." method="_on_switch_button_1_pressed"]

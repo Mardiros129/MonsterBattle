@@ -30,12 +30,12 @@ position = Vector2(-6, -119)
 scale = Vector2(0.700495, 0.700495)
 texture = ExtResource("2_8nvev")
 
-[node name="AttackNode#Buzzsaw" parent="MoveNode" index="0" instance=ExtResource("4_d3hpq")]
+[node name="MoveNode#AttackNode#Buzzsaw" parent="DefaultMoveNode" index="0" instance=ExtResource("4_d3hpq")]
 base_damage = 30
 
-[node name="AttackNode#PoisonGas" parent="MoveNode" index="1" instance=ExtResource("3_jg3aw")]
+[node name="MoveNode#AttackNode#PoisonGas" parent="DefaultMoveNode" index="1" instance=ExtResource("3_jg3aw")]
 type = 4
 
-[node name="AttackNode#Accelerate" parent="MoveNode" index="2" instance=ExtResource("4_4xhsb")]
+[node name="MoveNode#AttackNode#Accelerate" parent="DefaultMoveNode" index="2" instance=ExtResource("4_4xhsb")]
 
-[node name="AttackNode#Shock" parent="MoveNode" index="3" instance=ExtResource("5_wqq0a")]
+[node name="MoveNode#AttackNode#Shock" parent="DefaultMoveNode" index="3" instance=ExtResource("5_wqq0a")]

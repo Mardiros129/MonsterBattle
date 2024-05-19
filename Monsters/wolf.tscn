@@ -21,12 +21,12 @@ position = Vector2(-16, -83)
 scale = Vector2(0.472059, 0.472059)
 texture = ExtResource("2_1e62i")
 
-[node name="AttackNode#Bite" parent="MoveNode" index="0" instance=ExtResource("3_rpy5q")]
+[node name="MoveNode#AttackNode#Bite" parent="DefaultMoveNode" index="0" instance=ExtResource("3_rpy5q")]
 effect = null
 
-[node name="AttackNode#InfectedTooth" parent="MoveNode" index="1" instance=ExtResource("4_v8s3i")]
+[node name="MoveNode#AttackNode#InfectedTooth" parent="DefaultMoveNode" index="1" instance=ExtResource("4_v8s3i")]
 
-[node name="AttackNode#Accelerate" parent="MoveNode" index="2" instance=ExtResource("5_6ocq4")]
+[node name="MoveNode#AttackNode#Accelerate" parent="DefaultMoveNode" index="2" instance=ExtResource("5_6ocq4")]
 
 [node name="EffectAttachmentPoint" parent="." index="10"]
 position = Vector2(-2, -84)

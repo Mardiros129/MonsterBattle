@@ -25,9 +25,9 @@ position = Vector2(8, -47)
 scale = Vector2(0.325833, 0.325833)
 texture = ExtResource("2_xy3tk")
 
-[node name="AttackNode#Laser" parent="MoveNode" index="0" instance=ExtResource("4_qhi4n")]
+[node name="MoveNode#AttackNode#Laser" parent="DefaultMoveNode" index="0" instance=ExtResource("4_qhi4n")]
 
-[node name="AttackNode#Accelerate" parent="MoveNode" index="1" instance=ExtResource("3_fqcdp")]
+[node name="MoveNode#AttackNode#Accelerate" parent="DefaultMoveNode" index="1" instance=ExtResource("3_fqcdp")]
 
 [node name="HealSound" parent="." index="9"]
 position = Vector2(40, -45)

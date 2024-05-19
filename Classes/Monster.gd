@@ -3,7 +3,7 @@ extends Node2D
 
 
 @onready var sprite2d = $Sprite2D
-@onready var move_node = $MoveNode
+@onready var move_node = $DefaultMoveNode
 @onready var transform_node = $TransformNode
 @onready var status_node = $StatusNode
 @onready var animation_player = $AnimationPlayer
@@ -55,10 +55,10 @@ func _ready():
 	
 	card_frame.hide()
 	sprite2d.flip_h = false
-	
-	# Setup moves
-	for x in move_node.get_child_count():
-		move_list.append(move_node.get_child(x))
+
+
+func add_move(move):
+	move_list.append(move)
 
 
 func setup_enemy():
@@ -68,6 +68,9 @@ func setup_enemy():
 	sprite2d.position.x *= -1
 	effect_attachment_point.flip_h = true
 	effect_attachment_point.position.x *= -1
+	
+	for x in move_node.get_child_count():
+		move_list.append(move_node.get_child(x))
 
 
 func attack(index, target):

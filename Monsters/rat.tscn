@@ -29,11 +29,11 @@ position = Vector2(-16, -86)
 scale = Vector2(0.571197, 0.571197)
 texture = ExtResource("2_w4det")
 
-[node name="AttackNode#Bite" parent="MoveNode" index="0" instance=ExtResource("3_4uc5s")]
+[node name="MoveNode#AttackNode#Bite" parent="DefaultMoveNode" index="0" instance=ExtResource("3_4uc5s")]
 
-[node name="AttackNode#InfectedTooth" parent="MoveNode" index="1" instance=ExtResource("4_2iyly")]
+[node name="MoveNode#AttackNode#InfectedTooth" parent="DefaultMoveNode" index="1" instance=ExtResource("4_2iyly")]
 
-[node name="AttackNode#Accelerate" parent="MoveNode" index="2" instance=ExtResource("6_m8sqt")]
+[node name="MoveNode#AttackNode#Accelerate" parent="DefaultMoveNode" index="2" instance=ExtResource("6_m8sqt")]
 
 [node name="Transformation" parent="TransformNode" index="0" instance=ExtResource("6_qsbjm")]
 script = ExtResource("7_eo57h")

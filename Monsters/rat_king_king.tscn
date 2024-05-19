@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://5v5vhk55xtqq"]
+[gd_scene load_steps=3 format=3 uid="uid://5v5vhk55xtqq"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_w73b7"]
 [ext_resource type="Texture2D" uid="uid://bt4e2vpvgybbn" path="res://Assets/Monsters/rat_king_king.png" id="2_reb5t"]
-[ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Moves/fire_punch.tscn" id="3_ii3mx"]
 
 [node name="RatKingKing" instance=ExtResource("1_w73b7")]
 my_name = "Rat King King"
@@ -19,9 +18,7 @@ level_res_bonus = 2
 type0 = 1
 type1 = 7
 
-[node name="AttackNode#Fire Punch" parent="." index="0" instance=ExtResource("3_ii3mx")]
-
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="0"]
 position = Vector2(-1, -104)
 scale = Vector2(0.035924, 0.035924)
 texture = ExtResource("2_reb5t")

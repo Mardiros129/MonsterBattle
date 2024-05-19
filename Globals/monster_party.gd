@@ -5,7 +5,7 @@ var party : Array[String]
 var party_hp : Array[int]
 var party_exp : Array[int]
 var party_level : Array[int]
-var party_moves : Array
+var party_moves : Array[Array]
 
 
 func new_add_to_party(path):
@@ -15,15 +15,25 @@ func new_add_to_party(path):
 	party_hp.append(monster.max_hp)
 	party_exp.append(0)
 	party_level.append(monster.level)
-	party_moves.append("placeholder") # placeholder
+	
+	var move_list = []
+	for x in monster.find_child("DefaultMoveNode").get_child_count():
+		var move_path = monster.find_child("DefaultMoveNode").get_child(x).get_scene_file_path()
+		move_list.append(move_path)
+	party_moves.append(move_list)
 
 
-func add_to_party(monster):
+func save_party_member(monster):
 	party.append(monster.get_scene_file_path())
 	party_hp.append(monster.current_hp)
 	party_exp.append(monster.experience)
 	party_level.append(monster.level)
-	party_moves.append("placeholder") # placeholder
+	
+	var move_list = []
+	for x in monster.move_list.size():
+		var move_path = monster.move_list[x].get_scene_file_path()
+		move_list.append(move_path)
+	party_moves.append(move_list)
 
 
 func clear_all():

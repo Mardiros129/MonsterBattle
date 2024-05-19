@@ -25,9 +25,9 @@ position = Vector2(-8.58307e-06, -92)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_k8uek")
 
-[node name="AttackNode#Heal" parent="MoveNode" index="0" instance=ExtResource("3_b55jf")]
+[node name="MoveNode#AttackNode#Heal" parent="DefaultMoveNode" index="0" instance=ExtResource("3_b55jf")]
 
-[node name="AttackNode#Drain" parent="MoveNode" index="1" instance=ExtResource("4_5v1yk")]
+[node name="MoveNode#AttackNode#Drain" parent="DefaultMoveNode" index="1" instance=ExtResource("4_5v1yk")]
 
 [node name="EffectAttachmentPoint" parent="." index="10"]
 position = Vector2(8, -56)

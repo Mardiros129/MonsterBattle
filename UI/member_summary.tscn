@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cnclpfl72ucra"]
 
-[ext_resource type="Texture2D" uid="uid://bnk3d7oftye8u" path="res://Assets/card_back.png" id="1_wwiwo"]
-[ext_resource type="Texture2D" uid="uid://cmca0rv7xu6qv" path="res://Assets/health_bar_under.png" id="2_nt0df"]
-[ext_resource type="Texture2D" uid="uid://d0733fxnwhpkr" path="res://Assets/health_bar.png" id="3_7wngy"]
-[ext_resource type="Texture2D" uid="uid://bh2x5xmwrl1cw" path="res://Assets/exp_bar.png" id="4_e6hvu"]
+[ext_resource type="Texture2D" uid="uid://bnk3d7oftye8u" path="res://Assets/UI/card_back.png" id="1_wwiwo"]
+[ext_resource type="Texture2D" uid="uid://cmca0rv7xu6qv" path="res://Assets/UI/health_bar_under.png" id="2_nt0df"]
+[ext_resource type="Texture2D" uid="uid://d0733fxnwhpkr" path="res://Assets/UI/health_bar.png" id="3_7wngy"]
+[ext_resource type="Texture2D" uid="uid://bh2x5xmwrl1cw" path="res://Assets/UI/exp_bar.png" id="4_e6hvu"]
 
 [node name="MemberSummary" type="Button"]
 offset_right = 165.0

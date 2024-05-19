@@ -20,6 +20,6 @@ position = Vector2(0, -112)
 scale = Vector2(0.215, 0.215)
 texture = ExtResource("2_lhrpg")
 
-[node name="AttackNode#Stardust" parent="MoveNode" index="0" instance=ExtResource("3_xq2m8")]
+[node name="MoveNode#AttackNode#Stardust" parent="DefaultMoveNode" index="0" instance=ExtResource("3_xq2m8")]
 
-[node name="AttackNode#Flamethrower" parent="MoveNode" index="1" instance=ExtResource("4_mjfmg")]
+[node name="MoveNode#AttackNode#Flamethrower" parent="DefaultMoveNode" index="1" instance=ExtResource("4_mjfmg")]

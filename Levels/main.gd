@@ -34,6 +34,10 @@ func _ready():
 		var new_monster = load(MonsterParty.party[x]).instantiate()
 		mon_start_lineup.append(new_monster)
 		player_mon.append(new_monster)
+		
+		for y in MonsterParty.party_moves[x].size():
+			var new_move = load(MonsterParty.party_moves[x][y]).instantiate()
+			new_monster.add_move(new_move)
 	
 	for x in player_mon.size():
 		player_mon_loc.add_child(player_mon[x])
@@ -56,9 +60,9 @@ func _ready():
 	# Setup signals
 	var all_monsters = player_mon + enemy_mon
 	for x in all_monsters.size():
-		var chosen_mon_attacks = all_monsters[x].find_child("MoveNode")
-		for y in chosen_mon_attacks.get_child_count():
-			chosen_mon_attacks.get_child(y).combat_message.connect(_on_combat_message_received)
+		var chosen_mon_attacks = all_monsters[x].move_list
+		for y in chosen_mon_attacks.size():
+			chosen_mon_attacks[y].combat_message.connect(_on_combat_message_received)
 	
 	# Setup UI
 	ui.set_button_icons(player_mon)
@@ -159,9 +163,9 @@ func enemy_mon_dies():
 	await get_tree().create_timer(command_delay).timeout
 	
 	enemy_mon.pop_front()
-	player_mon[0].gain_exp(1)
+	player_mon[0].gain_exp(2)
 	
-	if enemy_mon.size() > 1:
+	if enemy_mon.size() > 0:
 		replace_enemy()
 
 
@@ -367,7 +371,7 @@ func _on_end_button_pressed():
 	for x in mon_start_lineup.size():
 		var current_mon = mon_start_lineup[x]
 		if current_mon != null:
-			MonsterParty.add_to_party(mon_start_lineup[x])
+			MonsterParty.save_party_member(mon_start_lineup[x])
 	
 	# Load next scene
 	var inst = load("res://Levels/end_screen.tscn").instantiate()

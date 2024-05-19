@@ -40,10 +40,3 @@ func _on_monster_transforms(trans_mon: PackedScene, index: int):
 	# Set the transformation's health
 	var health_bonus = new_mon.max_hp - old_mon.max_hp
 	MonsterParty.party_hp[index] += health_bonus
-	
-	# Set the transformation's attacks
-	var attacks = old_mon.find_child("AttackNode")
-	for x in new_mon.find_child("AttackNode").get_children():
-		new_mon.find_child("AttackNode").remove_child(x)
-	for x in attacks.get_child_count():
-		new_mon.find_child("AttackNode").add_child(attacks.get_child(x).duplicate())
