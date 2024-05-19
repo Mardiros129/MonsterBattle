@@ -87,8 +87,18 @@ func start_turn():
 	ui.update_catch_chance(FightData.catch_chance)
 	ui.player_mon_ui.update_mon_speed_ui(player_mon[0])
 	ui.enemy_mon_ui.update_mon_speed_ui(enemy_mon[0])
+	
 	if !enemy_mon[0].catchable:
 		ui.not_catchable_button()
+	
+	# Refactor later
+	if player_mon.size() > 1:
+		if player_mon[1].current_speed > enemy_mon[0].current_speed and not bonus_turn:
+			ui.show_speed_icon(0)
+	if player_mon.size() > 2:
+		if player_mon[2].current_speed > enemy_mon[0].current_speed and not bonus_turn:
+			ui.show_speed_icon(1)
+	
 	player_turn = true
 
 
@@ -262,6 +272,7 @@ func switch(button_index):
 	ui.update_log(player_mon[0].my_name + " swapped in!")
 	await get_tree().create_timer(command_delay).timeout
 	
+	# Get a bonus turn if your speed is faster
 	if player_mon[0].current_speed <= enemy_mon[0].current_speed:
 		end_turn()
 	else:

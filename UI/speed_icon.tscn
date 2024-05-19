@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsif0h7lf5kns"]
+
+[ext_resource type="Script" path="res://UI/speed_icon.gd" id="1_ny6v3"]
+[ext_resource type="Texture2D" uid="uid://clbt6ds2dem5e" path="res://Assets/UI/chevron.png" id="1_scnma"]
+
+[node name="SpeedIcon" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ny6v3")
+
+[node name="Button" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -21.0
+offset_top = -16.0
+offset_right = 568.0
+offset_bottom = 528.0
+scale = Vector2(0.0716912, 0.0716912)
+texture = ExtResource("1_scnma")
+
+[node name="Hint" type="Label" parent="."]
+visible = false
+offset_left = 23.0
+offset_top = -27.0
+offset_right = 163.0
+offset_bottom = 48.0
+text = "Speed bonus: 
+get an extra turn 
+after switching!"
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

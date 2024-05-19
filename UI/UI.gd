@@ -6,6 +6,15 @@ extends Control
 @onready var sideboard = $Sideboard
 @onready var switch_buttons = [switch_button0, switch_button1, sideboard]
 
+@onready var switch0_health_bar = $SwitchButton0/HealthBar
+@onready var switch1_health_bar = $SwitchButton1/HealthBar
+@onready var sideboard_health_bar = $Sideboard/HealthBar
+@onready var switch_health_bars = [switch0_health_bar, switch1_health_bar, sideboard_health_bar]
+
+@onready var speed_icon0 = $SwitchButton0/SpeedIcon
+@onready var speed_icon1 = $SwitchButton1/SpeedIcon
+@onready var speed_icons = [speed_icon0, speed_icon1]
+
 @onready var attack_button = $AttackButton
 @onready var spell_button = $SpellButton
 @onready var catch_button = $CatchButton
@@ -66,9 +75,17 @@ func set_button_icons(mon_team):
 			switch_buttons[x].set_button_icon(mon_team[x + 1].get_sprite())
 			if switch_buttons[x] != sideboard:
 				switch_buttons[x].disabled = false
+			
+			switch_health_bars[x].max_value = mon_team[x + 1].max_hp
+			switch_health_bars[x].value = mon_team[x + 1].current_hp
+			
 		else:
 			switch_buttons[x].set_button_icon(null)
 			switch_buttons[x].disabled = true
+			switch_health_bars[x].hide()
+			
+			hide_speed_icon(0)
+			hide_speed_icon(1)
 
 
 func set_player_mon_ui(player_mon):
@@ -133,7 +150,18 @@ func disable_ui():
 func disable_switch_buttons():
 	for x in switch_buttons.size():
 		switch_buttons[x].disabled = true
+	
+	hide_speed_icon(0)
+	hide_speed_icon(1)
 
+
+func show_speed_icon(index):
+	speed_icons[index].show()
+
+
+func hide_speed_icon(index):
+	speed_icons[index].hide()
+	
 
 func enable_ui():
 	attack_button.disabled = false

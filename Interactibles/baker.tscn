@@ -44,7 +44,6 @@ position = Vector2(-15.5, -5)
 shape = SubResource("RectangleShape2D_i774j")
 
 [node name="Dialog0" parent="DialogControl" index="0"]
-layout_mode = 0
 offset_left = -66.0
 offset_top = 27.0
 offset_right = 66.0
@@ -63,5 +62,14 @@ offset_top = 135.0
 offset_right = 33.0
 offset_bottom = 166.0
 text = "Bake it!"
+
+[node name="EndDialog" type="Label" parent="DialogControl" index="2"]
+visible = false
+layout_mode = 0
+offset_left = -23.0
+offset_top = 29.0
+offset_right = 24.0
+offset_bottom = 52.0
+text = "Enjoy!"
 
 [connection signal="pressed" from="DialogControl/BakeButton" to="." method="_on_bake_button_pressed"]

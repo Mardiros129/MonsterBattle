@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c3ccrpeska432"]
+[gd_scene load_steps=21 format=3 uid="uid://c3ccrpeska432"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_2bifh"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="3_1s8rs"]
@@ -16,6 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://xt3wv43400y4" path="res://Assets/UI/enemy_health_bar.png" id="5_xdxbd"]
 [ext_resource type="AudioStream" uid="uid://peoy0akqoaqi" path="res://Assets/Audio/click.wav" id="8_4uffq"]
 [ext_resource type="AudioStream" uid="uid://cb4qodw1vc2pd" path="res://Assets/Audio/footsteps.mp3" id="10_wlmlo"]
+[ext_resource type="PackedScene" uid="uid://bsif0h7lf5kns" path="res://UI/speed_icon.tscn" id="12_ohgoa"]
+[ext_resource type="Texture2D" uid="uid://d1hkitfmy75ea" path="res://Assets/UI/lock.png" id="17_1wqj2"]
+[ext_resource type="Texture2D" uid="uid://cmca0rv7xu6qv" path="res://Assets/UI/health_bar_under.png" id="18_nt2kr"]
+[ext_resource type="Texture2D" uid="uid://d0733fxnwhpkr" path="res://Assets/UI/health_bar.png" id="19_1lu6e"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2bifh")
@@ -26,14 +30,22 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("3_1s8rs")
 
-[node name="Spellbook" type="Sprite2D" parent="UI"]
+[node name="Spellbook" type="TextureRect" parent="UI"]
 visible = false
-position = Vector2(977.385, 523.25)
+layout_mode = 0
+offset_left = 813.0
+offset_top = 405.0
+offset_right = 1278.0
+offset_bottom = 765.0
 scale = Vector2(0.702733, 0.668056)
 texture = ExtResource("3_80hdh")
 
-[node name="ClosedBook" type="Sprite2D" parent="UI"]
-position = Vector2(974, 526)
+[node name="ClosedBook" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 862.0
+offset_top = 418.0
+offset_right = 8862.0
+offset_bottom = 7803.0
 scale = Vector2(0.0292484, 0.0292485)
 texture = ExtResource("4_cxgb7")
 
@@ -47,8 +59,12 @@ offset_right = 1077.0
 offset_bottom = 524.0
 text = "Go to end screen"
 
-[node name="WoodenSign" type="Sprite2D" parent="UI"]
-position = Vector2(696.25, 540.977)
+[node name="WoodenSign" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 399.0
+offset_right = 1354.0
+offset_bottom = 1470.0
 scale = Vector2(0.263263, 0.263263)
 texture = ExtResource("4_5l02s")
 
@@ -300,6 +316,24 @@ disabled = true
 text = "Switch 1"
 expand_icon = true
 
+[node name="HealthBar" type="TextureProgressBar" parent="UI/SwitchButton0"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 132.0
+offset_right = 161.0
+offset_bottom = 147.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("18_nt2kr")
+texture_progress = ExtResource("19_1lu6e")
+
+[node name="SpeedIcon" parent="UI/SwitchButton0" instance=ExtResource("12_ohgoa")]
+visible = false
+offset_left = 176.0
+offset_top = 23.0
+offset_right = 176.0
+offset_bottom = 23.0
+
 [node name="SwitchButton1" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 225.0
@@ -310,6 +344,24 @@ disabled = true
 text = "Switch 2"
 expand_icon = true
 
+[node name="HealthBar" type="TextureProgressBar" parent="UI/SwitchButton1"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 132.0
+offset_right = 163.0
+offset_bottom = 147.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("18_nt2kr")
+texture_progress = ExtResource("19_1lu6e")
+
+[node name="SpeedIcon" parent="UI/SwitchButton1" instance=ExtResource("12_ohgoa")]
+visible = false
+offset_left = 181.0
+offset_top = 23.0
+offset_right = 181.0
+offset_bottom = 23.0
+
 [node name="Sideboard" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 463.0
@@ -318,6 +370,28 @@ offset_right = 599.0
 offset_bottom = 634.0
 disabled = true
 expand_icon = true
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI/Sideboard"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 131.0
+offset_right = 129.0
+offset_bottom = 146.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("18_nt2kr")
+texture_progress = ExtResource("19_1lu6e")
+
+[node name="Lock" type="TextureRect" parent="UI/Sideboard"]
+modulate = Color(1, 1, 1, 0.282353)
+z_index = 1
+layout_mode = 0
+offset_left = -6.00001
+offset_top = -4.00001
+offset_right = 794.0
+offset_bottom = 750.0
+scale = Vector2(0.18435, 0.18435)
+texture = ExtResource("17_1wqj2")
 
 [node name="CatchCount" type="Label" parent="UI"]
 layout_mode = 0
@@ -378,9 +452,13 @@ offset_right = 508.0
 offset_bottom = 49.0
 text = "Type Matchups"
 
-[node name="TypeMatchupChart" type="Sprite2D" parent="UI"]
+[node name="TypeMatchupChart" type="TextureRect" parent="UI"]
 visible = false
-position = Vector2(443, 168)
+layout_mode = 0
+offset_left = 338.0
+offset_top = 59.0
+offset_right = 988.0
+offset_bottom = 709.0
 scale = Vector2(0.336923, 0.336923)
 texture = ExtResource("4_ujev1")
 

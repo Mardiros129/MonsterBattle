@@ -38,6 +38,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="Dialog0" type="Label" parent="DialogControl"]
+layout_mode = 0
 offset_left = -57.0
 offset_top = 45.0
 offset_right = 56.0
