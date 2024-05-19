@@ -57,7 +57,6 @@ func _unhandled_input(event):
 func pickup_item():
 	if facing_item != null:
 		facing_item.pickup()
-		facing_item.queue_free()
 
 
 func _on_pickup_area_body_entered(body):

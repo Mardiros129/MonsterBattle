@@ -9,7 +9,7 @@ extends StaticBody2D
 @onready var collision_shape_2d = $Area2D/CollisionShape2D
 @onready var area_2d = $Area2D
 @onready var dialog_control = $DialogControl
-
+@onready var audio = $AudioStreamPlayer2D
 
 
 func _ready():
@@ -23,6 +23,7 @@ func start_interaction():
 	dialog_timer.timeout.connect(_on_dialog_timer_timeout) # Gets dc'd if scene is reloaded
 	dialog_timer.start()
 	dialog_control.show()
+	audio.play()
 	special_interaction()
 
 

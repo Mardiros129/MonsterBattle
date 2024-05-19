@@ -11,8 +11,10 @@ signal update_ui
 func special_interaction():
 	for x in button_group.get_child_count():
 		button_group.get_child(x).hide()
+	
 	for x in MonsterParty.party.size():
 		button_group.get_child(x).show()
+		button_group.get_child(x).text = MonsterParty.party_name[x]
 
 
 func sacrifice(index):

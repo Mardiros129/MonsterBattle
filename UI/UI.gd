@@ -220,6 +220,14 @@ func update_log(info: String):
 	combat_log.text += "\n" + "---------------------------"
 
 
+func reset_ui():
+	closed_book.show()
+	spellbook.hide()
+	player_move_list.hide()
+	hide_all_move_details()
+	player_spell_list.hide()
+
+
 func _on_attack_button_pressed():
 	spellbook.show()
 	closed_book.hide()
@@ -268,10 +276,8 @@ func _on_move_3_mouse_entered():
 
 
 func _on_switch_button_0_pressed():
-	player_move_list.hide()
-	hide_all_move_details()
+	reset_ui()
 
 
 func _on_switch_button_1_pressed():
-	player_move_list.hide()
-	hide_all_move_details()
+	reset_ui()

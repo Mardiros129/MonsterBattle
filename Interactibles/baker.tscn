@@ -43,6 +43,12 @@ text = "The Baker"
 position = Vector2(-15.5, -5)
 shape = SubResource("RectangleShape2D_i774j")
 
+[node name="DialogControl" parent="." index="6"]
+offset_left = 1.0
+offset_top = -6.0
+offset_right = 1.0
+offset_bottom = -6.0
+
 [node name="Dialog0" parent="DialogControl" index="0"]
 offset_left = -66.0
 offset_top = 27.0

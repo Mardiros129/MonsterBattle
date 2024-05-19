@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cphc1futbkl7m"]
+[gd_scene load_steps=3 format=3 uid="uid://cphc1futbkl7m"]
 
 [ext_resource type="Script" path="res://Classes/item.gd" id="1_ojvuy"]
+[ext_resource type="AudioStream" uid="uid://peoy0akqoaqi" path="res://Assets/Audio/click.wav" id="2_nrk03"]
 
 [node name="Item" type="StaticBody2D" groups=["Item"]]
 script = ExtResource("1_ojvuy")
@@ -8,3 +9,11 @@ script = ExtResource("1_ojvuy")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_nrk03")
+
+[node name="AudioTimeout" type="Timer" parent="."]
+wait_time = 0.18
+
+[connection signal="timeout" from="AudioTimeout" to="." method="_on_audio_timeout_timeout"]

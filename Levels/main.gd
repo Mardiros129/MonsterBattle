@@ -297,8 +297,9 @@ func _on_potion_button_pressed():
 	PlayerInventory.potion_counter -= 1
 	player_mon[0].heal_damage(FightData.potion_healing)
 	
+	ui.disable_ui()
 	ui.change_player_hp(player_mon[0])
-	ui.update_log("Healed " + str(FightData.potion_healing) + " with a potion!")
+	ui.update_log("Healed " + str(FightData.potion_healing) + " with a spell!")
 	await get_tree().create_timer(command_delay).timeout
 	
 	end_turn()
