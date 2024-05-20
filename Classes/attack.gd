@@ -1,5 +1,4 @@
 extends Node2D
-#class_name Move
 
 
 signal combat_message(message)

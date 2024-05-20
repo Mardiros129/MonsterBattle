@@ -121,6 +121,7 @@ offset_right = 973.385
 offset_bottom = 576.25
 
 [node name="Move0" type="Button" parent="UI/PlayerMoveList"]
+modulate = Color(1, 0.211765, 1, 1)
 z_index = 1
 layout_mode = 0
 offset_left = -45.0
@@ -137,6 +138,7 @@ offset_left = 42.0
 offset_top = 8.0
 offset_right = 166.0
 offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Move 0"
 horizontal_alignment = 2
 
@@ -157,6 +159,7 @@ offset_left = 43.0
 offset_top = 8.0
 offset_right = 166.0
 offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Move 0"
 horizontal_alignment = 2
 
@@ -177,6 +180,7 @@ offset_left = 44.0
 offset_top = 8.0
 offset_right = 166.0
 offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Move 0"
 horizontal_alignment = 2
 
@@ -197,6 +201,7 @@ offset_left = 45.0
 offset_top = 8.0
 offset_right = 166.0
 offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Move 0"
 horizontal_alignment = 2
 

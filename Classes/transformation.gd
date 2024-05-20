@@ -1,5 +1,4 @@
 extends Node2D
-#class_name Transformation
 
 
 @onready var can_transform = false

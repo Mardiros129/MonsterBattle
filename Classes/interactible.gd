@@ -1,5 +1,4 @@
 extends StaticBody2D
-#class_name Interactible
 
 
 @onready var facing = false
@@ -43,22 +42,13 @@ func _unhandled_input(event):
 		start_interaction()
 
 
-func _on_area_2d_area_entered(area):
+func _on_area_2d_area_entered(_area):
 	facing = true
 
 
-func _on_area_2d_area_exited(area):
+func _on_area_2d_area_exited(_area):
 	facing = false
 
 
 func _on_dialog_timer_timeout():
 	dialog_control.hide()
-
-#
-#func _on_visibility_changed():
-	#if not visible:
-		#physics_body.disabled = true
-		#collision_shape_2d.disabled = true
-	#else:
-		#physics_body.disabled = false
-		#collision_shape_2d.disabled = false

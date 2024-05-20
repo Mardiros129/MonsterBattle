@@ -13,7 +13,7 @@ func new_add_to_party(path):
 	var monster = load(path).instantiate()
 	
 	party.append(path)
-	party_name.append(monster.name)
+	party_name.append(monster.my_name)
 	party_hp.append(monster.max_hp)
 	party_exp.append(0)
 	party_level.append(monster.level)
@@ -27,7 +27,7 @@ func new_add_to_party(path):
 
 func save_party_member(monster):
 	party.append(monster.get_scene_file_path())
-	party_name.append(monster.name)
+	party_name.append(monster.my_name)
 	party_hp.append(monster.current_hp)
 	party_exp.append(monster.experience)
 	party_level.append(monster.level)

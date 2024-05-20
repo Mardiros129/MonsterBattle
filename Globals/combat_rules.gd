@@ -3,6 +3,20 @@ extends Node
 enum Type {NONE, ANIMAL, PLANT, UNDEAD, PIXIE, MECH, ELEMENT, CORRUPT, MYTHIC, DEMON, ANGEL}
 @onready var TypeName = ["", "animal", "plant", "undead", "pixie", "mech", "element", "corrupt", "mythic","demon", "angel"]
 
+@onready var TypeColor = [ 
+	Color.WHITE, # none
+	Color.SANDY_BROWN, # animal
+	Color.WEB_GREEN, # plant
+	Color.SLATE_GRAY, # undead
+	Color.HOT_PINK, # pixie
+	Color.ROSY_BROWN, # mech
+	Color.ROYAL_BLUE, # element
+	Color.MEDIUM_PURPLE, # corrupt
+	Color.GOLD, # mythic
+	Color.DARK_RED, # demon
+	Color.ANTIQUE_WHITE, # angel
+	]
+
 @onready var TypeAdvantageChart: Array[Array]
 @onready var NoneTypeAdvantage = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 @onready var AnimalTypeAdvantage = [1.0, 1.0, 2.0, 0.5, 2.0, 0.5, 1.0, 0.5, 0.5, 1.0, 1.0]

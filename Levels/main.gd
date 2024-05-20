@@ -257,6 +257,7 @@ func choose_attack(index):
 func switch(button_index):
 	player_mon[0].hide()
 	ui.swap_buttons(player_mon[0], button_index)
+	ui.disable_ui()
 	
 	# Swap the roles. Don't swap the order in the party.
 	var temp = player_mon[0]
@@ -276,6 +277,7 @@ func switch(button_index):
 	if player_mon[0].current_speed <= enemy_mon[0].current_speed:
 		end_turn()
 	else:
+		ui.enable_ui()
 		ui.disable_switch_buttons()
 		bonus_turn = true
 

@@ -575,6 +575,11 @@ _data = {
 
 [node name="Monster" type="Node2D"]
 script = ExtResource("2_qymm1")
+level_str_bonus = 10
+level_int_bonus = 10
+level_def_bonus = 10
+level_res_bonus = 10
+level_spd_bonus = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

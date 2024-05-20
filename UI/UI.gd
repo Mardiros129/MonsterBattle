@@ -200,8 +200,12 @@ func set_moves(player_mon):
 			move_button.find_child("Label").text = player_mon.move_list[x].attack_name
 			move_button.disabled = false
 			
+			var index = player_mon.move_list[x].type
+			move_button.modulate = CombatRules.TypeColor[index]
+			
 			var attack_details = player_move_details.get_child(x)
 			attack_details.set_attack_details(player_mon.move_list[x])
+			move_button.show()
 		else:
 			move_button.hide()
 

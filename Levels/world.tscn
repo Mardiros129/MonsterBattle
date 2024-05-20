@@ -993,7 +993,7 @@ shape = SubResource("RectangleShape2D_vov46")
 
 [node name="BossTestArea" parent="MonsterAreas" instance=ExtResource("3_nam0o")]
 position = Vector2(24, -360)
-monster_options = Array[String](["res://Monsters/tree.tscn", "res://Monsters/tree.tscn", "res://Monsters/mech_boss.tscn"])
+monster_options = Array[String](["res://Monsters/tree_stump.tscn", "res://Monsters/tree_stump.tscn", "res://Monsters/mech_boss.tscn"])
 encounter_chance = 1.0
 check_monster_pool = false
 encounter_size = 3
