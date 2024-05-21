@@ -30,7 +30,7 @@ enum Type {NONE, ANIMAL, PLANT, UNDEAD, PIXIE, MECH, ELEMENT, CORRUPT, MYTHIC, D
 @onready var DemonTypeAdvantage = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0]
 @onready var AngelTypeAdvantage = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0]
 
-enum DamageCategory { UTILITY, PHYSICAL, MAGIC }
+enum DamageCategory { UTILITY, PHYSICAL, MAGIC, STATUS }
 @onready var DamageCategoryName = ["utility", "physical", "magic"]
 
 enum TargetType { NONE, SELF, OPPONENT, ALLY, ALL }

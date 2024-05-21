@@ -19,7 +19,7 @@ extends Node2D
 # 1 = first support
 # 2 = second support
 
-@onready var command_queue: Array
+#@onready var command_queue: Array
 @export var command_delay = 0.4
 @onready var bonus_turn = false # Currently only works for player, need to update later to include enemy
 
@@ -106,23 +106,22 @@ func end_turn():
 	player_turn = false
 	var combat_finished = false
 	ui.disable_ui()
+	
 	enemy_chooses_attack()
 	
-	# Eventually these should be given their own commands
-	player_mon[0].activate_all_statuses()
-	enemy_mon[0].activate_all_statuses()
-	
 	# Go through everything in the queue one-by-one.
-	for x in command_queue.size():
-		var command = command_queue.pop_front()
-		if command.get_user() == player_mon[0]:
-			player_mon[0].attack(command.attack, enemy_mon[0])
-		elif command.get_user() == enemy_mon[0]:
-			var attack_name = enemy_mon[0].attack(command.attack, player_mon[0])
+	while not CommandQueue.command_queue.is_empty():
+		var command = CommandQueue.command_queue.pop_front()
+		
+		var attack_name
+		if command.user == player_mon[0]:
+			attack_name = player_mon[0].attack(command.move, enemy_mon[0])
+		elif command.user == enemy_mon[0]:
+			attack_name = enemy_mon[0].attack(command.move, player_mon[0])
 			ui.populate_enemy_attacks(attack_name)
 		
-		ui.change_player_hp(player_mon[0])
-		ui.change_enemy_hp(enemy_mon[0])
+		ui.update_player_hp(player_mon[0])
+		ui.update_enemy_hp(enemy_mon[0])
 		
 		if enemy_mon[0].current_hp <= 0:
 			enemy_mon_dies()
@@ -149,11 +148,49 @@ func end_turn():
 			break
 		
 	if combat_finished:
-		command_queue.clear()
+		CommandQueue.clear_command_queue()
 		end_combat()
 	else:
-		command_queue.clear()
+		# Go through statuses
+		for x in player_mon.size():
+			player_mon[x].activate_all_statuses()
+		for x in enemy_mon.size():
+			enemy_mon[x].activate_all_statuses()
+			
+		ui.update_ui(player_mon, enemy_mon)
+		
+		CommandQueue.clear_command_queue()
 		start_turn()
+
+
+# To do, implement some AI behavior
+func enemy_chooses_attack():
+	var result = randi_range(0, enemy_mon[0].move_list.size() - 1)
+	new_command(result, enemy_mon[0], player_mon[0])
+
+
+func new_command(move, user, target):
+	var speed
+	if !bonus_turn:
+		speed = user.current_speed
+	elif user == player_mon[0]:
+		# Always go last if it's a bonus turn (regular speed will never be less than 0)
+		speed = -1
+		bonus_turn = false
+	
+	CommandQueue.new_command_enqueue(move, user, target, speed)
+
+
+func _player_damages_enemy(dmg):
+	enemy_mon[0].take_damage(dmg)
+
+
+func _on_combat_message_received(message: String):
+	ui.update_log(message)
+
+
+## *** *** DEATH *** ***
+
 
 func player_mon_dies():
 	player_mon[0].die()
@@ -182,43 +219,6 @@ func enemy_mon_dies():
 func replace_enemy():
 	enemy_mon[0].show()
 	ui.set_enemy_mon_ui(enemy_mon[0])
-
-
-# To do, implement some AI behavior
-func enemy_chooses_attack():
-	var result = randi_range(0, enemy_mon[0].move_list.size() - 1)
-	new_command(result, enemy_mon[0], player_mon[0])
-
-
-func new_command(attack, user, target):
-	var command = preload("res://command.gd").new()
-	command.user = user
-	command.target = target
-	command.attack = attack
-	if !bonus_turn:
-		command.speed = user.current_speed
-	elif user == player_mon[0]:
-		# Always go last if it's a bonus turn (regular speed will never be less than 0)
-		command.speed = -1
-		bonus_turn = false
-	
-	# Adds the command to the queue based on its speed. Highest number is first.
-	if command_queue.size() == 0:
-		command_queue.append(command)
-	else:
-		for x in command_queue.size():
-			if command_queue[x].speed < command.speed:
-				command_queue.insert(x, command)
-			elif x == command_queue.size()-1:
-				command_queue.append(command)
-
-
-func _player_damages_enemy(dmg):
-	enemy_mon[0].take_damage(dmg)
-
-
-func _on_combat_message_received(message: String):
-	ui.update_log(message)
 
 
 ## *** *** ATTACK *** ***
@@ -292,16 +292,16 @@ func _on_switch_button_1_pressed():
 	switch(1)
 
 
-## *** *** ITEM *** ***
+## *** *** SPELL *** ***
 
 
-func _on_potion_button_pressed():
+func _on_heal_button_pressed():
 	PlayerInventory.potion_counter -= 1
-	player_mon[0].heal_damage(FightData.potion_healing)
+	player_mon[0].heal_damage(FightData.spell_healing)
 	
 	ui.disable_ui()
-	ui.change_player_hp(player_mon[0])
-	ui.update_log("Healed " + str(FightData.potion_healing) + " with a spell!")
+	ui.update_player_hp(player_mon[0])
+	ui.update_log("Healed " + str(FightData.spell_healing) + " with a spell!")
 	await get_tree().create_timer(command_delay).timeout
 	
 	end_turn()
@@ -342,6 +342,7 @@ func _on_catch_button_pressed():
 	else:
 		ui.update_log("Catch failed...")
 		await get_tree().create_timer(command_delay).timeout
+		
 		end_turn()
 
 

@@ -18,8 +18,8 @@ func _ready():
 
 
 func _physics_process(_delta):
-	# Move the player
 	if not frozen:
+		# Move the player
 		var direction_x = Input.get_axis("move_left", "move_right")
 		if direction_x:
 			velocity.x = direction_x
@@ -33,14 +33,6 @@ func _physics_process(_delta):
 			velocity.y = move_toward(velocity.y, 0, speed)
 		
 		# Flip the sprite
-		if direction_y > 0:
-			pickup_area.position.y = pickup_offset
-			pickup_area.position.x = 0
-			facing = Direction.DOWN
-		elif direction_y < 0:
-			pickup_area.position.y = - pickup_offset
-			pickup_area.position.x = 0
-			facing = Direction.UP
 		if direction_x > 0:
 			pickup_area.position.x = pickup_offset
 			pickup_area.position.y = 0
@@ -49,11 +41,19 @@ func _physics_process(_delta):
 			pickup_area.position.x = -pickup_offset
 			pickup_area.position.y = 0
 			facing = Direction.LEFT
+		elif direction_y > 0:
+			pickup_area.position.y = pickup_offset
+			pickup_area.position.x = 0
+			facing = Direction.DOWN
+		elif direction_y < 0:
+			pickup_area.position.y = - pickup_offset
+			pickup_area.position.x = 0
+			facing = Direction.UP
 		
 		velocity = velocity.normalized() * speed
 		move_and_slide()
 		
-		if velocity.x > 0 or velocity.y > 0:
+		if velocity.x != 0 or velocity.y != 0:
 			match facing:
 				Direction.UP:
 					animation_player.play("move_up")
@@ -77,6 +77,7 @@ func _physics_process(_delta):
 
 func freeze():
 	frozen = true
+	animation_player.pause()
 
 
 func unfreeze():
@@ -87,7 +88,7 @@ func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().quit()
-		if event.pressed and event.keycode == KEY_SPACE:
+		if event.pressed and event.keycode == KEY_SPACE and not frozen:
 			pickup_item()
 
 

@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cga7gblieijby"]
 
-[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/attack.tscn" id="1_mpkhw"]
-[ext_resource type="PackedScene" uid="uid://d0rapjrba0f8l" path="res://Status/speed_status.tscn" id="2_lp8x2"]
+[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/move.tscn" id="1_mpkhw"]
+[ext_resource type="PackedScene" uid="uid://d0rapjrba0f8l" path="res://Status/speed_status.tscn" id="2_3tat7"]
 
 [node name="Accelerate" instance=ExtResource("1_mpkhw")]
-attack_name = "Accelerate"
+move_name = "Accelerate"
 type = 5
 description = "Increase speed over several turns."
-effect_scene = ExtResource("2_lp8x2")
 attack_target = 1
+status_scene = ExtResource("2_3tat7")

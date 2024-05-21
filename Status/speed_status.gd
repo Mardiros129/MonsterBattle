@@ -1,4 +1,4 @@
-extends "res://status.gd"
+extends "res://Classes/status.gd"
 
 
 @export var speed_boost = 10

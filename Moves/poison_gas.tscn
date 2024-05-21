@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://ggpd7iycl6vu"]
+[gd_scene load_steps=4 format=3 uid="uid://ggpd7iycl6vu"]
 
-[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/attack.tscn" id="1_lj06q"]
-[ext_resource type="PackedScene" uid="uid://bb4nqfosnqsv2" path="res://Status/poison_status.tscn" id="2_l2onw"]
-
+[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/move.tscn" id="1_lj06q"]
+[ext_resource type="PackedScene" uid="uid://bb4nqfosnqsv2" path="res://Status/poison_status.tscn" id="2_kre7j"]
+[ext_resource type="PackedScene" uid="uid://c045e4lkk15s0" path="res://Effect/poison_gas_effect.tscn" id="2_oefyt"]
 
 [node name="PoisonGas" instance=ExtResource("1_lj06q")]
-attack_name = "Poison Gas"
+move_name = "Poison Gas"
 base_damage = 10
 type = 7
 category = 2
 description = "A weak attack that leaves the enemy [b]poisoned[/b]."
 attack_target = 2
-effect_scene = ExtResource("2_l2onw")
+effect = ExtResource("2_oefyt")
+effect_target = 2
+status_scene = ExtResource("2_kre7j")

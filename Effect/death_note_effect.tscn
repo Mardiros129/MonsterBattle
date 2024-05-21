@@ -114,6 +114,7 @@ _data = {
 }
 
 [node name="DeathNoteEffect" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_yssi3")]
+scale = Vector2(0.5, 0.5)
 animation_player = NodePath("AnimationPlayer")
 
 [node name="Note1" type="Sprite2D" parent="." index="0"]

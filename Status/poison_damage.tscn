@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx07iiob2ton7"]
+
+[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/move.tscn" id="1_aaj0x"]
+[ext_resource type="PackedScene" uid="uid://b53r0xyhk2wkx" path="res://Effect/poison_effect.tscn" id="2_xqcg6"]
+
+[node name="PoisonDamage" instance=ExtResource("1_aaj0x")]
+move_name = "Poison Damage"
+base_damage = 5
+category = 3
+attack_target = 1
+effect = ExtResource("2_xqcg6")

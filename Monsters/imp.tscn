@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_x7pya"]
 [ext_resource type="Texture2D" uid="uid://d05n3ne66y2nc" path="res://Assets/Monsters/imp.png" id="2_lpd5o"]
-[ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Moves/fire_punch.tscn" id="3_kivte"]
+[ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Moves/frost_punch.tscn" id="3_kivte"]
 
 [node name="Imp" instance=ExtResource("1_x7pya")]
 my_name = "Imp"

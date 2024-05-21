@@ -1,10 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://brferi2sgosog"]
 
-[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/attack.tscn" id="1_ylamh"]
-
+[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/move.tscn" id="1_ylamh"]
 
 [node name="Flamethrower" instance=ExtResource("1_ylamh")]
-attack_name = "Flamethrower"
+move_name = "Flamethrower"
 base_damage = 20
 type = 6
 category = 2

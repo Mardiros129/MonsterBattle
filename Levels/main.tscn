@@ -121,7 +121,6 @@ offset_right = 973.385
 offset_bottom = 576.25
 
 [node name="Move0" type="Button" parent="UI/PlayerMoveList"]
-modulate = Color(1, 0.211765, 1, 1)
 z_index = 1
 layout_mode = 0
 offset_left = -45.0
@@ -233,7 +232,7 @@ offset_top = 462.0
 offset_right = 888.0
 offset_bottom = 502.0
 
-[node name="PotionButton" type="Button" parent="UI/PlayerSpellList"]
+[node name="HealButton" type="Button" parent="UI/PlayerSpellList"]
 layout_mode = 0
 offset_top = 2.0
 offset_right = 124.0
@@ -519,7 +518,7 @@ wait_time = 0.2
 [connection signal="pressed" from="UI/PlayerMoveList/Move2" to="." method="_on_move_2_pressed"]
 [connection signal="mouse_entered" from="UI/PlayerMoveList/Move3" to="UI" method="_on_move_3_mouse_entered"]
 [connection signal="pressed" from="UI/PlayerMoveList/Move3" to="." method="_on_move_3_pressed"]
-[connection signal="pressed" from="UI/PlayerSpellList/PotionButton" to="." method="_on_potion_button_pressed"]
+[connection signal="pressed" from="UI/PlayerSpellList/HealButton" to="." method="_on_heal_button_pressed"]
 [connection signal="pressed" from="UI/SwitchButton0" to="." method="_on_switch_button_0_pressed"]
 [connection signal="pressed" from="UI/SwitchButton0" to="UI" method="_on_switch_button_0_pressed"]
 [connection signal="pressed" from="UI/SwitchButton1" to="." method="_on_switch_button_1_pressed"]

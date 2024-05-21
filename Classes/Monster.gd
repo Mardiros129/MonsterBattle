@@ -79,6 +79,8 @@ func attack(index, target):
 		var my_attack = move_list[index]
 		if my_attack.category == CombatRules.DamageCategory.UTILITY:
 			animation_player.play("use_ability")
+		elif my_attack.category == CombatRules.DamageCategory.STATUS:
+			animation_player.play("damage")
 		elif is_enemy:
 			animation_player.play("enemy_attack")
 		else:
@@ -119,7 +121,7 @@ func add_status(status):
 			if status_node.get_child(x).get_status_name() == status.get_status_name():
 				has_this_status = true
 				
-	if !has_this_status:
+	if not has_this_status:
 		status_node.add_child(status)
 
 

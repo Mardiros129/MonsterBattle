@@ -17,11 +17,6 @@ intelligence = 100
 defense = 100
 resistance = 100
 speed = 100
-level_str_bonus = 10
-level_int_bonus = 10
-level_def_bonus = 10
-level_res_bonus = 10
-level_spd_bonus = 10
 type0 = 1
 
 [node name="Sprite2D" parent="." index="0"]

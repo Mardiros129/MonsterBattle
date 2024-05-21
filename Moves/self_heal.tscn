@@ -1,11 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://bo80rujxyavmf"]
 
-[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/attack.tscn" id="1_xrshn"]
-
+[ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/move.tscn" id="1_xrshn"]
 
 [node name="Heal" instance=ExtResource("1_xrshn")]
-attack_name = "Heal"
-healing = 25
+move_name = "Mend"
+healing = 15
 type = 4
 description = "Heal yourself a moderate amount."
 attack_target = 1

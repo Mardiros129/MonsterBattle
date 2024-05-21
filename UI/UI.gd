@@ -29,7 +29,7 @@ extends Control
 @export var enemy_move_missing_text = "???"
 
 @onready var player_spell_list = $PlayerSpellList
-@onready var potion_button = $PlayerSpellList/PotionButton
+@onready var heal_button = $PlayerSpellList/HealButton
 
 @onready var catch_count_label = $CatchCount
 @onready var catch_chance_label = $CatchChance
@@ -62,6 +62,14 @@ func _ready():
 		run_button.text = "Run! (" + str(FightData.run_chance) + "%)"
 
 
+func update_ui(player_mon : Array, enemy_mon : Array):
+	update_player_hp(player_mon[0])
+	update_enemy_hp(enemy_mon[0])
+	for x in switch_buttons.size():
+		if player_mon.size() > x + 1:
+			update_party_health(switch_health_bars[x], player_mon[x + 1])
+
+
 func set_catch_labels(catch_count, catch_chance):
 	catch_count_label.text = "Blank page count: " + str(catch_count)
 	catch_chance_label.text = "Catch chance: " + str(catch_chance * 100) + "%"
@@ -76,8 +84,7 @@ func set_button_icons(mon_team):
 			if switch_buttons[x] != sideboard:
 				switch_buttons[x].disabled = false
 			
-			switch_health_bars[x].max_value = mon_team[x + 1].max_hp
-			switch_health_bars[x].value = mon_team[x + 1].current_hp
+			update_party_health(switch_health_bars[x], mon_team[x + 1])
 			
 		else:
 			switch_buttons[x].set_button_icon(null)
@@ -88,12 +95,17 @@ func set_button_icons(mon_team):
 			hide_speed_icon(1)
 
 
+func update_party_health(health_bar, monster):
+	health_bar.max_value = monster.max_hp
+	health_bar.value = monster.current_hp
+
+
 func set_player_mon_ui(player_mon):
 	player_mon_ui.set_mon_ui(player_mon)
 	set_moves(player_mon)
 
 
-func change_player_hp(player_mon):
+func update_player_hp(player_mon):
 	player_mon_ui.set_mon_hp_ui(player_mon)
 
 
@@ -103,7 +115,7 @@ func set_enemy_mon_ui(enemy_mon):
 	enemy_mon_ui.set_mon_ui(enemy_mon)
 
 
-func change_enemy_hp(enemy_mon):
+func update_enemy_hp(enemy_mon):
 	enemy_mon_ui.set_mon_hp_ui(enemy_mon)
 
 
@@ -116,10 +128,10 @@ func show_spell_list():
 	player_spell_list.show()
 	player_move_list.hide()
 	
-	potion_button.text = "Heal x" + str(PlayerInventory.potion_counter)
+	heal_button.text = "Heal x" + str(PlayerInventory.potion_counter)
 	
 	if PlayerInventory.potion_counter <= 0:
-		potion_button.disabled = true
+		heal_button.disabled = true
 
 
 func update_catch_count(catch_count):
@@ -197,14 +209,14 @@ func set_moves(player_mon):
 		var move_button = player_move_list.get_child(x)
 		
 		if player_mon.move_list.size() > x:
-			move_button.find_child("Label").text = player_mon.move_list[x].attack_name
+			move_button.find_child("Label").text = player_mon.move_list[x].move_name
 			move_button.disabled = false
 			
 			var index = player_mon.move_list[x].type
 			move_button.modulate = CombatRules.TypeColor[index]
 			
-			var attack_details = player_move_details.get_child(x)
-			attack_details.set_attack_details(player_mon.move_list[x])
+			var move_details = player_move_details.get_child(x)
+			move_details.set_attack_details(player_mon.move_list[x])
 			move_button.show()
 		else:
 			move_button.hide()
