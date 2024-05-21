@@ -21,7 +21,7 @@ func setup_ui():
 			temp_monster.hide()
 			party_button[x].icon = temp_monster.get_sprite()
 			
-			party_button[x].find_child("Name").text = temp_monster.name
+			party_button[x].find_child("Name").text = temp_monster.my_name
 			party_button[x].find_child("Level").text = "Level " + str(MonsterParty.party_level[x])
 			party_button[x].find_child("HPBar").max_value = temp_monster.max_hp
 			party_button[x].find_child("HPBar").value = MonsterParty.party_hp[x]

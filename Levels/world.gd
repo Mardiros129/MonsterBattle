@@ -2,9 +2,17 @@ extends Node2D
 
 
 @onready var character = $Character
+
+@onready var removable = $Removable
+
+@onready var enemy_path : Array[String]
+
 @onready var hud = $HUD
 @onready var remaining_counter = $HUD/RemainingCounter
-@onready var removable = $Removable
+@onready var screen_wipe = $HUD/ScreenWipe
+@onready var screen_wipe_pos : Vector2
+@onready var transitioning = false
+@export var transition_speed = 100
 
 
 func _ready():
@@ -23,10 +31,30 @@ func _ready():
 		
 	hud.setup_hud()
 	hud.show()
+	screen_wipe_pos = screen_wipe.position
 	remaining_counter.text = str(MonsterPool.pool_size) + " Monsters Remain"
 
 
-func load_enemy_battle(enemy_path):
+func _process(delta):
+	if transitioning:
+		screen_wipe.position.x += delta * transition_speed
+	
+	if screen_wipe.position.x >= 0:
+		transitioning = false
+		screen_wipe.hide()
+		character.unfreeze()
+		screen_wipe.position = screen_wipe_pos
+		
+		load_enemy_battle()
+
+
+func transition_to_fight():
+	transitioning = true
+	screen_wipe.show()
+	character.freeze()
+
+
+func load_enemy_battle():
 	# Save world scene
 	WorldLoad.world = duplicate()
 	WorldLoad.player_position = character.position
@@ -58,4 +86,5 @@ func _unhandled_input(event):
 # Consider renaming to something like "fight triggered"
 func _on_monster_area_body_entered_return_path(_body, path):
 	if path[0] != "":
-		load_enemy_battle(path)
+		enemy_path = path
+		transition_to_fight()

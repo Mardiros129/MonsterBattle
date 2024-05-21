@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c63t0phri8qx8"]
+[gd_scene load_steps=42 format=3 uid="uid://c63t0phri8qx8"]
 
 [ext_resource type="Script" path="res://Levels/world.gd" id="1_3rdto"]
 [ext_resource type="PackedScene" uid="uid://b8idner5etalo" path="res://UI/monster_loadout.tscn" id="2_mlea4"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b8xru7iis86p" path="res://Items/flour.tscn" id="19_4r0sc"]
 [ext_resource type="PackedScene" uid="uid://eiojj77oe67g" path="res://Items/sugar.tscn" id="20_dha74"]
 [ext_resource type="PackedScene" uid="uid://ut1f2s88ymds" path="res://Interactibles/sacrifice_pyre.tscn" id="21_2m4c7"]
+[ext_resource type="Texture2D" uid="uid://x75kahhanopc" path="res://Assets/UI/screen_wipe.png" id="22_ws81o"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_qon1f"]
 tile_data = PackedInt32Array(0, 4, 0, 65536, 4, 1, 131072, 4, 2, 196608, 4, 3, 1, 65540, 0, 65537, 65540, 1, 131073, 65540, 2, 196609, 65540, 3, 2, 65540, 0, 65538, 65540, 1, 131074, 65540, 2, 196610, 65540, 3, 3, 131076, 0, 65539, 131076, 1, 131075, 131076, 2, 196611, 131076, 3)
@@ -840,6 +841,7 @@ size = Vector2(132, 314)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_3rdto")
+transition_speed = 1500
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("2_ymbtl")
@@ -897,6 +899,16 @@ offset_right = 197.0
 offset_bottom = 24.0
 text = "swap..."
 
+[node name="ScreenWipe" type="TextureRect" parent="HUD"]
+visible = false
+z_index = 10
+offset_left = -1324.0
+offset_top = -81.0
+offset_right = 843.0
+offset_bottom = 1279.0
+scale = Vector2(0.609362, 0.611111)
+texture = ExtResource("22_ws81o")
+
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_qgxs3")
@@ -917,7 +929,6 @@ position_smoothing_enabled = true
 [node name="Character" parent="." instance=ExtResource("2_roevs")]
 z_index = 1
 position = Vector2(902, 235)
-SPEED = 300.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Character"]
 remote_path = NodePath("../../Camera2D")

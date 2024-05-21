@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Moves/self_heal.tscn" id="5_4jffy"]
 
 [node name="Automaton" instance=ExtResource("1_y6vsv")]
-my_name = "Automaton"
+my_name = "Tin Man"
 max_hp = 150
 strength = 120
 intelligence = 80
