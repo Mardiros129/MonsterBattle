@@ -856,6 +856,7 @@ offset_left = 30.0
 offset_top = 26.0
 offset_right = 87.0
 offset_bottom = 83.0
+focus_mode = 0
 disabled = true
 
 [node name="MonsterLoadout1" parent="HUD/LoadoutButtons" instance=ExtResource("2_mlea4")]
@@ -864,6 +865,7 @@ offset_left = 98.0
 offset_top = 26.0
 offset_right = 155.0
 offset_bottom = 83.0
+focus_mode = 0
 disabled = true
 
 [node name="MonsterLoadout2" parent="HUD/LoadoutButtons" instance=ExtResource("2_mlea4")]
@@ -872,6 +874,7 @@ offset_left = 166.0
 offset_top = 26.0
 offset_right = 223.0
 offset_bottom = 83.0
+focus_mode = 0
 disabled = true
 
 [node name="MonsterLoadout3" parent="HUD/LoadoutButtons" instance=ExtResource("2_mlea4")]
@@ -880,6 +883,7 @@ offset_left = 233.0
 offset_top = 26.0
 offset_right = 290.0
 offset_bottom = 83.0
+focus_mode = 0
 disabled = true
 
 [node name="RemainingCounter" type="Label" parent="HUD"]

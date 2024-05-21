@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1qsinoh0ju71"]
+[gd_scene load_steps=11 format=3 uid="uid://b1qsinoh0ju71"]
 
 [ext_resource type="Script" path="res://Levels/start_screen.gd" id="1_bpiov"]
 [ext_resource type="Texture2D" uid="uid://cew7bvtkabqec" path="res://Assets/Monsters/rat.png" id="2_b4rro"]
@@ -7,6 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://r84gwcdjv0ku" path="res://Assets/Monsters/hat_skeleton.png" id="3_y6kr1"]
 [ext_resource type="AudioStream" uid="uid://peoy0akqoaqi" path="res://Assets/Audio/click.wav" id="5_27rc5"]
 [ext_resource type="Texture2D" uid="uid://r04h48q6okhr" path="res://Assets/Backgrounds/book.jpg" id="6_s6al1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gwplv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gjci8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wrgnc"]
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource("1_bpiov")
@@ -29,6 +35,7 @@ offset_left = 96.0
 offset_top = 235.0
 offset_right = 273.0
 offset_bottom = 460.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gwplv")
 icon = ExtResource("2_b4rro")
 flat = true
 expand_icon = true
@@ -55,6 +62,7 @@ offset_left = 468.0
 offset_top = 196.0
 offset_right = 645.0
 offset_bottom = 421.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gjci8")
 icon = ExtResource("3_ry7g4")
 flat = true
 expand_icon = true
@@ -82,6 +90,7 @@ offset_left = 875.0
 offset_top = 240.0
 offset_right = 1052.0
 offset_bottom = 465.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wrgnc")
 icon = ExtResource("3_y6kr1")
 flat = true
 expand_icon = true

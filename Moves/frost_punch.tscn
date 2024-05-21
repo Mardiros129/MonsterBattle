@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/move.tscn" id="1_vq3px"]
 
-[node name="Fire Punch" instance=ExtResource("1_vq3px")]
+[node name="FrostPunch" instance=ExtResource("1_vq3px")]
 move_name = "Frost Punch"
-base_damage = 30
+base_damage = 25
 type = 6
 category = 1
 description = "A moderately strong elemental attack."

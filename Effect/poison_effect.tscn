@@ -3,6 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://wi7ms2flgs58" path="res://Classes/effect.tscn" id="1_0fb8l"]
 [ext_resource type="Texture2D" uid="uid://dqduwsj01idot" path="res://Assets/Effects/poison2.png" id="2_p50id"]
 
+[sub_resource type="Animation" id="Animation_2v37h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Poison2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_xidxs"]
 resource_name = "effect"
 length = 0.4
@@ -19,21 +34,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_2v37h"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Poison2:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x0poq"]
 _data = {
 "RESET": SubResource("Animation_2v37h"),
@@ -45,7 +45,7 @@ animation_player = NodePath("AnimatedSprite2D")
 
 [node name="Poison2" type="Sprite2D" parent="." index="0"]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(0.999999, -61)
+position = Vector2(-1, -135)
 scale = Vector2(0.259547, 0.259547)
 texture = ExtResource("2_p50id")
 

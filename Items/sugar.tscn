@@ -5,16 +5,17 @@
 [ext_resource type="Texture2D" uid="uid://cwxll8crpetkj" path="res://Assets/sugar.png" id="3_uikje"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l3xe4"]
-radius = 16.0312
+radius = 19.0
 
 [node name="Sugar" instance=ExtResource("1_ubq11")]
 script = ExtResource("2_505sh")
 item_name = "Sugar"
 
-[node name="Sprite2D" parent="." index="0"]
-position = Vector2(-8, 0)
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(-1, 1)
 scale = Vector2(0.023416, 0.023416)
 texture = ExtResource("3_uikje")
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_l3xe4")

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cew7bvtkabqec" path="res://Assets/Monsters/rat.png" id="2_w4det"]
 [ext_resource type="PackedScene" uid="uid://cqwc0jq2ra0ol" path="res://Moves/bite.tscn" id="3_4uc5s"]
 [ext_resource type="PackedScene" uid="uid://d3vy67qjj0dvx" path="res://Moves/infected_tooth.tscn" id="4_2iyly"]
-[ext_resource type="PackedScene" uid="uid://cga7gblieijby" path="res://Moves/accelerate.tscn" id="6_m8sqt"]
+[ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Moves/frost_punch.tscn" id="5_knm4t"]
 [ext_resource type="PackedScene" uid="uid://ba30u7wpk7i4j" path="res://Classes/transformation.tscn" id="6_qsbjm"]
 [ext_resource type="Script" path="res://Transformations/trans_level.gd" id="7_eo57h"]
 
@@ -28,7 +28,7 @@ texture = ExtResource("2_w4det")
 
 [node name="MoveNode#AttackNode#InfectedTooth" parent="DefaultMoveNode" index="1" instance=ExtResource("4_2iyly")]
 
-[node name="MoveNode#AttackNode#Accelerate" parent="DefaultMoveNode" index="2" instance=ExtResource("6_m8sqt")]
+[node name="FrostPunch" parent="DefaultMoveNode" index="2" instance=ExtResource("5_knm4t")]
 
 [node name="Transformation" parent="TransformNode" index="0" instance=ExtResource("6_qsbjm")]
 script = ExtResource("7_eo57h")
