@@ -7,4 +7,4 @@ move_name = "Mend"
 healing = 15
 type = 4
 description = "Heal yourself a moderate amount."
-attack_target = 1
+healing_target = 1

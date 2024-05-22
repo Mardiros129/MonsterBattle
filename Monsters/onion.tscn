@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg6blj41lro3d"]
+
+[ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_cdarc"]
+[ext_resource type="Texture2D" uid="uid://bjya8kgf2n67x" path="res://Assets/Monsters/onion.png" id="2_t2gwn"]
+[ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Moves/poison_gas.tscn" id="3_7oik1"]
+
+[node name="Monster" instance=ExtResource("1_cdarc")]
+my_name = "Onion"
+max_hp = 80
+strength = 8
+intelligence = 8
+defense = 8
+resistance = 8
+speed = 8
+type0 = 2
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -89)
+scale = Vector2(0.165, 0.165)
+texture = ExtResource("2_t2gwn")
+
+[node name="PoisonGas" parent="DefaultMoveNode" index="0" instance=ExtResource("3_7oik1")]

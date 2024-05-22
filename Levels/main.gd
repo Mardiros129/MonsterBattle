@@ -113,23 +113,25 @@ func end_turn():
 	# Go through everything in the queue one-by-one.
 	while not CommandQueue.command_queue.is_empty():
 		var command = CommandQueue.command_queue.pop_front()
+		var in_combat_party = player_mon
+		if in_combat_party.size() > 3:
+			in_combat_party.pop_back()
 		
 		var attack_name
 		if command.user == player_mon[0]:
-			attack_name = player_mon[0].attack(command.move, enemy_mon[0])
+			attack_name = player_mon[0].attack(command.move, in_combat_party, enemy_mon)
 		elif command.user == enemy_mon[0]:
-			attack_name = enemy_mon[0].attack(command.move, player_mon[0])
+			attack_name = enemy_mon[0].attack(command.move, enemy_mon, in_combat_party)
 			ui.populate_enemy_attacks(attack_name)
 		
-		ui.update_player_hp(player_mon[0])
-		ui.update_enemy_hp(enemy_mon[0])
+		ui.update_ui(player_mon, enemy_mon)
 		
 		check_player_death()
 		check_enemy_death()
 		
 		await get_tree().create_timer(command_delay).timeout
 		
-		if player_mon.size() <= 0 or enemy_mon.size() <= 0:
+		if player_mon.is_empty() or enemy_mon.is_empty():
 			combat_finished = true
 		
 		if combat_finished:
@@ -203,7 +205,6 @@ func player_mon_dies():
 		player_mon.pop_front()
 		player_mon[0].show()
 		ui.set_player_mon_ui(player_mon[0])
-		ui.set_button_icons(player_mon)
 
 
 func check_enemy_death():

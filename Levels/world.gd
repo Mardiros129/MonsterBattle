@@ -32,7 +32,7 @@ func _ready():
 	hud.setup_hud()
 	hud.show()
 	screen_wipe_pos = screen_wipe.position
-	remaining_counter.text = str(MonsterPool.pool_size) + " Monsters Remain"
+	remaining_counter.text = str(MonsterPool.pool_size) + " monsters in this area"
 
 
 func _process(delta):

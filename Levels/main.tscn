@@ -392,14 +392,15 @@ offset_bottom = 23.0
 
 [node name="Sideboard" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 463.0
-offset_top = 498.0
-offset_right = 599.0
+offset_left = 443.0
+offset_top = 560.0
+offset_right = 517.0
 offset_bottom = 634.0
 disabled = true
 expand_icon = true
 
 [node name="HealthBar" type="TextureProgressBar" parent="UI/Sideboard"]
+visible = false
 layout_mode = 0
 offset_left = 8.0
 offset_top = 131.0
@@ -414,12 +415,13 @@ texture_progress = ExtResource("19_1lu6e")
 modulate = Color(1, 1, 1, 0.282353)
 z_index = 1
 layout_mode = 0
-offset_left = -6.00001
-offset_top = -4.00001
-offset_right = 794.0
-offset_bottom = 750.0
+offset_left = -5.0
+offset_top = -2.0
+offset_right = 455.0
+offset_bottom = 432.0
 scale = Vector2(0.18435, 0.18435)
 texture = ExtResource("17_1wqj2")
+expand_mode = 1
 
 [node name="CatchCount" type="Label" parent="UI"]
 layout_mode = 0

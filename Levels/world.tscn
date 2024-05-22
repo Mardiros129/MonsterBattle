@@ -888,12 +888,12 @@ focus_mode = 0
 disabled = true
 
 [node name="RemainingCounter" type="Label" parent="HUD"]
-offset_left = 579.0
-offset_top = 14.0
-offset_right = 1141.0
-offset_bottom = 97.0
-theme_override_font_sizes/font_size = 50
-text = "X Monsters Remain"
+offset_left = 577.0
+offset_top = 16.0
+offset_right = 1139.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 40
+text = "X monsters in this area"
 horizontal_alignment = 2
 
 [node name="Swap" type="Label" parent="HUD"]

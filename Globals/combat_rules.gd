@@ -33,7 +33,20 @@ enum Type {NONE, ANIMAL, PLANT, UNDEAD, PIXIE, MECH, ELEMENT, CORRUPT, MYTHIC, D
 enum DamageCategory { UTILITY, PHYSICAL, MAGIC, STATUS }
 @onready var DamageCategoryName = ["utility", "physical", "magic"]
 
-enum TargetType { NONE, SELF, OPPONENT, ALLY, ALL }
+enum TargetType { 
+	NONE,
+	SELF,
+	OPPONENT,
+	ALL_ALLIES,
+	ALL_OPPONENTS,
+	ALLY_SUPPORT,
+	OPPONENT_SUPPORT,
+	ALLY_BACKLINE,
+	OPPONENT_BACKLINE,
+	BOTH_POINTS,
+	BOTH_BACKLINES,
+	ALL
+	}
 
 
 func _ready():

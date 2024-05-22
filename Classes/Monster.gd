@@ -72,7 +72,7 @@ func setup_enemy():
 		move_list.append(move_node.get_child(x))
 
 
-func attack(index, target):
+func attack(index : int, ally_team : Array, enemy_team : Array):
 	if move_list[index] == null:
 		print("move is null!")
 	else:
@@ -86,7 +86,7 @@ func attack(index, target):
 		else:
 			animation_player.play("player_attack")
 		
-		return my_attack.attack(self, target)
+		return my_attack.attack(self, ally_team, enemy_team)
 
 
 func take_damage(damage: int):

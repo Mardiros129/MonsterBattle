@@ -10,3 +10,4 @@ type = 4
 category = 2
 description = "Stars rain down, hurting the enemy and healing the party slightly."
 attack_target = 2
+healing_target = 3

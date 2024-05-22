@@ -10,3 +10,4 @@ type = 2
 category = 2
 description = "Drain your enemy's health and heal your own."
 attack_target = 2
+healing_target = 1

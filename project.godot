@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="MonsterBattle"
+config/name="Beast Tales"
 run/main_scene="res://Levels/start_screen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://Assets/Monsters/pillico.png"
+config/icon="res://Assets/logo.png"
 
 [autoload]
 

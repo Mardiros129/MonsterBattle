@@ -68,6 +68,7 @@ func update_ui(player_mon : Array, enemy_mon : Array):
 	for x in switch_buttons.size():
 		if player_mon.size() > x + 1:
 			update_party_health(switch_health_bars[x], player_mon[x + 1])
+	set_button_icons(player_mon)
 
 
 func set_catch_labels(catch_count, catch_chance):
