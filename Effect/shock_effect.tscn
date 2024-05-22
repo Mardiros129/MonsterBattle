@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=3 uid="uid://p0tcfc321kx7"]
+
+[ext_resource type="PackedScene" uid="uid://wi7ms2flgs58" path="res://Classes/effect.tscn" id="1_2udjb"]
+[ext_resource type="Texture2D" uid="uid://bqv3s4grpa73s" path="res://Assets/Effects/shock.png" id="2_i07p3"]
+
+[sub_resource type="Animation" id="Animation_hbbyv"]
+resource_name = "effect"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.615, 0.615), Vector2(0.805273, 0.805273)]
+}
+
+[sub_resource type="Animation" id="Animation_6y7q3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.615, 0.615)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_op8y3"]
+_data = {
+"RESET": SubResource("Animation_6y7q3"),
+"effect": SubResource("Animation_hbbyv")
+}
+
+[node name="ShockEffect" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_2udjb")]
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_op8y3")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+scale = Vector2(0.615, 0.615)
+texture = ExtResource("2_i07p3")

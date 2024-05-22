@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxgh3bo1at8le"]
+
+[ext_resource type="PackedScene" uid="uid://1ldmxdymmuo0" path="res://Classes/interactible.tscn" id="1_8fm8o"]
+[ext_resource type="Texture2D" uid="uid://bnnb8ybmc1xeo" path="res://Assets/healer.png" id="2_pkabq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jws2a"]
+radius = 30.0167
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6jsf"]
+size = Vector2(38, 52)
+
+[node name="Healer" instance=ExtResource("1_8fm8o")]
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.266667, 0.266667)
+texture = ExtResource("2_pkabq")
+
+[node name="PhysicsBody" parent="." index="1"]
+position = Vector2(-4, 8)
+shape = SubResource("CircleShape2D_jws2a")
+
+[node name="Nametag" parent="." index="2"]
+offset_top = -66.0
+offset_bottom = -21.0
+text = "Healer"
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-4, 7)
+shape = SubResource("RectangleShape2D_j6jsf")
+
+[node name="Dialog0" parent="DialogControl" index="0"]
+text = "zzzzzzz...."

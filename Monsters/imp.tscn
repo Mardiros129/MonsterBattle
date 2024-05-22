@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctakoe7j0034f"]
+[gd_scene load_steps=7 format=3 uid="uid://ctakoe7j0034f"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_x7pya"]
 [ext_resource type="Texture2D" uid="uid://d05n3ne66y2nc" path="res://Assets/Monsters/imp.png" id="2_lpd5o"]
-[ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Moves/frost_punch.tscn" id="3_kivte"]
+[ext_resource type="PackedScene" uid="uid://brferi2sgosog" path="res://Moves/flamethrower.tscn" id="3_47u28"]
+[ext_resource type="PackedScene" uid="uid://ce8o78n3t2ouh" path="res://Moves/laser.tscn" id="4_d85is"]
+[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Moves/self_heal.tscn" id="5_42oix"]
+[ext_resource type="PackedScene" uid="uid://cqwc0jq2ra0ol" path="res://Moves/bite.tscn" id="6_3ybfw"]
 
 [node name="Imp" instance=ExtResource("1_x7pya")]
 my_name = "Imp"
@@ -19,4 +22,10 @@ position = Vector2(-13, -92)
 scale = Vector2(0.26132, 0.26132)
 texture = ExtResource("2_lpd5o")
 
-[node name="Fire Punch" parent="DefaultMoveNode" index="0" instance=ExtResource("3_kivte")]
+[node name="Flamethrower" parent="DefaultMoveNode" index="0" instance=ExtResource("3_47u28")]
+
+[node name="Laser" parent="DefaultMoveNode" index="1" instance=ExtResource("4_d85is")]
+
+[node name="Heal" parent="DefaultMoveNode" index="2" instance=ExtResource("5_42oix")]
+
+[node name="Bite" parent="DefaultMoveNode" index="3" instance=ExtResource("6_3ybfw")]

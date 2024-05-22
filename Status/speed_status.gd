@@ -1,7 +1,7 @@
 extends "res://Classes/status.gd"
 
 
-@export var speed_boost = 10
+@export var speed_boost : int
 
-func activate_status():
+func unique_effect():
 	get_parent().get_parent().current_speed += speed_boost

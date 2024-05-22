@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyw2ii0md7e4c"]
+[gd_scene load_steps=10 format=3 uid="uid://cyw2ii0md7e4c"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_eagvv"]
 [ext_resource type="Texture2D" uid="uid://ch7gftktmiygk" path="res://Assets/Monsters/beanstalk.png" id="2_ia061"]
 [ext_resource type="PackedScene" uid="uid://ggpd7iycl6vu" path="res://Moves/poison_gas.tscn" id="4_1nhtj"]
 [ext_resource type="PackedScene" uid="uid://cs7ec2u24b2y4" path="res://Moves/drain.tscn" id="4_j3txp"]
 [ext_resource type="PackedScene" uid="uid://gnksnsqbboq3" path="res://Moves/shock.tscn" id="6_0115q"]
+[ext_resource type="PackedScene" uid="uid://bkd27kvk7wale" path="res://Moves/stardust.tscn" id="6_y2p7q"]
 [ext_resource type="PackedScene" uid="uid://ba30u7wpk7i4j" path="res://Classes/transformation.tscn" id="7_b4bhd"]
 [ext_resource type="Script" path="res://Transformations/trans_level.gd" id="8_a3q5f"]
 [ext_resource type="PackedScene" uid="uid://chbglxlye8rl3" path="res://Monsters/cyber_stalk.tscn" id="9_5q2ee"]
@@ -17,11 +18,6 @@ intelligence = 120
 defense = 100
 resistance = 120
 speed = 80
-level_str_bonus = 10
-level_int_bonus = 10
-level_def_bonus = 10
-level_res_bonus = 10
-level_spd_bonus = 10
 type0 = 2
 
 [node name="Sprite2D" parent="." index="0"]
@@ -34,6 +30,8 @@ texture = ExtResource("2_ia061")
 [node name="MoveNode#AttackNode#PoisonGas" parent="DefaultMoveNode" index="1" instance=ExtResource("4_1nhtj")]
 
 [node name="MoveNode#AttackNode#Shock" parent="DefaultMoveNode" index="2" instance=ExtResource("6_0115q")]
+
+[node name="Stardust" parent="DefaultMoveNode" index="3" instance=ExtResource("6_y2p7q")]
 
 [node name="Transformation" parent="TransformNode" index="0" instance=ExtResource("7_b4bhd")]
 script = ExtResource("8_a3q5f")

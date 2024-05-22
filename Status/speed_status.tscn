@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0rapjrba0f8l"]
+[gd_scene load_steps=3 format=3 uid="uid://d0rapjrba0f8l"]
 
 [ext_resource type="Script" path="res://Status/speed_status.gd" id="1_j08sg"]
+[ext_resource type="PackedScene" uid="uid://byi30vmp00tjh" path="res://Effect/speed_status_effect.tscn" id="2_nyvwv"]
 
 [node name="SpeedStatus" type="Node2D"]
 script = ExtResource("1_j08sg")
-speed_boost = 20
+speed_boost = 50
 status_name = "Speed Boost"
+turn_timeout = 3
+effect = ExtResource("2_nyvwv")

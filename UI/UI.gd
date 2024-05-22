@@ -153,6 +153,7 @@ func disable_ui():
 	player_spell_list.hide()
 	
 	type_matchup_button.disabled = true
+	type_matchup_chart.hide()
 	disable_switch_buttons()
 	
 	spellbook.hide()

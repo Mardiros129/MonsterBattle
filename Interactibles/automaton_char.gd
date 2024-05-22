@@ -14,5 +14,5 @@ func special_interaction():
 
 func _on_battery_button_pressed():
 	PlayerInventory.unique_items.erase("Battery")
-	delete_me()
+	delete_me_delayed(0.5)
 	start_fight.emit(null, monster_path)

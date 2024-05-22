@@ -2,6 +2,8 @@ extends Node2D
 
 
 @onready var player_turn = true
+@onready var combat_finished = false
+
 @onready var resolve_turn_timer = $ResolveTurnTimer
 @onready var player_mon_loc = $PlayerMonLocation
 @onready var enemy_mon_loc = $EnemyMonLocation
@@ -104,7 +106,6 @@ func start_turn():
 
 func end_turn():
 	player_turn = false
-	var combat_finished = false
 	ui.disable_ui()
 	
 	enemy_chooses_attack()
@@ -123,26 +124,13 @@ func end_turn():
 		ui.update_player_hp(player_mon[0])
 		ui.update_enemy_hp(enemy_mon[0])
 		
-		if enemy_mon[0].current_hp <= 0:
-			enemy_mon_dies()
-			
-			# Check if the game ends
-			if enemy_mon.size() <= 1:
-				ui.update_log("You won!")
-				await get_tree().create_timer(command_delay).timeout
-				
-				MonsterPool.pool_size -= 1
-				combat_finished = true
-		
-		elif player_mon[0].current_hp <= 0:
-			player_mon_dies()
-			
-			if player_mon[0].current_hp <= 0 and player_mon.size() == 1:
-				combat_finished = true
-				ui.update_log("You lose!")
-				await get_tree().create_timer(command_delay).timeout
+		check_player_death()
+		check_enemy_death()
 		
 		await get_tree().create_timer(command_delay).timeout
+		
+		if player_mon.size() <= 0 or enemy_mon.size() <= 0:
+			combat_finished = true
 		
 		if combat_finished:
 			break
@@ -156,11 +144,15 @@ func end_turn():
 			player_mon[x].activate_all_statuses()
 		for x in enemy_mon.size():
 			enemy_mon[x].activate_all_statuses()
-			
-		ui.update_ui(player_mon, enemy_mon)
 		
+		check_player_death()
+		check_enemy_death()
+		
+		ui.update_ui(player_mon, enemy_mon)
 		CommandQueue.clear_command_queue()
-		start_turn()
+		
+		if not combat_finished:
+			start_turn()
 
 
 # To do, implement some AI behavior
@@ -192,6 +184,16 @@ func _on_combat_message_received(message: String):
 ## *** *** DEATH *** ***
 
 
+func check_player_death():
+	if player_mon[0].current_hp <= 0:
+			player_mon_dies()
+			
+			if player_mon[0].current_hp <= 0 and player_mon.size() == 1:
+				end_combat()
+				ui.update_log("You lose!")
+				await get_tree().create_timer(command_delay).timeout
+
+
 func player_mon_dies():
 	player_mon[0].die()
 	ui.update_log(player_mon[0].my_name + " died!")
@@ -202,6 +204,18 @@ func player_mon_dies():
 		player_mon[0].show()
 		ui.set_player_mon_ui(player_mon[0])
 		ui.set_button_icons(player_mon)
+
+
+func check_enemy_death():
+	if enemy_mon[0].current_hp <= 0:
+			enemy_mon_dies()
+			
+			# Check if the game ends
+			if enemy_mon.size() <= 1:
+				end_combat()
+				ui.update_log("You won!")
+				await get_tree().create_timer(command_delay).timeout
+				MonsterPool.pool_size -= 1
 
 
 func enemy_mon_dies():
@@ -376,6 +390,7 @@ func _on_run_button_pressed():
 
 
 func end_combat():
+	combat_finished = true
 	ui.disable_ui()
 	end_button.show()
 

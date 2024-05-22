@@ -23,7 +23,16 @@ func activate_status():
 func unique_effect():
 	pass
 
+
 func timeout_status():
 	turn_timeout -= 1
 	if turn_timeout <= 0:
-		self.queue_free()
+		var new_timer = Timer.new()
+		add_child(new_timer)
+		new_timer.wait_time = 1.0
+		new_timer.connect("timeout", _on_timer_timeout)
+		new_timer.start()
+
+
+func _on_timer_timeout():
+	queue_free()

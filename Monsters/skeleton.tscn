@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cykxfc1djurb2"]
+[gd_scene load_steps=10 format=3 uid="uid://cykxfc1djurb2"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_tqmii"]
 [ext_resource type="Texture2D" uid="uid://r84gwcdjv0ku" path="res://Assets/Monsters/hat_skeleton.png" id="2_oelij"]
 [ext_resource type="PackedScene" uid="uid://lcn0eh76ixit" path="res://Moves/death_note.tscn" id="3_e81yq"]
 [ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Moves/frost_punch.tscn" id="5_y2773"]
+[ext_resource type="PackedScene" uid="uid://bo80rujxyavmf" path="res://Moves/self_heal.tscn" id="6_8x1ij"]
 [ext_resource type="PackedScene" uid="uid://d3vy67qjj0dvx" path="res://Moves/infected_tooth.tscn" id="6_asm4y"]
 [ext_resource type="PackedScene" uid="uid://ba30u7wpk7i4j" path="res://Classes/transformation.tscn" id="7_lickt"]
 [ext_resource type="Script" path="res://Transformations/trans_level.gd" id="8_ss8p6"]
@@ -26,9 +27,11 @@ texture = ExtResource("2_oelij")
 
 [node name="MoveNode#AttackNode#DeathNote" parent="DefaultMoveNode" index="0" instance=ExtResource("3_e81yq")]
 
-[node name="MoveNode#AttackNode#Fire Punch" parent="DefaultMoveNode" index="1" instance=ExtResource("5_y2773")]
+[node name="FrostPunch" parent="DefaultMoveNode" index="1" instance=ExtResource("5_y2773")]
 
 [node name="MoveNode#AttackNode#InfectedTooth" parent="DefaultMoveNode" index="2" instance=ExtResource("6_asm4y")]
+
+[node name="Heal" parent="DefaultMoveNode" index="3" instance=ExtResource("6_8x1ij")]
 
 [node name="Transformation" parent="TransformNode" index="0" instance=ExtResource("7_lickt")]
 script = ExtResource("8_ss8p6")

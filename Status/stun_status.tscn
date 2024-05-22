@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdshc5heim1gq"]
+[gd_scene load_steps=3 format=3 uid="uid://bdshc5heim1gq"]
 
 [ext_resource type="Script" path="res://Status/stun_status.gd" id="1_xsa3f"]
+[ext_resource type="PackedScene" uid="uid://cd2xh3rq67wsc" path="res://Effect/stun_effect.tscn" id="2_vnn4e"]
 
 [node name="StunStatus" type="Node2D"]
 script = ExtResource("1_xsa3f")
+status_name = "Stun"
+turn_timeout = 3
+effect = ExtResource("2_vnn4e")

@@ -37,6 +37,13 @@ func delete_me():
 	collision_shape_2d.disabled = true
 
 
+func delete_me_delayed(time : float):
+	var new_timer = Timer.new()
+	add_child(new_timer)
+	new_timer.wait_time = time
+	new_timer.connect("timeout", _on_timer_timeout)
+	new_timer.start()
+
 func _unhandled_input(event):
 	if event.is_action_pressed("accept") and facing:
 		start_interaction()
@@ -52,3 +59,7 @@ func _on_area_2d_area_exited(_area):
 
 func _on_dialog_timer_timeout():
 	dialog_control.hide()
+
+
+func _on_timer_timeout():
+	delete_me()

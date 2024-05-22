@@ -1,0 +1,145 @@
+[gd_scene load_steps=6 format=3 uid="uid://cd2xh3rq67wsc"]
+
+[ext_resource type="PackedScene" uid="uid://wi7ms2flgs58" path="res://Classes/effect.tscn" id="1_jh1xj"]
+[ext_resource type="Texture2D" uid="uid://b0fbusq3f1583" path="res://Assets/Effects/bolt.png" id="2_dt440"]
+
+[sub_resource type="Animation" id="Animation_h0bcw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bolt:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bolt4:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bolt2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bolt3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_yd1sn"]
+resource_name = "effect"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bolt:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bolt4:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bolt2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bolt3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2orps"]
+_data = {
+"RESET": SubResource("Animation_h0bcw"),
+"effect": SubResource("Animation_yd1sn")
+}
+
+[node name="StunEffect" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_jh1xj")]
+animation_player = NodePath("AnimationPlayer")
+
+[node name="Bolt" type="Sprite2D" parent="." index="0"]
+visible = false
+position = Vector2(-64, -91.6614)
+scale = Vector2(0.0917722, 0.0917721)
+texture = ExtResource("2_dt440")
+
+[node name="Bolt2" type="Sprite2D" parent="." index="1"]
+visible = false
+position = Vector2(-63, -39.6614)
+scale = Vector2(0.0917722, 0.0917721)
+texture = ExtResource("2_dt440")
+
+[node name="Bolt3" type="Sprite2D" parent="." index="2"]
+visible = false
+position = Vector2(65.5, -91.3228)
+scale = Vector2(0.0917722, 0.0917721)
+texture = ExtResource("2_dt440")
+
+[node name="Bolt4" type="Sprite2D" parent="." index="3"]
+visible = false
+position = Vector2(66.5, -39.3228)
+scale = Vector2(0.0917722, 0.0917721)
+texture = ExtResource("2_dt440")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_2orps")
+}

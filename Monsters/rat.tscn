@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwfbya8ihpwre"]
+[gd_scene load_steps=10 format=3 uid="uid://bwfbya8ihpwre"]
 
 [ext_resource type="PackedScene" uid="uid://dm8rdxaoty3ow" path="res://Classes/monster.tscn" id="1_gqr5r"]
 [ext_resource type="PackedScene" uid="uid://b727gocj5cjxl" path="res://Monsters/rat_king.tscn" id="2_tq1qd"]
 [ext_resource type="Texture2D" uid="uid://cew7bvtkabqec" path="res://Assets/Monsters/rat.png" id="2_w4det"]
 [ext_resource type="PackedScene" uid="uid://cqwc0jq2ra0ol" path="res://Moves/bite.tscn" id="3_4uc5s"]
 [ext_resource type="PackedScene" uid="uid://d3vy67qjj0dvx" path="res://Moves/infected_tooth.tscn" id="4_2iyly"]
-[ext_resource type="PackedScene" uid="uid://cuq3buvybwcfu" path="res://Moves/frost_punch.tscn" id="5_knm4t"]
+[ext_resource type="PackedScene" uid="uid://cga7gblieijby" path="res://Moves/accelerate.tscn" id="6_a6bao"]
 [ext_resource type="PackedScene" uid="uid://ba30u7wpk7i4j" path="res://Classes/transformation.tscn" id="6_qsbjm"]
+[ext_resource type="PackedScene" uid="uid://bkd27kvk7wale" path="res://Moves/stardust.tscn" id="6_xtvu7"]
 [ext_resource type="Script" path="res://Transformations/trans_level.gd" id="7_eo57h"]
 
 [node name="Prouse" instance=ExtResource("1_gqr5r")]
@@ -28,7 +29,9 @@ texture = ExtResource("2_w4det")
 
 [node name="MoveNode#AttackNode#InfectedTooth" parent="DefaultMoveNode" index="1" instance=ExtResource("4_2iyly")]
 
-[node name="FrostPunch" parent="DefaultMoveNode" index="2" instance=ExtResource("5_knm4t")]
+[node name="Accelerate" parent="DefaultMoveNode" index="2" instance=ExtResource("6_a6bao")]
+
+[node name="Stardust" parent="DefaultMoveNode" index="3" instance=ExtResource("6_xtvu7")]
 
 [node name="Transformation" parent="TransformNode" index="0" instance=ExtResource("6_qsbjm")]
 script = ExtResource("7_eo57h")

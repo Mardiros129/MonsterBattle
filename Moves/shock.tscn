@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://gnksnsqbboq3"]
+[gd_scene load_steps=4 format=3 uid="uid://gnksnsqbboq3"]
 
 [ext_resource type="PackedScene" uid="uid://qr33vq251lgo" path="res://Classes/move.tscn" id="1_3gemq"]
 [ext_resource type="PackedScene" uid="uid://bdshc5heim1gq" path="res://Status/stun_status.tscn" id="2_fjnep"]
+[ext_resource type="PackedScene" uid="uid://p0tcfc321kx7" path="res://Effect/shock_effect.tscn" id="2_xvpl7"]
 
 [node name="Shock" instance=ExtResource("1_3gemq")]
 move_name = "Shock"
@@ -10,4 +11,6 @@ type = 6
 category = 2
 description = "A weak attack that leaves the enemy [b]stunned[/b]."
 attack_target = 2
+effect = ExtResource("2_xvpl7")
+effect_target = 1
 status_scene = ExtResource("2_fjnep")

@@ -86,5 +86,6 @@ func _unhandled_input(event):
 # Consider renaming to something like "fight triggered"
 func _on_monster_area_body_entered_return_path(_body, path):
 	if path[0] != "":
-		enemy_path = path
+		for x in path.size():
+			enemy_path.append(path[x])
 		transition_to_fight()
